@@ -1,0 +1,45 @@
+<!DOCTYPE html>---
+const chapters = [
+  ["00-introducao", "Introdução"],
+  ["01-criacao-personagem", "Criação de Personagem (20 Perguntas)"],
+  ["02-atributos", "Atributos e Disciplinas (3x5)"],
+  ["03-testes", "Resolução de Testes (pool + explosão)"],
+  ["04-magia-musical", "Magia Musical (modos, ritmos, intervalos)"],
+  ["05-tensao-harmonica", "Tensão Harmônica (paradoxo épico)"],
+  ["06-combate", "Combate (cinemático + larga escala)"],
+  ["07-ferimentos", "Ferimentos (trilha, penalidades)"],
+  ["08-magi-tech", "Magi-Tech (arcano-renascentista)"],
+  ["09-honra-status-influencia", "Honra, Status e Influência"]
+];
+---
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Qamareth SRD • Índice</title>
+    <style>
+      body{margin:0;font-family:system-ui,sans-serif;background:#0b0c10;color:#e9e2d0}
+      main{max-width:980px;margin:0 auto;padding:32px 18px}
+      a{color:#c9a44b;text-decoration:none}
+      a:hover{text-decoration:underline}
+      .card{background:#0f1117;border:1px solid rgba(233,226,208,.15);border-radius:16px;padding:18px}
+      ul{line-height:1.85}
+      .muted{color:rgba(233,226,208,.7)}
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="card">
+        <h1>Qamareth SRD</h1>
+        <p class="muted">v0.2 — núcleo consolidado (em expansão).</p>
+        <h2>Capítulos</h2>
+        <ul>
+          {chapters.map(([slug, title]) => (
+            <li><a href={`/srd/${slug}`}>{title}</a></li>
+          ))}
+        </ul>
+        <p><a href="/">← Voltar</a></p>
+      </div>
+    </main>
+  </body>
+</html>
