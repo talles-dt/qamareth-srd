@@ -1,25 +1,165 @@
 ---
 const title = "Qamareth SRD";
+
+const sections = [
+  {
+    title: "SRD",
+    href: "/srd",
+    description:
+      "As regras centrais de Qamareth: criação de personagem, testes, magia musical, combate, bastions, política e progressão."
+  },
+  {
+    title: "Lore",
+    href: "/lore",
+    description:
+      "História, facções, regiões, cosmologia, religião, tecnologia e os grandes conflitos do mundo de Qamareth."
+  },
+  {
+    title: "Templates",
+    href: "/templates",
+    description:
+      "Modelos oficiais para criar partituras, inimigos, facções, escolas, bastions e outros conteúdos compatíveis."
+  },
+  {
+    title: "Grimórios",
+    href: "/grimorios",
+    description:
+      "Partituras, rituais, motivos de combate, tradições musicais e outros conteúdos de uso direto em jogo."
+  }
+];
 ---
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <title>Qamareth</title>
     <style>
-      body { margin:0; font-family: system-ui, sans-serif; background:#0b0c10; color:#e9e2d0; }
-      main { max-width: 900px; margin: 0 auto; padding: 32px 18px; }
-      a { color:#c9a44b; text-decoration:none; }
-      a:hover { text-decoration: underline; }
-      .card { background:#0f1117; border:1px solid rgba(233,226,208,.15); border-radius:16px; padding:18px; }
+      :root {
+        --bg: #0b0c10;
+        --panel: #11141b;
+        --panel-2: #0f1117;
+        --text: #e9e2d0;
+        --muted: #b8b0a0;
+        --accent: #c9a44b;
+        --border: rgba(233, 226, 208, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 20px 56px;
+      }
+
+      .hero {
+        margin-bottom: 28px;
+        padding: 28px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+
+      .hero h1 {
+        margin: 0 0 10px 0;
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        margin: 0;
+        line-height: 1.7;
+        color: var(--muted);
+        max-width: 760px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        display: block;
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 22px;
+        transition:
+          transform 0.15s ease,
+          border-color 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(201, 164, 75, 0.35);
+        background: #141923;
+      }
+
+      .card h2 {
+        margin: 0 0 10px 0;
+        color: var(--accent);
+      }
+
+      .card p {
+        margin: 0;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      .footer {
+        margin-top: 26px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 800px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+      }
     </style>
   </head>
   <body>
-    <main>
-      <div class="card">
-        <h1>Qamareth SRD</h1>
-        <p>SRD do sistema: magia musical (modos/ritmo), combate cinematográfico e magi-tech arcano.</p>
-        <p><a href="/srd">Começar →</a></p>
+    <main class="wrap">
+      <section class="hero">
+        <h1>Qamareth</h1>
+        <p>
+          Um cenário e sistema de fantasia arcano-musical, onde harmonia,
+          dissonância, fé, intriga, tecnologia e poder territorial moldam o
+          destino do mundo.
+        </p>
+      </section>
+
+      <section class="grid">
+        {sections.map((section) => (
+          <a class="card" href={section.href}>
+            <h2>{section.title}</h2>
+            <p>{section.description}</p>
+          </a>
+        ))}
+      </section>
+
+      <div class="footer">
+        Subdomínio do liceu, mas com ambições imperiais.
       </div>
     </main>
   </body>

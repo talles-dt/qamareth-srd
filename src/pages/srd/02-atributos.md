@@ -1,4 +1,7 @@
- 
+---
+layout: ../../layouts/SrdLayout.astro
+title: Atributos e Disciplinas
+---
 # Atributos e Disciplinas • 3×5
 
 ## Cinco pilares

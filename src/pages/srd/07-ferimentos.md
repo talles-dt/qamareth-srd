@@ -1,3 +1,8 @@
+---
+layout: ../../layouts/SrdLayout.astro
+title: Dano e Ferimentos
+---
+
 # Ferimentos • Trilha e Penalidades
 
 Não há HP. Há estados.

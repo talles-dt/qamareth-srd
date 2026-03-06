@@ -1,3 +1,8 @@
+---
+layout: ../../layouts/SrdLayout.astro
+title: Magia Musical
+---
+
 # Magia Musical • Modos, Ritmos e Harmonia Real
 
 Magia não é “lista de poderes”: é **Partitura**.

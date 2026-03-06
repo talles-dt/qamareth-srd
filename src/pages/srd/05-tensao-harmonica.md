@@ -1,3 +1,8 @@
+---
+layout: ../../layouts/SrdLayout.astro
+title: Tensão Harmônica
+---
+
 # Tensão Harmônica • Paradoxo Épico
 
 Tensão Harmônica só aparece em **magias poderosas em sequência** (ou rituais extremos).

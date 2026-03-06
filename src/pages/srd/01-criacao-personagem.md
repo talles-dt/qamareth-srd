@@ -1,4 +1,7 @@
- 
+---
+layout: ../../layouts/SrdLayout.astro
+title: Criação de personagem
+---
 # Criação de Personagem • As 20 Perguntas (versão estruturada)
 
 Em Qamareth, o personagem nasce de decisões. As respostas definem:

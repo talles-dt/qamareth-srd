@@ -1,0 +1,74 @@
+---
+const pages = [
+  ["partituras-iniciais", "Partituras Iniciais"],
+  ["rituais-liturgicos", "Rituais Litúrgicos"],
+  ["motivos-de-combate", "Motivos de Combate"],
+  ["grimorio-arcano", "Grimório Arcano"],
+  ["grimorio-marcial", "Grimório Marcial"],
+  ["grimorio-magi-tech", "Grimório Magi-Tech"]
+];
+---
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grimórios • Qamareth</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: #0b0c10;
+        color: #e9e2d0;
+      }
+
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 32px 18px;
+      }
+
+      a {
+        color: #c9a44b;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .card {
+        background: #0f1117;
+        border: 1px solid rgba(233,226,208,.15);
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .muted {
+        color: rgba(233,226,208,.7);
+      }
+
+      ul {
+        line-height: 1.85;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="card">
+        <h1>Grimórios</h1>
+        <p class="muted">
+          Partituras, rituais, técnicas, motivos e conteúdos de uso direto em jogo.
+        </p>
+
+        <h2>Páginas</h2>
+        <ul>
+          {pages.map(([slug, title]) => (
+            <li><a href={`/grimorios/${slug}`}>{title}</a></li>
+          ))}
+        </ul>
+
+        <p><a href="/">← Voltar</a></p>
+      </div>
+    </main>
+  </body>
+</html>

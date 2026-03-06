@@ -1,4 +1,7 @@
- 
+---
+layout: ../../layouts/SrdLayout.astro
+title: Testes e Rolagens
+---
 # Resolução de Testes • Pool + Explosão
 
 ## Pool

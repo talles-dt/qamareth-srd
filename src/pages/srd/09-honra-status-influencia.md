@@ -1,4 +1,7 @@
- 
+---
+layout: ../../layouts/SrdLayout.astro
+title: Honra, Status e Influência
+---
 # Honra, Status e Influência
 
 ## Honra

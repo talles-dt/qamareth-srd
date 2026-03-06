@@ -1,4 +1,7 @@
- 
+---
+layout: ../../layouts/SrdLayout.astro
+title: Introdução
+---
 # Introdução
 
 Qamareth é alta fantasia arcano-renascentista: magia como Harmonia (voz basta), tecnologia como imitação arcana, e sociedade regida por Honra, Status e Influência.

@@ -1,3 +1,8 @@
+---
+layout: ../../layouts/SrdLayout.astro
+title: Regras de Combate
+---
+
 # Combate • Cinemático (e tático em larga escala)
 
 O combate é uma Partitura de guerra: ritmo, postura e clímax.

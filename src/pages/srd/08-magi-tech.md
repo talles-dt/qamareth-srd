@@ -1,3 +1,8 @@
+---
+layout: ../../layouts/SrdLayout.astro
+title: Magi-Tech
+---
+
 # Magi-Tech • Arcano-Renascentista
 
 Magi-tech é tecnologia movida a padrões arcanos: cristais, runas, ressonadores e “motores harmônicos”.
