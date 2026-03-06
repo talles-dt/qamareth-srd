@@ -21,3 +21,10 @@ As perguntas estão organizadas em 5 blocos: Origem, Formação, Fé, Posicionam
 Cada resposta dá bônus claros (tabela na próxima revisão).
 
 > Nota: este capítulo será expandido com a lista completa de 20 perguntas + opções fechadas + efeitos.
+
+
+---
+
+[← Introdução](/srd/00-introducao)
+
+[Próximo: Atributos →](/srd/02-atributos)

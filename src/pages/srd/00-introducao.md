@@ -14,3 +14,10 @@ Qamareth é alta fantasia arcano-renascentista: magia como Harmonia (voz basta),
 - **CH (Complexidade Harmônica):** dificuldade da partitura (magia).
 - **PH (Peso Harmônico):** carga que alimenta Tensão Harmônica.
 - **Dissonância:** reação do mundo/da alma ao erro ou arrogância.
+
+
+---
+
+[← Voltar ao índice](/srd)
+
+[Próximo: Criação de Personagem →](/srd/01-criacao-personagem)
