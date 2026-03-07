@@ -1,13 +1,73 @@
 ---
-const pages = [
-  ["historia", "História"],
-  ["geografia", "Geografia"],
-  ["faccoes", "Facções"],
-  ["religiao", "Religião"],
-  ["magia-no-mundo", "Magia no Mundo"],
-  ["tecnologia", "Tecnologia"],
-  ["regioes", "Regiões"],
-  ["cosmologia", "Cosmologia"]
+const sections = [
+  {
+    title: "Mundo",
+    links: [
+      ["/lore/world/geography", "Geografia"],
+      ["/lore/world/regions", "Regiões"],
+      ["/lore/world/cities", "Cidades"]
+    ]
+  },
+  {
+    title: "História",
+    links: [
+      ["/lore/history/ages", "Eras"],
+      ["/lore/history/war-of-sundering", "Guerra da Ruptura (War of Sundering)"],
+      ["/lore/history/rise-of-the-god-emperor", "Ascensão do Deus-Imperador"],
+      ["/lore/history/arcane-uprising", "Levante Arcano"],
+      ["/lore/history/harmonium-uprising", "Levante do Harmonium"],
+      ["/lore/history/era-of-shadows", "Era das Sombras"]
+    ]
+  },
+  {
+    title: "Religião",
+    links: [
+      ["/lore/religion/harmonium", "Harmonium"],
+      ["/lore/religion/pantheon", "Panteão"],
+      ["/lore/religion/liturgy", "Liturgia"],
+      ["/lore/religion/church-of-eternal-light", "Igreja da Luz Eterna"]
+    ]
+  },
+  {
+    title: "Política",
+    links: [
+      ["/lore/politics/empire", "Império"],
+      ["/lore/politics/council-of-ascendants", "Conselho dos Ascendentes"],
+      ["/lore/politics/inquisition", "Inquisição"],
+      ["/lore/politics/eyes-of-the-emperor", "Olhos do Imperador"],
+      ["/lore/politics/noble-houses", "Casas Nobres"]
+    ]
+  },
+  {
+    title: "Facções",
+    links: [
+      ["/lore/factions/rebel-factions", "Facções Rebeldes"],
+      ["/lore/factions/guilds", "Guildas"],
+      ["/lore/factions/secret-societies", "Sociedades Secretas"]
+    ]
+  },
+  {
+    title: "Sociedade",
+    links: [
+      ["/lore/society/culture", "Cultura"],
+      ["/lore/society/daily-life", "Vida Cotidiana"],
+      ["/lore/society/regional-cultures", "Culturas Regionais"]
+    ]
+  },
+  {
+    title: "Economia",
+    links: [
+      ["/lore/economy/economy", "Economia"],
+      ["/lore/economy/magitech-industry", "Indústria Magi-Tech"]
+    ]
+  },
+  {
+    title: "Guerra",
+    links: [
+      ["/lore/war/imperial-military", "Forças Imperiais"],
+      ["/lore/war/warfare-and-technology", "Guerra e Tecnologia"]
+    ]
+  }
 ];
 ---
 <html lang="pt-BR">
@@ -16,59 +76,32 @@ const pages = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Lore • Qamareth</title>
     <style>
-      body {
-        margin: 0;
-        font-family: system-ui, sans-serif;
-        background: #0b0c10;
-        color: #e9e2d0;
-      }
-
-      main {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 32px 18px;
-      }
-
-      a {
-        color: #c9a44b;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      .card {
-        background: #0f1117;
-        border: 1px solid rgba(233,226,208,.15);
-        border-radius: 16px;
-        padding: 18px;
-      }
-
-      .muted {
-        color: rgba(233,226,208,.7);
-      }
-
-      ul {
-        line-height: 1.85;
-      }
+      body { margin: 0; font-family: system-ui, sans-serif; background: #0b0c10; color: #e9e2d0; }
+      main { max-width: 980px; margin: 0 auto; padding: 32px 18px; }
+      .card { background: #0f1117; border: 1px solid rgba(233,226,208,.15); border-radius: 16px; padding: 18px; }
+      a { color: #c9a44b; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .muted { color: rgba(233,226,208,.7); }
+      .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
     </style>
   </head>
   <body>
     <main>
       <div class="card">
         <h1>Lore</h1>
-        <p class="muted">
-          História, cosmologia, facções, geografia, religião, tecnologia e os grandes conflitos de Qamareth.
-        </p>
-
-        <h2>Páginas</h2>
-        <ul>
-          {pages.map(([slug, title]) => (
-            <li><a href={`/lore/${slug}`}>{title}</a></li>
+        <p class="muted">Guia enciclopédico do cenário de Qamareth, separado do conteúdo mecânico do SRD.</p>
+        <div class="grid">
+          {sections.map((section) => (
+            <section>
+              <h2>{section.title}</h2>
+              <ul>
+                {section.links.map(([href, label]) => (
+                  <li><a href={href}>{label}</a></li>
+                ))}
+              </ul>
+            </section>
           ))}
-        </ul>
-
+        </div>
         <p><a href="/">← Voltar</a></p>
       </div>
     </main>
