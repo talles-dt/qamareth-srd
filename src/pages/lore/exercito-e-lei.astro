@@ -1,0 +1,302 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',        label: 'O Mundo' },
+      { href: '/lore/o-imperio',      label: 'O Império' },
+      { href: '/lore/o-harmonium',    label: 'O Harmonium' },
+      { href: '/lore/faccoes',        label: 'Facções' },
+      { href: '/lore/regioes',        label: 'Regiões' },
+      { href: '/lore/historia',       label: 'História' },
+      { href: '/lore/cosmologia',     label: 'Cosmologia' },
+      { href: '/lore/exercito-e-lei', label: 'Exército & Lei' },
+    ],
+  },
+];
+---
+
+<ContentLayout
+  title="Exército & Lei · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'Exército & Lei', href: '/lore/exercito-e-lei' }]}
+>
+
+  <h1>Exército e Lei Imperial</h1>
+  <span class="tagline">
+    O Exército executa. A Lei legitima. Juntos, constroem a gaiola.
+  </span>
+
+  <p>
+    O poder do Deus-Imperador não repousa apenas na fé — repousa na força. O Exército Imperial
+    é a mão que esmaga; o Sistema Legal é a narrativa que justifica o esmagamento. Compreender
+    ambos é essencial para qualquer um que pretenda resistir — ou simplesmente sobreviver.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Estrutura do Exército Imperial</h2>
+
+  <p>
+    O Exército Imperial é altamente organizado, com uma cadeia de comando rigorosa que garante
+    lealdade ao Deus-Imperador em cada nível. É supervisionado pelo
+    <strong>General Ascendente Meridion, o Inabalável</strong> — gênio estratégico conhecido
+    por sua calma imperturbável e lealdade absoluta.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">O Exército Imperial</span>
+      <p>A força principal: infantaria, cavalaria e unidades de cerco. Dividida em legiões comandadas por Legatus. Defende fronteiras, policia províncias e conduz campanhas. Mix de humanos, orcs e anões.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">A Guarda Arcana</span>
+      <p>Divisão especializada de conjuradores. Backbone mágico do exército — artilharia arcana, barreiras mágicas, batalha mágica ofensiva. Os Arquimagos comandam suas próprias unidades de battle mages.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">O Corpo Magi-Tech</span>
+      <p>Engenheiros, artificers e operadores de máquinas de guerra. Golemns arcanos, armas de cerco encantadas, navios Magi-Tech voadores. A vantagem tecnológica que torna o Exército quase irresistível.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">A Marinha Imperial</span>
+      <p>Domínio dos mares. Frotas de navios movidos a arcana. Dominância total sobre rotas comerciais e costeiras. Navios capitânia com canhões arcanos capazes de devastar frotas inimigas em minutos.</p>
+    </div>
+  </div>
+
+  <h3>Figuras-Chave</h3>
+
+  <div class="stat-block">
+    <h4>General Ascendente Meridion, o Inabalável</h4>
+    <p>
+      Comandante supremo das forças imperiais. Gênio tático, calma absoluta sob pressão,
+      lealdade inabalável ao Deus-Imperador. Respeito genuíno dos soldados — não pelo medo,
+      mas pela competência. A Casa Valecroft serve sob seu comando. É o obstáculo mais formidável
+      que qualquer rebelião enfrenta em campo aberto.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Arquimaga Lorana de Labirimafogo</h4>
+    <p>
+      Comandante da Guarda Arcana, mestra de magia de gelo e fogo. Temida por inimigos e
+      respeitada por aliados. Joga um papel crucial em assaltos mágicos e na defesa das
+      fronteiras do Império contra ameaças arcanas. Seus confrontos com o Pacto dos Arcanistas
+      são legendários — e frequentemente destrutivos para a paisagem ao redor.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Almirante da Frota Vetharion Quebra-Marés</h4>
+    <p>
+      Comanda a Marinha Imperial. Seu navio capitânia, a <em>Fúria do Leviatã</em>, está equipado
+      com canhões arcanos de longo alcance. Nenhuma força naval no continente pode desafiá-lo
+      em batalha direta. As rotas comerciais marítimas existem por sua permissão.
+    </p>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Táticas e Tecnologia de Guerra</h2>
+
+  <div class="stat-block">
+    <h4>Choque e Pavor</h4>
+    <p>
+      O Exército não busca batalhas equilibradas. Busca esmagamento. Bombardeio mágico antes
+      da infantaria chegar. Construtos Magi-Tech que não se cansam nem morrem de medo. Artilharia
+      arcana posicionada antes de qualquer negociação. O objetivo é psicológico tanto quanto
+      estratégico: que nenhum exército rebelde acredite poder ganhar mesmo antes de lutar.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Guerra de Cerco</h4>
+    <p>
+      Com motores de cerco encantados e wards arcanas, o Império pode cercar qualquer cidade
+      indefinidamente. A Guarda Arcana mantém escudos mágicos que protegem as forças imperiais
+      de contra-ataques enquanto as defesas inimigas se deterioram. Paciência é uma arma.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Infiltração e Sabotagem — Os Olhos do Imperador</h4>
+    <p>
+      Antes de qualquer assalto militar, os Olhos do Imperador já estão operando. Agentes
+      infiltrados usam magia de ilusão e táticas furtivas para mapear defesas, eliminar líderes-chave
+      e criar divisões internas. Quando o Exército chega, já encontra o inimigo enfraquecido
+      por dentro.
+    </p>
+  </div>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Canhões Arcanos</span>
+      <p>Em fortins e navios. Disparam rajadas de energia arcana concentrada capazes de reduzir paredes a escombros. Arma principal de cerco e naval.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Construtos Magi-Tech</span>
+      <p>Golems e máquinas de guerra arcanas que não se cansam, não sentem medo, não desertam. Imunes à persuasão. Duráveis. Letais. O pesadelo de qualquer guerrilha.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Armaduras e Armas Encantadas</span>
+      <p>Soldados de elite equipados com itens arcanos que aumentam força, velocidade e resistência. A diferença entre um soldado imperial e um rebelde é frequentemente o equipamento.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Artilharia Arcana de Longa Distância</span>
+      <p>Unidades estacionárias posicionadas perto de fortalezas-chave. Alcance que inutiliza qualquer formação inimiga antes de chegar às linhas imperiais.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>O Sistema Legal Imperial</h2>
+
+  <p>
+    O sistema legal de Qamareth é uma extensão do regime autocrático do Deus-Imperador.
+    A lei serve para manter o poder do Estado, não para proteger o cidadão. Justiça é dispensada
+    rapidamente — e frequentemente com crueldade deliberada. O sistema é projetado para manter
+    a população com medo enquanto garante que o Deus-Imperador e seu regime sejam além de
+    qualquer questionamento.
+  </p>
+
+  <h3>Hierarquia Legal</h3>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">O Deus-Imperador</span>
+      <p>Acima de qualquer lei. Sua palavra é lei. Nenhuma instância pode questionar ou revisar suas decisões. Fonte última de toda autoridade legal no continente.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Conselho dos Ascendentes</span>
+      <p>Imunes à maioria das formas de processo. Podem dispensar "justiça" como bem entenderem em seus domínios. Zephyrion, o Vigilante, superintende o sistema judiciário.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Nobreza e Lordes Corporativos</span>
+      <p>Status legal elevado. Punições mais leves, proteção judicial informal. Podem ser processados por traição — mas raramente por qualquer outro crime grave.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Membros de Guildas</span>
+      <p>Direitos acima do cidadão comum. Disputas entre membros geralmente resolvidas internamente. Desafiar o controle estatal, porém, resulta em enquadramento como rebelde.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Cidadãos Comuns</span>
+      <p>Pouquíssimas proteções legais. Sujeitos a punições severas por infrações menores. Julgamentos frequentemente tendenciosos em favor da elite. Alvos primários da Inquisição.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Escravos e Subclasse</span>
+      <p>Nenhum direito legal. Tratados como propriedade. Punições severas para qualquer infração, especialmente desobediência. Exemplos públicos feitos para prevenir revoltas.</p>
+    </div>
+  </div>
+
+  <h3>Tipos de Julgamento</h3>
+
+  <div class="stat-block">
+    <h4>Os Tribunais Imperiais</h4>
+    <p>
+      Supervisionados pelo Magistrado-Chefe Ascendente Zephyrion. Lidam com a maioria das
+      questões legais — disputas civis a julgamentos criminais. Juízes frequentemente corruptos
+      ou subordinados à nobreza: o resultado de um julgamento pode ser comprado por quem tem
+      recursos suficientes.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>A Inquisição</h4>
+    <p>
+      Para crimes de traição, heresia ou rebelião, a Inquisição conduz "julgamentos" que são
+      pouco mais que formalidades. O acusado é quase sempre considerado culpado antes do
+      processo começar. Tortura é usada rotineiramente para extrair confissões. Os Inquisidores
+      são juiz, júri e carrasco — e a punição é pública e espetacular por design.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Arbitragem de Guildas</h4>
+    <p>
+      Disputas entre membros de guildas frequentemente resolvidas internamente pelos líderes
+      da guilda. Mais leniente que os tribunais imperiais — mas os membros ainda são obrigados
+      a reportar crimes graves ao Estado. Usar a arbitragem para proteger um colega de
+      processo imperial é crime em si.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Julgamentos Públicos</h4>
+    <p>
+      Para o povo comum. Realizados em praças públicas ou pátios de templos imperiais. Altamente
+      performáticos — o objetivo é demonstrar o poder do Estado, não apurar a verdade. Veredictos
+      frequentemente predeterminados. Multidões forçadas a assistir como lembrete de quem manda.
+    </p>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Punições</h2>
+
+  <p>
+    As punições no Império são calibradas para o medo. A severidade depende menos do crime
+    do que do status social do acusado — e do valor político de fazer um espetáculo.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Execução Pública</span>
+      <p>Para traição, heresia, rebelião. Decapitação, enforcamento ou queima. Corpos exibidos como aviso. A execução não é apenas punição — é mensagem política.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Trabalho Forçado</span>
+      <p>Para os "úteis". Enviados às minas, refinarias de cristal arcano ou campos de trabalho no Deserto. Frequentemente sentença de morte disfarçada — as condições são letais.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Encarceramento</span>
+      <p>Menos comum. Para crimes políticos. Prisioneiros mantidos em condições brutais. Soltura condicionada à lealdade ao Deus-Imperador — frequentemente após "reeducação".</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Humilhação Pública</span>
+      <p>Para infrações menores de plebeus. Desfile pelas ruas, marcação a ferro, açoitamento. Multidão incentivada a participar. Reforça a hierarquia social e o custo de qualquer desobediência.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Vigilância e Controle Social</h2>
+
+  <p>
+    O exército não precisa estar em todo lugar se os próprios cidadãos se vigiam mutuamente.
+    A arquitetura de controle do Império combina vigilância ativa e passiva num sistema que
+    torna a dissidência isolada e o anonimato quase impossível.
+  </p>
+
+  <div class="stat-block">
+    <h4>Os Olhos do Imperador</h4>
+    <p>
+      Rede de espiões e agentes usando tanto meios mundanos quanto mágicos para monitorar
+      a população. Magia de <em>scrying</em> e ilusão para vigilância remota. Informantes
+      em cada bairro, guilda e instituição religiosa. A sensação de ser observado é cultivada
+      deliberadamente — pois a paranoia que gera é mais eficaz do que a própria vigilância.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>A Máquina de Propaganda</h4>
+    <p>
+      A Igreja da Luz Eterna, o sistema de educação imperial e os Cronistas trabalham juntos
+      para construir uma narrativa onde o regime do Deus-Imperador é não apenas necessário,
+      mas divinamente ordenado. Histórias de "atrocidades rebeldes" e "ameaças estrangeiras"
+      circulam constantemente para justificar o controle. Dois gerações de doutrinação significam
+      que muitos sinceramente acreditam — e delatam vizinhos de boa fé.
+    </p>
+  </div>
+
+  <div class="callout">
+    "A Inquisição não é o maior instrumento de controle do Império. É o medo da Inquisição.
+    São os vizinhos que relatam. São os filhos que duvidam dos pais. É o silêncio que se
+    instala nos jantares quando alguém menciona um nome proibido. O Império construiu
+    sua prisão mais eficiente dentro de cada pessoa."
+    <br/><strong>— Fragmento recuperado pelo Pacto dos Arcanistas</strong>
+  </div>
+
+</ContentLayout>

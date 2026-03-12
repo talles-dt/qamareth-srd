@@ -1,76 +1,276 @@
 ---
-const pages = [
-  ["historia", "História"],
-  ["geografia", "Geografia"],
-  ["faccoes", "Facções"],
-  ["religiao", "Religião"],
-  ["magia-no-mundo", "Magia no Mundo"],
-  ["tecnologia", "Tecnologia"],
-  ["regioes", "Regiões"],
-  ["cosmologia", "Cosmologia"]
+import Layout from '../../layouts/Layout.astro';
+import Sigil from '../../components/Sigil.astro';
+
+const categories = [
+  {
+    glyph: '⚜',
+    title: 'O Mundo',
+    href: '/lore/o-mundo',
+    desc: 'Visão geral de Qamareth — geografia, história, forças em conflito e o estado atual do continente.',
+  },
+  {
+    glyph: '♛',
+    title: 'O Império',
+    href: '/lore/o-imperio',
+    desc: 'A Autocracia do Deus-Imperador: o Conselho dos Ascendentes, a Inquisição e os Olhos do Imperador.',
+  },
+  {
+    glyph: '♬',
+    title: 'O Harmonium',
+    href: '/lore/o-harmonium',
+    desc: 'A fé proibida — panteão com 14 divindades, ritos litúrgicos, templos e a teologia arcano-musical.',
+  },
+  {
+    glyph: '⚑',
+    title: 'Facções',
+    href: '/lore/faccoes',
+    desc: 'A Rebelião e suas células, as Casas Nobres, as Guildas e as Sociedades Secretas.',
+  },
+  {
+    glyph: '◈',
+    title: 'Regiões',
+    href: '/lore/regioes',
+    desc: 'As seis regiões de Qamareth — topografia, recursos, cidades e ameaças de cada uma.',
+  },
+  {
+    glyph: '⬡',
+    title: 'Cidades',
+    href: '/lore/cidades',
+    desc: 'Perfis detalhados das cidades maiores, satélites de Aurelia Prime e os assentamentos menores.',
+  },
+  {
+    glyph: '❧',
+    title: 'Sociedade',
+    href: '/lore/sociedade',
+    desc: 'Hierarquia imperial, vida cotidiana, educação, festivais e culturas regionais — como se vive em Qamareth.',
+  },
+  {
+    glyph: '⌛',
+    title: 'História',
+    href: '/lore/historia',
+    desc: 'Da Era da Criação ao Deus-Imperador — os eras que moldaram Qamareth.',
+  },
+  {
+    glyph: '☿',
+    title: 'Cosmologia',
+    href: '/lore/cosmologia',
+    desc: 'Os planos de existência, a Sinfonia Criadora, o panteão e o Véu de Ephira.',
+  },
+  {
+    glyph: '⚔',
+    title: 'Exército & Lei',
+    href: '/lore/exercito-e-lei',
+    desc: 'A máquina de guerra imperial, o sistema legal estratificado e os instrumentos de controle.',
+  },
 ];
 ---
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lore • Qamareth</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: system-ui, sans-serif;
-        background: #0b0c10;
-        color: #e9e2d0;
-      }
 
-      main {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 32px 18px;
-      }
+<Layout title="Lore · Qamareth" section="lore" description="A história, o mundo e as forças que moldam Qamareth.">
 
-      a {
-        color: #c9a44b;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      .card {
-        background: #0f1117;
-        border: 1px solid rgba(233,226,208,.15);
-        border-radius: 16px;
-        padding: 18px;
-      }
-
-      .muted {
-        color: rgba(233,226,208,.7);
-      }
-
-      ul {
-        line-height: 1.85;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <div class="card">
-        <h1>Lore</h1>
-        <p class="muted">
-          História, cosmologia, facções, geografia, religião, tecnologia e os grandes conflitos de Qamareth.
-        </p>
-
-        <h2>Páginas</h2>
-        <ul>
-          {pages.map(([slug, title]) => (
-            <li><a href={`/lore/${slug}`}>{title}</a></li>
-          ))}
-        </ul>
-
-        <p><a href="/">← Voltar</a></p>
+  <!-- HERO DA SEÇÃO -->
+  <section class="section-hero">
+    <div class="section-hero-inner">
+      <div class="section-hero-sigil">
+        <Sigil size={80} animate={false} />
       </div>
-    </main>
-  </body>
-</html>
+      <div class="section-hero-text">
+        <p class="section-eyebrow font-cinzel">Lore</p>
+        <h1 class="section-title font-cinzel-d">O Mundo de Qamareth</h1>
+        <p class="section-desc font-garamond">
+          Um continente dividido onde o Império governa com mão de ferro e a fé
+          antiga do Harmonium — perseguida, mas não extinta — sussurra nas sombras.
+          Harmonia, dissonância, fé e traição moldam o destino de todos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID DE CATEGORIAS -->
+  <section class="lore-grid-section">
+    <div class="lore-grid-wrap">
+      <div class="lore-grid">
+        {categories.map((cat, i) => (
+          cat.soon
+            ? (
+              <div class="lore-card lore-card--soon" style={`animation-delay: ${0.1 + i * 0.07}s`}>
+                <span class="lore-card-glyph" aria-hidden="true">{cat.glyph}</span>
+                <div class="lore-card-body">
+                  <h2 class="lore-card-title font-cinzel">{cat.title}</h2>
+                  <p class="lore-card-desc font-garamond">{cat.desc}</p>
+                </div>
+                <span class="lore-card-badge font-cinzel">Em breve</span>
+              </div>
+            )
+            : (
+              <a href={cat.href} class="lore-card" style={`animation-delay: ${0.1 + i * 0.07}s`}>
+                <span class="lore-card-glyph" aria-hidden="true">{cat.glyph}</span>
+                <div class="lore-card-body">
+                  <h2 class="lore-card-title font-cinzel">{cat.title}</h2>
+                  <p class="lore-card-desc font-garamond">{cat.desc}</p>
+                </div>
+                <span class="lore-card-arrow" aria-hidden="true">→</span>
+              </a>
+            )
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ─── HERO ─── */
+  .section-hero {
+    border-bottom: 1px solid var(--border);
+    padding: 52px 24px 48px;
+    background: linear-gradient(to bottom, rgba(201,164,75,0.03), transparent);
+  }
+  .section-hero-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .section-hero-sigil {
+    flex-shrink: 0;
+    opacity: 0.65;
+    animation: qa-fade-in 0.8s var(--ease-out) both;
+  }
+  .section-eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 400;
+    color: var(--gold-bright);
+    margin-bottom: 14px;
+    animation: qa-rise 0.8s var(--ease-out) 0.1s both;
+  }
+  .section-desc {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 620px;
+    animation: qa-drift 0.8s var(--ease-out) 0.2s both;
+  }
+
+  /* ─── GRID ─── */
+  .lore-grid-section { padding: 48px 24px 80px; }
+  .lore-grid-wrap { max-width: 880px; margin: 0 auto; }
+  .lore-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .lore-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: 14px;
+    padding: 20px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: transform 0.2s var(--ease-out), border-color 0.2s, background 0.2s, box-shadow 0.3s;
+    animation: qa-drift 0.6s var(--ease-out) both;
+    overflow: hidden;
+  }
+  .lore-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold-ghost), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .lore-card:not(.lore-card--soon):hover {
+    transform: translateY(-2px);
+    border-color: var(--gold-hover);
+    background: var(--surface-2);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.4);
+  }
+  .lore-card:not(.lore-card--soon):hover::before { opacity: 1; }
+  .lore-card--soon {
+    opacity: 0.42;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .lore-card-glyph {
+    font-size: 1.5rem;
+    color: var(--gold-dim);
+    width: 32px;
+    text-align: center;
+    margin-top: 2px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .lore-card:hover .lore-card-glyph { color: var(--gold); }
+
+  .lore-card-body { min-width: 0; position: relative; }
+
+  .lore-card-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 7px;
+    transition: color 0.2s;
+  }
+  .lore-card:hover .lore-card-title { color: var(--gold-bright); }
+
+  .lore-card-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+    transition: color 0.2s;
+  }
+  .lore-card:hover .lore-card-desc { color: var(--text); }
+
+  .lore-card-arrow {
+    color: var(--text-faint);
+    font-size: 1rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+    transition: transform 0.2s var(--ease-out), color 0.2s;
+    position: relative;
+  }
+  .lore-card:hover .lore-card-arrow {
+    transform: translateX(3px);
+    color: var(--gold-dim);
+  }
+
+  .lore-card-badge {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    background: var(--surface-3);
+    border: 1px solid var(--border-2);
+    border-radius: 4px;
+    padding: 3px 8px;
+    white-space: nowrap;
+    margin-top: 3px;
+    align-self: start;
+  }
+
+  /* ─── RESPONSIVO ─── */
+  @media (max-width: 700px) {
+    .section-hero-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .section-hero-sigil { display: none; }
+    .lore-grid { grid-template-columns: 1fr; }
+    .lore-card { grid-template-columns: auto 1fr; }
+    .lore-card-arrow { display: none; }
+  }
+</style>

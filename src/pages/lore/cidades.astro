@@ -1,0 +1,326 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',        label: 'O Mundo' },
+      { href: '/lore/o-imperio',      label: 'O Império' },
+      { href: '/lore/o-harmonium',    label: 'O Harmonium' },
+      { href: '/lore/faccoes',        label: 'Facções' },
+      { href: '/lore/regioes',        label: 'Regiões' },
+      { href: '/lore/cidades',        label: 'Cidades' },
+      { href: '/lore/sociedade',      label: 'Sociedade' },
+      { href: '/lore/historia',       label: 'História' },
+      { href: '/lore/cosmologia',     label: 'Cosmologia' },
+      { href: '/lore/exercito-e-lei', label: 'Exército & Lei' },
+    ],
+  },
+];
+
+const cidadesMajores = [
+  {
+    id: 'olynn',
+    nome: 'Olynn',
+    subtitulo: 'O Coração das Campinas',
+    regiao: 'Campinas',
+    status: 'Ocupada / Resistência silenciosa',
+    layout: 'Organizada em anéis concêntricos a partir de uma Praça Central. O anel interno concentra o Conselho Municipal, templos e a mansão da Rainha Mercadora. O segundo anel abriga o Distrito Comercial — mercados, guildas, oficinas, estalagens. O anel externo é residencial, com moradias de pedra e madeira, tetos de palha nas ruas mais periféricas. Um muro externo de pedra circunda a cidade, mais símbolo de força do que necessidade defensiva.',
+    geografia: 'Situada no coração das Campinas, junto ao Córrego de Prata — rio pequeno mas vital que abastece a cidade e irriga os campos ao redor. Vales suaves, planícies férteis. Campos de grãos se estendem em todas as direções, conectados à cidade por uma rede de canais de irrigação.',
+    arquitetura: 'Pedra e madeira. Vigas de carvalho e tetos de palha no exterior; tijolos e pedra nas estruturas centrais. O edifício mais icônico é o Templo de Virael — pedra clara, torres esguias, janelas de vitral com cenas de campos e sol. Os Jardins do Amanhecer ao redor do templo são mantidos com devoção discreta: o Harmonium proibido, mas o amor à terra persiste.',
+    demografica: 'Maioria humana. Halflings em grande número, especialmente no setor agrícola — famílias que cultivam as terras vizinhas há gerações. Elfos como druídas, estudiosos e guardiões dos Jardins do Amanhecer. Anões nas Guildas de Tecelagem e nas obras de infraestrutura.',
+    politica: 'O Templo de Virael existe mas cerimônias públicas são proibidas. Agentes da Inquisição e Olhos do Imperador têm presença permanente. A resistência organiza-se em silêncio — nos celeiros, nas guildas, nas rotas de comércio que saem da cidade sem supervisão suficiente.',
+    npcs: 'Rainha Mercadora Corina — liderança civil com dois rostos: um para o Império, outro para a resistência.',
+  },
+  {
+    id: 'capolus',
+    nome: 'Capolus',
+    subtitulo: 'A Cidade das Copas',
+    regiao: 'Floresta Profunda',
+    status: 'Parcialmente autônoma / Centro de resistência druídica',
+    layout: 'Construída nas copas das árvores ancestrais da Floresta Profunda. Casas-árvore conectadas por passarelas elevadas e plataformas suspensas. O acesso ao solo é deliberadamente dificultado — visitantes não convidados raramente chegam à cidade. No centro, o Bosque Sagrado: uma clareira onde o dossel se abre e a luz filtra direto. Ali ficam o Salão do Conselho e o Templo de Silvaran.',
+    geografia: 'Encravada no coração da Floresta Profunda. O Rio Aeloria corre ao sul, com riachos menores adentrando a floresta para fornecer água. Biodiversidade extraordinária — flores luminescentes, cogumelos mágicos, fauna rara.',
+    arquitetura: 'Madeira, bambu e fibras naturais. Tetos de palha, designs abertos. Muitas estruturas têm paredes vivas — feitas de galhos e trepadeiras entrelaçados que continuam crescendo. O Templo de Silvaran se eleva acima do dossel, com janelas voltadas para o céu e sacadas de onde se vê o mar verde das árvores.',
+    demografica: 'Maioria élfica — elfos da floresta com habilidades em magia da natureza e arqueirismo. Halflings em menor número, artesãos de tecelagem e cerâmica. Druídas e rangers de toda a região encontram aqui um lar ou passagem.',
+    politica: 'A presença imperial é mínima — a floresta é resistência natural. O Conselho da cidade é formado pelos guardiões mais antigos. Bjorn Escudoverde opera a partir daqui. A Inquisição tenta infiltrar espiões, mas raramente com sucesso.',
+    npcs: 'Bjorn Escudoverde — ranger e líder da resistência do Escudo Verdejante.',
+  },
+  {
+    id: 'madiin',
+    nome: 'Madiin',
+    subtitulo: 'A Joia do Deserto',
+    regiao: 'Deserto',
+    status: 'Controlada pelo Império / Resistência em seus mercados',
+    layout: 'Anéis concêntricos ao redor do Oásis Central — o núcleo da cidade, com jardins, palmeiras e tamareiras irrigados por um elaborado sistema de canais. Residências mais opulentas cercam o oásis; à medida que se afasta, os bairros ficam mais modestos. Torres de vigia circundam a cidade, estrategicamente posicionadas.',
+    geografia: 'No coração do deserto, construída ao redor do maior oásis da região. Rotas de caravana convergem em Madiin de todas as direções — é o ponto de parada inevitável para qualquer comércio que cruza as areias.',
+    arquitetura: 'Argila queimada pelo sol — material que isola do calor durante o dia e retém o calor à noite. Tetos planos com jardins suspensos que ajudam a resfriar os interiores. Torres de vigia em toda a periferia.',
+    demografica: 'Maioria humana no comércio e na governança. Dragonborn como mercenários e comerciantes — presença respeitada. Tieflings no comércio e como executores para caravanas. Genasi elemental (ar e fogo) na agricultura e nas artes mágicas.',
+    politica: 'O Império cobra impostos pesados sobre toda água e todo comércio. A resistência vive escondida nos mercados — mercadorias proibidas, informações trocadas em código entre vendedores. A Guilha da Extração Arcana controla as minas ao redor.',
+    npcs: null,
+  },
+  {
+    id: 'deepend',
+    nome: 'Deepend',
+    subtitulo: 'A Cidade Flutuante dos Foragidos',
+    regiao: 'Pântanos',
+    status: 'Fora do controle imperial / Refúgio de rebeldes e contrabandistas',
+    layout: 'Construída sobre palafitas e plataformas de madeira interconectadas, metade submersa na aparência. Canais substituem ruas — barcos são o transporte padrão. No centro, um grande mercado a céu aberto fervilha de atividade. Casas têm alçapões que dão direto na água — saídas de emergência para quem precisa sumir rápido.',
+    geografia: 'Localizada no centro do maior lago pantanoso da região. O posicionamento dentro do pântano cria proteção natural: é difícil aproximar-se sem ser detectado. Inúmeros canais e passagens escondidas pelo pantanal oferecem rotas de fuga.',
+    arquitetura: 'Madeira de pântano — durável e resistente à umidade. Estruturas de múltiplos andares sobre pilares sólidos. Tetos inclinados para escoar a chuva constante. Tudo é funcional; a beleza, quando existe, é acidental.',
+    demografica: 'Humanos foragidos como maioria — ex-comerciantes, rebeldes, desesperados em busca de recomeço. Halflings pela rede de comércio e contatos. Lagartianos nativos dos pântanos, guias e navegadores essenciais. Yuan-ti e Tieflings no submundo político.',
+    politica: 'O Acordo Silencioso tem presença forte aqui. Contrabando, informação, rotas de fuga para o Império — tudo passa por Deepend. A cidade tem suas próprias regras não escritas, mais rígidas do que parecem: trair um aliado aqui tem consequências permanentes.',
+    npcs: null,
+  },
+  {
+    id: 'aurelia-prime',
+    nome: 'Aurelia Prime',
+    subtitulo: 'A Joia da Coroa do Império',
+    regiao: 'Aurelia Prime e Arredores',
+    status: 'Capital Imperial / Centro de poder e opressão',
+    layout: 'Construída sobre terraços elevados em série. O Distrito Superior — no pico — abriga o Palácio do Deus-Imperador, quartéis-generais corporativos e mansões da nobreza. Muros altos, proteções arcanas, guarda de elite. O Distrito Médio é o coração cultural e econômico: teatros, escolas arcanas, praças, mercados. O Distrito Inferior — nas bases dos terraços — é densamente habitado por trabalhadores, operários e os que o Império prefere esquecer.',
+    geografia: 'Estrategicamente posicionada sobre penhascos, com vista para as planícies a oeste e as montanhas a leste. O Rio Aeloria corta a cidade — pontes controladas em todos os cruzamentos. Posição elevada = vantagem defensiva + controle visual de todas as rotas de acesso.',
+    arquitetura: 'Magi-Tech e artesanato clássico fundidos. Torres e canais que integram magia e engenharia. Jardins flutuantes e sacadas nas residências de elite. Lanternas de pedra-luz iluminam as ruas superiores. No Distrito Inferior: pedra e aço, funcional, desgastado, com algo de vida própria nas ruas — vendedores ambulantes, arte de rua, assembleias clandestinas.',
+    demografica: 'Distrito Superior: quase exclusivamente humano — nobreza, líderes corporativos, corte imperial. Distrito Médio: humanos, anões, gnomos, tieflings, elfos — o caldeirão cultural da capital. Distrito Inferior: humanos, anões, meio-orcs, genasi — os que constroem e sustentam o Império sem beneficiar-se dele.',
+    politica: 'O lugar mais vigiado de Qamareth. Os Olhos do Imperador são ubíquos. A Inquisição tem sede aqui. Qualquer reunião de três ou mais pessoas sem autorização é suspeita. E ainda assim — nos becos do Distrito Inferior, nas tavernas sem nome, nas redes de corredores que só os moradores conhecem — a resistência respira.',
+    npcs: 'Alto-Inquisidor Deloth — antagonista principal, com base em Aurelia Prime.',
+  },
+];
+
+const cidadesSatelite = [
+  {
+    nome: 'Stonehaven',
+    regiao: 'Norte de Aurelia Prime',
+    desc: 'Cidade fortaleza de granito, guardando os acessos ao norte. Centro de mineração das Montanhas Ascendentes. O Lorde local serve ao Imperador, mas há murmúrios de insatisfação nas minas.',
+  },
+  {
+    nome: 'Galecliff',
+    regiao: 'Oeste de Aurelia Prime',
+    desc: 'Porto comercial estratégico voltado para o Mar de Prata. Entrada de mercadorias exóticas na capital. Mistura de humanos, elfos e raças aquáticas — cultura marítima distinta do rígido protocolo da capital.',
+  },
+  {
+    nome: 'Ironhold',
+    regiao: 'Sudeste de Aurelia Prime',
+    desc: 'Cidade mineradora construída na face de uma montanha. A Grande Forja central produz armas, armaduras e ferramentas para todo o Império. Anões dominam a indústria; meio-orcs são a força de trabalho. Condições de labor próximas da escravidão.',
+  },
+];
+
+const cidadesMinores = [
+  {
+    regiao: 'Campinas',
+    cidades: [
+      { nome: 'Windale', desc: 'Produção de grãos e moinhos. Moinhos de vento como símbolo local. Posto militar pequeno para proteger as fazendas.' },
+      { nome: 'Greenhollow', desc: 'Centro de marcenaria e carpintaria. Rumores de templo druídico antigo nas matas próximas.' },
+      { nome: 'Briarfort', desc: 'Fortaleza natural de pedras e espinheiros. Guarnição imperial — e, nas sombras, esconderijo da Vanguarda das Brasas.' },
+      { nome: 'Haywick', desc: 'Feira permanente onde agricultores de toda a região comercializam. A cervejaria local produz os melhores barris das Campinas.' },
+      { nome: 'Southmarch', desc: 'Cidade-fronteira no sul das Campinas. Armazéns e postos de comércio onde rotas do deserto começam.' },
+    ],
+  },
+  {
+    regiao: 'Floresta Profunda',
+    cidades: [
+      { nome: 'Thornwatch', desc: 'Vila fortificada na borda da floresta. Rangers e arqueiros patrulham os arredores — leais à floresta, não ao Império.' },
+      { nome: 'Shadevale', desc: 'Vila mística com conexão ao reino feérico. Centro de alquimia e herbalismo. Druídas vêm de longe buscar ingredientes raros.' },
+      { nome: 'Gloomspire', desc: 'Assentamento remoto envolvido em névoa permanente. Encantadores e ilusionistas em retiro voluntário. Passagens secretas por toda a vila.' },
+      { nome: 'Birchwood', desc: 'Famosa pela marcenaria de bétula — móveis, ferramentas e artesanato de alta qualidade. Mercado local animado.' },
+      { nome: 'Leafhaven', desc: 'Vila serena junto a uma série de pequenos lagos. Pesca, agricultura e um pequeno templo a espíritos naturais.' },
+    ],
+  },
+  {
+    regiao: 'Deserto',
+    cidades: [
+      { nome: 'Thyrax', desc: 'Fortaleza imperial no deserto. Oásis controlado por administradores corporativos. Tudo aqui é taxado — inclusive a água.' },
+      { nome: 'Haraath', desc: 'Cidade mineira esculpida nas paredes de um cânion. Anões dominam a extração. Calor sufocante nas galerias.' },
+      { nome: 'Dunefall', desc: 'Pequeno assentamento perto de oásis menores. Parada de caravanas, comércio de tâmaras e especiarias.' },
+      { nome: 'Sandspire', desc: 'Famosa por cerâmica e tecidos com designs únicos do deserto. Artesãos de prestígio regional.' },
+      { nome: 'Cindershade', desc: 'Posto de mineração em formações rochosas vulcânicas. Ferreiros e joalheiros de pedras preciosas raras.' },
+    ],
+  },
+  {
+    regiao: 'Pântanos',
+    cidades: [
+      { nome: 'Nymros', desc: 'Cidade flutuante sobre jangadas interligadas que derivam com as correntes. Mercado de produtos ilícitos. Impossível de sitiar.' },
+      { nome: 'Blackgate', desc: 'Ex-posto militar imperial em ruínas. Hoje habitado por foragidos e rebeldes. Passagem controlada para o leste do Império.' },
+      { nome: 'Frogfen', desc: 'Vila de pescadores e criadores de rãs. Culinária estranha mas respeitada pelos locais.' },
+      { nome: "Briar's End", desc: 'Vila escondida, refúgio de párias. Comunidade coesa com regras próprias. Localização raramente revelada a estranhos.' },
+      { nome: 'Witchwood', desc: 'Centro de comércio arcano e encontros de praticantes. O Império tolera — e monitora de longe.' },
+    ],
+  },
+  {
+    regiao: 'Costa',
+    cidades: [
+      { nome: 'Seabreeze', desc: 'Porto marítimo vibrante. Docas, armazéns, tavernas de marinheiros. Comércio com terras distantes.' },
+      { nome: 'Tidewater', desc: 'Cidade portuária fortificada perto de lagoas e estuários. Maior estaleiro Magi-Tech do Império.' },
+      { nome: 'Wavecrest', desc: 'Cidade de praias e turismo. Casas coloridas, promenade beira-mar, resorts para a elite imperial.' },
+      { nome: 'Bayside', desc: 'Vila de pesca tranquila, famosa pelo peixe fresco e pela atmosfera pacífica.' },
+      { nome: 'Stormwatch', desc: 'Assentamento fortifcado na ponta norte da costa. Ponto de reunião durante tempestades. Vista estratégica para o mar.' },
+    ],
+  },
+  {
+    regiao: 'Arredores de Aurelia Prime',
+    cidades: [
+      { nome: 'Meadowford', desc: 'Vila agrícola nas planícies próximas à capital. Fornecedora de grãos para Aurelia Prime.' },
+      { nome: 'Silvershade', desc: 'Comunidade de herbalistas e alquimistas na borda de uma floresta mística.' },
+      { nome: 'Frostforge', desc: 'Vila montanhosa de ferreiros de elite. Armas e armaduras de altíssima qualidade para o exército imperial.' },
+      { nome: 'Windhaven', desc: 'Construção naval e pesca ao longo de uma crista costeira ventosa.' },
+    ],
+  },
+];
+---
+
+<ContentLayout
+  title="Cidades · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'Cidades', href: '/lore/cidades' }]}
+>
+
+  <h1>As Cidades de Qamareth</h1>
+  <span class="tagline">
+    Cada cidade é uma história de sobrevivência — com o Império acima e a resistência abaixo.
+  </span>
+
+  <p>
+    As cidades de Qamareth não são apenas pontos no mapa. São organismos vivos — moldados
+    pelo terreno, pelo clima, pelas guildas que as dominam e pelas pessoas que tentam
+    sobreviver dentro delas. Cada uma carrega a marca do Império de formas diferentes:
+    algumas se curvam, algumas resistem, algumas fazem os dois ao mesmo tempo.
+  </p>
+
+  <nav class="city-nav font-cinzel">
+    <span class="city-nav-label">Cidades Maiores:</span>
+    {cidadesMajores.map(c => (
+      <a href={`#${c.id}`} class="city-nav-link">{c.nome}</a>
+    ))}
+    <a href="#satelites" class="city-nav-link">Satélites de Aurelia</a>
+    <a href="#menores" class="city-nav-link">Cidades Menores</a>
+  </nav>
+
+  <div class="divider">✦</div>
+
+  <h2>Cidades Maiores</h2>
+
+  {cidadesMajores.map((c, i) => (
+    <>
+      <div class="stat-block" id={c.id}>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 6px;">
+          <div>
+            <h3 style="margin: 0; font-size: 1.2rem; color: var(--gold-bright); font-family: 'Cinzel Decorative', serif; font-weight: 400;">{c.nome}</h3>
+            <p style="margin: 4px 0 0; color: var(--text-faint); font-style: italic; font-size: 0.88rem;">{c.subtitulo}</p>
+          </div>
+          <div style="text-align: right; font-size: 0.82rem; flex-shrink: 0;">
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 2px;">Região</span>
+            <span style="color: var(--gold);">{c.regiao}</span>
+          </div>
+        </div>
+
+        <div style="margin: 12px 0 14px; padding: 8px 12px; background: rgba(201,164,75,0.03); border: 1px solid var(--border); border-left: 2px solid var(--gold-dim); border-radius: var(--radius); font-size: 0.84rem;">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 3px;">Status Atual</span>
+          <span style="font-style: italic; color: var(--text-muted);">{c.status}</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; font-size: 0.88rem;">
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Layout e Estrutura</span>
+            <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{c.layout}</p>
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Contexto Geográfico</span>
+            <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{c.geografia}</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; font-size: 0.88rem;">
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Arquitetura</span>
+            <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{c.arquitetura}</p>
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Demografia</span>
+            <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{c.demografica}</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: c.npcs ? '10px' : '0'; font-size: 0.88rem;">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Contexto Político</span>
+          <p style="margin: 0; line-height: 1.65;">{c.politica}</p>
+        </div>
+
+        {c.npcs && (
+          <div style="margin-top: 12px; padding: 8px 12px; background: rgba(201,164,75,0.04); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.86rem; font-style: italic; color: var(--text-muted);">
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 3px; font-style: normal;">Personagens Notáveis</span>
+            {c.npcs}
+          </div>
+        )}
+      </div>
+
+      {i < cidadesMajores.length - 1 && <div style="height: 16px;"></div>}
+    </>
+  ))}
+
+  <div class="divider">✦</div>
+
+  <h2 id="satelites">Cidades Satélite de Aurelia Prime</h2>
+  <p>
+    Trois cidades especializadas orbit Aurelia Prime, cada uma fornecendo um recurso
+    estratégico essencial ao funcionamento da capital.
+  </p>
+
+  <div class="card-grid">
+    {cidadesSatelite.map(c => (
+      <div class="info-card">
+        <span class="info-card-title">{c.nome}</span>
+        <p style="font-size: 0.8rem; color: var(--gold-dim); margin-bottom: 6px;">{c.regiao}</p>
+        <p>{c.desc}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="menores">Cidades Menores</h2>
+  <p>
+    O tecido conectivo do Império — pequenas, muitas vezes esquecidas pelo poder central,
+    mas vitais para o funcionamento cotidiano de Qamareth. E frequentemente, é aqui que
+    a resistência respira com mais liberdade.
+  </p>
+
+  {cidadesMinores.map(grupo => (
+    <>
+      <h3>{grupo.regiao}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 25%;">Cidade</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          {grupo.cidades.map(c => (
+            <tr>
+              <td><strong style="color: var(--gold);">{c.nome}</strong></td>
+              <td style="font-size: 0.88rem;">{c.desc}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  ))}
+
+</ContentLayout>
+
+<style>
+  .city-nav {
+    display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center;
+    margin: 20px 0 0; padding: 14px 18px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .city-nav-label { color: var(--text-faint); margin-right: 6px; }
+  .city-nav-link {
+    color: var(--gold-dim); text-decoration: none; transition: color 0.2s;
+    padding: 2px 0; border-bottom: 1px solid transparent;
+  }
+  .city-nav-link:hover { color: var(--gold); border-bottom-color: var(--gold-dim); }
+</style>

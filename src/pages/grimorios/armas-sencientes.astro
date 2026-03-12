@@ -1,0 +1,269 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/grimorios',
+    label: 'Grimórios',
+    sub: [
+      { href: '/grimorios/armas-ressonantes',  label: 'Armas Ressonantes' },
+      { href: '/grimorios/motivos-de-origem',  label: 'Motivos de Origem' },
+      { href: '/grimorios/partituras',         label: 'Partituras' },
+      { href: '/grimorios/rituais',            label: 'Rituais' },
+      { href: '/grimorios/liturgias',          label: 'Liturgias Completas' },
+      { href: '/grimorios/armas-sencientes',   label: 'Armas Sencientes' },
+    ],
+  },
+];
+---
+
+<ContentLayout
+  title="Armas Sencientes · Grimórios · Qamareth"
+  section="grimorios"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Grimórios', href: '/grimorios' }, { label: 'Armas Sencientes', href: '/grimorios/armas-sencientes' }]}
+>
+
+  <h1>Armas Sencientes</h1>
+  <span class="tagline">
+    Não são meras ferramentas — são companheiros, rivais, mentores. Cada uma é uma história em espera.
+  </span>
+
+  <p>
+    Armas sencientes em Qamareth são artefatos raros imbuídos com consciência, personalidade e poder
+    que evolui junto com seu portador. Ao contrário de itens mágicos comuns, essas armas
+    <strong>crescem através de experiências compartilhadas</strong>, possuem objetivos próprios
+    e um código moral que pode ou não coincidir com o de quem as empunha.
+  </p>
+  <p>
+    Em Qamareth, as armas sencientes mais antigas pré-datam o Império — foram forjadas na Era da
+    Criação ou nos primeiros séculos do Harmonium. Algumas carregam memórias de mundos que não existem
+    mais. Algumas aguardam há séculos pelo portador certo.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Anatomia de uma Arma Senciente</h2>
+
+  <p>Toda arma senciente possui sete elementos fundamentais:</p>
+
+  <table>
+    <thead>
+      <tr><th>Elemento</th><th>O que define</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Tipo base</strong></td><td>A arma física — espada, arco, cajado, foice</td></tr>
+      <tr><td><strong>Inteligência, Sabedoria, Carisma</strong></td><td>Capacidade mental e força de personalidade</td></tr>
+      <tr><td><strong>Alinhamento</strong></td><td>Valores e limites morais da arma</td></tr>
+      <tr><td><strong>Personalidade</strong></td><td>Como ela se comunica, o que a move</td></tr>
+      <tr><td><strong>Propósito</strong></td><td>O que a arma busca realizar no mundo</td></tr>
+      <tr><td><strong>Tiers de Poder</strong></td><td>Habilidades desbloqueadas conforme o vínculo aprofunda</td></tr>
+      <tr><td><strong>Pontuação de Ego</strong></td><td>INT + SAB + CAR — determina conflitos com o portador</td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider">✦</div>
+
+  <h2>Comunicação</h2>
+
+  <p>Armas sencientes se comunicam de formas variadas:</p>
+
+  <table>
+    <thead>
+      <tr><th>Método</th><th>Como se manifesta</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Telepatia</td><td>Voz direta na mente do portador. A mais comum.</td></tr>
+      <tr><td>Empatia</td><td>Transmite emoções, impulsos, imagens. Mais sutil.</td></tr>
+      <tr><td>Fala</td><td>Vibração da lâmina produz som. Todos ao redor ouvem.</td></tr>
+      <tr><td>Escrita</td><td>Runas luminosas surgem na lâmina.</td></tr>
+      <tr><td>Musical</td><td>Exclusivo de Qamareth — a arma canta, hum, entoa. A nota carrega significado.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider">✦</div>
+
+  <h2>Tiers de Vínculo</h2>
+
+  <p>
+    O poder de uma arma senciente não é fixo — cresce à medida que o vínculo com o portador
+    aprofunda. Não é lealdade automática: é confiança construída.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Tier</th><th>Nome do Vínculo</th><th>Como é desbloqueado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>0</td><td><strong>Desperta</strong></td><td>Primeiro contato — a arma reconhece o portador</td></tr>
+      <tr><td>1</td><td><strong>Reconhecida</strong></td><td>A arma aceita o portador; objetivo menor cumprido juntos</td></tr>
+      <tr><td>2</td><td><strong>Confiada</strong></td><td>Objetivo maior compartilhado; escolha difícil feita em conjunto</td></tr>
+      <tr><td>3</td><td><strong>Vinculada</strong></td><td>Momento de vida ou morte compartilhado; o portador arriscou algo real pela arma</td></tr>
+      <tr><td>4</td><td><strong>Unificada</strong></td><td>Alinhamento converge; ou sacrifício mútuo; ou o propósito da arma se cumpre</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Progressão alternativa: rastrear <strong>Pontos de Ressonância (PR)</strong> ganhos por agir
+    em linha com o propósito da arma (+1 a +3 por ação), com limiares para cada Tier (5 / 15 / 30 / 50 PR).
+    Agir contra o propósito custa –2 PR.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>O Sistema de Ego</h2>
+
+  <p>
+    <strong>Pontuação de Ego = INT + SAB + CAR da arma</strong> (mais modificadores por bônus de
+    ataque, habilidades especiais, alinhamento oposto ao portador).
+  </p>
+
+  <p>Conflitos de Ego ocorrem quando o portador age contra os valores da arma:</p>
+
+  <table>
+    <thead>
+      <tr><th>Ego</th><th>Comportamento da arma</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1–10</td><td>Expressão de desconforto — emoções transmitidas, nada mais</td></tr>
+      <tr><td>11–20</td><td>Resistência ativa — penalidades leves, recusa de usar certas habilidades</td></tr>
+      <tr><td>21–30</td><td>Dominância parcial — tenta influenciar decisões; Teste de CAR do portador CD 15 para resistir</td></tr>
+      <tr><td>31+</td><td>Dominância total — arma controla o portador temporariamente se o Teste falhar</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Conflitos de Ego devem ocorrer <strong>1–3 vezes por arco narrativo</strong>, não a cada sessão.
+    São momentos dramáticos, não punições repetitivas.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Framework de Criação</h2>
+
+  <p>Use este esquema para criar qualquer arma senciente em Qamareth:</p>
+
+  <div class="stat-block">
+    <h4>Template — Arma Senciente</h4>
+
+    <p><strong>NOME:</strong> ___</p>
+    <p><strong>TIPO BASE:</strong> ___ &nbsp;|&nbsp; <strong>ALINHAMENTO:</strong> ___</p>
+    <p><strong>INT:</strong> ___ &nbsp;|&nbsp; <strong>SAB:</strong> ___ &nbsp;|&nbsp; <strong>CAR:</strong> ___ &nbsp;|&nbsp; <strong>Ego:</strong> ___</p>
+    <p><strong>COMUNICAÇÃO:</strong> ___</p>
+    <p><strong>PERSONALIDADE (2–3 traços):</strong> ___</p>
+    <p><strong>PROPÓSITO PRIMÁRIO:</strong> ___</p>
+    <p><strong>OBJETIVO SECUNDÁRIO:</strong> ___</p>
+
+    <table style="margin-top: 12px;">
+      <thead><tr><th>Tier</th><th>Bonus</th><th>Habilidade Ativa</th><th>Passivo</th></tr></thead>
+      <tbody>
+        <tr><td>0 — Desperta</td><td>+1</td><td>Propriedade especial única</td><td>—</td></tr>
+        <tr><td>1 — Reconhecida</td><td>+2</td><td>Habilidade 1 (1/descanso curto)</td><td>Resistência ou bônus menor</td></tr>
+        <tr><td>2 — Confiada</td><td>+3</td><td>Habilidade 2 ou expansão da 1 (1/descanso longo)</td><td>Melhoria do passivo; feição especial</td></tr>
+        <tr><td>3 — Vinculada</td><td>+3</td><td>Habilidade épica (1/descanso longo)</td><td>Imunidade ou passivo maior; Resistência Lendária 1/semana</td></tr>
+        <tr><td>4 — Unificada</td><td>+3 ou +4</td><td>Habilidade definitiva (1/semana)</td><td>Transformação permanente do portador</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 12px;"><strong>MALDIÇÃO / FRAQUEZA (opcional):</strong> ___</p>
+    <p><strong>CAMINHOS DE EVOLUÇÃO (opcional):</strong> Caminho A (ex: Misericórdia) vs. Caminho B (ex: Vingança)</p>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>As Quatro Armas Canônicas de Qamareth</h2>
+
+  <p>
+    Estas quatro armas já circulam pelo mundo de Qamareth — algumas em mãos de jogadores,
+    outras aguardando.
+  </p>
+
+  <div class="card-grid">
+
+    <div class="info-card">
+      <span class="info-card-title">Stormscream</span>
+      <p style="font-size:0.82rem; color:var(--gold-dim);">Espada longa · Caótico Bom</p>
+      <p style="font-size:0.85rem;">
+        Imbuída com raiva genuína contra a tirania. Entoa quando sente injustiça próxima. Propósito:
+        destroçar sistemas de opressão. Fala com urgência, às vezes com impaciência — ela esperou
+        séculos por isso.
+      </p>
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-top:6px; font-style:italic;">
+        Tier 0: raios visíveis na lâmina quando sacada. Tier 2: relâmpago em cadeia que salta entre inimigos.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <span class="info-card-title">Raízel'Thandor</span>
+      <p style="font-size:0.82rem; color:var(--gold-dim);">Espada de guerra · Leal Neutro</p>
+      <p style="font-size:0.85rem;">
+        Antiga como a era anterior ao Império. Carrega memórias de batalhas que ninguém mais lembra.
+        Fala raramente — mas quando fala, é com o peso de quem viu cair cinco civilizações.
+        Propósito: não repetir os erros anteriores.
+      </p>
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-top:6px; font-style:italic;">
+        Tier 1: pode revelar a história de qualquer lugar onde ela já foi. Tier 3: resistência lendária.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <span class="info-card-title">Aethraferro</span>
+      <p style="font-size:0.82rem; color:var(--gold-dim);">Cajado · Neutro Bom</p>
+      <p style="font-size:0.85rem;">
+        Feito de madeira encantada dos Bosques Profundos, bênção de Silvaran. Canta em harmonia
+        com partituras do portador — aumenta a ressonância das notas quando tocado. Propósito:
+        manter viva a tradição musical do Harmonium até que o mundo possa ouvi-la novamente.
+      </p>
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-top:6px; font-style:italic;">
+        Tier 1: +1 CH em todas as Partituras. Tier 2: pode armazenar uma Partitura e liberá-la depois.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <span class="info-card-title">Lameira</span>
+      <p style="font-size:0.82rem; color:var(--gold-dim);">Foice · Caótico Neutro</p>
+      <p style="font-size:0.85rem;">
+        Arma dos Pântanos, imbuída com o espírito de um Guardião das Águas da Renovação que se
+        sacrificou para salvar um vilarejo. Melancólica. Compassiva. Às vezes propositalmente
+        insondável. Propósito: proteger os esquecidos — aqueles de quem o Império nunca se lembrou.
+      </p>
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-top:6px; font-style:italic;">
+        Tier 0: brilha na presença de inocentes em perigo. Tier 3: pode reviver um aliado caído uma vez por arco.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Contextos de Qamareth para Armas Sencientes</h2>
+
+  <h3>Armas do Harmonium</h3>
+  <p>
+    Forjadas antes do Império ou abençoadas pela Aurora de Prata. Concedem bônus contra forças
+    imperiais. Frequentemente se comunicam através de melodias ou fragmentos de partituras antigas.
+    Propósito invariavelmente envolve restaurar o Harmonium ou proteger seus fiéis.
+  </p>
+
+  <h3>Armas Magi-Tech Imperial</h3>
+  <p>
+    Criadas pela Guarda Arcana. Personalidade mais mecânica — orientada por lógica e protocolo.
+    Podem funcionar mal quando usadas ativamente contra o Império. Algumas foram corrompidas por
+    influência da Igreja da Luz Eterna e carregam tendências à Dissonância.
+  </p>
+
+  <h3>Armas Rebeldes</h3>
+  <p>
+    Passadas entre combatentes da resistência. Crescem mais fortes em batalha contra a tirania.
+    Frequentemente caótico-boas. Carregam memórias dos portadores anteriores — às vezes os espíritos
+    desses portadores se manifestam como vozes ou visões.
+  </p>
+
+  <h3>Relíquias Antigas</h3>
+  <p>
+    Anteriores ao Império. Possuem conhecimento de civilizações perdidas. Podem buscar restaurar
+    ordens esquecidas ou cumprir profecias que ninguém mais lembra. Propósito muitas vezes obscuro
+    inicialmente — revela-se através do uso.
+  </p>
+
+</ContentLayout>

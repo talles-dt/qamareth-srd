@@ -1,241 +1,176 @@
----
-layout: ../../layouts/SrdLayout.astro
-title: Escolas e Tradições
----
+# Escolas e Tradições
 
-# Motivos de Combate
+O conhecimento em Qamareth é transmitido através de **escolas**.
 
-Combate em Qamareth não é apenas uma troca de ataques.
+Uma escola é uma tradição de ensino que combina:
 
-Lutadores experientes desenvolvem **Motivos** — padrões recorrentes de ação que combinam movimento, técnica e intenção.
+- filosofia
+- técnica
+- disciplina
+- interpretação da Harmonia
 
-Um motivo é semelhante a uma frase musical.
+Essas instituições moldam a forma como indivíduos compreendem magia, combate, política e o próprio mundo.
 
-Ele representa uma sequência reconhecível de ações executadas com precisão.
-
-Personagens podem aprender, desenvolver e aperfeiçoar motivos ao longo de suas carreiras.
+Duas pessoas podem possuir habilidades semelhantes, mas suas escolas determinam **como essas habilidades são usadas**.
 
 ---
 
-# O que é um Motivo
+# O Papel das Escolas
 
-Um Motivo é uma técnica que altera ou melhora uma ação de combate.
+Escolas representam:
 
-Motivos podem representar:
+- centros de conhecimento
+- instituições culturais
+- redes de influência
+- tradições filosóficas
 
-- estilos de luta
-- manobras táticas
-- sequências de golpes
-- movimentos defensivos
-- improvisações rítmicas
+Algumas escolas são:
 
-Cada motivo possui uma **condição de execução** e um **efeito especial**.
+- universidades arcanas
+- mosteiros
+- academias militares
+- ordens religiosas
+- círculos druidicos
+- guildas técnicas
+
+Personagens frequentemente iniciam suas jornadas ligados a uma dessas tradições.
 
 ---
 
-# Aprendendo Motivos
+# Benefícios de uma Escola
 
-Personagens começam o jogo com **1 Motivo inicial**.
+Uma escola oferece três coisas principais.
 
-Novos motivos podem ser adquiridos através de:
+## Formação
 
+Treinamento inicial em certas disciplinas.
+
+Exemplos:
+
+- Arte Musical
+- Combate
+- Intriga
+- Engenharia Arcana
+
+---
+
+## Técnicas
+
+Cada escola possui **motivos ou técnicas exclusivas**.
+
+Essas técnicas refletem o estilo particular da tradição.
+
+---
+
+## Rede de Contatos
+
+Escolas também funcionam como redes sociais.
+
+Membros podem obter:
+
+- abrigo
+- informação
 - treinamento
-- experiência em combate
-- mestres ou escolas
-- recompensas narrativas
-
-O mestre decide quando um personagem pode aprender um novo motivo.
+- oportunidades políticas
 
 ---
 
-# Estrutura de um Motivo
+# Relações Entre Escolas
 
-Cada motivo possui quatro elementos.
+Escolas raramente existem isoladas.
 
-## Nome
+Elas possuem relações complexas:
 
-O nome da técnica.
+- rivalidades filosóficas
+- alianças institucionais
+- disputas por conhecimento
+
+Essas relações frequentemente influenciam campanhas.
 
 ---
 
-## Condição
+# Tipos Comuns de Escolas
 
-Quando o motivo pode ser utilizado.
+## Ordens Musicais
+
+Instituições dedicadas ao estudo da magia harmônica.
 
 Exemplos:
 
-- após um ataque bem-sucedido
-- ao iniciar combate
-- ao sofrer um ataque
-- quando um aliado ajuda
+- corais litúrgicos
+- conservatórios arcanos
+- tradições místicas
+
+Essas escolas produzem muitos conjuradores.
 
 ---
 
-## Execução
+## Academias Marciais
 
-Que ação o personagem realiza.
-
----
-
-## Efeito
-
-O benefício mecânico ou narrativo do motivo.
-
----
-
-# Tipos de Motivos
-
-Motivos podem pertencer a diferentes estilos.
-
-## Motivos Ofensivos
-
-Focados em pressionar inimigos.
+Instituições focadas em combate e estratégia.
 
 Exemplos:
 
-- sequências de ataque
-- golpes devastadores
-- ataques imprevisíveis
+- escolas de esgrima
+- academias imperiais
+- ordens de cavaleiros
+
+Elas desenvolvem estilos de luta e motivos marciais.
 
 ---
 
-## Motivos Defensivos
+## Círculos Naturais
 
-Protegem o personagem ou aliados.
+Comunidades que estudam a harmonia da natureza.
 
 Exemplos:
 
-- bloqueios
-- esquivas
-- redirecionamento de ataques
+- druidas
+- guardiões da floresta
+- eremitas místicos
+
+Frequentemente possuem magia ligada a territórios naturais.
 
 ---
 
-## Motivos de Movimento
+## Guildas Técnicas
 
-Manipulam posicionamento.
+Organizações dedicadas à tecnologia arcana.
 
 Exemplos:
 
-- reposicionamento
-- perseguição
-- retirada elegante
+- engenheiros magi-tech
+- alquimistas
+- construtores de autômatos
+
+Essas escolas frequentemente desafiam tradições religiosas.
 
 ---
 
-## Motivos de Coordenação
+# Fundando Novas Escolas
 
-Fortalecem cooperação entre aliados.
+Personagens poderosos podem fundar suas próprias tradições.
 
-Exemplos:
+Isso normalmente exige:
 
-- abertura para ataques aliados
-- proteção mútua
-- manobras de grupo
+- influência política
+- um bastion ou instituição
+- discípulos
+- uma filosofia clara
 
----
-
-# Ritmo e Motivos
-
-Motivos interagem com o **tempo de combate**.
-
-Alguns funcionam melhor em certos ritmos.
-
-Exemplo:
-
-- um motivo pode ser mais eficiente em **3/4**
-- outro pode exigir o caos de **7/8**
-
-Isso cria estilos únicos de luta.
+Fundar uma escola pode transformar personagens em figuras históricas.
 
 ---
 
-# Exemplos de Motivos
+# Escolas e Campanhas
 
-## Golpe Ascendente
+Escolas são excelentes fontes de história.
 
-Condição:
+Elas podem gerar:
 
-Após acertar um ataque corpo-a-corpo.
+- rivalidades entre mestres
+- disputas por conhecimento proibido
+- conflitos entre tradição e inovação
+- alianças políticas inesperadas
 
-Execução:
-
-O personagem aproveita o impulso do golpe para lançar o inimigo para trás.
-
-Efeito:
-
-Empurra o inimigo alguns metros e quebra sua postura.
-
----
-
-## Passo Lateral
-
-Condição:
-
-Quando um inimigo erra um ataque.
-
-Execução:
-
-O personagem desliza para fora da linha de ataque.
-
-Efeito:
-
-Pode reposicionar-se imediatamente.
-
----
-
-## Abertura Marcial
-
-Condição:
-
-Ao atacar um inimigo já engajado com um aliado.
-
-Execução:
-
-O personagem força o inimigo a defender-se.
-
-Efeito:
-
-O próximo aliado recebe bônus ao atacar esse inimigo.
-
----
-
-## Postura Guardiã
-
-Condição:
-
-Quando um aliado próximo é atacado.
-
-Execução:
-
-O personagem intervém para absorver parte do impacto.
-
-Efeito:
-
-Reduz dano sofrido pelo aliado.
-
----
-
-# Evolução dos Motivos
-
-Motivos podem evoluir com o tempo.
-
-Um motivo dominado pode:
-
-- ganhar efeitos adicionais
-- afetar múltiplos inimigos
-- interagir com magia ou equipamentos
-
-Essa evolução representa o aperfeiçoamento da técnica.
-
----
-
-# Motivos e Narrativa
-
-Motivos são mais do que habilidades mecânicas.
-
-Eles representam o estilo pessoal de cada personagem.
-
-Duas pessoas podem lutar com a mesma arma, mas seus motivos tornam suas técnicas únicas.
-
-Grandes mestres são reconhecidos por seus motivos característicos.
+Muitas campanhas começam com personagens ainda ligados às suas escolas — e terminam com eles criando novas tradições.

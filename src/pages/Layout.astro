@@ -1,0 +1,296 @@
+---
+import Sigil from '../components/Sigil.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  section?: string; // para marcar o link ativo na nav
+}
+
+const {
+  title       = 'Qamareth',
+  description = 'Sistema de fantasia arcano-musical — harmonia, fé, intriga e poder territorial.',
+  section     = '',
+} = Astro.props;
+
+const fullTitle = title === 'Qamareth' ? title : `${title} · Qamareth`;
+
+const navLinks = [
+  { href: '/srd',       label: 'SRD'       },
+  { href: '/lore',      label: 'Lore'      },
+  { href: '/grimorios', label: 'Grimórios' },
+  { href: '/templates', label: 'Templates' },
+];
+---
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <meta property="og:title"       content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type"        content="website" />
+</head>
+<body>
+
+  <!-- ═══════════════════ NAVEGAÇÃO ═══════════════════ -->
+  <header class="site-nav">
+    <nav class="nav-inner">
+
+      <!-- Logo -->
+      <a href="/" class="nav-logo" aria-label="Qamareth — início">
+        <Sigil size={36} animate={false} />
+        <span class="nav-logo-text font-cinzel-d">Qamareth</span>
+      </a>
+
+      <!-- Links -->
+      <ul class="nav-links" role="list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['nav-link font-cinzel', section === link.label.toLowerCase() && 'nav-link--active']}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Botão mobile hamburger -->
+      <button class="nav-toggle" aria-label="Menu" id="nav-toggle" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Linha ornamental abaixo da nav -->
+    <div class="nav-line" aria-hidden="true">
+      <div class="nav-line-diamond"></div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════ CONTEÚDO ═══════════════════ -->
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <!-- ═══════════════════ RODAPÉ ═══════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-logo" aria-label="Início">
+        <Sigil size={28} animate={false} />
+      </a>
+      <div class="footer-text font-garamond">
+        <span>Qamareth SRD</span>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" class="footer-license">
+          Licença CC BY 4.0
+        </a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="https://oliceu.com" target="_blank" rel="noopener" class="footer-home">
+          oliceu.com
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+<script>
+  // Menu mobile
+  const toggle = document.getElementById('nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (toggle && navLinks) {
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      navLinks.classList.toggle('nav-links--open', !open);
+    });
+  }
+</script>
+
+<style>
+  /* ─────────── NAV ─────────── */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6, 7, 13, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .nav-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-text {
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--gold-bright);
+    transition: color 0.2s;
+  }
+  .nav-logo:hover .nav-logo-text {
+    color: #fff;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    margin-left: auto;
+  }
+
+  .nav-link {
+    padding: 6px 14px;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .nav-link:hover,
+  .nav-link--active {
+    color: var(--gold);
+    border-color: var(--border);
+    background: var(--gold-ghost);
+  }
+  .nav-link--active {
+    color: var(--gold-bright);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: auto;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--gold-dim);
+    border-radius: 2px;
+    transition: all 0.25s var(--ease-out);
+  }
+
+  /* Linha ornamental */
+  .nav-line {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-border) 20%, var(--gold-border) 80%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-line-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--gold-dim);
+    transform: rotate(45deg);
+    position: absolute;
+  }
+
+  /* ─────────── MAIN ─────────── */
+  #main-content {
+    min-height: calc(100vh - 63px - 80px);
+  }
+
+  /* ─────────── FOOTER ─────────── */
+  .site-footer {
+    border-top: 1px solid var(--border-2);
+    padding: 28px 24px;
+    margin-top: 80px;
+  }
+
+  .footer-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    opacity: 0.45;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+  }
+  .footer-logo:hover { opacity: 0.75; }
+
+  .footer-text {
+    font-size: 0.88rem;
+    color: var(--text-faint);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-sep { opacity: 0.4; }
+  .footer-license,
+  .footer-home {
+    color: var(--text-faint);
+    transition: color 0.2s;
+  }
+  .footer-license:hover,
+  .footer-home:hover {
+    color: var(--gold-dim);
+  }
+
+  /* ─────────── MOBILE ─────────── */
+  @media (max-width: 720px) {
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 63px;
+      left: 0;
+      right: 0;
+      background: rgba(6, 7, 13, 0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: stretch;
+      padding: 12px 16px 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 4px;
+    }
+    .nav-links--open { display: flex; }
+
+    .nav-link {
+      padding: 10px 16px;
+      font-size: 0.8rem;
+    }
+
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
+</style>

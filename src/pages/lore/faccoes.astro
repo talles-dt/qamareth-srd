@@ -1,0 +1,286 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',     label: 'O Mundo' },
+      { href: '/lore/o-imperio',   label: 'O Império' },
+      { href: '/lore/o-harmonium', label: 'O Harmonium' },
+      { href: '/lore/faccoes',     label: 'Facções' },
+      { href: '/lore/regioes',     label: 'Regiões' },
+      { href: '/lore/historia',    label: 'História' },
+      { href: '/lore/cosmologia',  label: 'Cosmologia' },
+    ],
+  },
+];
+---
+
+<ContentLayout
+  title="Facções · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'Facções', href: '/lore/faccoes' }]}
+>
+
+  <h1>As Facções de Qamareth</h1>
+  <span class="tagline">
+    Ninguém luta por nada. Todos lutam por algo. A questão é o quê — e a que custo.
+  </span>
+
+  <p>
+    Qamareth é um tabuleiro de forças em tensão permanente. De um lado, o Império e suas
+    estruturas de poder — o Conselho dos Ascendentes, as Casas Nobres, o Complexo Corporativo-Militar.
+    Do outro, a resistência fragmentada: facções rebeldes com objetivos distintos, filosofias
+    conflitantes e pouca confiança mútua. E nas sombras, sociedades secretas com agendas
+    que não se alinham simplesmente com nenhum lado.
+  </p>
+
+  <p>
+    Confiar em qualquer aliado em Qamareth exige discernimento. Não há facção pura. Não há
+    causa sem manchas. A questão não é achar o lado certo — é achar o lado <em>menos errado</em>
+    para o que você está tentando fazer.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>A Resistência Fragmentada</h2>
+
+  <p>
+    Cinco grupos principais compõem a resistência contra o Deus-Imperador. Raramente cooperam.
+    Frequentemente se desconfiam. Alguns ocasionalmente se traem. O Império explora ativamente
+    essas divisões — e mesmo assim, a chama da rebelião não se apaga.
+  </p>
+
+  <div class="stat-block">
+    <h4>A Vanguarda das Brasas</h4>
+    <p>
+      <strong>Líder:</strong> Haldor Ferrobrasa — ex-comandante imperial, desertor por convicção<br/>
+      <strong>Deus Patrono:</strong> Thyros, o Senhor do Fogo<br/>
+      <strong>Base:</strong> Fortalezas nas montanhas do sul<br/>
+      <strong>Lema:</strong> <em>"Pelas Chamas, Ascendemos"</em>
+    </p>
+    <p>
+      A mais militante das facções rebeldes. Acreditam que o único caminho para derrubar o
+      Império é confronto direto, força contra força. Haldor é carismático, tático e genuinamente
+      apaixonado pela liberdade — o que o torna inspirador e perigoso. A Vanguarda ataca
+      postos imperiais, sabota instalações Magi-Tech e embosca comboios de suprimentos.
+    </p>
+    <p>
+      <strong>O problema:</strong> Não hesitam em sacrificar vidas civis se isso significa atingir
+      um objetivo militar. Para eles, não há danos colaterais — há o preço da liberdade.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>O Acordo Silencioso</h4>
+    <p>
+      <strong>Líder:</strong> Leif Tecelunalua — ex-sacerdote de Nathara, mestre da sombra<br/>
+      <strong>Deus Patrono:</strong> Nathara, a Tecelã de Luar<br/>
+      <strong>Base:</strong> Postos ocultos na Floresta Profunda<br/>
+      <strong>Método:</strong> <em>Nunca a batalha. Sempre a informação.</em>
+    </p>
+    <p>
+      Espionagem, subterfúgio e infiltração. O Acordo opera nas sombras, desestabilizando o
+      Império corroendo suas fundações de dentro. Têm agentes infiltrados na burocracia imperial,
+      no Conselho dos Ascendentes e — afirmam — nos próprios Olhos do Imperador.
+    </p>
+    <p>
+      Leif é calmo, calculista e profundamente espiritual. O Acordo não proclama vitória;
+      apenas trabalha. São os aliados mais confiáveis em termos de competência — e os menos
+      previsíveis em termos de agenda real.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>O Escudo Verdejante</h4>
+    <p>
+      <strong>Líder:</strong> Bjørn Verdantcloak — druída devoto de Silvaran<br/>
+      <strong>Deus Patrono:</strong> Silvaran, o Verdejante<br/>
+      <strong>Base:</strong> Bosques sagrados e fortalezas ocultas na Floresta Profunda<br/>
+      <strong>Causa:</strong> <em>A terra. Só a terra. Antes da política e das ideologias, a terra.</em>
+    </p>
+    <p>
+      Guerrilha ambiental. Protegem as florestas e terras sagradas da expansão industrial imperial:
+      operações madeireiras, projetos de mineração, desenvolvimento Magi-Tech. Usam a própria
+      natureza como arma — convocando animais, controlando plantas, criando barreiras naturais.
+    </p>
+    <p>
+      Bjørn não tem interesse em restaurar o Harmonium nem em construir um novo regime político.
+      Quer que a floresta sobreviva. É um aliado honesto — com horizonte limitado ao seu próprio território.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>O Alvorecer Prateado</h4>
+    <p>
+      <strong>Líder:</strong> Eirik Alvorunifero — ex-paladino de Virael, guerreiro e sacerdote<br/>
+      <strong>Deus Patrono:</strong> Virael, o Arauto do Amanhecer<br/>
+      <strong>Base:</strong> Templos ocultos e ruínas nas Campinas<br/>
+      <strong>Missão:</strong> <em>Restaurar a fé. Derrubar a Igreja da Luz Eterna. Trazer os deuses de volta.</em>
+    </p>
+    <p>
+      A facção mais teologicamente motivada. O Alvorecer Prateado acredita que o governo do
+      Deus-Imperador é uma blasfêmia cósmica, e que somente através da restauração do Harmonium
+      pode haver verdadeira harmonia no mundo. Protegem adoradores do Harmonium da Inquisição,
+      preservam textos sagrados e realizam cerimônias clandestinas.
+    </p>
+    <p>
+      Eirik é inspirador e autêntico — e isso o torna o líder rebelde mais próximo de um
+      verdadeiro bem moral no continente. Também o torna um alvo prioritário da Inquisição.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>O Caminho Cinzento</h4>
+    <p>
+      <strong>Líder:</strong> Olaf Dedoartimanhas — ladrão, assassino, completo oportunista<br/>
+      <strong>Deus Patrono:</strong> Aralith, o Embusteiro<br/>
+      <strong>Base:</strong> Covis de contrabandistas, rotas subterrâneas e esconderijos por todo o Império<br/>
+      <strong>Filosofia:</strong> <em>Não há filosofia. Há lucro. E Olaf gosta de complicar a vida do Imperador.</em>
+    </p>
+    <p>
+      Ladrões, assassinos e contrabandistas sem grandes ideologias. Mas são parte crucial da
+      resistência porque fornecem o que os outros não conseguem: suprimentos roubados, rotas
+      seguras, assassinatos de figuras imperiais, e o tipo de operação que as outras facções
+      precisam mas não querem manchar as mãos fazendo.
+    </p>
+    <p>
+      Trabalhar com o Caminho Cinzento significa aceitar que seus aliados são fundamentalmente
+      motivados pelo caos e pelo lucro. Às vezes isso alinha com seus objetivos. Às vezes não.
+    </p>
+  </div>
+
+  <div class="callout">
+    "Resistência fragmentada. Isso é o que somos. Os Olhos do Imperador sabem disso —
+    e trabalham todos os dias para garantir que continuemos assim."
+    <br/><strong>— Leif Tecelunalua, Acordo Silencioso</strong>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>As Casas Nobres</h2>
+
+  <p>
+    As famílias nobres de Qamareth são oficialmente leais ao Deus-Imperador. Na prática, estão
+    constantemente tramando, fazendo alianças e se apunhalando pelas costas em busca de mais
+    poder, riqueza e influência. Alguns secretamente financiam facções rebeldes. Todos colocam
+    seus próprios interesses antes da lealdade — mas nenhum seria tolo o suficiente para admiti-lo.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Casa Seravin — O Ouro</span>
+      <p>Domínio: comércio, finanças, rotas comerciais.<br/>
+      Sede: Seravia.<br/>
+      Lord Maloran Seravin opera como um mercador antes de um nobre — apoia quem paga mais, incluindo secretamente o Caminho Cinzento quando isso destabiliza rivais.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Casa Valecroft — A Espada</span>
+      <p>Domínio: comando militar, estratégia.<br/>
+      Sede: Veloria.<br/>
+      Lady Cassandra Valecroft comanda legiões imperiais com brilhantismo e alimenta uma ambição que assusta até os Ascendentes mais experientes.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Casa Mirathis — O Arco</span>
+      <p>Domínio: pesquisa arcana, Magi-Tech.<br/>
+      Sede: Ilmiron.<br/>
+      Arquimaga Thalina Mirathis controla o desenvolvimento tecnológico do Império — seus experimentos proibidos assustam até Malakar, o Inferno.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Casa Dravenfell — A Sombra</span>
+      <p>Domínio: espionagem, intriga política.<br/>
+      Sede: Dravenhold.<br/>
+      Lord Kaelen Dravenfell tem agentes em todo lugar. Trabalha com os Olhos do Imperador — e provavelmente tem agentes dentro deles também.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Casa Lyrenhart — A Chama</span>
+      <p>Domínio: influência religiosa, Igreja da Luz Eterna.<br/>
+      Sede: Lyros.<br/>
+      Alta Sacerdotisa Elira Lyrenhart é a mais fervorosa zeladora da ortodoxia imperial. Trabalha com a Inquisição para purgar hereges — e rivais políticos.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>O Complexo Corporativo-Militar</h2>
+
+  <p>
+    Além das casas nobres, quatro grandes guildas controlam as indústrias vitais do Império.
+    Oficialmente leais ao Deus-Imperador; na prática, respondem primeiro a seus próprios
+    interesses financeiros. A corrupção é estrutural — não exceção, mas sistema.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Guilda dos Mineiros</span>
+      <p>Líder: Guildmestre Borun Ferrogrip (anão).<br/>
+      Monopólio sobre extração de recursos. Exércitos privados. Alinhada com Draeven, o Acumulador. A Vanguarda das Brasas é sua inimiga declarada.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Guilda dos Curandeiros</span>
+      <p>Líder: Guildmestra Valae Cerin (elfa).<br/>
+      Controla medicina, alquimia e hospitais. Detém o segredo dos elixires de longa vida que a nobreza cobiça — e usa esse fato deliberadamente.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Guilda dos Ferreiros</span>
+      <p>Líder: Guildmestre Roderic Coraçãoférrico.<br/>
+      Produz armas, armaduras e equipamentos de cerco para o exército imperial. Contratos exclusivos com o general Meridion. Forjas ativas 24 horas.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Guilda Magi-Tech</span>
+      <p>Líder: Arquimaga Velora Veunebrina (gnoma).<br/>
+      O coração tecnológico do Império. Integra poder infernal às máquinas sob orientação de Malakar. Seus experimentos mais recentes assustam seus próprios membros.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Sociedades Secretas</h2>
+
+  <p>
+    Nas sombras das sombras, três organizações operam com agendas que não se alinham
+    simplesmente com nenhum lado do conflito principal.
+  </p>
+
+  <div class="stat-block">
+    <h4>O Véu</h4>
+    <p>
+      Uma rede de espiões, assassinos e informantes que vendem seus serviços ao maior licitante.
+      Trabalham para o Império, para os rebeldes, para as casas nobres — frequentemente para
+      todos ao mesmo tempo, em operações que se contradizem. Ninguém sabe quem lidera o Véu.
+      Ninguém sabe quais são suas lealdades reais, se existem. Usar seu serviço significa aceitar
+      que você provavelmente está sendo vendido para alguém ao mesmo tempo.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>O Pacto dos Arcanistas</h4>
+    <p>
+      Magos e eruditos dedicados a recuperar o conhecimento que o Império suprimiu. Infiltram
+      arquivos imperiais, laboratórios Magi-Tech e bibliotecas de casas nobres para recuperar
+      tradições arcanas proibidas e documentos sobre a verdadeira natureza do Deus-Imperador.
+      Não são necessariamente aliados da resistência — são aliados do conhecimento, o que às
+      vezes coincide.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>O Sindicato Sable</h4>
+    <p>
+      Organização criminosa profundamente enraizada nos mercados negros de Qamareth. Oficialmente
+      trata de contrabando e comércio ilegal. Na prática, funciona também como rede de suporte
+      para rebeldes e dissidentes — fornecendo recursos roubados, rotas de fuga e Magi-Tech
+      contrabandeada em troca de proteção e acesso a mercados lucrativos. Amoral mas útil.
+    </p>
+  </div>
+
+  <div class="callout">
+    Em Qamareth, não existem aliados puros. Existem interesses convergentes. A sabedoria
+    está em saber por quanto tempo os seus e os de outra facção convergem — e quando começam
+    a divergir.
+  </div>
+
+</ContentLayout>

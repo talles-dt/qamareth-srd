@@ -1,0 +1,277 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',     label: 'O Mundo' },
+      { href: '/lore/o-imperio',   label: 'O Império' },
+      { href: '/lore/o-harmonium', label: 'O Harmonium' },
+      { href: '/lore/a-igreja',    label: 'A Igreja' },
+      { href: '/lore/faccoes',     label: 'Facções' },
+      { href: '/lore/regioes',     label: 'Regiões' },
+      { href: '/lore/cidades',     label: 'Cidades' },
+      { href: '/lore/sociedade',   label: 'Sociedade' },
+      { href: '/lore/historia',    label: 'História' },
+      { href: '/lore/locais-sagrados', label: 'Locais Sagrados' },
+      { href: '/lore/cosmologia',  label: 'Cosmologia' },
+      { href: '/lore/exercito-e-lei', label: 'Exército & Lei' },
+    ],
+  },
+];
+
+const ascendentes = [
+  {
+    titulo: 'Alto Ascendente Valerius, o Puro',
+    cargo: 'Primeiro-Ministro',
+    desc: 'Administrador supremo do Império. Metódico, inflexível, obcecado pela ordem. Coordena todos os Ascendentes e garante que os decretos imperiais se realizem. Internamente, almeja ser o árbitro definitivo da ordem — e teme qualquer ameaça a esse papel.',
+  },
+  {
+    titulo: 'Grande Inquisidora Selenara, a Inflexível',
+    cargo: 'Chefe da Inquisição',
+    desc: 'Fanática genuína. Acredita com convicção total no mandato divino do Deus-Imperador. Fria, calculista, sem misericórdia — não por crueldade pessoal, mas por devoção ao que considera a ordem sagrada. Temida inclusive pelos outros Ascendentes.',
+  },
+  {
+    titulo: 'Elvara, a Língua Prateada',
+    cargo: 'Ministra da Propaganda',
+    desc: 'Encantadora, persuasiva e absolutamente implacável no controle da informação. Reescreve a história, molda a percepção pública, supervisiona a Igreja da Luz Eterna como ferramenta ideológica. Sem escrúpulos morais — mas com sorriso perfeito.',
+  },
+  {
+    titulo: 'General Meridion, o Inabalável',
+    cargo: 'Comandante do Exército',
+    desc: 'Pragmático, estoico, leal por convicção de dever — não de fé. Despreza jogos políticos. Sua previsibilidade rígida é tanto sua força quanto sua vulnerabilidade: outros Ascendentes ocasionalmente a exploram para fins próprios.',
+  },
+  {
+    titulo: 'Malakar, o Inferno',
+    cargo: 'Guardião da Chama Eterna',
+    desc: 'A mais alta autoridade religiosa do Império. Supervisiona as chamas sagradas sustentadas por magia infernal em cada templo. Trabalha com Selenara para exterminar qualquer ressurgência do Harmonium. Temível não pela força, mas pelo significado que seu cargo carrega.',
+  },
+  {
+    titulo: 'Draeven, o Acumulador',
+    cargo: 'Mestre da Moeda',
+    desc: 'Controlador da economia imperial. Insaciavelmente ganancioso, notoriamente corrupto — e tolerado por sua eficácia. Sua influência é financeira: quem controla o ouro, controla a lealdade. Muitos nobres devem suas fortunas a ele.',
+  },
+  {
+    titulo: 'Zephyrion, o Sempre Vigilante',
+    cargo: 'Chefe dos Olhos do Imperador',
+    desc: 'Mestre da espionagem. Sabe mais sobre os membros do Conselho do que eles sabem uns sobre os outros — e usa isso. Porta a Lente de Obsidiana, artefato que dissolve ilusões. Sua onipresença percebida é em si uma ferramenta de controle.',
+  },
+  {
+    titulo: 'Archon Tessavar, o Fio de Seda',
+    cargo: 'Mestre das Guildas',
+    desc: 'Supervisiona o Complexo Corporativo-Militar — as grandes guildas e corporações que controlam indústria, mineração e manufatura. Aparentemente o mais afável do Conselho, o que o torna o mais perigoso. Seus sorrisos financiam guerras.',
+  },
+  {
+    titulo: 'Soraya das Cinzas',
+    cargo: 'Guardiã da Memória Imperial',
+    desc: 'Controla arquivos históricos, bibliotecas e o que é oficialmente "verdadeiro" no Império. Reescreve o passado com precisão cirúrgica. Tem acesso a informações que os outros Ascendentes prefeririam apagadas — e usa esse acesso como escudo.',
+  },
+  {
+    titulo: 'Kronavar, o Eterno',
+    cargo: 'Arquiteto da Continuidade',
+    desc: 'O mais antigo dos Ascendentes, diz-se que serve desde a fundação. Gerencia a transição de poder, sucessão de cargos e os protocolos de emergência imperiais. Raramente visto, mencionado ainda mais raramente. Sua longevidade é em si uma fonte de medo.',
+  },
+  {
+    titulo: 'Lyssandra, a Voz das Regiões',
+    cargo: 'Supervisora dos Governadores',
+    desc: 'Coordena todos os governadores regionais, audita seus relatórios, detecta dissidência ou incompetência. Mais burocrática do que cruel — o que a torna imprevisível. Não age por ódio, apenas por eficiência.',
+  },
+  {
+    titulo: 'Magister Vorann, o Forjador',
+    cargo: 'Diretor da Inovação Magi-Tech',
+    desc: 'Responsável pelo desenvolvimento e controle de tecnologia arcana imperial. Trata ciência e magia como ferramentas de dominação. Os piores instrumentos de tortura magi-tech têm sua assinatura. Os melhores avanços médicos também.',
+  },
+];
+---
+
+<ContentLayout
+  title="O Império · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'O Império', href: '/lore/o-imperio' }]}
+>
+
+  <h1>A Autocracia do Deus-Imperador</h1>
+  <span class="tagline">
+    Poder absoluto, mantido por medo, fé forjada e vigilância sem fim.
+  </span>
+
+  <p>
+    A Autocracia do Deus-Imperador é um regime definido pela centralização total. O Deus-Imperador
+    não é apenas governante — é divindade viva, cuja palavra é lei sem apelação, cujo reinado
+    existe há séculos sustentado por pactos infernais que lhe conferem aparente imortalidade.
+    Sua forma física permanece oculta do público. Sua presença é sentida em tudo.
+  </p>
+
+  <p>
+    Seu nome — <strong>Solandris</strong> — foi suprimido pela própria propaganda que ele criou.
+    A Igreja da Luz Eterna ensina que um deus não possui nome dado por mortais; apenas títulos
+    conferidos por si mesmo. Os rebeldes usam "Solandris" como ato político deliberado: nomear
+    é lembrar que ele é homem, não deus. Que nasceu. Que pode morrer.
+  </p>
+
+  <p>
+    O regime se sustenta sobre quatro pilares: <strong>poder absoluto</strong>,
+    <strong>controle religioso</strong>, <strong>burocracia centralizada</strong>
+    e <strong>vigilância permanente</strong>. A combinação de propaganda e terror
+    manteve o Império estável por gerações — mas fissuras começam a aparecer.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Os Pilares do Poder</h2>
+
+  <h3>Autoridade Divina</h3>
+  <p>
+    A Igreja da Luz Eterna ensina desde o nascimento que o governo imperial é a ordem natural
+    e divina do mundo. Qualquer desafio ao Imperador é ensinado como afronta aos próprios deuses.
+    A imortalidade aparente do Deus-Imperador reforça uma sensação de inevitabilidade — ele não
+    pode morrer, portanto não pode ser substituído.
+  </p>
+
+  <h3>A Igreja da Luz Eterna</h3>
+  <p>
+    Não é uma instituição espiritual genuína — é uma ferramenta de propaganda com estética
+    religiosa. Seus rituais, sermões e festivais são orquestrados para glorificar o
+    Deus-Imperador e silenciar qualquer alternativa espiritual. O Harmonium, em especial,
+    é tratado como a grande heresia — perseguido com fúria particular.
+  </p>
+
+  <h3>Burocracia e Governadores</h3>
+  <p>
+    Governadores imperiais nomeados pelo Conselho administram cada região. Todos são
+    monitorados pelos <em>Olhos do Imperador</em>, impedindo autonomia excessiva. A máquina
+    burocrática é vasta, altamente eficiente — e profundamente corrupta. O medo de retaliação
+    mantém a maioria na linha.
+  </p>
+
+  <h3>Vigilância e Terror</h3>
+  <p>
+    A polícia secreta, os informantes, as execuções públicas — tudo é calculado para criar e
+    manter uma atmosfera de paranoia. O vizinho pode ser informante. O colega de trabalho,
+    um agente. A mera ameaça do aparato de controle é muitas vezes mais eficaz do que seu uso.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>O Conselho dos Ascendentes</h2>
+
+  <p>
+    O mais alto órgão governamental abaixo do Deus-Imperador. Doze Ascendentes supervisionam
+    cada domínio crítico e exercem poder quase irrestrito em sua esfera. O número doze não é
+    acidente — espelha as doze energias divinas do Harmonium, pervertidas em instrumento de controle.
+    Externamente servem ao Imperador; internamente competem em constante jogo de intrigas e ambição velada.
+  </p>
+
+  {ascendentes.map(a => (
+    <div class="stat-block">
+      <h4>{a.titulo}</h4>
+      <p style="color: var(--gold-dim); font-size: 0.8rem; font-family: 'Cinzel', serif; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 10px;">{a.cargo}</p>
+      <p>{a.desc}</p>
+    </div>
+  ))}
+
+  <div class="divider">✦</div>
+
+  <h2>A Inquisição</h2>
+
+  <p>
+    Sob o comando de Selenara, a Inquisição é a mais temida das instituições imperiais.
+    Caça hereges, rebeldes e qualquer ameaça ao estado com autoridade que opera acima do
+    sistema legal comum. Não há recurso contra a Inquisição — ela é juiz, júri e executor.
+  </p>
+
+  <h3>Hierarquia</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Posto</th>
+        <th>Função</th>
+        <th>Símbolo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Grande Inquisidora</td>
+        <td>Comando supremo. Define estratégia e conduz purgas de alto nível.</td>
+        <td>Cetro da Pureza</td>
+      </tr>
+      <tr>
+        <td>Inquisidores Maiores</td>
+        <td>Administração regional. Lideram grandes purgas e presidem julgamentos.</td>
+        <td>Chama da Marca (adaga infernal)</td>
+      </tr>
+      <tr>
+        <td>Inquisidores</td>
+        <td>Agentes de campo. Conduzem interrogatórios e lideram purgas locais.</td>
+        <td>Selo do Julgamento</td>
+      </tr>
+      <tr>
+        <td>Executores Inquisitoriais</td>
+        <td>Soldados. Realizam prisões, interrogatórios e execuções.</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Iniciados da Chama</td>
+        <td>Recrutas em treinamento. Espionagem e tarefas auxiliares.</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Métodos</h3>
+  <p>
+    Os <strong>Julgamentos das Sombras</strong> são espetáculos públicos de poder — não de
+    justiça. Quase todos os julgados são condenados. As execuções subsequentes são encenadas
+    como purificação espiritual, reforçando a autoridade da Igreja. A tortura é regular,
+    acompanhada de magia infernal para detecção de mentiras. Purgas em massa de comunidades
+    suspeitas são instrumentos padrão.
+  </p>
+
+  <div class="callout">
+    O verdadeiro poder da Inquisição não é a punição — é a <em>possibilidade</em> da punição.
+    Uma sociedade onde qualquer um pode ser informante não precisa de muitos inquisidores para
+    se manter em silêncio.
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Os Olhos do Imperador</h2>
+
+  <p>
+    A polícia secreta do Deus-Imperador. Espiões, informantes e operativos encobertos que
+    monitoram todos os níveis da sociedade — das favelas às cortes nobres. Liderados por
+    <strong>Zephyrion, o Sempre Vigilante</strong>, respondem diretamente ao Imperador e ao
+    Conselho, operando com impunidade quase total.
+  </p>
+
+  <p>
+    Seu lema: <em>"O que o Imperador vê, ninguém pode esconder."</em>
+  </p>
+
+  <p>
+    Além da vigilância, os Olhos realizam assassinatos encenados como acidentes, sabotagem
+    de infraestrutura rebelde e guerra psicológica — incluindo confissões falsas plantadas
+    para semear desconfiança dentro dos próprios movimentos de resistência.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>As Fissuras</h2>
+
+  <p>
+    O Império é poderoso — mas não invulnerável. Séculos de domínio absoluto produziram
+    complacência, corrupção sistêmica e tensões internas entre os Ascendentes. A nobreza
+    trama em silêncio. O povo começa a perder a fé no Imperador eterno. E os movimentos
+    de resistência, por mais fragmentados que sejam, se tornam progressivamente mais audazes.
+  </p>
+
+  <p>
+    A questão não é <em>se</em> o Império vai rachar — é <em>o que</em> virá depois.
+    E se o que vier depois será melhor.
+  </p>
+
+</ContentLayout>

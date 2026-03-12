@@ -1,0 +1,243 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',     label: 'O Mundo' },
+      { href: '/lore/o-imperio',   label: 'O Império' },
+      { href: '/lore/o-harmonium', label: 'O Harmonium' },
+      { href: '/lore/faccoes',     label: 'Facções' },
+      { href: '/lore/regioes',     label: 'Regiões' },
+      { href: '/lore/historia',    label: 'História' },
+      { href: '/lore/cosmologia',  label: 'Cosmologia' },
+    ],
+  },
+];
+---
+
+<ContentLayout
+  title="Cosmologia · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'Cosmologia', href: '/lore/cosmologia' }]}
+>
+
+  <h1>Cosmologia de Qamareth</h1>
+  <span class="tagline">
+    O universo é uma sinfonia. Cada ser, uma nota. Cada vida, uma linha melódica
+    que ou contribui à harmonia — ou a desfaz.
+  </span>
+
+  <p>
+    A cosmologia de Qamareth, preservada nos textos sagrados do Harmonium, não é apenas
+    mitologia religiosa. É uma estrutura filosófica que define o que é real, o que é sagrado
+    e o que está em jogo no conflito entre o Deus-Imperador e a resistência. Compreendê-la
+    é compreender por que o Harmonium não pode simplesmente ser substituído por outra religião
+    de conveniência — ele é o mapa do universo.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>A Grande Sinfonia</h2>
+
+  <p>
+    Na origem de tudo está o <strong>Hino Harmônico</strong> — o ato criador pelo qual os
+    deuses cantaram o universo à existência. Não foi uma explosão. Não foi uma guerra.
+    Foi colaboração: cada divindade contribuindo sua melodia única para um todo que nenhuma
+    poderia criar sozinha.
+  </p>
+
+  <p>
+    O ensinamento central do Harmonium é que esse canto <em>não parou</em>. O universo continua
+    ressonando com as harmonias originais. A natureza, as estações, os ciclos de vida e morte —
+    tudo isso é o Hino Harmônico em andamento. E cada ser vivo carrega um fragmento desse
+    hino dentro de si: sua própria nota, única e insubstituível.
+  </p>
+
+  <div class="callout">
+    "Você não é apenas uma criatura que vive num universo. Você <em>é</em> parte do que o
+    universo está dizendo. Quando você age com harmonia, contribui ao canto. Quando age com
+    dissonância, o fere."
+    <br/><strong>— Princípio do Hino Pessoal, textos do Harmonium</strong>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Os Planos de Existência</h2>
+
+  <p>
+    A cosmologia do Harmonium descreve camadas de realidade interconectadas, cada uma
+    vibrando numa frequência diferente da Grande Sinfonia.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">O Mundo Mortal</span>
+      <p>Qamareth — o plano da manifestação física. Onde o canto divino se torna pedra, carne, água e fogo. O campo onde as escolhas mortais moldam a harmonia ou dissonância do universo.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Os Reinos Divinos</span>
+      <p>Além do Véu de Ephira, onde os deuses habitam plenamente. Não separados do mundo — presentes nele através de emanações, mas em sua plenitude nesse plano inacessível aos mortais vivos.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">O Coro dos Partidos</span>
+      <p>O além-vida. Onde as almas dos mortos continuam cantando as louvores dos deuses. Não punição ou recompensa — continuação. As almas no Coro ainda contribuem à Grande Sinfonia.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">O Abismo do Vazio</span>
+      <p>A antítese da criação. A Discórdia do Vazio que surgiu na Criação e foi contida pelo Véu de Harmonia. Ativo, inteligente, e em permanente busca de pontos de entrada no mundo mortal.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Os Planos Elementais</span>
+      <p>Realidades ligadas a fogo, água, terra e ar — os elementos das notas divinas primordiais. Habitados pelos genasi e pelas criaturas elementais. Permeáveis ao mundo mortal em zonas de alta energia arcana.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">A Teia dos Sonhos</span>
+      <p>O plano de Nathara. Onde sonhos, visões e profecias se formam. As fronteiras são fluidas — magos e místicos treinados podem visitar; o Acordo Silencioso supostamente usa esse plano para comunicação.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>O Panteão Harmônico</h2>
+
+  <p>
+    Quatorze divindades compõem o panteão. Cada uma governa um domínio essencial da existência.
+    Nenhuma é mais importante que as outras — a ausência de qualquer uma desequilibraria o todo.
+    Este é o argumento teológico central contra o Deus-Imperador: ao eliminar os deuses e
+    substituí-los por si mesmo, ele não ascendeu — ele criou uma dissonância cósmica.
+  </p>
+
+  <div class="stat-block">
+    <h4>Virael, o Arauto do Amanhecer</h4>
+    <p><strong>Domínios:</strong> Luz, Renovação, Criação &nbsp;·&nbsp; <strong>Símbolo:</strong> Sol nascente com raios dourados<br/>
+    A divindade que cantou as primeiras notas — a luz que veio antes de qualquer outra coisa. Virael representa novos começos, esperança, e a coragem de iluminar onde há escuridão. Santa Serafina Lunafogo foi sua paladina mais famosa. O Alvorecer Prateado continua sua obra.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Alyara, o Fluxo Eterno</h4>
+    <p><strong>Domínios:</strong> Água, Cura, Mudança &nbsp;·&nbsp; <strong>Símbolo:</strong> Rio fluindo ou gota d'água em ondas<br/>
+    Governante das águas e da cura. Alyara ensina que a mudança é vida — que o que não flui apodrece. Seus seguidores são curandeiros, cuidadores e aqueles que aceitam a transformação como caminho de crescimento.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Typhora, a Guardiã das Tempestades</h4>
+    <p><strong>Domínios:</strong> Tempestades, Poder, Caos &nbsp;·&nbsp; <strong>Símbolo:</strong> Raio cortando nuvem de tempestade<br/>
+    O caos necessário. Typhora representa as forças da natureza que destroem para renovar. Não é malévola — é inevitável. Seus seguidores entendem que há criação na destruição, e honram o poder indomável como parte da harmonia cósmica.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Karnoth, o Ser Profundo</h4>
+    <p><strong>Domínios:</strong> Oceanos, Profundidade, Segredos &nbsp;·&nbsp; <strong>Símbolo:</strong> Caracol espiral ou onda sobre abismo<br/>
+    O guardião dos segredos e do conhecimento oculto nas profundezas. Karnoth governa o que está escondido — tanto no fundo dos mares quanto na alma humana. O Pacto dos Arcanistas o venera; sua influência é sentida em todo aquele que busca verdades que o Império suprimiu.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Silvaran, o Verdejante</h4>
+    <p><strong>Domínios:</strong> Natureza, Crescimento, Fertilidade &nbsp;·&nbsp; <strong>Símbolo:</strong> Árvore em flor ou videira em pedra<br/>
+    A força da natureza em crescimento perpétuo. O ciclo de vida e morte encarnado: nova vida emerge da decomposição; a floresta que queima renasce mais verde. O Escudo Verdejante luta em seu nome. Seus bosques sagrados são os mais perseguidos pela Inquisição.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Kaltra, o Poder das Montanhas</h4>
+    <p><strong>Domínios:</strong> Terra, Força, Resistência &nbsp;·&nbsp; <strong>Símbolo:</strong> Pico de montanha cercado por pedras<br/>
+    A estabilidade inabalável. Kaltra ensina que a força verdadeira não está na agressão, mas na resistência — permanecer de pé quando tudo ao redor cede. Os anões a veneram como ancestral divina. Seus seguidores constroem as fundações sobre as quais comunidades sobrevivem.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Nathara, a Tecelã de Luar</h4>
+    <p><strong>Domínios:</strong> Noite, Sonhos, Misticismo &nbsp;·&nbsp; <strong>Símbolo:</strong> Lua crescente entre estrelas, tecida em rede<br/>
+    Governante da noite e das verdades que só os sonhos revelam. Nathara guia seus seguidores pelos reinos de sombra, onde o que é escondido à luz do dia pode ser visto. Leif Tecelunalua, do Acordo Silencioso, é seu ex-sacerdote — e a teia de espionagem do Acordo reflete sua teologia.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Thyros, o Senhor do Fogo</h4>
+    <p><strong>Domínios:</strong> Fogo, Paixão, Destruição &nbsp;·&nbsp; <strong>Símbolo:</strong> Chama viva com faíscas<br/>
+    A dualidade do fogo: lareira que aquece e incêndio que consome. Thyros representa a paixão que impulsiona tanto arte quanto guerra. Haldor Ferrobrasa da Vanguarda das Brasas o adora com fervor — o que explica tanto seu brilhantismo quanto sua imprudência.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Ephira, a Portadora do Véu</h4>
+    <p><strong>Domínios:</strong> Morte, Transição, Mistérios &nbsp;·&nbsp; <strong>Símbolo:</strong> Véu sobre lua crescente, ou eclipse<br/>
+    A fronteira entre a vida e o além. Ephira governa o Véu que separa os planos — e é sua intercessão que garante que os mortos possam transitar para o Coro dos Partidos em paz. As Filhas do Véu são sua ordem monástica. A morte no Harmonium não é fim: é transição para a próxima nota da sinfonia.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Liora, a Cantora dos Ventos</h4>
+    <p><strong>Domínios:</strong> Ar, Liberdade, Inspiração &nbsp;·&nbsp; <strong>Símbolo:</strong> Pluma em vendaval<br/>
+    A deusa da liberdade criativa e da inspiração. Liora é a musa dos artistas, músicos e todos que criam beleza. Em Qamareth, onde a arte é controlada e a expressão vigiada, adorar Liora é um ato político tanto quanto espiritual.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Velun, o Observador das Estrelas</h4>
+    <p><strong>Domínios:</strong> Estrelas, Conhecimento, Destino &nbsp;·&nbsp; <strong>Símbolo:</strong> Constelação formando olho ou bússola<br/>
+    O guardião do conhecimento e do destino escrito nas estrelas. Velun vê o padrão por trás dos eventos — os seus seguidores são astrônomos, filósofos e estudiosos. O Deus-Imperador proibiu a astronomia independente: mapas das estrelas são heréticos.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Maelor, o Guardião do Lar</h4>
+    <p><strong>Domínios:</strong> Lar, Lareira, Comunidade &nbsp;·&nbsp; <strong>Símbolo:</strong> Lareira acesa com brasão familiar<br/>
+    O protetor do lar e dos laços comunitários. Maelor representa tudo o que o Império tenta destruir ao atomizar as comunidades com vigilância e desconfiança. Cada família que ainda partilha um repasto com gratidão silenciosa por algum deus — é Maelor que eles chamam, mesmo sem saber o nome.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Aralith, o Embusteiro</h4>
+    <p><strong>Domínios:</strong> Astúcia, Engano, Sorte &nbsp;·&nbsp; <strong>Símbolo:</strong> Máscara com um lado sorridente e outro sério<br/>
+    O deus que lembra que o universo não é perfeitamente sério. Aralith representa o caos de boa-fé: a jogada improvável, a trapaça que expõe a hipocrisia do poderoso, a sorte que não pode ser controlada. Olaf Dedoartimanhas do Caminho Cinzento o segue — com resultados caóticos e quase sempre divertidos.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Valoth, o Juiz</h4>
+    <p><strong>Domínios:</strong> Justiça, Lei, Retribuição &nbsp;·&nbsp; <strong>Símbolo:</strong> Balança com espada atravessada<br/>
+    O árbitro final. Valoth não é o Imperador — é o que julga o próprio Imperador. Sua teologia é a mais subversiva do panteão: há uma justiça acima de qualquer poder mortal, e nenhum título, riqueza ou imortalidade te isenta dela. A Inquisição o odeia porque seus sacerdotes dizem que o Deus-Imperador um dia prestará contas.</p>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>A Discórdia do Vazio</h2>
+
+  <p>
+    A antítese da Grande Sinfonia. Não um deus, não um ser com agenda compreensível —
+    uma <em>ausência</em> com forma. O Vazio quer desfazer o que foi criado. Não para construir
+    algo em seu lugar, mas porque a harmonia em si lhe é insuportável.
+  </p>
+
+  <p>
+    O Véu de Harmonia que os deuses teceram na Criação o contém — mas não o destrói.
+    O Vazio procura constantemente pontos de entrada: lugares de dissonância extrema,
+    almas corrompidas, poderes que ultrapassam limites que existem por razão. Os textos
+    do Harmonium são explícitos: a imortalidade do Deus-Imperador, alcançada pelos meios
+    que a obteve, cria a maior brecha para o Vazio que Qamareth já conheceu.
+  </p>
+
+  <div class="callout">
+    "O Imperador não pertence ao Coro dos Partidos, nem aos Reinos Divinos, nem ao Mundo
+    Mortal. Ele é uma nota que não resolve — uma dissonância suspensa. E o Vazio se alimenta
+    de dissonâncias suspensas."
+    <br/><strong>— Eirik Alvorunifero, Alvorecer Prateado</strong>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>O Véu de Ephira</h2>
+
+  <p>
+    A fronteira entre os planos é mantida por Ephira — mas não passivamente. O Véu é uma
+    estrutura ativa, constantemente mantida pelo trabalho espiritual das Filhas do Véu e pelos
+    ritos fúnebres realizados em todo o mundo. Cada alma que passa corretamente através dele
+    reforça-o. Cada alma que fica presa — por ritos incompletos, por uso necromântico, por
+    violência que impede o trânsito natural — o enfraquece.
+  </p>
+
+  <p>
+    A supressão do Harmonium pelo Deus-Imperador não é apenas tiranidade política. É catastrófica
+    cosmologicamente: sem os ritos de Ephira sendo realizados em escala, sem as Filhas do Véu
+    operando livremente, o Véu se deteriora. Os mortos que não transitam adequadamente criam
+    pressão que o Vazio explora. A resistência do Harmonium não é apenas pela liberdade humana —
+    é pela integridade estrutural do cosmos.
+  </p>
+
+</ContentLayout>

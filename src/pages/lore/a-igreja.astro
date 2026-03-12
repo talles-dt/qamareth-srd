@@ -1,0 +1,342 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',          label: 'O Mundo' },
+      { href: '/lore/o-imperio',        label: 'O Império' },
+      { href: '/lore/o-harmonium',      label: 'O Harmonium' },
+      { href: '/lore/a-igreja',         label: 'A Igreja' },
+      { href: '/lore/faccoes',          label: 'Facções' },
+      { href: '/lore/regioes',          label: 'Regiões' },
+      { href: '/lore/cidades',          label: 'Cidades' },
+      { href: '/lore/sociedade',        label: 'Sociedade' },
+      { href: '/lore/historia',         label: 'História' },
+      { href: '/lore/cosmologia',       label: 'Cosmologia' },
+      { href: '/lore/exercito-e-lei',   label: 'Exército & Lei' },
+    ],
+  },
+];
+
+const hierarquia = [
+  {
+    titulo: 'Guardião da Chama Eterna',
+    nome: 'Ascendante Malakar, o Inferno',
+    desc: 'Ápice absoluto da Igreja. Não é um líder espiritual — é o executor religioso do Deus-Imperador. Seus decretos moldam a doutrina. Suas homilias são instrumentos de terror. A Chama Eterna é seu símbolo de controle, não de devoção.',
+  },
+  {
+    titulo: 'Ordem Ardente',
+    nome: 'A Inquisição interna da Igreja',
+    desc: 'Fanáticos de elite. Caçam rebelião, interrogam hereges, planejam operações contra dissidentes. Trabalham diretamente com as autoridades seculares — a fronteira entre Igreja e Estado aqui não existe.',
+  },
+  {
+    titulo: 'Portadores da Luz (Sunspeakers)',
+    nome: 'Juízes das cortes religiosas',
+    desc: 'Agem como juízes. Condenam os insuficientemente leais. Suas decisões são rápidas e sem apelo. Justiça e misericórdia não são conceitos que lhes foram ensinados.',
+  },
+  {
+    titulo: 'Portadores de Velas (Candlebearers)',
+    nome: 'Burocracia da Igreja',
+    desc: 'Mantêm registros, distribuem literatura aprovada pelo Estado, supervisionam operações cotidianas. Garantem que apenas a "verdade" imperial chegue ao povo.',
+  },
+  {
+    titulo: 'Iluminadores',
+    nome: 'Pregadores públicos',
+    desc: 'Treinados em retórica e oratória, não em teologia. Seus sermões existem para inflamar o medo, não para nutrir a alma. Lideram cerimônias públicas como espetáculos de dominação.',
+  },
+  {
+    titulo: 'Radiantes',
+    nome: 'Clero local',
+    desc: 'Nível mais básico. Zelotes doutrinados que impõem os ensinamentos da Igreja em comunidades locais. Função principal: reportar comportamento herético às autoridades superiores.',
+  },
+];
+
+const santos = [
+  {
+    nome: 'São Rellion, o Legislador',
+    dominio: 'Ordem · Lei · Justiça (estatal)',
+    uso: 'Invocado para justificar punições severas e intimidar os que considerem desafiar o regime. A "lei" que ele representa é a vontade do Imperador, não qualquer código moral.',
+  },
+  {
+    nome: 'Santa Lysara, a Pura',
+    dominio: 'Obediência · Pureza · Lealdade',
+    uso: 'O ideal do cidadão perfeito — puro em pensamento, completamente leal. Sua lenda inclui sacrificar a própria família pelo Império. Usada para suprimir laços humanos que possam concorrer com a lealdade ao Imperador.',
+  },
+  {
+    nome: 'São Hélios, o Inabalável',
+    dominio: 'Guerra · Força · Dominação',
+    uso: 'Figura de poder militar, sua história distorcida para glorificar a conquista. Modelo para os soldados do Império — vitória a qualquer custo como virtude suprema.',
+  },
+];
+
+const templo = [
+  {
+    nome: 'O Portão Ofuscante',
+    desc: 'Entrada flanqueada por estátuas colossais do Deus-Imperador com o olhar fixo nos que entram. Não é um convite — é uma advertência. Você entra sob o olhar dele.',
+  },
+  {
+    nome: 'O Salão da Radiância',
+    desc: 'Câmara central dominada por um trono de pedra onde senta uma estátua do Deus-Imperador, banhada em luz artificial. Teto altíssimo projetado para amplificar as vozes dos Iluminadores e fazer a congregação se sentir pequena. Bancos de pedra fria em fileiras rígidas.',
+  },
+  {
+    nome: 'O Altar da Chama Eterna',
+    desc: 'Uma chama que nunca se apaga — sustentada por magi-tech, não por divindade. Um lembrete involuntariamente honesto: tudo aqui é artificial, construído, controlado.',
+  },
+  {
+    nome: 'Os Claustros da Submissão',
+    desc: 'Escritórios privados dos Portadores de Luz e dos Portadores de Velas, atrás do salão principal. Fortemente guardados. Servem também como salas de interrogatório para suspeitos de heresia.',
+  },
+  {
+    nome: 'A Câmara da Ordem Ardente',
+    desc: 'Sala sem decoração, iluminação crua, um grande mapa do Império marcado com localização de atividade rebelde suspeita. É daqui que partem as caçadas.',
+  },
+];
+
+const ritos = [
+  {
+    nome: 'O Rito de Submissão',
+    frequencia: 'Regular — obrigatório',
+    descricao: 'A congregação se ajoelha em massa diante da estátua do Deus-Imperador. Entoam cânticos de submissão em coro monótono. Cada indivíduo é chamado a declarar publicamente sua lealdade com frases pré-escritas. Inquisidores circulam pela sala observando qualquer sinal de hesitação. Ao final: a Marca da Luz — uma runa arcana gravada na pele. Lembrança permanente.',
+    cor: 'rgba(180,40,40,0.06)',
+  },
+  {
+    nome: 'O Dia da Chama Eterna',
+    frequencia: 'Anual — presença obrigatória',
+    descricao: 'Celebra o suposto dia da ascensão do Deus-Imperador à divindade. Fogueiras colossais em toda cidade e vila. Malakar preside o acendimento em Aurelia Prime. Sacrifícios públicos: não animais — julgamentos e execuções de "hereges", apresentados como oferendas purificadoras. A multidão canta hinos repetitivos e monótonos, projetados para induzir passividade.',
+    cor: 'rgba(180,100,20,0.06)',
+  },
+  {
+    nome: 'Os Ritos de Purga',
+    frequencia: 'Irregular — quando a Inquisição precisa de um espetáculo',
+    descricao: 'Cerimônias de terror público. Acusados de heresia são apresentados em correntes, seus crimes lidos em voz alta. São dados uma última chance de se retratar publicamente. Os que recusam — ou são considerados indesejáveis de qualquer forma — são lançados à Chama Eterna. A congregação, obrigada a assistir, entoa Hinos de Pureza enquanto as chamas queimam.',
+    cor: 'rgba(120,20,20,0.08)',
+  },
+  {
+    nome: 'A Vigília da Chama Inabalável',
+    frequencia: 'Anual — clero sênior e devotos de elite',
+    descricao: 'Vigília noturna privada em torno da Chama Eterna. Teste de resistência e fé — permanecer de pé a noite toda, recitando orações sem parar. Quem demonstra fraqueza é envergonhado publicamente. Ao amanhecer, Malakar ou um sacerdote sênior concede a bênção final — lembrando que sua lealdade é observada até nas horas mais escuras.',
+    cor: 'rgba(50,50,80,0.08)',
+  },
+  {
+    nome: 'O Rito de Ascensão',
+    frequencia: 'Raro — elevação de novos sacerdotes',
+    descricao: 'O iniciado presta o Juramento de Serviço Eterno diante de Malakar e de uma congregação de sacerdotes e inquisidores. Qualquer hesitação pode resultar em expulsão imediata — ou pior. Recebe a Marca da Chama: uma runa que os superiores podem usar para rastrear e monitorar. A cerimônia termina com uma Afirmação Coral — lenta, deliberada, projetada para inspirar reverência esmagadora ao Imperador.',
+    cor: 'rgba(201,164,75,0.04)',
+  },
+];
+---
+
+<ContentLayout
+  title="A Igreja da Luz Eterna · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'A Igreja', href: '/lore/a-igreja' }]}
+>
+
+  <h1>A Igreja da Luz Eterna</h1>
+  <span class="tagline">
+    Não é uma fé. É uma ferramenta — polida, afiada e apontada
+    contra qualquer coisa que o Deus-Imperador queira destruir.
+  </span>
+
+  <p>
+    A Igreja da Luz Eterna é a religião oficial do Império — e uma das maiores mentiras
+    já contadas em Qamareth. Construída sobre os escombros do <a href="/lore/o-harmonium">Harmonium</a>,
+    ela tomou sua forma, seu vocabulário e sua arquitetura e os esvaziou de qualquer
+    significado espiritual real. O que restou é uma máquina de controle vestida com
+    roupas de devoção.
+  </p>
+
+  <p>
+    Seus fiéis não são chamados a comungar com o divino. São chamados a obedecer.
+    Seus ritos não nutrem a alma. Eles registram lealdade e identificam dissidência.
+    Seus templos não são lugares de paz. São postos de observação.
+  </p>
+
+  <div class="callout" style="border-left-color: rgba(180,40,40,0.5); background: rgba(180,40,40,0.04);">
+    Para aqueles que conhecem o Harmonium, a Igreja é uma profanação. Para a maior parte
+    da população, que nunca conheceu outra coisa, ela é simplesmente a realidade.
+    Esse é o verdadeiro poder do regime — não a força bruta, mas a ausência de alternativa visível.
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="principios">Princípios — A Ilusão de Fé</h2>
+
+  <div class="card-grid">
+    <div class="info-card" style="border-color: rgba(180,40,40,0.2);">
+      <span class="info-card-title" style="color: #c97070;">Obediência Cega</span>
+      <p>A Igreja exige obediência absoluta ao Deus-Imperador. Questionar o Estado é questionar a ordem divina. O sofrimento e as dificuldades dos fiéis são parte do plano do Imperador — e só pela submissão se pode encontrar favor.</p>
+    </div>
+    <div class="info-card" style="border-color: rgba(180,100,20,0.2);">
+      <span class="info-card-title" style="color: #c99050;">Medo no Lugar de Fé</span>
+      <p>Onde o Harmonium ensina equilíbrio e harmonia, a Igreja usa o medo como ferramenta primária. Sermões descrevem em detalhe as punições eternas dos desobedientes. "Pecado" aqui é sinônimo de traição ao Estado.</p>
+    </div>
+    <div class="info-card" style="border-color: rgba(100,100,100,0.2);">
+      <span class="info-card-title">Pacificação Ativa</span>
+      <p>A Igreja suprime ativamente qualquer anseio espiritual ou pensamento crítico. As massas são mantidas em obediência passiva — pacificadas por rituais sem sentido e promessas vazias de favor divino que nunca chega.</p>
+    </div>
+    <div class="info-card" style="border-color: rgba(100,100,100,0.2);">
+      <span class="info-card-title">Propaganda como Doutrina</span>
+      <p>O Deus-Imperador é apresentado como a fonte de toda prosperidade, proteção e ordem. Sem ele, ensinam, o caos e a destruição reinariam. Esta afirmação nunca pode ser testada — questionar é heresia.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="hierarquia">Hierarquia — Burocracia com Vestes de Clero</h2>
+
+  <p>
+    A estrutura da Igreja espelha deliberadamente a do Harmonium — o mesmo número de tiers,
+    títulos parecidos, cerimônias análogas. Mas onde o Harmonium cultiva sabedoria espiritual,
+    a Igreja cultiva obediência administrativa. É uma paródia funcional.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    {hierarquia.map((h, i) => (
+      <div style={`display: grid; grid-template-columns: 200px 1fr; gap: 18px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-left: ${i * 16}px; font-size: 0.88rem;`}>
+        <div>
+          <strong style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 4px;">{h.titulo}</strong>
+          <em style="color: var(--text-faint); font-size: 0.82rem;">{h.nome}</em>
+        </div>
+        <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{h.desc}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="santos">Os "Santos" — Extensões do Poder Imperial</h2>
+
+  <p>
+    A Igreja é monoteísta na adoração do Deus-Imperador, mas mantém um panteão distorcido
+    de "santos" que não são intercessores nem figuras divinas. São personagens fabricados
+    para destacar aspectos do governo imperial — ferramentas de propaganda com nomes sagrados.
+  </p>
+
+  <div class="card-grid">
+    {santos.map(s => (
+      <div class="info-card" style="border-color: rgba(180,40,40,0.15);">
+        <span class="info-card-title" style="color: #c97070;">{s.nome}</span>
+        <p style="font-size: 0.78rem; color: var(--gold-dim); margin-bottom: 8px; font-family: 'Cinzel', serif; letter-spacing: 0.05em;">{s.dominio}</p>
+        <p>{s.uso}</p>
+      </div>
+    ))}
+  </div>
+
+  <p style="font-style: italic; color: var(--text-faint); font-size: 0.9rem; margin-top: 16px;">
+    Nenhum deles tem histórias de milagres, revelações ou amor ao próximo.
+    São exemplos do que o Império exige — e do que acontece a quem não entrega.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2 id="templos">Arquitetura — Fortalezas Disfarçadas de Santuários</h2>
+
+  <p>
+    Os templos do Harmonium foram construídos para ressoar com a música cósmica — acústica
+    cuidadosa, luz natural, geometria sagrada. Os templos da Igreja foram construídos para
+    intimidar, vigiar e processar suspeitos de heresia. A semelhança superficial torna
+    a diferença ainda mais perturbadora.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    {templo.map((t, i) => (
+      <div style="display: grid; grid-template-columns: 28px 180px 1fr; gap: 16px; align-items: start; padding: 14px 18px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.88rem;">
+        <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.7rem; opacity: 0.6; padding-top: 2px;">{i + 1}</span>
+        <strong style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5;">{t.nome}</strong>
+        <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{t.desc}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="ritos">Ritos — Cerimônias do Medo</h2>
+
+  <p>
+    Os ritos do Harmonium são complexos, musicalmente ricos, espiritualmente densos.
+    Os ritos da Igreja são simples, repetitivos e projetados para uma única função:
+    confirmar quem obedece e identificar quem hesita.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    {ritos.map(r => (
+      <div style={`padding: 18px 20px; background: ${r.cor}; border: 1px solid var(--border); border-radius: var(--radius-lg);`}>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+          <strong style="color: var(--gold-bright); font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.1em;">{r.nome}</strong>
+          <span style="color: var(--text-faint); font-size: 0.75rem; font-style: italic;">{r.frequencia}</span>
+        </div>
+        <p style="margin: 0; font-size: 0.88rem; line-height: 1.7; color: var(--text-muted);">{r.descricao}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="contraste">Igreja vs. Harmonium</h2>
+
+  <p>
+    Para quem cresceu sob o Império, a diferença pode não ser óbvia. Ambos têm
+    hierarquias, templos, ritos e figuras santas. Mas qualquer um que tenha tido
+    contato com a tradição real sente a diferença imediatamente — como a diferença
+    entre uma música e o ruído de engrenagens.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Aspecto</th>
+        <th style="color: #c9a44b;">Harmonium</th>
+        <th style="color: #c97070;">Igreja da Luz Eterna</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Propósito</td>
+        <td>Comunhão com o divino através da harmonia</td>
+        <td>Manutenção do controle imperial</td>
+      </tr>
+      <tr>
+        <td>Ferramenta central</td>
+        <td>Música, equilíbrio, contemplação</td>
+        <td>Medo, vigilância, punição pública</td>
+      </tr>
+      <tr>
+        <td>Ritos</td>
+        <td>Musicalmente densos, espiritualmente ricos</td>
+        <td>Mecânicos, repetitivos, projetados para passividade</td>
+      </tr>
+      <tr>
+        <td>Templos</td>
+        <td>Construídos para acústica e luz natural</td>
+        <td>Construídos para intimidação e vigilância</td>
+      </tr>
+      <tr>
+        <td>Hierarquia</td>
+        <td>Atendimento espiritual das almas</td>
+        <td>Burocracia estatal com vestes sacerdotais</td>
+      </tr>
+      <tr>
+        <td>Punição</td>
+        <td>Dissonância pessoal, afastamento da comunidade</td>
+        <td>Tortura, execução pública, a Chama Eterna</td>
+      </tr>
+      <tr>
+        <td>O que oferece</td>
+        <td>Significado, pertencimento, transcendência</td>
+        <td>Segurança condicional. Enquanto você obedecer.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top: 24px; border-left-color: rgba(201,164,75,0.4);">
+    A resistência do Harmonium não é apenas política — é a recusa em aceitar que
+    esta imitação vazia seja a única forma de religiosidade disponível. Cada hino
+    cantado em segredo é um ato de memória. E memória, sob o Império, é subversão.
+  </div>
+
+</ContentLayout>

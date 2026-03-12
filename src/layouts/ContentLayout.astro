@@ -1,0 +1,537 @@
+---
+import Layout from './Layout.astro';
+
+interface NavItem {
+  href: string;
+  label: string;
+  sub?: { href: string; label: string }[];
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  section?: string;
+  navItems: NavItem[];
+  currentPath?: string;
+  breadcrumb?: { label: string; href: string }[];
+}
+
+const {
+  title,
+  description,
+  section,
+  navItems,
+  currentPath = Astro.url.pathname,
+  breadcrumb = [],
+} = Astro.props;
+---
+
+<Layout title={title} description={description} section={section}>
+  <div class="content-shell">
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav" aria-label="Navegação da seção">
+
+        <a href="/" class="nav-home-link font-cinzel" aria-label="Voltar ao início">
+          <span class="nav-home-glyph" aria-hidden="true">←</span>
+          Início
+        </a>
+
+        {navItems.map(item => (
+          <div class="nav-group">
+            <a
+              href={item.href}
+              class:list={['nav-group-title font-cinzel', currentPath === item.href && 'nav-group-title--active']}
+            >
+              {item.label}
+            </a>
+            {item.sub && (
+              <ul class="nav-sub" role="list">
+                {item.sub.map(s => (
+                  <li>
+                    <a
+                      href={s.href}
+                      class:list={['nav-sub-link font-garamond', currentPath === s.href && 'nav-sub-link--active']}
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </nav>
+    </aside>
+
+    <!-- ═══ CONTEÚDO ═══ -->
+    <div class="content-main">
+
+      <!-- Breadcrumb -->
+      {breadcrumb.length > 0 && (
+        <nav class="breadcrumb font-cinzel" aria-label="Localização">
+          {breadcrumb.map((crumb, i) => (
+            <>
+              {i > 0 && <span class="breadcrumb-sep" aria-hidden="true">›</span>}
+              {i < breadcrumb.length - 1
+                ? <a href={crumb.href} class="breadcrumb-link">{crumb.label}</a>
+                : <span class="breadcrumb-current">{crumb.label}</span>
+              }
+            </>
+          ))}
+        </nav>
+      )}
+
+      <!-- Conteúdo da página -->
+      <article class="prose" id="prose-content">
+        <slot />
+      </article>
+
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  /* ─────────── SHELL ─────────── */
+  .content-shell {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ─────────── SIDEBAR ─────────── */
+  .sidebar {
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-border) transparent;
+    padding-right: 8px;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* Link de retorno à home */
+  .nav-home-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 7px 10px;
+    border-radius: var(--radius-sm);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+    padding-bottom: 12px;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-home-link:hover {
+    color: var(--gold-dim);
+    background: var(--gold-ghost);
+  }
+  .nav-home-glyph {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-home-link:hover .nav-home-glyph {
+    transform: translateX(-3px);
+    opacity: 1;
+  }
+
+  .nav-group {
+    margin-bottom: 6px;
+  }
+
+  .nav-group-title {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 7px 10px;
+    border-radius: var(--radius-sm);
+    transition: color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+  .nav-group-title:hover,
+  .nav-group-title--active {
+    color: var(--gold);
+    background: var(--gold-ghost);
+  }
+
+  .nav-sub {
+    list-style: none;
+    margin: 2px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border-left: 1px solid var(--border);
+    margin-left: 10px;
+  }
+
+  .nav-sub-link {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--text-faint);
+    padding: 5px 12px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  .nav-sub-link:hover {
+    color: var(--text-muted);
+    border-left-color: var(--gold-dim);
+    background: var(--gold-ghost);
+  }
+  .nav-sub-link--active {
+    color: var(--gold);
+    border-left-color: var(--gold);
+    background: var(--gold-ghost);
+  }
+
+  /* ─────────── BREADCRUMB ─────────── */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 28px;
+  }
+  .breadcrumb-link {
+    color: var(--text-faint);
+    transition: color 0.2s;
+  }
+  .breadcrumb-link:hover { color: var(--gold-dim); }
+  .breadcrumb-sep { opacity: 0.4; }
+  .breadcrumb-current { color: var(--gold-dim); }
+
+  /* ─────────── PROSE ─────────── */
+  .prose {
+    min-width: 0;
+    animation: qa-drift 0.5s var(--ease-out) both;
+  }
+
+  /* Títulos */
+  .prose :global(h1) {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    color: var(--gold-bright);
+    letter-spacing: 0.06em;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+  }
+
+  .prose :global(h2) {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 48px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prose :global(h3) {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 32px 0 12px;
+  }
+
+  .prose :global(h4) {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin: 24px 0 8px;
+  }
+
+  /* Parágrafos */
+  .prose :global(p) {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin: 0 0 16px;
+  }
+
+  /* Tagline logo após H1 */
+  .prose :global(.tagline) {
+    font-size: 1.12rem;
+    font-style: italic;
+    color: var(--text-faint);
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  /* Divisor ornamental */
+  .prose :global(.divider) {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0;
+    color: var(--gold-dim);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+  }
+  .prose :global(.divider::before),
+  .prose :global(.divider::after) {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-border), transparent);
+  }
+
+  /* Listas */
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 16px;
+    padding-left: 20px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .prose :global(li) { margin-bottom: 6px; }
+  .prose :global(li::marker) { color: var(--gold-dim); }
+
+  /* Strong */
+  .prose :global(strong) {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Em */
+  .prose :global(em) {
+    color: var(--gold-dim);
+    font-style: italic;
+  }
+
+  /* Callout / infobox */
+  .prose :global(.callout) {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  /* Tabelas */
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.95rem;
+  }
+  .prose :global(th) {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .prose :global(td) {
+    padding: 10px 14px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-2);
+    vertical-align: top;
+  }
+  .prose :global(tr:hover td) { background: var(--gold-ghost); }
+
+  /* Grid de cards dentro do prose */
+  .prose :global(.card-grid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .prose :global(.info-card) {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+  .prose :global(.info-card-title) {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .prose :global(.info-card p) {
+    font-size: 0.92rem;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* Stat block (para personagens/facções) */
+  .prose :global(.stat-block) {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin: 28px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .prose :global(.stat-block::before) {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold-dim), transparent);
+  }
+
+  /* ─────────── RESPONSIVO ─────────── */
+  @media (max-width: 900px) {
+    .content-shell {
+      grid-template-columns: 1fr;
+      padding: 24px 20px 60px;
+      gap: 0;
+    }
+
+    .sidebar {
+      position: static;
+      max-height: none;
+      overflow: visible;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+    }
+
+    .sidebar-nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .nav-group { margin-bottom: 0; }
+
+    .nav-sub { display: none; }
+
+    .nav-group-title {
+      border: 1px solid var(--border);
+      font-size: 0.6rem;
+    }
+  }
+</style>
+
+<script>
+  // ── Âncoras automáticas em h2/h3 ──────────────────────────────────────────
+  // Gera IDs a partir do texto se não existir, injeta link ¶ clicável,
+  // e copia a URL com âncora para a área de transferência ao clicar.
+
+  function slugify(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')   // remove diacríticos
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-');
+  }
+
+  function initAnchors() {
+    const prose = document.getElementById('prose-content');
+    if (!prose) return;
+
+    const headings = prose.querySelectorAll<HTMLHeadingElement>('h2, h3');
+
+    headings.forEach(h => {
+      // Gera ID se não tiver
+      if (!h.id) {
+        h.id = slugify(h.textContent ?? '');
+      }
+
+      // Evita duplicar se já inicializado
+      if (h.querySelector('.anchor-link')) return;
+
+      const link = document.createElement('a');
+      link.href = `#${h.id}`;
+      link.className = 'anchor-link';
+      link.setAttribute('aria-label', `Link para "${h.textContent}"`);
+      link.textContent = '¶';
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = `${location.origin}${location.pathname}#${h.id}`;
+        navigator.clipboard.writeText(url).catch(() => {});
+        history.pushState(null, '', `#${h.id}`);
+
+        // Flash de feedback
+        link.classList.add('anchor-link--copied');
+        setTimeout(() => link.classList.remove('anchor-link--copied'), 1200);
+      });
+
+      h.appendChild(link);
+    });
+  }
+
+  // Roda no carregamento inicial e após navegação Astro (View Transitions)
+  document.addEventListener('DOMContentLoaded', initAnchors);
+  document.addEventListener('astro:page-load', initAnchors);
+</script>
+
+<style is:global>
+  /* Âncoras de heading */
+  .anchor-link {
+    display: inline-block;
+    margin-left: 0.45em;
+    font-size: 0.65em;
+    color: var(--gold-dim);
+    opacity: 0;
+    text-decoration: none;
+    vertical-align: middle;
+    transition: opacity 0.18s, color 0.18s;
+    font-family: serif;
+    font-weight: 400;
+    user-select: none;
+  }
+
+  h2:hover .anchor-link,
+  h3:hover .anchor-link {
+    opacity: 0.55;
+  }
+
+  .anchor-link:hover {
+    opacity: 1 !important;
+    color: var(--gold);
+  }
+
+  .anchor-link--copied {
+    opacity: 1 !important;
+    color: var(--gold-bright) !important;
+  }
+</style>

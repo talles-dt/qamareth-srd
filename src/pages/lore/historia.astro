@@ -1,0 +1,319 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',            label: 'O Mundo' },
+      { href: '/lore/o-imperio',          label: 'O Império' },
+      { href: '/lore/o-harmonium',        label: 'O Harmonium' },
+      { href: '/lore/a-igreja',           label: 'A Igreja' },
+      { href: '/lore/faccoes',            label: 'Facções' },
+      { href: '/lore/regioes',            label: 'Regiões' },
+      { href: '/lore/cidades',            label: 'Cidades' },
+      { href: '/lore/sociedade',          label: 'Sociedade' },
+      { href: '/lore/historia',           label: 'História' },
+      { href: '/lore/locais-sagrados',    label: 'Locais Sagrados' },
+      { href: '/lore/cosmologia',         label: 'Cosmologia' },
+      { href: '/lore/exercito-e-lei',     label: 'Exército & Lei' },
+    ],
+  },
+];
+---
+
+<ContentLayout
+  title="História · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'História', href: '/lore/historia' }]}
+>
+
+  <h1>A História de Qamareth</h1>
+  <span class="tagline">
+    Da Sinfonia da Criação ao silêncio da tirania — e as vozes que recusam calar.
+  </span>
+
+  <p>
+    A história de Qamareth é a história de uma harmonia quebrada. O mundo nasceu em canção,
+    floresceu em conflito, foi partido pela guerra e remontado pela força de um único homem
+    disposto a tornar-se algo que não deveria existir. O Deus-Imperador não é uma inevitabilidade —
+    é uma escolha. E toda escolha tem uma origem.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>A Era da Criação</h2>
+
+  <p>
+    No princípio, não havia silêncio — havia potencial. Os seres divinos que viriam a ser os
+    deuses do Harmonium cantaram o cosmos à existência num ato que os textos sagrados chamam
+    de <strong>Hino Harmônico</strong>: uma colaboração sinfônica onde cada nota representava
+    um elemento do mundo natural, tecido num todo transcendente e perfeito.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Virael, o Arauto do Amanhecer</span>
+      <p>Cantou as primeiras notas, trazendo luz à existência. Sua voz radiante criou o sol, as estrelas e os ciclos do dia e da noite. A Aurora de Prata o chama Fonte — de quem tudo procede.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Zephon, o Sussurro</span>
+      <p>A Palavra que nomeia todas as coisas. Antes do Nome, não havia ser — é por isso que pronunciar <em>Solandris</em> é um ato político: nomear é lembrar que ele é homem, não deus.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Liora, a Cantora dos Ventos</span>
+      <p>O Sopro que anima a melodia. Sem o Sopro, a nota não soa. Seu canto encheu o mundo de ar, liberdade e inspiração — e ainda sopra onde o Império não chegou.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Alyara, o Fluxo Eterno</span>
+      <p>Adicionou sua melodia fluida, dando origem aos mares, rios e chuvas. Seu canto encheu o mundo de água e nutrimento.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Karnoth, o Ser Profundo</span>
+      <p>Trouxe um zumbido baixo e ressonante que ergueu montanhas e as profundezas da terra, moldando os fundamentos do mundo.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Silvaran, o Verdejante</span>
+      <p>Infundiu vida no mundo. Sua melodia suave fez brotar as primeiras florestas, campos, e os seres vivos que os habitariam.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Typhora, a Guardiã das Tempestades</span>
+      <p>Contribuiu com uma voz poderosa que governou os ventos, as tempestades e os céus. Seu irmão em energia é Thyros — ambos são fogo e transformação; a distinção entre purificação e destruição é teológica.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Ephira, a Portadora do Véu</span>
+      <p>Cantou as notas finais, tecendo o véu entre a vida e a morte. Dois aspectos inseparáveis: o Véu (a passagem) e a Memória (os mortos persistem na Sinfonia). <em>Memória Eterna.</em></p>
+    </div>
+  </div>
+
+  <p>
+    Dos primeiros seres criados — os <em>Primogênitos</em> — vieram os elfos, nascidos das
+    harmonias da natureza; os anões, moldados pela ressonância profunda de Karnoth; os humanos,
+    filhos das notas combinadas de todos os deuses, dotados de livre-arbítrio; e os genasi,
+    descendentes diretos dos elementos do canto divino.
+  </p>
+
+  <div class="callout">
+    A discordância também surgiu na Criação. Nas bordas da sinfonia, uma ressonância sombria
+    tomou forma — a <strong>Discórdia do Vazio</strong>, uma força que busca desfazer a harmonia.
+    Os deuses teceram um Véu de Proteção ao redor de Qamareth. Mas o Vazio não desapareceu.
+    Esperou.
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>A Era dos Reis e dos Impérios</h2>
+
+  <p>
+    Com o mundo estabelecido e os deuses mais distantes, os mortais começaram a construir
+    civilizações. A <strong>Era dos Reis e dos Impérios</strong> foi uma época de ambição
+    sem precedentes — e de conflito igualmente inédito.
+  </p>
+
+  <div class="stat-block">
+    <h4>O Reino de Valyros</h4>
+    <p>
+      Fundado pelo Rei Alaric, o Sábio, que afirmava receber visões de Virael. Valyros floresceu
+      em agricultura, comércio e militarismo justo. A <em>Cidadela do Fogo Solar</em> era seu
+      monumento mais imponente — uma fortaleza onde o culto de Virael era central tanto para
+      a governança quanto para a identidade do reino. A linhagem dos <em>Sangues de Amanhecer</em>
+      governou por gerações, reivindicando descender do próprio Virael.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>O Império de Kaltran</h4>
+    <p>
+      Ao norte, a Imperatriz Velkara — poderosa feiticeira que afirmava descender de Thyros,
+      o Senhor do Fogo — fundou um império militarista que valorizava conquista e força.
+      Os exércitos de Kaltran, revestidos em armaduras forjadas em chamas arcanas, eram
+      temidos em todo o continente. A linhagem dos <em>Nascidos-da-Chama</em> governou
+      por conquista e terror sagrado.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Os Reinos Verdejantes</h4>
+    <p>
+      No coração das florestas, um conselho de reis e rainhas elfos governava como guardiões
+      da natureza. Suas <em>Cortes Silvestres</em> tomavam decisões por consenso e orientação
+      divina de Silvaran. Eram um contraponto filosófico ao militarismo de Kaltran e ao
+      centralismo de Valyros.
+    </p>
+  </div>
+
+  <p>
+    A <strong>Revolução Magi-Tech</strong> transformou tudo. O Instituto Arcano de Aurelia
+    Prime tornou-se o centro de uma revolução tecnológica que fundiu magia e engenharia:
+    aeronaves arcanas, forjas elementais, canhões mágicos. O que antes era conquistado por
+    bravura passou a ser determinado pela superioridade tecnológica. Kaltran abraçou a
+    Magi-Tech com ferocidade, transformando sua máquina de guerra em algo nunca visto.
+  </p>
+
+  <p>
+    As <strong>Grandes Guerras do Crepúsculo</strong> — conflitos épicos entre Valyros e Kaltran
+    — reforjaram o mapa político de Qamareth. Quando a fumaça baixou, ambos os grandes impérios
+    haviam colapsado: Valyros por disputas internas; Kaltran por uma guerra civil devastadora
+    entre pretendentes ao trono. O que restou foram fragmentos, cidades-estado e o vácuo que
+    o próximo grande poder preencheria.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>A Guerra do Crepúsculo</h2>
+
+  <p>
+    No caos do colapso dos impérios, uma ameaça diferente emergiu — não de um exército ou de
+    um rei, mas do Vazio que havia esperado desde a Criação. A <strong>Guerra do Crepúsculo</strong>
+    foi a mais devastadora da história de Qamareth, convocando heróis de todas as raças e
+    crenças para enfrentar forças que desafiavam a própria existência do mundo.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Lady Aerin Escamaverde</span>
+      <p>Escudo dos Verdejantes. Guerreira élfica que protegeu as cidades enquanto os heróis avançavam para o confronto final.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Alta Sacerdotisa Eliara Sombralua</span>
+      <p>Luz do Véu. Serva de Ephira que manteve a barreira entre os vivos e os mortos enquanto o Vazio tentava desfazê-la.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Arquimago Thalivar Gelotempes</span>
+      <p>A Tempestade Arcana. Wielder do maior poder mágico da era, que sacrificou muito para conter a maré do Vazio.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Luminara, Lâmina de Virael</span>
+      <p>Uma arma divina — ou um ser? A lâmina que só pode ser empunhada por quem é puro de coração e verdadeiramente servo de Virael.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Santa Serafina Lunafogo</span>
+      <p>A Campeã Radiante. Paladina de Virael que sobreviveu à Guerra do Crepúsculo. Seu martírio posterior na Torre do Amanhecer a tornaria santa para as gerações seguintes — o nome que os inquisidores não conseguiram apagar.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Lord Cedric Ferropedra</span>
+      <p>O Baluarte de Pedra. Guerreiro anão que segurou sozinho a passagem noroeste por três dias enquanto os outros reagrupavam.</p>
+    </div>
+  </div>
+
+  <p>
+    A guerra terminou. O Vazio foi contido — não destruído, apenas recuado. Qamareth sobreviveu,
+    mas o custo foi imenso. E no vácuo deixado pela guerra e pelo colapso das velhas estruturas,
+    um homem começou sua ascensão.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>A Ascensão do Deus-Imperador</h2>
+
+  <p>
+    Seu nome era <strong>Solandris</strong>. Ele próprio o suprimiu — a Igreja da Luz Eterna
+    ensina que um deus não possui nome dado por mortais. Mas os rebeldes o pronunciam em
+    segredo como ato político deliberado: nomear é lembrar que ele nasceu. Que pode morrer.
+  </p>
+
+  <p>
+    O que os registros — os que sobreviveram à purga dos Cronistas — mostram é uma trajetória
+    familiar e terrível: <strong>um homem bom, corrompido pelo poder que acreditava usar para o bem.</strong>
+  </p>
+
+  <div class="stat-block">
+    <h4>A Queda em Tentação</h4>
+    <p>
+      Herói da Guerra do Crepúsculo. Líder natural no caos do pós-guerra. Inicialmente governou
+      com justiça e sabedoria — ou assim os registros imperiais afirmam, e é impossível saber
+      quanto disso é propaganda. O que é certo: em algum ponto, Solandris alcançou algo que não
+      deveria ter alcançado. Poder sobre a morte. Imortalidade. O preço foi alto demais para ser
+      descrito em textos que ainda circulam.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>A Coroação e o Nascimento do Império</h4>
+    <p>
+      A Igreja da Luz Eterna foi fundada para legitimizar o que nenhuma argumentação política
+      poderia: a afirmação de que ele era um deus vivo. O Harmonium foi declarado heresia.
+      Seus templos, destruídos. Seus sacerdotes, mortos ou convertidos. A memória dos deuses
+      verdadeiros, sistematicamente apagada por duas gerações de doutrina e vigilância.
+      Doze Ascendentes foram nomeados para governar em seu nome — o número não foi acidente:
+      uma perversão deliberada das doze energias divinas do Harmonium.
+    </p>
+  </div>
+
+  <div class="callout">
+    "A questão não é se ele acredita em sua própria divindade. A questão é o que ele teve
+    que destruir em si mesmo para chegar até ela."
+    <br/><strong>— Fragmento recuperado pelo Pacto dos Arcanistas</strong>
+  </div>
+
+  <p>
+    Solandris não foi visto em público há décadas. Os Ascendentes governam em seu nome.
+    Sua presença é sentida em cada inquisidor, em cada decreto, em cada criança que aprende
+    na escola que não há outros deuses além dele. A questão que os rebeldes sussurram e os
+    fiéis do Harmonium rezam para que seja verdade: <em>existe alguma centelha de humanidade
+    ainda viva naquela figura imortal?</em>
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>A Revolta Arcana</h2>
+
+  <p>
+    Quando o Deus-Imperador consolidou seu poder, a primeira resistência organizada não veio
+    da fé — veio do conhecimento. Magos, eruditos e ex-membros do Instituto Arcano que recusaram
+    colocar sua ciência a serviço exclusivo do Império formaram a <strong>Revolta Arcana</strong>:
+    uma insurreição que buscava libertar a magia do monopólio imperial.
+  </p>
+
+  <p>
+    A revolta foi esmagada. Mas não completamente. As sementes que plantou — o Pacto dos
+    Arcanistas, redes clandestinas de conhecimento proibido, saberes que o Império não
+    conseguiu destruir a tempo — ainda germinam nas sombras.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>A Revolta do Harmonium</h2>
+
+  <p>
+    A mais recente grande rebelião. Não apenas política ou militar — uma cruzada espiritual
+    liderada pelos fiéis do Harmonium que buscavam reclamar a alma de Qamareth da tirania
+    do Deus-Imperador. Era a crença contra a impostura; a sinfonia original contra o silêncio
+    forçado.
+  </p>
+
+  <p>
+    No coração da revolta estava a convicção teológica de que Solandris havia traído
+    a ordem cósmica — que sua existência era uma dissonância que o universo não poderia suportar
+    indefinidamente. E que era dever dos fiéis restaurar o equilíbrio, custasse o que custasse.
+  </p>
+
+  <div class="stat-block">
+    <h4>A Última Batalha na Torre do Amanhecer</h4>
+    <p>
+      Os rebeldes fizeram sua última resistência organizada na <em>Torre do Amanhecer</em>.
+      Foi lá que <strong>Santa Serafina Lunafogo</strong> — paladina de Virael, a Campeã Radiante
+      que havia sobrevivido à Guerra do Crepúsculo — liderou a carga contra as forças imperiais.
+      A batalha terminou em derrota para os rebeldes. Serafina morreu — e seu martírio se tornou
+      o último grito de reunião dos fiéis. Os inquisidores queimaram seu nome de todos os registros
+      que puderam encontrar. Falharam.
+    </p>
+  </div>
+
+  <p>
+    A Revolta do Harmonium foi esmagada. Mas o Harmonium não foi. Ele existe hoje como existe
+    há décadas: em sussurros, em melodias cantadas de memória, em templos escondidos que os
+    inquisidores não encontraram ainda. A história oficial diz que foi destruído. A história
+    real é que o Harmonium simplesmente aprendeu a sobreviver no silêncio — esperando o momento
+    em que alguém cantará alto o suficiente para que todos ouçam de novo.
+  </p>
+
+  <div class="callout">
+    A história de Qamareth não terminou. Está sendo escrita agora — nos acampamentos dos
+    rebeldes, nos templos escondidos, nas decisões de cada pessoa que decide que o silêncio
+    não é suficiente.
+  </div>
+
+</ContentLayout>

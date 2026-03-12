@@ -1,0 +1,201 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/grimorios',
+    label: 'Grimórios',
+    sub: [
+      { href: '/grimorios/motivos-de-origem',  label: 'Motivos de Origem' },
+      { href: '/grimorios/armas-ressonantes',  label: 'Armas Ressonantes' },
+      { href: '/grimorios/partituras',         label: 'Partituras' },
+      { href: '/grimorios/rituais',            label: 'Rituais' },
+      { href: '/grimorios/liturgias',         label: 'Liturgias Completas' },
+      { href: '/grimorios/armas-sencientes',  label: 'Armas Sencientes' },
+    ],
+  },
+];
+
+const partituras = [
+  {
+    nome: 'Hino da Aurora',
+    modo: 'Jônico',
+    ritmo: '4/4',
+    notas: 'Dó – Mi – Sol',
+    ch: 2, ph: 2,
+    execucao: 'Uma terça seguida de quinta em modo jônico, sustentada por compasso estável. Canto alto e claro, sem hesitação.',
+    efeito: 'Cura moderada em um aliado (2d6 + RS).',
+    gasto: null,
+    falha: 'Dissonância drena o conjurador — perde 1d6 de vida temporária.',
+    coral: 'Se três ou mais cantores executarem simultaneamente, a cura afeta todos os aliados em alcance próximo.',
+  },
+  {
+    nome: 'Marcha do Portador',
+    modo: 'Dórico',
+    ritmo: '4/4 marcial',
+    notas: 'Ré – Fá – Sol – Lá (quartas)',
+    ch: 2, ph: 2,
+    execucao: 'Entoado em voz grave e cadenciada. Pode ser cantado enquanto marcha — cada passo reforça a nota.',
+    efeito: 'O conjurador e até dois aliados próximos ignoram terreno difícil e ganham +2 em saves contra cansaço por 10 minutos.',
+    gasto: null,
+    falha: 'O ritmo quebra — conjurador perde o próximo movimento.',
+    coral: 'Com seis ou mais vozes, a duração estende para 1 hora.',
+  },
+  {
+    nome: 'Cântico da Vigia',
+    modo: 'Mixolídio',
+    ritmo: '4/4',
+    notas: 'Sol – Lá – Si – Fá (sétima menor)',
+    ch: 2, ph: 2,
+    execucao: 'Melodia simples, feita para ser repetida em voz baixa por horas. É o canto que se entoa ao guardar.',
+    efeito: 'O conjurador e aliados em alcance auditivo não podem ser surpreendidos enquanto o cântico continuar. Requer ação concentrada a cada turno.',
+    gasto: 'Ação concentrada mantida a cada turno.',
+    falha: 'O cântico atrai atenção — desvantagem em Furtividade para o grupo por 1 hora.',
+    coral: 'Qualquer aliado pode participar sem teste. Mais vozes estendem o alcance.',
+  },
+  {
+    nome: 'Lamento Sereno',
+    modo: 'Eólio',
+    ritmo: '3/4',
+    notas: 'Lá – Dó – Mi – Sol (acorde menor com sétima)',
+    ch: 3, ph: 3,
+    execucao: 'Cantado baixo, sem pressa. Quanto mais honesta a tristeza, mais poderoso o efeito.',
+    efeito: 'Estabiliza um aliado a 0 HP sem gasto de ação de cura. O aliado recupera 1 HP e fica em pé.',
+    gasto: null,
+    falha: 'O lamento ressoa de forma errada — o alvo perde 1d4 HP adicionais antes de estabilizar.',
+    coral: 'Com dois cantores, o alvo se levanta com 1d6+RS HP.',
+  },
+  {
+    nome: 'Confissão Ardente',
+    modo: 'Frígio',
+    ritmo: '3/4 irregular',
+    notas: 'Mi – Fá – Sol (segundas menores)',
+    ch: 3, ph: 4,
+    execucao: 'Começa quase sussurrado e cresce sem controle aparente. A segunda menor cria tensão deliberada — arriscado, mas verdadeiro.',
+    efeito: 'Força um alvo a revelar uma verdade que preferia esconder. Save de Vontade (dif. CH + RS). Falha: o alvo responde honestamente a uma pergunta.',
+    gasto: null,
+    falha: 'O conjurador revela sua própria verdade mais profunda involuntariamente.',
+    coral: null,
+  },
+  {
+    nome: 'Véu do Sonhador',
+    modo: 'Lídio',
+    ritmo: '6/8',
+    notas: 'Fá – Si – Dó (trítono + sétima)',
+    ch: 4, ph: 4,
+    execucao: 'Notas flutuantes, sem ancoragem rítmica clara. O conjurador deve estar verdadeiramente tranquilo — agitação distorce o efeito.',
+    efeito: 'O conjurador fica invisível para percepção mundana (não mágica) por 1 hora, ou até agir de forma agressiva.',
+    gasto: null,
+    falha: 'Ao invés de invisível, o conjurador brilha levemente — desvantagem em Furtividade por 1 hora.',
+    coral: null,
+  },
+];
+---
+
+<ContentLayout
+  title="Partituras · Grimórios · Qamareth"
+  section="grimorios"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Grimórios', href: '/grimorios' }, { label: 'Partituras', href: '/grimorios/partituras' }]}
+>
+
+  <h1>Partituras</h1>
+  <span class="tagline">
+    Magia não é lista de poderes. É partitura — e cada uma carrega Modo, Ritmo e intenção.
+  </span>
+
+  <p>
+    Cada partitura é definida por três elementos inseparáveis: o <strong>Modo</strong>
+    (natureza espiritual do efeito), o <strong>Ritmo</strong> (como o efeito se comporta
+    no tempo) e as <strong>Notas / Intervalo / Acorde</strong> (a forma específica do poder).
+    Alterar qualquer um desses muda fundamentalmente o que a partitura faz.
+  </p>
+
+  <div class="card-grid" style="grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 32px;">
+    <div class="info-card">
+      <span class="info-card-title">CH</span>
+      <p>Complexidade Harmônica — dificuldade base. Reduzida em 1 se o Modo é o Primário do conjurador.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">PH</span>
+      <p>Peso Harmônico — carga na Tensão Harmônica. Normalmente igual ao CH.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Gasto</span>
+      <p>Custo adicional além do teste. Ausente na maioria das partituras básicas.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Coral</span>
+      <p>Como a partitura muda em execução coletiva. Ausente se for intrinsecamente solo.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  {partituras.map((p, i) => (
+    <>
+      <div class="stat-block">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px;">
+          <h3 style="margin: 0; font-size: 1.05rem; color: var(--gold-bright); font-family: 'Cinzel Decorative', serif; font-weight: 400;">{p.nome}</h3>
+          <div style="display: flex; gap: 12px; font-size: 0.78rem; flex-shrink: 0; font-family: 'Cinzel', serif; letter-spacing: 0.1em;">
+            <span style="color: var(--gold);">{p.modo}</span>
+            <span style="color: var(--text-faint);">·</span>
+            <span style="color: var(--gold-dim);">CH {p.ch}</span>
+            <span style="color: var(--text-faint);">·</span>
+            <span style="color: var(--gold-dim);">PH {p.ph}</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 14px; font-size: 0.86rem;">
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 2px;">Notas</span>
+            {p.notas}
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 2px;">Ritmo</span>
+            {p.ritmo}
+          </div>
+        </div>
+
+        <div style="margin-bottom: 10px; font-size: 0.9rem;">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 3px;">Execução</span>
+          <p style="margin: 0; font-style: italic; color: var(--text-muted);">{p.execucao}</p>
+        </div>
+
+        <div style="margin-bottom: 10px; font-size: 0.9rem;">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 3px;">Efeito</span>
+          <p style="margin: 0;">{p.efeito}</p>
+        </div>
+
+        {p.gasto && (
+          <div style="margin-bottom: 10px; font-size: 0.88rem;">
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 3px;">Gasto / Condição</span>
+            <p style="margin: 0; color: var(--text-muted);">{p.gasto}</p>
+          </div>
+        )}
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; font-size: 0.86rem;">
+          <div style="padding: 8px 12px; background: rgba(180,40,40,0.04); border: 1px solid rgba(180,40,40,0.15); border-radius: var(--radius);">
+            <span style="color: rgba(200,80,80,0.7); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 3px;">Falha</span>
+            {p.falha}
+          </div>
+          <div style="padding: 8px 12px; background: rgba(201,164,75,0.04); border: 1px solid var(--border); border-radius: var(--radius);">
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 3px;">Coral</span>
+            {p.coral ?? <span style="color: var(--text-faint); font-style: italic;">—</span>}
+          </div>
+        </div>
+      </div>
+
+      {i < partituras.length - 1 && <div style="height: 16px;"></div>}
+    </>
+  ))}
+
+  <div class="divider">✦</div>
+
+  <div class="callout">
+    <strong>Criando novas partituras:</strong> Use o <a href="/templates/partitura" style="color: var(--gold);">Template de Partitura</a> como ponto de partida.
+    Partituras criadas em campanha seguem as mesmas regras — Modo, Ritmo, Notas, CH e PH —
+    e podem ser adicionadas ao grimório pessoal do personagem.
+  </div>
+
+</ContentLayout>

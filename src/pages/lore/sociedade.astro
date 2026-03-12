@@ -1,0 +1,329 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',        label: 'O Mundo' },
+      { href: '/lore/o-imperio',      label: 'O Império' },
+      { href: '/lore/o-harmonium',    label: 'O Harmonium' },
+      { href: '/lore/faccoes',        label: 'Facções' },
+      { href: '/lore/regioes',        label: 'Regiões' },
+      { href: '/lore/cidades',        label: 'Cidades' },
+      { href: '/lore/sociedade',      label: 'Sociedade' },
+      { href: '/lore/historia',       label: 'História' },
+      { href: '/lore/cosmologia',     label: 'Cosmologia' },
+      { href: '/lore/exercito-e-lei', label: 'Exército & Lei' },
+    ],
+  },
+];
+
+const hierarquia = [
+  {
+    titulo: 'O Deus-Imperador',
+    desc: 'Ápice absoluto. Divindade não questionável. Toda estrutura social existe para servi-lo. A Igreja da Luz Eterna reforça seu status como deus vivo e governante eterno.',
+    cor: 'rgba(201,164,75,0.15)',
+    border: 'rgba(201,164,75,0.4)',
+  },
+  {
+    titulo: 'Conselho dos Ascendentes',
+    desc: 'Sete figuras com autoridade quase absoluta em seus domínios. Considerados executores divinos da vontade do Imperador. O povo é ensinado a reverenciá-los e temê-los simultaneamente.',
+    cor: 'rgba(201,164,75,0.08)',
+    border: 'rgba(201,164,75,0.2)',
+  },
+  {
+    titulo: 'Nobreza e Líderes de Guilda',
+    desc: 'Famílias nobres e líderes de guilda controlam regiões, indústrias e setores específicos. Ricos e privilegiados, mas ainda sujeitos à vontade do Imperador. Sua função: manter a ordem e garantir o funcionamento da economia e do exército.',
+    cor: 'rgba(201,164,75,0.05)',
+    border: 'rgba(201,164,75,0.12)',
+  },
+  {
+    titulo: 'Povo Comum',
+    desc: 'Artesãos, lavradores, operários. A maioria da população. Ensinados pela Igreja que seu sofrimento é necessidade divina — que a subserviência é parte do plano do Deus-Imperador. Esperança de salvação pela obediência.',
+    cor: 'rgba(100,100,100,0.05)',
+    border: 'rgba(100,100,100,0.15)',
+  },
+  {
+    titulo: 'Oprimidos e Escravizados',
+    desc: 'O fundo da estrutura. Usado para o trabalho mais brutal — minas, campanhas militares como bucha de canhão, servidão sem saída. A Igreja ensina que devem suportar o sofrimento pelo bem maior do Império.',
+    cor: 'rgba(180,40,40,0.04)',
+    border: 'rgba(180,40,40,0.15)',
+  },
+];
+
+const festas = [
+  {
+    nome: 'Dia da Chama Eterna',
+    frequencia: 'Anual',
+    descricao: 'O festival mais importante — celebração da imortalidade do Deus-Imperador. Toda cidade e vila acende fogueiras em praças públicas. Presença obrigatória. Cerimônias religiosas, marchas e demonstrações de lealdade. Dissidência é punida com dureza.',
+  },
+  {
+    nome: 'Rituais de Purificação',
+    frequencia: 'Periódico',
+    descricao: 'A Igreja lembra o povo de seu dever de se purificar de pensamentos pecaminosos. Frequentemente coincidem com purgas da Inquisição — hereges e rebeldes executados em público. Medo e obediência como instrumentos.',
+  },
+  {
+    nome: 'A Festa da Fartura',
+    frequencia: 'Fim da colheita',
+    descricao: 'Originalmente um festival pagão da colheita, cooptado pela Igreja para glorificar a prosperidade do Império. Todo sucesso é atribuído ao Deus-Imperador. Banquetes e desfiles — com oferendas obrigatórias à Igreja.',
+  },
+  {
+    nome: 'Dia da Obediência',
+    frequencia: 'Anual',
+    descricao: 'Feriado imposto pelo Estado, dedicado ao reforço da lealdade. Desfiles militares e da Inquisição demonstram a força do Império. Confissões públicas e denúncias são encorajadas — criando uma cultura de medo e vigilância mútua.',
+  },
+];
+
+const regioes = [
+  {
+    nome: 'Campinas',
+    estrutura: 'Nobreza fundiária no topo, controlando vastas propriedades agrícolas. Guildas (especialmente a Guilda dos Agricultores) logo abaixo. Agricultores e lavradores como espinha dorsal — mas presos a regulações rígidas. Camponeses e servos no fundo, incapazes de deixar a terra sem permissão do senhor.',
+    comida: 'Pão de trigo e cevada como base de toda refeição, acompanhado de manteiga, queijo e carnes curadas. Legumes e raízes. Queijos da região — várias variedades locais, herança de famílias há gerações. Cerveja de cevada, a bebida mais popular; hidromel para celebrações.',
+    educacao: 'Escolas de aldeia controladas pela Igreja — leitura, escrita, aritmética e doutrinação. Aprendizados nas guildas para os práticos. Nada que incentive curiosidade intelectual independente.',
+    festas: 'Festival da Colheita (maior celebração local), Rituais do Plantio na primavera. Casamentos como eventos comunitários em campos e prados — toda a vila contribui com comida e bebida.',
+    moda: 'Nobres: túnicas e vestidos elaborados de lã e linho fino, tingidos em verde, dourado e azul profundo, bordados com padrões de flores e videiras. Povo: lã simples, funcional, chapéus de aba larga e botas para o campo. Attire festivo com cores mais vivas, coroas de flores para as mulheres.',
+  },
+  {
+    nome: 'Floresta Profunda',
+    estrutura: 'Nobreza florestal no topo — muitas vezes druídas ou rangers com laços ancestrais à terra. A Guilda dos Caçadores é a instituição mais poderosa, supervisionando caça, coleta e recursos. Povo comum como forrageiros, herbalistas e lenhadores. Nos limites: párias, eremitas e facções rebeldes que o Império mal consegue alcançar.',
+    comida: 'Forageado: cogumelos selvagens, frutas, nozes, ervas. Carnes de caça — veado, javali, coelho. Defumado e seco para preservação nos invernos. Chás e infusões medicinais de plantas locais. Hidromel de mel silvestre e ales herbáceas com sabor terroso único.',
+    educacao: 'Tradição oral: anciões ensinam jovens sobre plantas, animais e ciclos naturais. Contação de histórias. Treinamento druídico em segredo — a Igreja proíbe as tradições antigas. Habilidades de caça e sobrevivência como prioridade absoluta.',
+    festas: 'Ritos da Floresta (cerimônias secretas para os espíritos e os deuses do Harmonium). Celebrações do Solstício de Verão e Inverno em clareiras afastadas. Cerimônias de nomeação de recém-nascidos — nomes escolhidos com base em sinais da natureza.',
+    moda: 'Roupas de lã e couro tingidas em tons de verde, marrom e cinza para se misturar à floresta. Capas e capuzes essenciais. Caçadores e druídas usam peles e couro de animais caçados. Attire festivo com seda e lã mais fina, bordados de animais e árvores, coroas de flores.',
+  },
+  {
+    nome: 'Deserto',
+    estrutura: 'Senhores da Água no topo — famílias que controlam acesso aos oásis e poços. Status absoluto: quem controla a água controla a vida. Mercadores e líderes de caravana como segunda força — o comércio é sobrevivência. Tribos nômades: independentes, autossuficientes, com sabedoria própria fora do sistema imperial. Na base: trabalhadores e escravizados nas minas e construções.',
+    comida: 'Pães planos de milho e cevada, tâmaras como base nutricional. Carne de cabra e camelo, seca ou salgada. Uso intenso de especiarias — cominho, coentro, açafrão, pimenta seca. Água como recurso precioso, consumida com parcimônia. Chá de menta como símbolo de hospitalidade. Vinho de tâmaras e leite de camela fermentado para ocasiões especiais.',
+    educacao: 'Tribos nômades: conhecimento da geografia, sobrevivência e movimentos das estrelas transmitido oralmente. Escolas de caravanas nos assentamentos: comércio, idiomas e navegação. A Igreja controla escolas em cidades maiores como Madiin.',
+    festas: 'Encontros de Oásis — eventos sociais e comerciais em torno dos pontos de água. Festival das Dunas: celebração da resistência do povo ao ambiente. Corridas de camelos, disputas de arco, danças. Ritos de Passagem nômades: jovens completam jornadas solitárias pelo deserto.',
+    moda: 'Roupas longas e fluidas de linho e algodão leve para proteção solar. Turbantes e véus contra areia e vento. Nobres com bordados de prata ou ouro. Nômades: sandálias, chapéus de aba larga, tecidos tingidos em marrons, amarelos e vermelhos terrosos. Tatuagens de hena nas mãos e pés durante celebrações.',
+  },
+  {
+    nome: 'Pântanos',
+    estrutura: 'O Império tem presença fraca — a geografia dificulta controle. Comunidades locais se auto-organizam com líderes comunitários ou chefes de clã. Contrabandistas e figuras do submundo têm poder real. Lagartianos nativos com papel importante como guias e conhecedores do terreno. Grande percentual de foragidos e deslocados que encontraram refúgio no pântano.',
+    comida: 'Peixe e frutos do pantanal. Rãs e outros anfíbios — culinária estranha para forasteiros, essencial para locais. Plantas aquáticas comestíveis. Comida simples, frequentemente defumada. Bebidas fermentadas de raízes e frutas locais.',
+    educacao: 'Informal, prática. Sobrevivência no pantanal — navegação, construção em palafitas, conhecimento das correntes. Tradição oral entre comunidades nativas. A Igreja tem presença mínima aqui.',
+    festas: 'Festivais de pesca e colheita aquática. Rituais comunitários para os espíritos das águas — discretos, sem alarde. Cada assentamento tem suas próprias tradições, muitas vezes incompreensíveis para forasteiros.',
+    moda: 'Funcional acima de tudo: roupas que resistem à umidade, botas impermeáveis, capas. Muitos usam couro de répteis locais. Pouca distinção de status na vestimenta — o pântano é um igualador.',
+  },
+  {
+    nome: 'Costa',
+    estrutura: 'Mistura de cultura portuária com hierarquia imperial. Comerciantes marítimos com poder significativo. Guildas de pescadores e construtores navais. Raças aquáticas (tritões, merefolk) integradas à vida costeira com status variável dependendo da cidade.',
+    comida: 'Frutos do mar em abundância: peixe, crustáceos, moluscos. Muito importado via comércio marítimo. A Costa tem a culinária mais diversa de Qamareth — influências de terras distantes chegam com cada navio.',
+    educacao: 'Navegação, comércio, construção naval. As cidades portuárias maiores têm escolas mistas — tanto educação imperial quanto conhecimento prático marítimo.',
+    festas: 'Festivais de abertura da temporada de pesca. Celebrações de chegada de frotas. As cidades costeiras têm uma cultura festiva mais aberta — a passagem constante de forasteiros dilui o rigor imperial.',
+    moda: 'Resistente ao clima úmido, com influências de múltiplas culturas. Decorações náuticas — conchas, âncoras, motivos marinhos. Cores mais vivas que no interior do continente.',
+  },
+  {
+    nome: 'Aurelia Prime',
+    estrutura: 'Microcosmo da hierarquia imperial em sua forma mais concentrada. Distrito Superior: nobreza e burocracia imperial. Distrito Médio: classe artesanal e comerciante com algum conforto mas vigilância constante. Distrito Inferior: trabalhadores, operários e os esquecidos do sistema. Cada district tem suas próprias regras sociais informais.',
+    comida: 'O Distrito Superior tem acesso ao melhor de todo o Império — delicadezas importadas, magia aplicada à culinária. O Distrito Médio come bem mas modestamente. O Distrito Inferior sobrevive com o que consegue — mercados informais, vendedores ambulantes, o ocasional bom resultado de um contato certo.',
+    educacao: 'O Instituto Magi-Tech é o centro de conhecimento arcano — mas apenas para leais ao regime. A Igreja controla a educação básica. Os mais brilhantes são cooptados pelo Estado. Educação independente é suspeita.',
+    festas: 'Todos os festivais imperiais em sua forma mais grandiosa. O Dia da Chama Eterna em Aurelia Prime é um espetáculo de semanas. Para o Distrito Inferior: festas clandestinas, música proibida em porões, o Harmonium susurrado nas sombras.',
+    moda: 'Distrito Superior: altíssima moda imperial — camadas, materiais caros, jóias com magia incorporada. Distrito Médio: bem vestido mas funcional. Distrito Inferior: prático e frequentemente remendado, mas com um orgulho discreto de identidade local — às vezes um detalhe proibido, uma cor errada, um símbolo escondido.',
+  },
+];
+---
+
+<ContentLayout
+  title="Sociedade · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'Sociedade', href: '/lore/sociedade' }]}
+>
+
+  <h1>Sociedade em Qamareth</h1>
+  <span class="tagline">
+    O Império não controla apenas territórios. Controla como as pessoas comem, rezam,
+    celebram e pensam — ou tenta.
+  </span>
+
+  <p>
+    A estrutura social de Qamareth é uma arquitetura de controle, cuidadosamente construída
+    pelo regime do Deus-Imperador ao longo de gerações. Cada camada da sociedade existe para
+    servir a camada acima. A Igreja da Luz Eterna fornece a justificativa teológica.
+    A Inquisição fornece os dentes.
+  </p>
+
+  <p>
+    Mas o controle nunca é total. Em cada região, a cultura local sobrevive — nos festivais
+    cooptados mas não esquecidos, nas receitas passadas de mão em mão, nas histórias cantadas
+    em voz baixa. Qamareth não é uma sociedade vazia: é uma sociedade sob pressão.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>A Hierarquia Imperial</h2>
+
+  <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+    {hierarquia.map((h, i) => (
+      <div style={`padding: 14px 18px; background: ${h.cor}; border: 1px solid ${h.border}; border-radius: var(--radius); font-size: 0.9rem; margin-left: ${i * 20}px;`}>
+        <strong style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 5px;">{h.titulo}</strong>
+        <p style="margin: 0; color: var(--text-muted); line-height: 1.65;">{h.desc}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Vida Urbana</h2>
+
+  <p>
+    Nas cidades maiores, a vida é estratificada em camadas visíveis. Não é preciso
+    perguntar a alguém de qual classe social é — o bairro onde mora, a roupa que veste,
+    a forma como os guardas o tratam (ou ignoram) dizem tudo.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Alta Classe</span>
+      <p>Mansões, proteções arcanas, confortos magi-tech. Acesso aos melhores serviços. Viajam em carruagens encantadas, comunicam-se por cristais arcanos. Estão acima da lei na prática.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Classe Média</span>
+      <p>Artesãos, mercadores, membros de guilda de nível médio. Vida relativamente confortável, mas sob vigilância constante. Impostos pesados. Subornos a funcionários para manter negócios funcionando.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Trabalhadores</span>
+      <p>Maioria da população urbana. Fábricas, minas, serviços gerais. Bairros superlotados, frequentemente inseguros. O crime — e a resistência — florescem aqui.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Mercados Negros</span>
+      <p>Mesmo com controle estatal das indústrias, mercados subterrâneos prosperam. Dispositivos magi-tech roubados, artefatos mágicos, substâncias ilegais. Senhores do crime operam fora do alcance do Império — mas apenas até certo ponto.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Educação — Doutrinação Acima de Tudo</h2>
+
+  <p>
+    A educação em Qamareth não existe para iluminar. Existe para moldar. A Igreja da
+    Luz Eterna controla o currículo de praticamente todas as escolas, garantindo que
+    cada disciplina — história, filosofia, ciência — seja filtrada pela lente da divindade
+    do Deus-Imperador.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Doutrinação Religiosa</span>
+      <p>Desde a infância, o Deus-Imperador é apresentado como protetor eterno e governante do mundo. O propósito da vida é servi-lo.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Educação da Elite</span>
+      <p>A nobreza tem acesso a conhecimento mais avançado — mas igualmente controlado. O Instituto Magi-Tech só admite leais ao regime. Os mais brilhantes são cooptados pelo Estado.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Aprendizados</span>
+      <p>Para o povo comum: formação prática via guildas. Monitorada pelo Estado para garantir que nenhum conhecimento não autorizado — especialmente relacionado à magia ou filosofias dissidentes — seja transmitido.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Conhecimento Proibido</span>
+      <p>A história real de Qamareth, a teologia do Harmonium, e qualquer técnica arcana fora do controle estatal são proibidos. Transmitir essas coisas é heresia.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Festivais Imperiais</h2>
+
+  <p>
+    Os festivais de Qamareth são ferramentas políticas. Cada celebração foi cuidadosamente
+    projetada — ou cooptada de tradições mais antigas — para reforçar a autoridade do
+    Deus-Imperador e manter o povo dócil, ocupado e vigiado.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    {festas.map(f => (
+      <div style="display: grid; grid-template-columns: auto 1fr; gap: 16px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);">
+        <div style="min-width: 120px;">
+          <span style="color: var(--gold-bright); font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.08em; display: block; margin-bottom: 4px;">{f.nome}</span>
+          <span style="color: var(--text-faint); font-size: 0.75rem; font-style: italic;">{f.frequencia}</span>
+        </div>
+        <p style="margin: 0; font-size: 0.88rem; line-height: 1.65; color: var(--text-muted);">{f.descricao}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="callout" style="margin-top: 24px;">
+    Muitas comunidades ainda celebram festivais pré-imperiais — colheitas, solstícios, ritos da floresta —
+    mas o fazem em segredo ou disfarçados como celebrações imperiais. A memória cultural é mais resistente
+    que qualquer decreto.
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Culturas Regionais</h2>
+
+  <p>
+    Apesar do controle imperial, cada região preserva uma identidade distinta — na comida,
+    na educação informal, nos costumes que resistem ao apagamento. O Império unifica
+    pela força; o que unifica pela alma ainda é, em sua maior parte, o que existia antes.
+  </p>
+
+  {regioes.map((r, i) => (
+    <>
+      <div class="stat-block">
+        <h3 style="margin-top: 0; color: var(--gold-bright); font-family: 'Cinzel', serif; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase;">{r.nome}</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; font-size: 0.87rem;">
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Estrutura Social</span>
+            <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{r.estrutura}</p>
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Comida e Bebida</span>
+            <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{r.comida}</p>
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Educação</span>
+            <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{r.educacao}</p>
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Festas e Costumes</span>
+            <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{r.festas}</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 12px; font-size: 0.87rem;">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Moda e Vestuário</span>
+          <p style="margin: 0; line-height: 1.65; color: var(--text-muted);">{r.moda}</p>
+        </div>
+      </div>
+      {i < regioes.length - 1 && <div style="height: 14px;"></div>}
+    </>
+  ))}
+
+  <div class="divider">✦</div>
+
+  <h2>Magia e Tecnologia na Sociedade</h2>
+
+  <p>
+    A Magi-Tech não é apenas uma ferramenta — é um marcador de status absoluto.
+    O acesso à tecnologia arcana separa os que o Império quer manter satisfeitos
+    dos que quer manter submissos.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Alta Classe</span>
+      <p>Proteções arcanas pessoais, residências com temperatura autorregulada, carruagens encantadas, cristais de comunicação. Armamento arcano para proteção. Efetivamente imunes à lei.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Classe Média</span>
+      <p>Acesso limitado a dispositivos magi-tech menores — ferramentas, iluminação encantada. Pode ter um cristal de comunicação barato. Longe dos verdadeiros avanços que a elite desfruta.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Trabalhadores</span>
+      <p>Magi-tech como instrumento de trabalho e controle — máquinas nas fábricas e minas aumentam a produção mas as condições de segurança são ignoradas. A tecnologia não é para seu bem-estar.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Mercado Negro</span>
+      <p>Dispositivos magi-tech roubados ou modificados circulam no submundo. A resistência usa tecnologia imperial contra o próprio Império — com criatividade e risco constante.</p>
+    </div>
+  </div>
+
+</ContentLayout>

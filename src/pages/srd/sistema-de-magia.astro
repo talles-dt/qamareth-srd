@@ -1,0 +1,269 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/srd',
+    label: 'SRD',
+    sub: [
+      { href: '/srd/sistema-de-magia',   label: 'Sistema de Magia' },
+      { href: '/srd/estilos-de-combate', label: 'Estilos de Combate' },
+      { href: '/srd/personagem',         label: 'Criação de Personagem' },
+      { href: '/srd/bastions',           label: 'Bastions' },
+      { href: '/srd/politica',           label: 'Política & Intriga' },
+      { href: '/srd/progressao',         label: 'Progressão' },
+    ],
+  },
+];
+
+const choirs = [
+  { choir: 'Cantor',    combat: 'Casters divinos',             focus: 'Hinos e cânticos' },
+  { choir: 'Virtuoso',  combat: 'Bardos',                      focus: 'Motifs e improvisação' },
+  { choir: 'Maestro',   combat: 'Casters arcanos',             focus: 'Refrões em camadas complexas' },
+  { choir: 'Striker',   combat: 'Combate corpo-a-corpo',       focus: 'Percussão rítmica e batidas' },
+  { choir: 'Archer',    combat: 'Combate à distância',         focus: 'Instrumentos de sopro e zunidos' },
+];
+
+const rsEffects = [
+  { rs: 'RS 1–3', effect: 'Acesso básico a Motifs e Cânticos. Um uso por descanso longo.' },
+  { rs: 'RS 4–6', effect: '+1 ao DC de magia ou ataque musical. Pode tecer Motifs em ações.' },
+  { rs: 'RS 7–9', effect: 'Certas magias como ação bônus com componente musical. Visões divinas menores.' },
+  { rs: 'RS 10+', effect: 'Pode canalizar um Hino Verdadeiro — efeito milagroso, uma vez por arco maior.' },
+];
+---
+
+<ContentLayout
+  title="Sistema de Magia · SRD · Qamareth"
+  section="srd"
+  navItems={navItems}
+  breadcrumb={[{ label: 'SRD', href: '/srd' }, { label: 'Sistema de Magia', href: '/srd/sistema-de-magia' }]}
+>
+
+  <h1>Sistema de Magia Musical</h1>
+  <span class="tagline">
+    Em Qamareth, a música é o Logos — a forma mais pura de expressão divina.
+    Conjurar não é recitar fórmulas. É <em>performar</em> verdades harmônicas.
+  </span>
+
+  <p>
+    Cada feitiço é um ato performático. Cada magia, uma verdade harmônica que se manifesta
+    no mundo. O sistema de magia de Qamareth é construído sobre três conceitos interligados:
+    o <strong>Resonance Score</strong> (RS), os <strong>Motifs</strong> e os <strong>Choirs</strong>.
+    Juntos, eles criam um sistema onde a expressão individual e o desenvolvimento espiritual
+    têm peso mecânico direto.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Resonance Score (RS)</h2>
+
+  <p>
+    O RS mede o quão "sintonizado" um personagem está com as harmonias cósmicas do Harmonium.
+    Não é poder bruto — é intimidade espiritual. Começa em 0 e sobe através de atos que
+    reforçam a harmonia, e cai através de atos que a corrompem.
+  </p>
+
+  <h3>Como o RS Aumenta</h3>
+  <ul>
+    <li><strong>Atos de Harmonia</strong> — ações altruístas, manter juramentos, defender inocentes, preservar a ordem cósmica</li>
+    <li><strong>Expressão Musical</strong> — compor hinos sagrados, invocar Motifs corretamente, cânticos rituais</li>
+    <li><strong>Escolhas de Personagem</strong> — rejeitar tentação, afirmar fé, sacrificar-se pelo bem maior</li>
+  </ul>
+
+  <h3>Como o RS Cai</h3>
+  <p>
+    Atos de crueldade, traição, dissonância deliberada — como lançar feitiços proibidos ou
+    perverter um hino para fins profanos — reduzem o RS. A queda é muitas vezes narrativamente
+    dramática: o personagem pode ouvir sua melodia interior se fragmentando.
+  </p>
+
+  <h3>Efeitos por Faixa</h3>
+
+  <table>
+    <thead>
+      <tr><th>Faixa</th><th>Efeito</th></tr>
+    </thead>
+    <tbody>
+      {rsEffects.map(r => (
+        <tr><td><strong>{r.rs}</strong></td><td>{r.effect}</td></tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="divider">✦</div>
+
+  <h2>Os Choirs (Corais)</h2>
+
+  <p>
+    O "tipo de classe" de um personagem determina seu <strong>Choir Rank</strong>, que define
+    que tipo de expressão musical ele usa. Cada Choir desbloqueia um Motif único, uma
+    habilidade escalonável e uma transformação ressonante em altos níveis.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Choir</th><th>Tipo de Combate</th><th>Foco Musical</th></tr>
+    </thead>
+    <tbody>
+      {choirs.map(c => (
+        <tr>
+          <td><strong>{c.choir}</strong></td>
+          <td>{c.combat}</td>
+          <td>{c.focus}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="divider">✦</div>
+
+  <h2>Motifs</h2>
+
+  <p>
+    Motifs são <strong>assinaturas musicais únicas</strong> que moldam e saboreiam a magia.
+    Todo feitiço lançado por um caster ressonante é uma performance — som ritualizado que
+    canaliza a Harmonia Divina. Cada Motif adiciona sabor, função e risco/recompensa.
+  </p>
+
+  <p>
+    Motifs são <strong>modulares</strong>: você adiciona um ou mais a um feitiço base.
+    Mais Motifs = efeitos mais fortes, mas também controle mais difícil. O RS determina
+    quantos Motifs podem ser aplicados simultaneamente.
+  </p>
+
+  <h3>Motifs Base (RS 0+)</h3>
+  <p>Aprimoramentos básicos ou efeitos temáticos.</p>
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Vento Ascendente</span>
+      <p>Aumenta o alcance do feitiço em 50%.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Durar</span>
+      <p>O feitiço persiste por uma rodada extra (efeitos em área).</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Eco Harmônico</span>
+      <p>Se o feitiço falhar, role 1d6. Em 6, ele se relança no mesmo alvo na próxima rodada.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Vibrato</span>
+      <p>Alvo faz saves com desvantagem, mas o conjurador sofre 1d6 de dano psíquico.</p>
+    </div>
+  </div>
+
+  <h3>Motifs de Ornamentação (RS 3+)</h3>
+  <p>Flair tático, risco ou moldagem de batalha.</p>
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Harmonia Dividida</span>
+      <p>Permite atingir uma segunda criatura a até 3m do alvo original.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Forte</span>
+      <p>Dobra alcance e dados máximos de dano, mas custa a ação bônus da próxima rodada.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Atração Ressonante</span>
+      <p>O feitiço puxa as criaturas afetadas 1,5m em direção ao conjurador.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Coro Silencioso</span>
+      <p>O feitiço não produz som; torna-se imune a Contrafeitiço.</p>
+    </div>
+  </div>
+
+  <h3>Motifs Mestres (RS 6+)</h3>
+  <p>Expressões poderosas e assinadas de ressonância.</p>
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Estilhaço de Harmônico</span>
+      <p>O feitiço causa dano adicional igual ao RS em todos os inimigos próximos (3m).</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Ligação Sinfônica</span>
+      <p>O feitiço imobiliza os alvos. Save de FOR anula.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Quinta Perfeita</span>
+      <p>Permite lançar um segundo feitiço de 2º nível ou menor como ação bônus, se compartilhar um Motif.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Cadência Divina</span>
+      <p>Uma vez por dia, o feitiço acerta automaticamente em crítico se atingir o alvo.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Motif de Origem</h2>
+
+  <p>
+    Disponível a partir de RS 5, escolhido na criação do personagem. O <strong>Motif de Origem</strong>
+    ecoa o <em>núcleo espiritual</em> do personagem — seu trauma central, virtude ou ideal.
+    É único, personalizado e deve ter nome simbólico e poético.
+  </p>
+
+  <div class="callout">
+    <strong>Como criar seu Motif de Origem:</strong> Descubra o núcleo do personagem.
+    Pense num sentimento musical (uma marcha solene? um lamento? um ritmo caótico?).
+    Dê um nome poético. Escolha um efeito passivo ou ativável alinhado ao seu papel espiritual.
+    Use-o como âncora para o crescimento — outros Motifs ao longo da campanha devem "responder"
+    a este original.
+  </div>
+
+  <h3>Exemplos</h3>
+
+  <div class="stat-block">
+    <h4>A Marcha Vazia</h4>
+    <p style="color: var(--text-faint); font-size: 0.85rem; margin-bottom: 10px;">
+      Para um ex-soldado estoico assombrado pela guerra. Bumbo lento e espaçado, pontuado por silêncios.
+    </p>
+    <p><strong>Efeito:</strong> Resistência contra medo. Se estiver parado, vantagem em saves de resistência.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>O Berço do Trovão</h4>
+    <p style="color: var(--text-faint); font-size: 0.85rem; margin-bottom: 10px;">
+      Para um feiticeiro com medo do próprio poder. Arpejos caóticos, relâmpagos rítmicos.
+    </p>
+    <p><strong>Efeito:</strong> Uma vez por descanso longo, pode adicionar o RS a uma falha de save contra a própria magia.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>A Corrente que Canta</h4>
+    <p style="color: var(--text-faint); font-size: 0.85rem; margin-bottom: 10px;">
+      Para um paladino dividido entre dever e dúvida. Cântico grave e litúrgico com notas dissonantes.
+    </p>
+    <p><strong>Efeito:</strong> Pode detectar mentiras uma vez por descanso longo, ouvindo a vibração "falsa" nas palavras.</p>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Dissonância Proibida</h2>
+
+  <p>
+    Assim como a Harmonia potencializa, a <strong>Dissonância corrompe</strong>. Warlocks de
+    patronos proibidos, certos necromantes ou paladinos pervertidos podem empunhar
+    <em>feitiços discordantes</em> — Motifs torcidos em anti-harmonias.
+  </p>
+
+  <p>
+    Isso tem custo: reduz o RS, pode provocar Feedback Psíquico (dano, efeitos de dissonância
+    ou possessão momentânea por espíritos da Harmonia) e eventualmente leva o personagem
+    a um ponto de ruptura narrativa. A dissonância máxima é tema excelente para antagonistas —
+    e para arcos de redenção.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Mecânica Resumida de Motifs</h2>
+
+  <ul>
+    <li>Motifs são camadas adicionadas a feitiços base.</li>
+    <li>RS determina quantos Motifs simultâneos: 1 em RS 1+, 2 em RS 4+, 3 em RS 7+.</li>
+    <li>Usar mais Motifs do que o RS permite: save de CAR (DC 10 + 2 por excesso) ou <strong>Feedback Psíquico</strong>.</li>
+    <li>O "spellbook" de um caster ressonante se parece mais com uma partitura do que uma lista de fórmulas.</li>
+  </ul>
+
+</ContentLayout>

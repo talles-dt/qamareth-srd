@@ -1,0 +1,303 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/grimorios',
+    label: 'Grimórios',
+    sub: [
+      { href: '/grimorios/motivos-de-origem',  label: 'Motivos de Origem' },
+      { href: '/grimorios/armas-ressonantes',  label: 'Armas Ressonantes' },
+      { href: '/grimorios/partituras',         label: 'Partituras' },
+      { href: '/grimorios/rituais',            label: 'Rituais' },
+      { href: '/grimorios/liturgias',         label: 'Liturgias Completas' },
+      { href: '/grimorios/armas-sencientes',  label: 'Armas Sencientes' },
+    ],
+  },
+];
+
+const rituais = [
+  {
+    nome: 'Grande Sinaxis',
+    subtitulo: 'O Ofício Divino — Assembleia em Harmonia com os Deuses',
+    modo: 'Mixolídio (principal) + Jônico (responsório)',
+    ritmo: '3/4 litúrgico',
+    participantes: 7,
+    ch: 6,
+    ph: 8,
+    duracao: '1 hora',
+    frequencia: 'A cada ciclo lunar (ou conforme necessidade)',
+    execucao: `
+      O Cantor Principal abre com o Hino de Convocação em Mixolídio. Os participantes 
+      respondem em Jônico, criando um contraponto responsório. A harmonia oscila entre
+      os dois modos — nunca resolvendo completamente até o clímax final, onde todas as 
+      vozes convergem num acorde uníssono. Incenso e velas não são requisito técnico,
+      mas amplificam a intenção coletiva.
+    `,
+    efeito: `
+      Toda a comunidade participante é abençoada por 7 dias: +1 em todos os saves, 
+      resistência a efeitos de medo e desespero, e curas recebidas durante o período
+      restauram +1d4 HP adicional. Em cidades ou aldeias, pode incluir toda a população
+      que ouviu o ritual (mesmo sem cantar ativamente).
+    `,
+    falha: `
+      Dissonância na convergência final: a bênção não se instala, e todos os participantes
+      ganham 2 pontos de PH imediatamente. Em locais já corrompidos pela Inquisição, a 
+      falha pode atrair atenção dos Olhos do Imperador.
+    `,
+    amplificacao: `
+      Com 50+ participantes passivos cantando responsórios, a duração da bênção dobra.
+      Com 500+, a bênção se torna permanente até a próxima Grande Sinaxis.
+    `,
+    raridade: 'Proibido pelo Império. Realizado em segredo em templos ocultos.',
+    nota: 'Este é o ritual mais identificável do Harmonium — e o que a Inquisição mais ativamente caça.',
+  },
+  {
+    nome: 'Liturgia da Criação',
+    subtitulo: 'O Hino Primordial — Renovação do Pacto com a Sinfonia',
+    modo: 'Jônico',
+    ritmo: '6/8 flutuante',
+    participantes: 3,
+    ch: 7,
+    ph: 9,
+    duracao: '3 horas (ao amanhecer)',
+    frequencia: 'Anual — no equinócio da primavera',
+    execucao: `
+      Deve começar exatamente ao nascer do sol. Os três participantes mínimos representam
+      os aspectos da criação: Voz (Virael), Água (Alyara), e Terra (Silvaran/Karnoth).
+      Cada cantor sustenta seu aspecto em contraponto autônomo — não há partitura rígida
+      para cada voz, apenas os princípios de cada modo. A harmonia emerge da escuta mútua.
+      Falhar em escutar é a principal causa de dissonância aqui.
+    `,
+    efeito: `
+      Fertiliza espiritualmente uma área de raio 1km: colheitas produzem mais, animais 
+      têm crias saudáveis, ferimentos menores curam naturalmente em metade do tempo normal.
+      Mortos-vivos menores se dissipam. O efeito dura até o próximo equinócio.
+      Em locais sagrados: pode restaurar um bosque sagrado corrompido ou purificar uma 
+      fonte envenenada por magia sombria.
+    `,
+    falha: `
+      A criação evocada se volta: seca ou praga leve por 1d4 semanas na área. O Cantor 
+      Principal perde acesso ao modo Jônico por uma semana — suas partituras desse modo
+      falham automaticamente até que ele reconcilie a dissonância com um ato de criação genuíno.
+    `,
+    amplificacao: `
+      Com devotos de Silvaran, Alyara e Virael como cantores (um de cada): o raio de efeito 
+      expande para 5km. Com os três aspectos representados por Mestres Resonantes de RS 7+: 
+      área inteira de uma região.
+    `,
+    raridade: 'Raro. Exige conhecimento específico da tradição. Poucos textos sobreviveram à purga.',
+    nota: 'Os Cronistas Imperiais tentaram apagar o equinócio da primavera do calendário oficial. Não conseguiram completamente — o povo ainda celebra, mesmo sem saber por quê.',
+  },
+  {
+    nome: 'Rito do Véu',
+    subtitulo: 'A Passagem — Guia da Alma Através da Fronteira',
+    modo: 'Eólio',
+    ritmo: '4/4 lento',
+    participantes: 1,
+    ch: 5,
+    ph: 6,
+    duracao: '30 minutos',
+    frequencia: 'Sempre que houver morte — idealmente dentro de 12 horas',
+    execucao: `
+      Conduzido preferencialmente por uma Filha do Véu ou devoto de Ephira, mas qualquer
+      Resonante pode realizar com o conhecimento correto. O corpo deve estar presente ou
+      um objeto pessoal do falecido. O Cantor canta o nome completo do morto sete vezes,
+      cada repetição em uma nota diferente, descendente. A última nota é silenciosa — 
+      sustentada pela intenção, não pelo som. Velas negras (ou ausência de luz) amplificam.
+    `,
+    efeito: `
+      A alma é guiada ao Coro dos Partidos sem complicações. O espírito não fica preso,
+      não pode ser invocado por necromantes menores, e a área onde morreu fica protegida
+      contra manifestações espectrais por 7 dias. O luto dos presentes é aliviado — não
+      removido, mas clarificado. A morte se torna compreensível.
+    `,
+    falha: `
+      A alma fica parcialmente presa. O corpo pode se tornar morto-vivo involuntariamente
+      em 1d4 dias se não for tratado. O cantor fica com eco espiritual por uma semana:
+      às vezes ouve a voz do falecido em sonhos, com mensagens nem sempre consoladoras.
+    `,
+    amplificacao: `
+      Com as Filhas do Véu presentes: o ritual protege o local permanentemente contra 
+      mortos-vivos. Com devoto de Valoth (justiça) co-cantando: pode revelar circunstâncias
+      da morte ao cantor, como testemunho espiritual.
+    `,
+    raridade: 'Moderadamente raro. A Inquisição tolera rituais funerários "neutros", mas age contra qualquer menção explícita a Ephira.',
+    nota: 'Muitas famílias ainda cantam fragmentos do Rito sem saber a origem — transmitidos por gerações como "canções de ninar para os mortos".',
+  },
+  {
+    nome: 'Rito de Equilíbrio',
+    subtitulo: 'A Reconciliação — Restauração da Harmonia Rompida',
+    modo: 'Dórico (abertura) + Mixolídio (resolução)',
+    ritmo: '5/4 (abertura) → 4/4 (resolução)',
+    participantes: 4,
+    ch: 8,
+    ph: 10,
+    duracao: '2 horas',
+    frequencia: 'Quando há dissonância severa — local ou espiritual',
+    execucao: `
+      Quatro participantes se posicionam nos pontos cardeais. O ritual tem duas fases 
+      distintas. Na Abertura (5/4 em Dórico), cada cantor confronta a dissonância 
+      presente — isso pode ser literal (descrevendo o mal que ocorreu no local) ou 
+      simbólico (a Paixão de alguém que corrompeu o lugar). Na Resolução (4/4 em 
+      Mixolídio), os quatro cantores convergem ao centro e sustentam um acorde 
+      uníssono por tempo suficiente para que a harmonia "ancore" no local. A duração
+      da sustentação determina a profundidade da cura.
+    `,
+    efeito: `
+      Remove dissonância espiritual de um local: purifica um templo corrompido, dissolve
+      uma maldição de área, estabiliza uma linha ley perturbada, ou fecha uma fissura 
+      menor para o Vazio. Em personagens: pode reduzir 1d3 pontos de Paixão de todos 
+      os participantes que confrontaram sua paixão honestamente na Fase de Abertura.
+      O local tratado fica imune a nova corrupção menor por 1 ano.
+    `,
+    falha: `
+      A dissonância não é resolvida — é amplificada. Todos os participantes ganham 
+      imediatamente 3 pontos de PH. O local piora: criaturas dissonantes são atraídas
+      para a área nas próximas 24 horas. Uma fissura para o Vazio pode aumentar de tamanho.
+    `,
+    amplificacao: `
+      Com um Resonante de cada um dos quatro modos representados (Dórico, Jônico, Eólio, 
+      Mixolídio): a purificação é permanente. Com a presença de uma arma Ressonante 
+      cujo Motivo de Origem está alinhado com o local: CH reduzido em 2.
+    `,
+    raridade: 'Muito raro. Exige conhecimento teológico profundo e quatro Resonantes coordenados. Frequentemente requer preparação de dias.',
+    nota: 'O Deus-Imperador teme este ritual mais que qualquer outro. Um Rito de Equilíbrio executado com sucesso em Aurelia Prime seria catastrófico para sua legitimidade.',
+  },
+];
+---
+
+<ContentLayout
+  title="Rituais · Grimórios · Qamareth"
+  section="grimorios"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Grimórios', href: '/grimorios' }, { label: 'Rituais', href: '/grimorios/rituais' }]}
+>
+
+  <h1>Rituais do Harmonium</h1>
+  <span class="tagline">
+    Partituras que um indivíduo não pode cantar sozinho. Precisam de vozes.
+    Precisam de comunidade. Precisam de fé.
+  </span>
+
+  <p>
+    Os <strong>Rituais</strong> são a mais alta expressão da magia musical em Qamareth.
+    Diferentemente de uma Partitura — que um único conjurador habilidoso pode executar —
+    os Rituais exigem múltiplas vozes, tempo de preparação, e algo que nenhuma habilidade
+    técnica substitui: <em>intenção coletiva genuína</em>.
+  </p>
+
+  <p>
+    Os quatro grandes Ritos do Harmonium existem desde antes do Império. São anteriores
+    à sistematização mágica. São, no sentido mais preciso, a fé em forma sonora. Por isso
+    a Inquisição os proíbe com tal fervor — eles não são apenas magia, são <strong>memória
+    viva</strong> de um mundo antes da tirania.
+  </p>
+
+  <div class="callout">
+    Rituais não podem ser executados em locais com Dissonância severa sem primeiro 
+    tratá-la — a harmonia rejeita o ambiente hostil. Se tentado à força, o PH base
+    do ritual dobra imediatamente.
+  </div>
+
+  <div class="divider">✦</div>
+
+  {rituais.map((r, i) => (
+    <>
+      <div class="stat-block">
+        <h2 style="margin-top: 0; border: none; padding: 0; font-size: 1.25rem; color: var(--gold-bright); text-transform: none; letter-spacing: 0.04em;">
+          {r.nome}
+        </h2>
+        <p style="color: var(--text-faint); font-style: italic; font-size: 0.88rem; margin: 4px 0 18px;">
+          {r.subtitulo}
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 18px; font-size: 0.86rem;">
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 2px;">Modo</span>
+            <span style="color: var(--gold);">{r.modo}</span>
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 2px;">Ritmo</span>
+            {r.ritmo}
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 2px;">Duração</span>
+            {r.duracao}
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 2px;">Participantes</span>
+            {r.participantes} mínimo
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 2px;">CH / PH</span>
+            {r.ch} / {r.ph}
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 2px;">Frequência</span>
+            <span style="font-size: 0.82rem;">{r.frequencia}</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 6px;">Execução</span>
+          <p style="margin: 0; font-style: italic; color: var(--text-muted); font-size: 0.9rem; line-height: 1.7;">{r.execucao.trim()}</p>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 6px;">Efeito</span>
+          <p style="margin: 0; font-size: 0.9rem; line-height: 1.7;">{r.efeito.trim()}</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; font-size: 0.88rem;">
+          <div style="padding: 10px 14px; background: rgba(180,40,40,0.04); border: 1px solid rgba(180,40,40,0.15); border-radius: var(--radius);">
+            <span style="color: rgba(200,80,80,0.7); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Falha</span>
+            <p style="margin: 0; line-height: 1.6;">{r.falha.trim()}</p>
+          </div>
+          <div style="padding: 10px 14px; background: rgba(201,164,75,0.04); border: 1px solid var(--border); border-radius: var(--radius);">
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Amplificação</span>
+            <p style="margin: 0; line-height: 1.6;">{r.amplificacao.trim()}</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; font-size: 0.86rem; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);">
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 2px;">Raridade</span>
+            <span style="color: var(--text-muted);">{r.raridade}</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 12px; padding: 10px 14px; border-left: 2px solid var(--gold-dim); font-size: 0.86rem; font-style: italic; color: var(--text-muted);">
+          {r.nota}
+        </div>
+      </div>
+
+      {i < rituais.length - 1 && <div class="divider">✦</div>}
+    </>
+  ))}
+
+  <div class="divider">✦</div>
+
+  <h2>Rituais em Jogo</h2>
+
+  <p>
+    Rituais não são recursos táticos — são momentos narrativos. Antes de executar um,
+    o narrador e os jogadores devem considerar:
+  </p>
+
+  <ul>
+    <li><strong>Onde?</strong> O local importa. Um templo consagrado reduz CH em 1. Um local profanado aumenta PH em 2.</li>
+    <li><strong>Quem observa?</strong> Um Rito do Harmonium realizado em público é automaticamente heresia para a Inquisição.</li>
+    <li><strong>O que cada participante carrega?</strong> Paixões dominantes nos cantores afetam a estabilidade do ritual — o narrador pode exigir testes individuais de Espírito para quem estiver em Paixão 3+.</li>
+    <li><strong>Quanto tempo de preparação?</strong> Rituais improvisados têm CH+2 e PH+3. Preparação adequada (textos, espaço, intenção compartilhada) pode reduzir ambos em 1.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Nota sobre o contexto atual:</strong> Com o Harmonium suprimido, a maioria dos
+    Rituais só pode ser executada por quem ainda carrega o conhecimento oral completo —
+    Filhas do Véu, Mestres Resonantes em exílio, ou aqueles que encontraram textos sobreviventes.
+    Um personagem que aprende a executar um Ritual durante a campanha está recebendo algo 
+    incomensuravelmente valioso: um elo vivo com o mundo antes da tirania.
+  </div>
+
+</ContentLayout>

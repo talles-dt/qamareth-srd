@@ -1,0 +1,275 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',     label: 'O Mundo' },
+      { href: '/lore/o-imperio',   label: 'O Império' },
+      { href: '/lore/o-harmonium', label: 'O Harmonium' },
+      { href: '/lore/a-igreja',    label: 'A Igreja' },
+      { href: '/lore/faccoes',     label: 'Facções' },
+      { href: '/lore/regioes',     label: 'Regiões' },
+      { href: '/lore/cidades',     label: 'Cidades' },
+      { href: '/lore/sociedade',   label: 'Sociedade' },
+      { href: '/lore/historia',    label: 'História' },
+      { href: '/lore/locais-sagrados', label: 'Locais Sagrados' },
+      { href: '/lore/cosmologia',  label: 'Cosmologia' },
+      { href: '/lore/exercito-e-lei', label: 'Exército & Lei' },
+    ],
+  },
+];
+
+const deuses = [
+  // — A TRÍADE (camada teológica da Aurora de Prata) —
+  { nome: 'Virael, o Alvorecer',        tier: 'Tríade · Origem',    dominio: 'Luz · Renovação · Criação',              simbolo: 'Sol nascente dourado',             energiaTeol: 'A Fonte — de quem tudo procede. Tom fundamental da Sinfonia.' },
+  { nome: 'Zephon, o Sussurro',         tier: 'Tríade · Logos',     dominio: 'Palavra · Comunicação · Conhecimento',   simbolo: 'Lábios abertos com notas saindo',  energiaTeol: 'O Verbo que nomeia todas as coisas. Antes do Nome, não havia ser.' },
+  { nome: 'Liora, a Cantora dos Ventos',tier: 'Tríade · Pneuma',    dominio: 'Ar · Liberdade · Inspiração',            simbolo: 'Pena em redemoinho',               energiaTeol: 'O Sopro que anima a melodia. Sem o Sopro, a nota não soa.' },
+  // — ENERGIAS CÓSMICAS —
+  { nome: 'Silvaran, a Verdejante',     tier: 'Cósmico',            dominio: 'Natureza · Crescimento · Fertilidade',   simbolo: 'Árvore florida / videira',         energiaTeol: undefined },
+  { nome: 'Kaltra, a Força da Montanha',tier: 'Cósmico',            dominio: 'Terra · Resistência · Fundação',         simbolo: 'Pico cercado de pedras',           energiaTeol: undefined },
+  { nome: 'Typhora, a das Tempestades', tier: 'Cósmico',            dominio: 'Tempestades · Transformação · Renovação',simbolo: 'Raio através de nuvem',            energiaTeol: 'Thyros (Fogo) é aspecto irmão de Typhora — ambos são energias de transformação. A distinção entre fogo criador e fogo destruidor é teológica, não popular.' },
+  { nome: 'Thyros, o Senhor do Fogo',   tier: 'Cósmico',            dominio: 'Fogo · Paixão · Purificação',            simbolo: 'Chama com faíscas',               energiaTeol: 'O Fogo original é purificação, não destruição. O Deus-Imperador e Malakar pervertem Thyros assim como pervertem Virael.' },
+  // — ENERGIAS EXISTENCIAIS —
+  { nome: 'Nathara, a Tecedora',        tier: 'Existencial',        dominio: 'Noite · Sonhos · Santo Escuro',          simbolo: 'Crescente lunar e teia',           energiaTeol: undefined },
+  { nome: 'Ephira, a Portadora do Véu', tier: 'Existencial',        dominio: 'Morte · Memória · Mistério',             simbolo: 'Véu sobre crescente / eclipse',    energiaTeol: 'Dois aspectos inseparáveis: o Véu (passagem da morte) e a Memória (os mortos persistem na Sinfonia). As Filhas do Véu honram ambos.' },
+  { nome: 'Alyara, o Fluxo Eterno',     tier: 'Existencial',        dominio: 'Água · Cura · Renovação',                simbolo: 'Rio ou gota encirclada de ondas',  energiaTeol: undefined },
+  { nome: 'Valoth, o Juiz',             tier: 'Existencial',        dominio: 'Justiça · Lei · Ordem como Amor',        simbolo: 'Balança com espada',               energiaTeol: undefined },
+  { nome: 'Thalor, o Peregrino',        tier: 'Existencial',        dominio: 'Peregrinação · Busca · Movimento',       simbolo: 'Sandália sobre estrada em espiral', energiaTeol: 'A jornada espiritual como valor em si. Padroeiro dos exilados, dos que buscam e ainda não chegaram.' },
+  { nome: 'Aralith, o Enganador',       tier: 'Existencial',        dominio: 'Providência · Sorte · Liberdade',        simbolo: 'Máscara biface em prata',          energiaTeol: 'A Aurora de Prata o chama de "Providência" — o que parece engano é frequentemente graça disfarçada.' },
+  { nome: 'Karnoth, o das Profundezas', tier: 'Existencial',        dominio: 'Oceanos · Profundidade · Segredos',      simbolo: 'Concha espiral sobre abismo',      energiaTeol: undefined },
+  { nome: 'Maelor, o Guardão do Lar',   tier: 'Existencial',        dominio: 'Lar · Lareira · Comunidade',             simbolo: 'Lareira com brasão familiar',      energiaTeol: undefined },
+];
+---
+
+<ContentLayout
+  title="O Harmonium · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'O Harmonium', href: '/lore/o-harmonium' }]}
+>
+
+  <h1>O Harmonium</h1>
+  <span class="tagline">
+    A fé proibida — onde o universo é uma sinfonia e cada alma tem seu papel.
+  </span>
+
+  <p>
+    O Harmonium é a fé politeísta original de Qamareth — suprimida, mas não extinta. Baseia-se
+    na veneração de um panteão divino onde cada deus representa um aspecto da existência natural,
+    humana e cósmica. O universo, segundo o Harmonium, foi criado através do <strong>Canto das
+    Divindades</strong> — uma melodia eterna que continua a ressoar em tudo o que existe.
+  </p>
+
+  <p>
+    Tudo no Harmonium está impregnado de música. Os ritos são corais. A hierarquia clerical
+    se organiza em torno da expressão musical. A própria magia do mundo responde a esse Canto
+    Primordial. Fé não é crença silenciosa — é <em>harmonia ativa</em>.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Os Cinco Princípios</h2>
+
+  <h3>I. A Sinfonia da Criação</h3>
+  <p>
+    No alvorecer dos tempos, os deuses se reuniram e teceram a realidade através de suas harmonias
+    divinas. Cada divindade contribuiu sua melodia única. O mundo resultante é uma sinfonia
+    cósmica em andamento. Todo ser vivo é uma nota — e cada nota importa.
+  </p>
+
+  <h3>II. O Equilíbrio Divino</h3>
+  <p>
+    Nenhuma divindade é mais importante que outra. Virael, a luz, precisa de Ephira, a morte.
+    Typhora, o caos, precisa de Kaltra, a permanência. O desequilíbrio — causado por excesso,
+    negligência ou desarmonia — produz sofrimento. O fiel busca seu ponto de equilíbrio.
+  </p>
+
+  <h3>III. A Adoração Comunitária</h3>
+  <p>
+    O culto solitário é incompleto. A fé se realiza em comunidade — nas <strong>Sinaxis
+    Divinas</strong>, cerimônias coletivas onde a congregação canta em uníssono. As vozes
+    reunidas invocam a presença divina de forma que a voz isolada não consegue.
+  </p>
+
+  <h3>IV. O Papel Individual na Sinfonia</h3>
+  <p>
+    Cada fiel tem um papel no plano divino. Os <strong>Ressonantes</strong> — líderes espirituais
+    místicos — guiam os fiéis a descobrir esse papel, interpretar a vontade dos deuses através
+    da música sagrada. O objetivo último é a <em>ressonância harmônica</em> com o divino.
+  </p>
+
+  <h3>V. A Santidade da Vida e da Morte</h3>
+  <p>
+    Vida e morte são dois lados da mesma melodia divina. Quando uma alma parte, ela se junta ao
+    <strong>Coro dos Partidos</strong> — e continua a cantar no além. Os ritos fúnebres, os
+    <em>Ritos do Véu</em>, são conduzidos pelas <strong>Filhas do Véu</strong>, uma ordem monástica
+    dedicada a Ephira, cujos cânticos guiam o espírito através da fronteira entre os mundos.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>A Hierarquia do Alto Coral</h2>
+
+  <p>
+    O <strong>Alto Coral</strong> é o corpo governante da fé, composto por 15 <em>Seguidores
+    Iluminados</em> — um para cada divindade do panteão. (A tradição teológica mais rigorosa
+    reconhece que os 15 nomes populares correspondem a 12 energias distintas; a estrutura do
+    Alto Coral preserva os 15 para manter continuidade com a fé do povo.) Abaixo deles, as
+    <strong>Tiers Harmônicas</strong> organizam o clero e os fiéis:
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Título</th><th>Função</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ressonantes</td><td>Iniciados. Começam a se sintonizar com as frequências divinas.</td></tr>
+      <tr><td>Coralistas</td><td>Cantores litúrgicos. Lideram hinos diários. Suas vozes carregam ecos dos deuses.</td></tr>
+      <tr><td>Guardadores de Hinos</td><td>Escribas sagrados. Preservam e ensinam os cânticos ancestrais.</td></tr>
+      <tr><td>Arquiharmonistas</td><td>Alta ordem clerical. Líderes espirituais regionais, presidem os grandes ritos.</td></tr>
+      <tr><td>Ordens Acordadas</td><td>Ordens monásticas especializadas, cada uma dedicada a um aspecto divino.</td></tr>
+      <tr><td>Guardiões do Equilíbrio</td><td>Mediadores espirituais de comunidades. Resolvem disputas morais e crises de fé.</td></tr>
+      <tr><td>Portadoras do Véu</td><td>Sacerdotisas de Ephira. Conduzem ritos fúnebres e guardam a fronteira entre os mundos.</td></tr>
+      <tr><td>Curandeiros Harmoniosos</td><td>Clérigos que curam com hinos e harmonias sagradas, tratando desequilíbrio como doença.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider">✦</div>
+
+  <h2>O Panteão — As 15 Divindades</h2>
+
+  <p>
+    O Harmonium popular reconhece <strong>15 divindades</strong>. A teologia erudita da Aurora
+    de Prata as organiza em três camadas: a <em>Tríade</em> (os três aspectos da única Realidade
+    Divina), as <em>Energias Cósmicas</em> (forças que sustentam o mundo material) e as
+    <em>Energias Existenciais</em> (aspectos da experiência humana e espiritual). Os plebeus
+    oram a nomes; os teólogos reconhecem que os nomes são facetas de uma única Luz.
+  </p>
+
+  {['Tríade · Origem', 'Tríade · Logos', 'Tríade · Pneuma', 'Cósmico', 'Existencial'].filter((v,i,a) => a.indexOf(v) === i).map(tier => {
+    const grupo = tier.startsWith('Tríade') ? 'A Tríade' : tier === 'Cósmico' ? 'Energias Cósmicas' : 'Energias Existenciais';
+    const deusesTier = deuses.filter(d => d.tier === tier || (tier === 'Cósmico' && d.tier === 'Cósmico') || (tier === 'Existencial' && d.tier === 'Existencial'));
+    return null;
+  })}
+
+  <h3 style="color: var(--gold); font-family: 'Cinzel Decorative', serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; margin: 24px 0 12px;">A Tríade — A Única Realidade Divina em Três Aspectos</h3>
+  <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; font-style: italic;">
+    "Três nomes, uma Canção." — Ensinamento da Aurora de Prata
+  </p>
+  <div class="card-grid" style="margin-bottom: 24px;">
+    {deuses.filter(d => d.tier?.startsWith('Tríade')).map(d => (
+      <div class="info-card" style="border-color: rgba(201,164,75,0.3);">
+        <span class="info-card-title">{d.nome}</span>
+        <p style="font-size: 0.72rem; color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">{d.tier}</p>
+        <p style="font-size: 0.85rem; color: var(--gold-dim); margin-bottom: 6px;">{d.dominio}</p>
+        <p style="font-size: 0.82rem; color: var(--text-faint);">Símbolo: {d.simbolo}</p>
+        {d.energiaTeol && <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 8px; font-style: italic; border-top: 1px solid var(--border); padding-top: 8px;">{d.energiaTeol}</p>}
+      </div>
+    ))}
+  </div>
+
+  <h3 style="color: var(--gold); font-family: 'Cinzel Decorative', serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; margin: 24px 0 12px;">Energias Cósmicas — Forças que Sustentam o Mundo</h3>
+  <div class="card-grid" style="margin-bottom: 24px;">
+    {deuses.filter(d => d.tier === 'Cósmico').map(d => (
+      <div class="info-card">
+        <span class="info-card-title">{d.nome}</span>
+        <p style="font-size: 0.85rem; color: var(--gold-dim); margin-bottom: 6px;">{d.dominio}</p>
+        <p style="font-size: 0.82rem; color: var(--text-faint);">Símbolo: {d.simbolo}</p>
+        {d.energiaTeol && <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 8px; font-style: italic; border-top: 1px solid var(--border); padding-top: 8px;">{d.energiaTeol}</p>}
+      </div>
+    ))}
+  </div>
+
+  <h3 style="color: var(--gold); font-family: 'Cinzel Decorative', serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; margin: 24px 0 12px;">Energias Existenciais — Aspectos da Experiência Humana e Espiritual</h3>
+  <div class="card-grid" style="margin-bottom: 8px;">
+    {deuses.filter(d => d.tier === 'Existencial').map(d => (
+      <div class="info-card">
+        <span class="info-card-title">{d.nome}</span>
+        <p style="font-size: 0.85rem; color: var(--gold-dim); margin-bottom: 6px;">{d.dominio}</p>
+        <p style="font-size: 0.82rem; color: var(--text-faint);">Símbolo: {d.simbolo}</p>
+        {d.energiaTeol && <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 8px; font-style: italic; border-top: 1px solid var(--border); padding-top: 8px;">{d.energiaTeol}</p>}
+      </div>
+    ))}
+  </div>
+
+  <div class="callout">
+    <strong>Nota sobre as perversões imperiais:</strong> O Deus-Imperador usurpou a iconografia
+    de Virael para fundamentar sua divindade proclamada. Malakar, o Inferno, perverteu a energia
+    de Thyros — transformando o fogo purificador em fogo destruidor. A Igreja da Luz Eterna
+    imita a estética do Harmonium enquanto inverte seu conteúdo. Para os fiéis do Harmonium,
+    isso é a heresia suprema: não a negação da fé, mas sua corrupção deliberada.
+    O nome <strong>Solandris</strong> — suprimido pelo próprio Deus-Imperador — continua sendo
+    pronunciado em segredo pelos fiéis como lembrete: ele nasceu. Ele pode morrer.
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Os Ritos Maiores</h2>
+
+  <h3>A Grande Sinaxis</h3>
+  <p>
+    O rito mais importante e elaborado — realizado no <em>Dia da Unidade Harmoniosa</em>,
+    dia sagrado dedicado ao panteão inteiro. Começa com a Procissão do Alto Coral, onde
+    o clero entra em sequência cantando os hinos de cada divindade. Culmina no
+    <strong>Hino da Harmonia Eterna</strong>, cantado em uníssono por toda a congregação.
+    Um sacrifício simbólico — pão, vinho, ervas sagradas — é abençoado e compartilhado em
+    comunhão coletiva.
+  </p>
+
+  <h3>A Liturgia Divina da Criação</h3>
+  <p>
+    Dedicada a Virael. Realizada ao alvorecer. Uma procissão conduz os fiéis para fora do
+    templo, para testemunhar o nascer do sol — Virael trazendo o mundo à existência novamente.
+    Uma chama sagrada é acesa no altar. Os fiéis levam velas acesas para casa, como presença
+    divina no cotidiano.
+  </p>
+
+  <h3>O Rito do Véu</h3>
+  <p>
+    Liturgia fúnebre dedicada a Ephira. O corpo é carregado em procissão envolvido em véu
+    branco. As Filhas do Véu entoam o <strong>Cântico da Passagem</strong> — melodia que
+    invoca Ephira para guiar a alma. Ao final, o véu é removido: a alma partiu. É descrito
+    por todos que testemunharam como hauntingly beautiful — uma peça de arte sonora tanto
+    quanto um rito sagrado.
+  </p>
+
+  <h3>Os Ritos de Equilíbrio</h3>
+  <p>
+    Celebrações sazonais dedicadas a Silvaran (primavera — alegria, fertilidade, plantio)
+    e Typhora (outono — as forças destrutivas necessárias à renovação). O Rito de Outono
+    inclui uma quebra simbólica de objetos — o velho sendo destruído para dar lugar ao novo.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Arquitetura dos Templos</h2>
+
+  <p>
+    Os templos do Harmonium são projetados como instrumentos arquitetônicos — construídos
+    para amplificar o canto da congregação. Planta circular ou octagonal, abóbadas que
+    projetam o som, vitrais que mudam com a luz do dia criando atmosfera sempre viva.
+  </p>
+
+  <p>
+    Cada templo contém:
+  </p>
+
+  <ul>
+    <li><strong>A Grande Nave</strong> — espaço principal de adoração, acústica otimizada para coro</li>
+    <li><strong>O Altar Maior</strong> — plataforma elevada com a representação da Sinfonia Cósmica</li>
+    <li><strong>A Galeria de Ressonância</strong> — balcão reservado para cantores de elite</li>
+    <li><strong>A Câmara dos Ecos</strong> — espaço meditativo com eco contínuo, como se o templo respirasse</li>
+    <li><strong>O Santuário de Ephira</strong> — espaço para velas, memória dos mortos e ritos fúnebres</li>
+    <li><strong>Torres de Sino</strong> — cada sino afinado para uma divindade; tocados juntos, formam a Canção dos Deuses</li>
+  </ul>
+
+  <div class="callout">
+    Hoje, a maioria desses templos está destruída. Os que sobrevivem são ocultos, enterrados,
+    camuflados. Alguns existem apenas na memória de pessoas que nunca os viram — apenas
+    ouviram os hinos passados de pai para filho, geração após geração, em sussurros.
+  </div>
+
+</ContentLayout>

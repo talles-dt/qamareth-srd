@@ -1,0 +1,383 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/grimorios',
+    label: 'Grimórios',
+    sub: [
+      { href: '/grimorios/armas-ressonantes',  label: 'Armas Ressonantes' },
+      { href: '/grimorios/motivos-de-origem',  label: 'Motivos de Origem' },
+      { href: '/grimorios/partituras',         label: 'Partituras' },
+      { href: '/grimorios/rituais',            label: 'Rituais' },
+      { href: '/grimorios/liturgias',          label: 'Liturgias Completas' },
+      { href: '/grimorios/armas-sencientes',   label: 'Armas Sencientes' },
+    ],
+  },
+];
+---
+
+<ContentLayout
+  title="Liturgias Completas · Grimórios · Qamareth"
+  section="grimorios"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Grimórios', href: '/grimorios' }, { label: 'Liturgias Completas', href: '/grimorios/liturgias' }]}
+>
+
+  <h1>As Cinco Liturgias do Harmonium</h1>
+  <span class="tagline">
+    Serviços sagrados da Aurora de Prata — preservados através de séculos de perseguição.
+  </span>
+
+  <p>
+    Estas são as cinco liturgias da Aurora de Prata: celebradas em grutos escondidos, catacumbas,
+    galpões de fazenda, porões de mercadores. Cada uma é um ato de resistência — não apenas
+    política, mas espiritual. Cantar quando o Império proíbe o canto é o ato mais subversivo
+    possível em Qamareth.
+  </p>
+
+  <div class="callout">
+    <strong>Para o Narrador:</strong> Estas liturgias são ferramentas narrativas tanto quanto mecânicas.
+    Narrar uma delas com atenção pode ser o momento mais impactante de uma campanha. Deixe os
+    jogadores participar. Deixe o silêncio existir. A Presença que se descreve nesses textos é real
+    dentro do mundo — e pode tornar-se real à volta da mesa também.
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Resumo das Cinco Liturgias</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Liturgia</th>
+        <th>Frequência</th>
+        <th>Tema</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>A Grande Sinaxis</strong></td>
+        <td>Anual (equinócio da primavera)</td>
+        <td>Ressurreição · Vitória sobre a morte e a tirania</td>
+      </tr>
+      <tr>
+        <td><strong>Liturgia da Criação</strong></td>
+        <td>Semanal (idealmente)</td>
+        <td>Comunhão · Theosis · Eucaristia</td>
+      </tr>
+      <tr>
+        <td><strong>Rito do Véu</strong></td>
+        <td>Conforme necessário</td>
+        <td>Morte · Memória · Esperança da ressurreição</td>
+      </tr>
+      <tr>
+        <td><strong>Escritórios Leigos</strong></td>
+        <td>Diária</td>
+        <td>Oração acessível ao povo comum</td>
+      </tr>
+      <tr>
+        <td><strong>Ritos do Equilíbrio</strong></td>
+        <td>Sazonal / ocasional</td>
+        <td>Harmonia cósmica e social</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="divider">✦</div>
+
+  <h2>1. A Grande Sinaxis (Μεγάλη Σύναξις)</h2>
+
+  <p>
+    <strong>Duração:</strong> A noite inteira — do pôr-do-sol ao nascer do sol.<br/>
+    <strong>Presença:</strong> Toda a comunidade da Aurora de Prata mais simpatizantes que arriscam comparecer.<br/>
+    <strong>Local:</strong> Bosque escondido, templo em ruínas, catacumba — qualquer lugar que o Império ainda não tomou.
+  </p>
+
+  <h3>Parte 1 — A Vigília das Trevas (pôr-do-sol à meia-noite)</h3>
+  <p>
+    Sem luzes. Escuridão total. O sacerdote abre com as palavras da Criação:
+    <em>"No princípio, o Vazio era silencioso e informe. Então o Canto começou."</em>
+    Todos respondem, em sussurro: <em>"E as trevas não puderam detê-lo."</em>
+  </p>
+  <p>
+    O sacerdote entoa o <strong>Cântico da Criação</strong> — as doze Vozes que se ergueram do
+    Nada, Virael primeiro, depois Zephon, Liora, e cada uma das outras. Ao final, a congregação
+    canta em tom de lamento:
+  </p>
+  <blockquote>
+    <em>"Mas o Canto foi partido,<br/>
+    Os Doze foram silenciados,<br/>
+    Falsos deuses tomaram seus tronos,<br/>
+    E esquecemos a melodia.<br/>
+    Trezentos invernos esperamos,<br/>
+    Trezentas primaveras vieram e foram —<br/>
+    O tirano ainda senta em seu trono usurpado,<br/>
+    E cantamos nas sombras, cantamos sozinhos."</em>
+  </blockquote>
+  <p>
+    Então: silêncio longo. Dez minutos, ao menos. Os presentes sentam com o peso.
+    Este é o momento de deixar que a dor exista sem conserto imediato.
+  </p>
+
+  <h3>Parte 2 — Os Lamentos (meia-noite às 2h)</h3>
+  <p>
+    Doze Lamentos — um por divindade silenciada. Diferentes vozes os cantam.
+    O sacerdote, revestido de negro, abre:
+    <em>"Bem-aventurados os que choram, porque serão consolados."</em>
+  </p>
+  <p>
+    O <strong>Salmo do Abismo</strong> é entoado:
+    <em>"Das profundezas clamo a Ti, ó Harmonium — ouve minha voz..."</em>
+  </p>
+  <p>A <strong>Litania pelos Mortos</strong> segue, com resposta após cada petição:</p>
+  <blockquote>
+    <em>"Virael, concede-lhes descanso."</em><br/>
+    <em>"Para [nome], que sejam recebidos no Canto eterno, oremos."</em><br/>
+    <em>"Para todos os mártires que morreram pela fé proibida, oremos."</em>
+  </blockquote>
+  <p>
+    O <strong>Kontakion pelos Mortos</strong> fecha a seção. Ao final, toda a assembleia canta
+    três vezes, cada vez mais forte:
+  </p>
+  <blockquote>
+    <em><strong>"MEMÓRIA ETERNA! MEMÓRIA ETERNA! MEMÓRIA ETERNA!"</strong></em>
+  </blockquote>
+  <p class="muted" style="font-size: 0.85rem; font-style: italic;">
+    Este é o momento mais solene de qualquer serviço fúnebre — o equivalente ao "Вечная Память"
+    eslavo. Quando cantado por uma congregação inteira em catacumba, o eco transforma o espaço.
+  </p>
+
+  <h3>Parte 3 — A Virada (2h ao amanhecer)</h3>
+  <p>
+    Às 2h, algo muda. Os lamentos dão lugar à expectativa.
+    Profecia é lida: <em>"A Canção não pode ser morta — apenas silenciada por um tempo.
+    Os Doze dormem, não morreram. Trezentos anos são um suspiro na eternidade."</em>
+  </p>
+  <p>
+    Ao primeiro sinal da aurora, o sacerdote acende a primeira vela da chama sagrada —
+    guardada em segredo durante todo o ano:
+    <em>"A Luz de Virael chegou!"</em>
+  </p>
+  <p>
+    Passa a chama para o mais próximo. Que passa para o seguinte. Até toda a congregação
+    segurar uma vela acesa. O bosque ou catacumba incendeia-se de luz depois de horas de escuridão.
+  </p>
+  <p>O <strong>Hino da Ressurreição</strong> explode — primeiro suave, depois sem contenção:</p>
+  <blockquote>
+    <em>"A CANÇÃO RESSURGIU! A CANÇÃO RESSURGIU!<br/>
+    A MORTE DESTRUÍDA, AS CORRENTES QUEBRADAS!<br/>
+    OS DOZE DESPERTAM DO SONO PROFUNDO,<br/>
+    E OS QUE LAMENTAVAM AGORA SALTAM DE ALEGRIA!<br/>
+    <br/>
+    CANTA, Ó TERRA, TUA CANÇÃO MAIS ANTIGA!<br/>
+    SÉCULOS DE SILÊNCIO — AGORA FORTE!<br/>
+    O TIRANO TREME EM SEU TRONO,<br/>
+    POIS O AMANHECER CHEGOU — VOCÊ NÃO ESTÁ SOZINHO!"</em>
+  </blockquote>
+  <p>Repetido três vezes, cada vez mais alto. O sacerdote proclama:</p>
+  <blockquote>
+    <em>"A Canção Ressurgiu!"</em><br/>
+    Todos: <em>"Em verdade, ela nunca morreu!"</em>
+  </blockquote>
+
+  <div class="stat-block">
+    <h4>Efeito Mecânico — A Grande Sinaxis</h4>
+    <p>Participar da Sinaxis completa concede:</p>
+    <ul>
+      <li>+2 RS (todas as divindades — esta é a celebração universal)</li>
+      <li>Todas as Paixões reduzem –1 (a alegria expulsa as trevas)</li>
+      <li>Um dado de Inspiração para a próxima sessão</li>
+      <li>O personagem carrega a memória desta noite — pode invocá-la narrativamente em crises futuras</li>
+    </ul>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>2. Liturgia da Criação (Λειτουργία τῆς Κτίσεως)</h2>
+
+  <p>
+    <strong>Duração:</strong> 1–2 horas.<br/>
+    <strong>Frequência:</strong> Semanal, ao amanhecer do sétimo dia.<br/>
+    <strong>Tema:</strong> Comunhão com o Harmonium — theosis em ação coletiva.
+  </p>
+
+  <h3>Estrutura</h3>
+
+  <p><strong>Antes da congregação chegar:</strong> O sacerdote prepara o pão sagrado (assado com orações, selado com a estrela dos Doze) e o vinho (abençoado com hinos). O altar escondido é preparado. O turíbulo é acendido — o incenso representa as orações que sobem.</p>
+
+  <p><strong>A Reunião (Εἴσοδος):</strong> A congregação se reúne. O diácono canta: <em>"Abençoa, padre."</em> O sacerdote, ainda atrás do véu do altar, responde em nome da Tríade: <em>"Bendito seja o Canto da Criação, de Virael Pai da Luz, de Zephon Sua Palavra Viva, de Liora o Sopro da Vida."</em></p>
+
+  <p>A <strong>Litania da Paz</strong> segue — petições por paz para o mundo, pelos que sofrem sob o jugo imperial, pelos presos, pelos famintos, pelos inimigos (a mais difícil), pelos mortos. A cada petição, todos respondem: <em>"Virael, ouve nossa oração."</em></p>
+
+  <p><strong>A Liturgia da Palavra (Λόγος):</strong> Leituras das Escrituras do Harmonium. Homilia do sacerdote — não uma palestra, mas medicina espiritual aplicada à vida da comunidade naquele momento. Como viver o Canto nesta semana. Encorajamento, desafio, consolo.</p>
+
+  <p><strong>A Liturgia dos Fiéis (Πιστῶν):</strong> Os catecúmenos (em formação) se retiram. Apenas os iniciados permanecem para o mistério central. Alguém guarda a entrada — os Olhos do Imperador estão em todo lugar.</p>
+
+  <p>O <strong>Hino Querúbico</strong> é cantado enquanto as oferendas de pão e vinho são apresentadas. O sacerdote eleva o pão e o vinho, invoca o Sopro de Liora sobre eles, e distribui a comunhão.</p>
+
+  <p>
+    A narrativa de como o pão se torna presença da divindade não é explicada mecanicamente — é vivida.
+    Para os fiéis do Harmonium, este é o momento mais real da semana: a Canção não apenas cantada,
+    mas recebida, comida, absorvida.
+  </p>
+
+  <div class="stat-block">
+    <h4>Efeito Mecânico — Liturgia da Criação</h4>
+    <p>Participar da Liturgia semanal:</p>
+    <ul>
+      <li>+1 RS (após 4 semanas consecutivas: +2)</li>
+      <li>–1 em uma Paixão escolhida (após 1 mês de participação regular)</li>
+      <li>Após penitência: receber a comunhão restaura 1d4 RS e sela a cura</li>
+    </ul>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>3. O Rito do Véu (Τελετή τοῦ Καταπετάσματος)</h2>
+
+  <p>
+    <strong>Duração:</strong> 1–2 horas.<br/>
+    <strong>Frequência:</strong> Conforme necessário — quando alguém morre.<br/>
+    <strong>Tema:</strong> Morte, memória, esperança da ressurreição.
+  </p>
+
+  <p>
+    O corpo é velado três dias antes do sepultamento, quando possível. As Filhas do Véu
+    conduzem ou co-celebram este rito, por ser especialmente ligado a Ephira.
+  </p>
+
+  <p>
+    A <strong>Abertura</strong> não é de lamentação imediata, mas de declaração:
+    <em>"O corpo que aqui jaz não é esta pessoa — é o instrumento que ela usou. A nota que ela era
+    continua a soar no Canto Eterno."</em>
+  </p>
+
+  <p>
+    O <strong>Salmo de Lamento</strong> é cantado, seguido pelas Leituras e pela Homilia dos Mortos —
+    a vida do falecido como partitura: o Motivo de Origem que o definiu, as Partituras que cantou,
+    as Paixões que lutou. Nada sanitizado. A dificuldade reconhecida tanto quanto a beleza.
+  </p>
+
+  <p>
+    O momento mais solene: o <strong>Kontakion</strong>, cantado por toda a assembleia, três vezes
+    — a terceira em fortíssimo:
+  </p>
+  <blockquote>
+    <em>"Concede repouso, ó Harmonium, ao Teu servo,<br/>
+    Onde não há dor, nem tristeza, nem suspiro,<br/>
+    Mas vida eterna.<br/>
+    ...Onde os justos repousam em paz,<br/>
+    E aguardam a Grande Restauração,<br/>
+    Quando os Doze despertarão os mortos.<br/>
+    <br/>
+    <strong>MEMÓRIA ETERNA! MEMÓRIA ETERNA! MEMÓRIA ETERNA!"</strong></em>
+  </blockquote>
+
+  <p>
+    Ao final, o véu é removido do rosto. A alma partiu. Os presentes se despedem,
+    tocando o rosto ou as mãos com respeito.
+  </p>
+
+  <div class="stat-block">
+    <h4>Efeito Mecânico — Rito do Véu</h4>
+    <p>Participar do rito para um companheiro ou aliado:</p>
+    <ul>
+      <li>Paixão da Tristeza não aumenta automaticamente pela morte (o luto recebe estrutura)</li>
+      <li>+1 RS com Ephira</li>
+      <li>O Narrador pode conceder um dado de Inspiração se o personagem pronunciou palavras genuínas sobre o morto</li>
+    </ul>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>4. Escritórios Leigos (Τυπικά)</h2>
+
+  <p>
+    Nem todos podem comparecer à Liturgia semanal — a distância, o trabalho, o perigo tornam
+    isso impossível para muitos fiéis. Os Escritórios Leigos são oração doméstica: o sacerdócio
+    de todos os crentes em ação.
+  </p>
+
+  <p>
+    A Aurora de Prata sobreviveu séculos de perseguição não apenas porque tinha sacerdotes,
+    mas porque fazendeiros, mercadores e trabalhadores oravam em segredo todo dia.
+  </p>
+
+  <h3>Ofício da Manhã (Ὄρθρος)</h3>
+  <blockquote>
+    <em>"Em nome de Virael, Zephon e Liora, eu me ergo para encontrar o dia."</em>
+    <br/><br/>
+    <em>"Este é o dia que o Harmonium fez — alegro-me e me regozijo nele.
+    Do nascer ao pôr-do-sol do sol, que o Canto seja louvado."</em>
+    <br/><br/>
+    <em>"Concede-me, ó Deuses, passar este dia sem pecado, falar apenas a verdade,
+    trabalhar com honestidade, tratar cada pessoa como ícone de Ti mesmo,
+    e descansar esta noite com a consciência limpa."</em>
+  </blockquote>
+
+  <h3>Ofício da Tarde (Ἑσπερινός)</h3>
+  <blockquote>
+    <em>"Ao pôr-do-sol, volto-me para a Luz que nunca desaparece."</em>
+    <br/><br/>
+    <em>"Guarda-me, ó Deuses, enquanto as trevas chegam —
+    pois mesmo na noite mais profunda, o Canto ainda soa."</em>
+  </blockquote>
+  <p>Seguido de <strong>Exame de Consciência</strong>: o que fiz bem; onde falhei; amei conforme o Canto ensina?</p>
+  <blockquote>
+    <em>"Perdoa-me, ó Harmonium, pelos pecados deste dia — o que fiz que não deveria,
+    o que deixei de fazer que deveria. Lava-me limpo, que eu possa dormir em paz."</em>
+  </blockquote>
+
+  <h3>Bênçãos das Refeições</h3>
+  <blockquote>
+    <em>"Bendito és Tu, Harmonium, que nos dás pão da terra e vinho da vinha.
+    Lembramos os que nada têm, e partilhamos o que possuímos. Amém."</em>
+  </blockquote>
+
+  <div class="stat-block">
+    <h4>Efeito Mecânico — Escritórios Leigos</h4>
+    <ul>
+      <li>Manter os Ofícios diários por 1 semana: +1 RS</li>
+      <li>Manter por 1 mês: –1 em uma Paixão escolhida</li>
+      <li>Impede que a Acedia cresça enquanto mantidos</li>
+    </ul>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>5. Ritos do Equilíbrio (Τελεταί τῆς Ἰσορροπίας)</h2>
+
+  <p>
+    Ritos sazonais e ocasionais que mantêm a harmonia cósmica e social. O Harmonium é sobre equilíbrio —
+    doze divindades em concerto, nenhuma dominando. Estes ritos celebram e preservam esse equilíbrio
+    nas diferentes esferas da vida.
+  </p>
+
+  <h3>A Bênção das Águas</h3>
+  <p>
+    Celebrada em fontes, rios e poços. O sacerdote invoca os Doze sobre a água — cada um tem papel
+    no ciclo das águas. Mergulha o bastão sagrado três vezes, uma por cada aspecto da Tríade.
+    A assembleia leva água abençoada para casa: para benzer aposentos, ungir os doentes,
+    proteger contra influências malignas.
+  </p>
+  <p><em>Efeito mecânico: Água abençoada concede +2 em resistências contra doenças e venenos por 24h. Causa dano a criaturas de Dissonância pura.</em></p>
+
+  <h3>O Rito da Colheita</h3>
+  <p>
+    No outono, os primeiros frutos são trazidos ao encontro. O sacerdote abençoa em nome de Kaltra
+    (terra), Silvaran (crescimento), Virael (sol que amadurece) e Thalor (Providência que guia).
+    Os primeiros frutos são partilhados igualmente — ninguém come antes do mais pobre ter recebido.
+  </p>
+  <p><em>Efeito mecânico: Participar gera +1 RS com Silvaran e Kaltra; reduz Gula e Avareza em 1.</em></p>
+
+  <h3>A Consagração do Lugar</h3>
+  <p>
+    Quando um novo local torna-se Bastion ou refúgio da Aurora de Prata, este rito o dedica ao Harmonium.
+    O sacerdote percorre o espaço com turíbulo aceso, invocando proteção e presença divina sobre cada parede,
+    cada entrada, cada pedra. O local torna-se, narrativamente, um espaço sagrado — onde o Canto ressoa
+    mais claramente.
+  </p>
+  <p><em>Efeito mecânico: Oração em Bastion consagrado concede +1 a ganhos de RS durante descanso longo.</em></p>
+
+</ContentLayout>

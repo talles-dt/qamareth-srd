@@ -1,0 +1,181 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/grimorios',
+    label: 'Grimórios',
+    sub: [
+      { href: '/grimorios/motivos-de-origem',  label: 'Motivos de Origem' },
+      { href: '/grimorios/armas-ressonantes',  label: 'Armas Ressonantes' },
+      { href: '/grimorios/partituras',         label: 'Partituras' },
+      { href: '/grimorios/rituais',            label: 'Rituais' },
+      { href: '/grimorios/liturgias',         label: 'Liturgias Completas' },
+      { href: '/grimorios/armas-sencientes',  label: 'Armas Sencientes' },
+    ],
+  },
+];
+
+const armas = [
+  {
+    nome: 'Stormscream',
+    tipo: 'Arco longo ressonante (divino)',
+    motivo: 'Motivo da Fortuna Quebrada',
+    voz: 'Masculina, rouca, como vento arranhando pedras. Fala pouco, mas com convicção.',
+    quirk: 'Zune audível ao ser empunhado perto de figuras de autoridade — não tolera tirania.',
+    niveis: [
+      { nivel: 5,  estagio: 'Despertar',            efeito: '+1 arco mágico. Em surpresa ou altura, +1d4 dano.' },
+      { nivel: 7,  estagio: 'Eco dos Picos',         efeito: '1x/descanso curto: marca um inimigo como "alvo da tormenta". Ataques contra ele +2 dano, ignoram cobertura leve.' },
+      { nivel: 9,  estagio: 'Verso da Ira Silente',  efeito: 'Ao derrubar um inimigo, move metade do deslocamento sem provocar ataques de oportunidade.' },
+      { nivel: 11, estagio: 'Dueto de Vento e Pena', efeito: '1x/descanso longo: dispara duas flechas simultâneas contra alvos diferentes.' },
+      { nivel: 13, estagio: 'Refrão da Fúria',       efeito: 'Ao sofrer crítico ou ver aliado cair: ativa o Refrão — voo com dobro de velocidade + 1d6 dano por 1 turno.' },
+      { nivel: 15, estagio: 'Coro da Fortuna',       efeito: 'Flechas que acertam o mesmo alvo 2x/turno aplicam Marcação Harmoniosa: desvantagem contra aliados por 1 rodada.' },
+      { nivel: 17, estagio: 'Motivo Final: Tempestade Imortal', efeito: '1x/descanso longo, 1 minuto: dano radiante adicional = RS em todas as flechas. Ignora resistência.' },
+    ],
+    corrupcao: 'Se agir de forma covarde, entregar inocentes ou abandonar aliados em desespero, Stormscream se torna pesado como chumbo. Para restaurar: salvar uma comunidade sitiada sem pedir nada em troca.',
+  },
+  {
+    nome: 'Raízel\'Thandor',
+    subtitulo: 'A Lâmina-Vida da Última Clareira',
+    tipo: 'Espada longa (arma sagrada / foco espiritual)',
+    motivo: 'Elenvar Tuar\'Nael — O Lamento-Luz das Raízes Silenciosas',
+    voz: 'Grave, pausada, serena. Fala como se as palavras fossem folhas sopradas pelo vento.',
+    quirk: 'Emite leve brilho verde-dourado quando há criaturas morrendo ou quando a natureza sofre por perto. "Plantada" no solo, faz crescer flores e ervas raras ao redor.',
+    niveis: [
+      { nivel: 5,  estagio: 'Despertar',              efeito: '+1 arma mágica + foco divino. Ao curar, aliado ganha +1 em saves até o próximo turno.' },
+      { nivel: 7,  estagio: 'Eco Verdejante',         efeito: '1x/descanso curto: toca o solo, lança Detectar Vida (raio 18m).' },
+      { nivel: 9,  estagio: 'Verso das Raízes',       efeito: 'Ao conjurar cura em área, plantas brotam fornecendo cobertura parcial por 1 turno.' },
+      { nivel: 11, estagio: 'Dueto Silencioso',       efeito: '1x/descanso longo: vínculo espiritual com um aliado a até 9m — resistência a necrótico e veneno.' },
+      { nivel: 13, estagio: 'Refrão do Guardião',     efeito: 'Reação ao ver aliado cair: invoca campo de raízes que bloqueia inimigos e cura o aliado em 1d6+RS.' },
+      { nivel: 15, estagio: 'Cântico da Clareira',    efeito: '1x/descanso longo: conjura Aura da Vida sem gastar magia.' },
+      { nivel: 17, estagio: 'Motivo Final: Promessa', efeito: 'Crava a lâmina no chão — Eco da Clareira: cura 4d8+RS para aliados em 18m, resistência a todos os danos por 1 turno. Inimigos reduzidos a 0 HP nesse turno se transformam em árvores eternas.' },
+    ],
+    corrupcao: 'Se sacrificar inocentes, corromper a natureza ou permitir sofrimento por omissão: a lâmina perde a luz. Curas rolam com desvantagem e são reduzidas pela metade. Para restaurar: fundar uma nova clareira ou templo em memória dos mortos.',
+  },
+  {
+    nome: 'Aethraferro',
+    subtitulo: 'O Estilhaço do Céu Fechado',
+    tipo: 'Adaga / multi-ferramenta arcano-tecnológica (arma e foco de Artífice)',
+    motivo: 'Sonho não permitido. Mecânica do sagrado. A melodia proibida.',
+    voz: 'Mecânica, metálica, mas afetuosa — como uma gravação desgastada que insiste em tocar.',
+    quirk: 'Solta zumbidos harmônicos quando algo está "quase" funcionando. Só responde a comandos quando tratada com afeto.',
+    niveis: [
+      { nivel: 5,  estagio: 'Despertar',             efeito: '+1 adaga mágica + ferramenta arcana. Detectar Magia como ritual (com aroma de ozônio).' },
+      { nivel: 7,  estagio: 'Chave do Impensável',   efeito: '1x/descanso curto: substitui qualquer ferramenta. +2 em rolagens com gambiarras criativas.' },
+      { nivel: 9,  estagio: 'Pulso de Propulsão',    efeito: 'Voo de 6m (hover) por 1 turno — salto assistido com faíscas. Usos = mod. de INT por descanso longo.' },
+      { nivel: 11, estagio: 'Estalo da Invenção',    efeito: '1x/dia: monta instantaneamente uma armadilha/engenhoca com materiais próximos.' },
+      { nivel: 13, estagio: 'Verso do Insano Estável', efeito: 'Pode sobrecarregar uma magia/engenhoca: efeito absurdo por 1 rodada, depois desliga ou explode (save ou 3d6 de força).' },
+      { nivel: 15, estagio: 'Aterrissagem de Emergência', efeito: 'Ao cair ou falhar em salto/voo, conjura Queda de Penas automaticamente.' },
+      { nivel: 17, estagio: 'Motivo Final: Voo do Proscrito', efeito: '1x/descanso longo: voo por 1 minuto. Conjura magias sem perder altitude. Ataques contra ele com desvantagem enquanto se move no ar.' },
+    ],
+    corrupcao: 'Se vender suas criações a tiranos, abandonar aliados para salvar o próprio nome, ou parar de tentar voar: a arma entra em colapso, emite ruído de falha contínuo. Para restaurar: construir algo para outro sonhador.',
+  },
+  {
+    nome: 'Lameira',
+    subtitulo: 'A Glaive que Dança na Lama',
+    tipo: 'Glaive ressonante (arma marcial de haste)',
+    motivo: 'O Coração do Conquistador — o ritmo de um ladrão tornado guerreiro',
+    voz: 'Jovial, com sotaque forte de algum lugar que não existe mais. Fala rápido, como se estivesse sempre no meio de uma briga.',
+    quirk: 'Ressoa com som percussivo quando girada ou batida no chão. Tenta ajudar verbalmente durante combates. É impossível calá-la.',
+    niveis: [
+      { nivel: 5,  estagio: 'Despertar',              efeito: '+1 glaive mágica. 1x/turno, ao acertar 2 inimigos diferentes no mesmo turno: +2 CA até o próximo turno.' },
+      { nivel: 7,  estagio: 'Ritmo da Rua',           efeito: 'Reação: gira a arma e reduz dano de um ataque corpo-a-corpo em 1d6 + CON.' },
+      { nivel: 9,  estagio: 'Verso da Corrente Viva', efeito: 'Ao acertar Ataque de Oportunidade: movimento gratuito de 3m em qualquer direção sem provocar ataques.' },
+      { nivel: 11, estagio: 'Dueto do Furor',         efeito: '1x/descanso longo: ataca dois inimigos com um único giro (acerto duplo em alvos adjacentes).' },
+      { nivel: 13, estagio: 'Refrão do Sangue',       efeito: 'Ao abater um inimigo, o próximo ataque do turno não consome a ação (ataque bônus até o fim do turno).' },
+      { nivel: 15, estagio: 'Canto do Renegado',      efeito: 'Contra 3+ inimigos: +1 de dano para cada inimigo diferente atacado no mesmo turno.' },
+      { nivel: 17, estagio: 'Motivo Final: Batida da Vitória', efeito: '1x/descanso longo, 1 minuto: estado rítmico — cada acerto ganha +1 cumulativo para o próximo ataque. Pode atacar uma vez extra se cercado por 2+ inimigos.' },
+    ],
+    corrupcao: 'Se negar quem foi — agir como tirano, julgar os fracos, esquecer becos e ruas — Lameira vira peso morto. Para restaurar: defender alguém que a sociedade condenaria, sem pedir glória.',
+  },
+];
+---
+
+<ContentLayout
+  title="Armas Ressonantes · Grimórios · Qamareth"
+  section="grimorios"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Grimórios', href: '/grimorios' }, { label: 'Armas Ressonantes', href: '/grimorios/armas-ressonantes' }]}
+>
+
+  <h1>Armas Ressonantes</h1>
+  <span class="tagline">
+    Não são apenas armas. São vozes. Cada uma carrega uma melodia própria — e um preço para quem a silencia.
+  </span>
+
+  <p>
+    As Armas Ressonantes são artefatos vivos — ligados ao Motivo de Origem de seu portador e
+    à Harmonia Divina do mundo. Evoluem com o personagem, desenvolvem personalidade e voz,
+    e impõem um <strong>Pacto de Dissonância</strong>: se o portador trair os valores que as
+    definem, a arma se volta contra ele.
+  </p>
+
+  <div class="callout">
+    <strong>Sobre a personalidade das armas:</strong> Cada arma tem voz, traço marcante e uma
+    quirk específica. O narrador e o jogador devem trabalhar juntos para dar vida a essas
+    personalidades em jogo — elas não são itens passivos, são personagens.
+  </div>
+
+  <div class="divider">✦</div>
+
+  {armas.map(arma => (
+    <>
+      <div class="stat-block">
+        <h2 style="margin-top: 0; border: none; padding: 0; font-size: 1.3rem; text-transform: none; letter-spacing: 0.04em;">
+          {arma.nome}
+        </h2>
+        {arma.subtitulo && (
+          <p style="color: var(--text-faint); font-style: italic; font-size: 0.9rem; margin-bottom: 12px;">
+            {arma.subtitulo}
+          </p>
+        )}
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;">
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 2px;">Tipo</span>
+            <span style="font-size: 0.92rem;">{arma.tipo}</span>
+          </div>
+          <div>
+            <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 2px;">Motivo</span>
+            <span style="font-size: 0.92rem; font-style: italic;">{arma.motivo}</span>
+          </div>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 4px;">Voz</span>
+          <p style="font-style: italic; margin: 0; font-size: 0.95rem;">{arma.voz}</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 4px;">Quirk</span>
+          <p style="margin: 0; font-size: 0.92rem;">{arma.quirk}</p>
+        </div>
+
+        <h4>Evolução</h4>
+        <table style="margin-top: 8px;">
+          <thead>
+            <tr>
+              <th>Nível</th>
+              <th>Estágio</th>
+              <th>Efeito</th>
+            </tr>
+          </thead>
+          <tbody>
+            {arma.niveis.map(n => (
+              <tr>
+                <td><strong>{n.nivel}</strong></td>
+                <td style="color: var(--gold); font-style: italic;">{n.estagio}</td>
+                <td>{n.efeito}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div style="margin-top: 20px; padding: 14px 16px; background: rgba(201,164,75,0.04); border: 1px solid rgba(201,164,75,0.1); border-left: 3px solid rgba(201,64,75,0.35); border-radius: var(--radius);">
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 6px;">⚠ Maldição da Dissonância</span>
+          <p style="margin: 0; font-size: 0.9rem; font-style: italic; color: var(--text-muted);">{arma.corrupcao}</p>
+        </div>
+      </div>
+
+      <div style="height: 24px;"></div>
+    </>
+  ))}
+
+</ContentLayout>

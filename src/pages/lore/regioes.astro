@@ -1,0 +1,322 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',     label: 'O Mundo' },
+      { href: '/lore/o-imperio',   label: 'O Império' },
+      { href: '/lore/o-harmonium', label: 'O Harmonium' },
+      { href: '/lore/faccoes',     label: 'Facções' },
+      { href: '/lore/regioes',     label: 'Regiões' },
+      { href: '/lore/historia',    label: 'História' },
+      { href: '/lore/cosmologia',  label: 'Cosmologia' },
+    ],
+  },
+];
+---
+
+<ContentLayout
+  title="Regiões · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'Regiões', href: '/lore/regioes' }]}
+>
+
+  <h1>O Continente de Qamareth</h1>
+  <span class="tagline">
+    Seis regiões. Seis formas de sobreviver ao Império — ou resistir a ele.
+  </span>
+
+  <p>
+    Qamareth é um continente vasto e variado, moldado por milênios de forças naturais e mágicas.
+    Das planícies férteis às florestas encantadas, dos desertos implacáveis às terras pantanosas
+    envoltas em névoa — cada região é um microcosmo único de vida, cultura e conflito. O povo
+    de Qamareth esculpiu seus lares nessas terras, mas permanece à mercê tanto do mundo natural
+    quanto do punho de ferro do <strong>Império da Luz Eterna</strong>.
+  </p>
+
+  <p>
+    O Rio de Prata — o maior curso d'água do continente, nascendo nos Picos Verdejantes e
+    desembocando no mar — e o Grande Pântano servem como artérias de comércio, fronteiras
+    naturais e focos de conflito constante. A geografia não é neutra: é arma, refúgio e prisão,
+    dependendo de quem a atravessa.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2 id="campinas">As Campinas — O Celeiro do Império</h2>
+
+  <p>
+    Uma planície fértil e vasta, as Campinas formam o coração agrícola do Império. Campos
+    ondulantes de trigo, cevada e outros cereais se estendem até onde a vista alcança, quebrados
+    apenas por pequenas aldeias, rotas comerciais e guarnições imperiais ocasionais. Os rios
+    lentos que cortam a região — o <em>Córrego de Prata</em> e o <em>Branco-Brilhante</em>
+    — fornecem irrigação natural e movem moinhos que trabalham sem parar para alimentar o Império.
+  </p>
+
+  <p>
+    Sob a aparente serenidade pastoral, a rebelião ferve. Agricultores e comerciantes resistem
+    silenciosamente aos impostos imperiais exorbitantes. Os que falam alto desaparecem; os que
+    ficam calados sobrevivem — e guardam rancor.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Clima</span>
+      <p>Temperado, com quatro estações distintas. Verões quentes e invernos suaves. Enchentes na primavera, secas ocasionais no verão.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Recursos</span>
+      <p>Grãos, gado, laticínios, cavalos de tração, carvalho e olmo para construção, ervas medicinais, calcário e argila.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Ameaças</span>
+      <p>Ankhegs que arrasam colheitas, grifos descendo dos Picos Verdejantes, Fogos-Fátuos nas margens dos rios, trolls nas florestas.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Cidade principal</span>
+      <p><strong>Olynn</strong> — hub de comércio e agricultura. Centro de resistência silenciosa. Lar da Rainha Mercadora Corina.</p>
+    </div>
+  </div>
+
+  <h3>Pontos Notáveis</h3>
+
+  <div class="stat-block">
+    <h4>O Grande Círculo de Pedras</h4>
+    <p>
+      Monólitos druídicos alinhados com corpos celestes, no coração das Campinas. No solstício
+      de verão, o sol se alinha perfeitamente com a pedra central. Acredita-se que guardam
+      energias ligadas às estações — e que sob eles há câmaras que nenhum inquisidor ainda
+      alcançou. Os druídas locais ainda realizam ritos aqui, às escondidas.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>A Floresta Sussurrante</h4>
+    <p>
+      Uma mata pequena mas perturbadora entre dois rios, famosa pelos sons estranhos ao
+      entardecer. Dizem que fadas e espíritos habitam as árvores retorcidas, sussurrando
+      segredos aos que se aproximam. Fonte de ervas medicinais valiosas — e de desaparecimentos
+      nunca explicados.
+    </p>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="floresta">A Floresta Profunda — O Reino Intocado</h2>
+
+  <p>
+    Uma floresta densa e mística que se estende pelo norte de Qamareth. Árvores milenares
+    formam um dossel que bloqueia o sol; o chão da mata pulsa com flora e fauna estranhas.
+    Muitos acreditam que a floresta guarda segredos dos deuses antigos, e seus habitantes
+    vivem em harmonia com a natureza, defendendo sua independência com unhas e dentes contra
+    o controle imperial.
+  </p>
+
+  <p>
+    Quanto mais fundo, mais selvagem. Bosques encantados, criaturas perigo­sas e criaturas
+    <em>fey</em> que obedecem apenas às suas próprias leis. O Império avança com motosserras
+    mágicas e equipes de mineração — e a Floresta responde com emboscadas, venenos, e a fúria
+    de druídas que não têm mais nada a perder.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Clima</span>
+      <p>Úmido e temperado. O dossel cria um microclima próprio — verões frescos, invernos frios mas secos. Névoa frequente ao amanhecer.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Recursos</span>
+      <p>Madeira rara, ervas medicinais e mágicas, caça selvagem, cogumelos alquímicos, componentes de criaturas mágicas.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Ameaças</span>
+      <p>Lobos-das-Sombras, Aranha de Seda Arcana, Treants enfurecidos, Dríades territoriais, criaturas fey imprevisíveis.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Cidade principal</span>
+      <p><strong>Capolus</strong> — cidade construída nas copas das árvores, onde druídas e rebeldes fazem sua resistência. Lar de Bjorn Escudoverde.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    "A Floresta não pertence ao Imperador. Nunca pertenceu. Ele pode queimar árvores — mas
+    não pode queimar o que mora nelas."
+    <br/><strong>— Bjørn Verdantcloak, líder do Escudo Verdejante</strong>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="deserto">O Deserto — A Forja do Império</h2>
+
+  <p>
+    Uma terra cruel e implacável. Dunas intermináveis, planaltos rochosos e cânions profundos
+    compõem um cenário de extremos: o sol abrasa durante o dia, e as temperaturas despencam
+    à noite. É uma região de sobreviventes endurecidos — e de riquezas imensas que o Império
+    extrai sem trégua.
+  </p>
+
+  <p>
+    Pedras preciosas, cristais arcanos, minerais raros para Magi-Tech. O Deserto sustenta a
+    máquina de guerra imperial tanto quanto as Campinas sustentam seu povo. Cidades surgiram
+    em torno de oásis e operações mineradoras. Nas ravinas e nas ruínas esquecidas, rebeldes
+    se escondem — aguardando o momento certo para atacar suprimentos e convoys imperiais.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Clima</span>
+      <p>Extremo. Calor escaldante de dia (50°C+), frio intenso à noite. Ventos de areia sazonais. Chuva raríssima, concentrada em oásis.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Recursos</span>
+      <p>Gemas preciosas, minerais mágicos, sal, plantas alquímicas raras, cristais arcanos essenciais para Magi-Tech.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Ameaças</span>
+      <p>Vermes de Areia Gigantes, Escorpiões de Cristal, Íbis da Tempestade, criaturas de fogo nos depósitos minerais mais profundos.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Cidade principal</span>
+      <p><strong>Madiin</strong> — maior cidade do deserto, construída ao redor de um oásis crucial. Comércio e rebelião se entrelaçam em seus mercados.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="pantanos">Os Pântanos — O Refúgio dos Foragidos</h2>
+
+  <p>
+    Planícies alagadas, rios turbulentos, vegetação densa e névoa permanente. Os Pântanos são
+    uma terra traiçoeira onde boa parte do território fica submersa, tornando deslocamentos
+    um desafio constante. O Império tem pouca presença aqui — as vias d'água são difíceis
+    de patrulhar, e qualquer força invasora rapidamente descobre que o terreno trabalha
+    contra ela.
+  </p>
+
+  <p>
+    Comunidades isoladas sobrevivem da pesca, da coleta e do contrabando. É a região mais livre
+    de Qamareth — mas liberdade aqui tem um preço alto: doenças, predadores e a sensação
+    constante de que a própria terra quer te engolir.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Clima</span>
+      <p>Úmido, quente, abafado. Névoa densa na maior parte do ano. Chuvas frequentes. Estação seca breve e impiedosa.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Recursos</span>
+      <p>Peixe, turfa, plantas alquímicas e medicinais raras, âmbar negro, penas de criaturas mágicas aquáticas.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Ameaças</span>
+      <p>Hidras, serpentes-de-dois-rabos, plantas carnívoras, criaturas fey do pântano, espíritos de mortos que afogaram.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Cidade principal</span>
+      <p><strong>Deepend</strong> — cidade flutuante construída sobre palafitas. Refúgio de contrabandistas, foragidos e qualquer um que o Império queira esquecer.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="costa">A Costa — A Janela para o Mundo</h2>
+
+  <p>
+    A faixa costeira de Qamareth é marcada pelo contraste: as <em>Praias de Prata</em>
+    com suas areias brancas e ventos suaves; as <em>Falésias de Caeloria</em>, imponentes
+    e batidas pelas tempestades; e o <em>Porto de Águas Profundas</em>, o maior hub naval
+    do continente. O Império controla o mar com mão firme — sua armada movida a Magi-Tech
+    não tem rival.
+  </p>
+
+  <p>
+    Pescadores, marinheiros, comerciantes e piratas coexistem nessa faixa. As cidades costeiras
+    são mais cosmopolitas que o interior — o fluxo de povos e ideias é mais difícil de controlar.
+    Aqui, rumores sobre o que existe além do horizonte circulam com liberdade perigosa.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Clima</span>
+      <p>Marítimo temperado. Verões agradáveis, invernos com tempestades. Ventos constantes, névoa matinal. Furacões sazonais ao sul.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Recursos</span>
+      <p>Pesca, sal, materiais para construção naval, minerais costeiros, componentes mágicos marinhos.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Ameaças</span>
+      <p>Serpentes-do-Mar, Sirenas predatórias, Leviatãs nas profundezas, tempestades mágicas, piratas imperiais e independentes.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Cidades</span>
+      <p><strong>Seabreeze, Tidewater, Wavecrest</strong> — cidades portuárias com culturas próprias. Tidewater abriga o maior estaleiro Magi-Tech do Império.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2 id="aurelia">Aurelia Prime — O Coração do Império</h2>
+
+  <p>
+    No coração de Qamareth ergue-se <strong>Aurelia Prime</strong>, capital do Império e sede
+    do poder do Deus-Imperador. Construída sobre terraços elevados, a cidade é uma maravilha
+    de torres imponentes, canais intricados e prodígios Magi-Tech. A magnificência é real —
+    e é uma arma: cada espira, cada avenida larga, cada golem-sentinela existe para transmitir
+    uma mensagem de poder absoluto e inevitável.
+  </p>
+
+  <p>
+    Os arredores são fortemente guarnecidos. Rotas comerciais controladas, cidades mineradoras
+    estratégicas, postos militares a cada trinta quilômetros. A capital não é só uma cidade —
+    é o epicentro de uma teia que tenta abraçar todo o continente.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Clima</span>
+      <p>Temperado e controlado — literalmente. Magos imperiais modulam o clima sobre a capital para garantir conforto à elite. O povo comum vive com o que sobra.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Infraestrutura</span>
+      <p>Torres de comunicação arcana, redes de esgoto encantadas, transporte por canais com gôndolas automáticas, illuminação Magi-Tech permanente.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Vigilância</span>
+      <p>Câmeras de scrying em praças públicas. Golems-patrulha. Informantes em cada quarteirão. Os Olhos do Imperador operam abertamente aqui.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Cidades ao redor</span>
+      <p><strong>Stonehaven, Galecliff, Ironhold</strong> — cidades-satélite especializadas em pedra, navegação e metalurgia respectivamente.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    Aurelia Prime é o lugar mais seguro e o mais perigoso de Qamareth ao mesmo tempo.
+    Seguro se você obedecer. Perigoso se você pensar.
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Ecótonos — As Zonas de Fronteira</h2>
+
+  <p>
+    Entre as seis regiões existem zonas de transição onde os biomas se entrelaçam e as
+    jurisdições imperiais ficam nebulosas. São os lugares mais imprevisíveis do continente —
+    e frequentemente os mais perigosos.
+  </p>
+
+  <ul>
+    <li><strong>Pântanos e Costa:</strong> Mangues salgados cheios de criaturas que não existem em nenhum bestiário imperial. Contrabando flui livre aqui.</li>
+    <li><strong>Deserto e Campinas:</strong> Savana árida onde nômades mantêm rotas de comércio não-aprovadas pelo Império há séculos.</li>
+    <li><strong>Campinas e Floresta Profunda:</strong> Pastagens que gradualmente se tornam mata fechada. Os fazendeiros e os druídas disputam cada hectare.</li>
+    <li><strong>Floresta Profunda e Deserto:</strong> Os Picos Verdejantes — a cadeia de montanhas que divide os dois biomas. Rica em minerais. Gravemente contestada.</li>
+    <li><strong>Costa e Aurelia Prime:</strong> Planícies costeiras que alimentam a capital. Rotas comerciais hipervigiadas, mas com algumas brechas exploradas pelos Caminhos Cinzas.</li>
+  </ul>
+
+</ContentLayout>

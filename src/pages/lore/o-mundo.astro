@@ -1,0 +1,177 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/lore',
+    label: 'Lore',
+    sub: [
+      { href: '/lore/o-mundo',     label: 'O Mundo' },
+      { href: '/lore/o-imperio',   label: 'O Império' },
+      { href: '/lore/o-harmonium', label: 'O Harmonium' },
+      { href: '/lore/faccoes',     label: 'Facções' },
+      { href: '/lore/regioes',     label: 'Regiões' },
+      { href: '/lore/cosmologia',  label: 'Cosmologia' },
+    ],
+  },
+];
+---
+
+<ContentLayout
+  title="O Mundo · Lore · Qamareth"
+  section="lore"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Lore', href: '/lore' }, { label: 'O Mundo', href: '/lore/o-mundo' }]}
+>
+
+  <h1>O Mundo de Qamareth</h1>
+  <span class="tagline">
+    Um continente dividido, onde a harmonia foi silenciada — mas não apagada.
+  </span>
+
+  <p>
+    Qamareth é um continente vasto e fraturado, onde o <strong>Império da Luz Eterna</strong>
+    governa com mão de ferro após décadas de expansão militar, manipulação histórica e
+    supressão religiosa. A fé antiga — o <strong>Harmonium</strong> — foi declarada heresia,
+    seus templos destruídos, seus sacerdotes caçados. Hoje, o povo vive entre o medo da
+    repressão imperial e as promessas nem sempre limpas de uma rebelião cada vez mais radical.
+  </p>
+
+  <p>
+    A pergunta que paira sobre tudo é simples e brutal: <em>quem pode ser confiável?</em>
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>O Estado do Continente</h2>
+
+  <p>
+    O Império ocupa a maior parte do território habitado de Qamareth. Suas fronteiras se
+    expandiram geração após geração, absorvendo reinos menores, federações de cidades e
+    territórios tribais. O que não foi conquistado pela espada foi cooptado pela economia ou
+    pela propaganda. Raras são as regiões que mantêm alguma autonomia real — e mesmo essas
+    pagam tributos e vivem sob a sombra dos inquisidores.
+  </p>
+
+  <p>
+    O tecido social é profundamente marcado por duas gerações de controle imperial. A maioria
+    das pessoas <strong>nunca conheceu o Harmonium como fé viva</strong>. Para elas, é lenda —
+    ou heresia. A Igreja da Luz Eterna, religião estatal obrigatória, preencheu o vazio com
+    um culto ao Deus-Imperador tão pervasivo que muitos sinceramente acreditam nele.
+  </p>
+
+  <div class="callout">
+    "Não são todos vilões, os que servem ao Império. Muitos são filhos de quem também serviu.
+    A memória do Harmonium é um sussurro — e sussuros não alimentam famílias."
+    <br/><strong>— Bjorn Escudoverde, líder de Capolus</strong>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>As Forças em Conflito</h2>
+
+  <h3>O Império da Luz Eterna</h3>
+  <p>
+    Um regime autoritário sustentado sobre quatro pilares: força militar, controle religioso,
+    vigilância e burocracia. O <strong>Deus-Imperador</strong> — figura quase mitológica, não
+    visto em público há décadas — é adorado como divindade viva. Seu Conselho dos Ascendentes
+    governa em seu nome com poderes quase absolutos.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Inquisidores Imperiais</span>
+      <p>Agentes temidos que caçam dissidentes, hereges e qualquer ameaça ao estado. Operam acima da lei comum.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Exército Imperial</span>
+      <p>Tropas treinadas com magitech avançado. Patrulham cidades, fronteiras e rotas comerciais.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Ordem dos Cronistas</span>
+      <p>Controlam os registros históricos e a versão oficial dos fatos. A história que existe é a que eles permitem.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Culto ao Imperador</span>
+      <p>Religião estatal obrigatória. Festivais públicos, rituais de lealdade e doutrinação desde a infância.</p>
+    </div>
+  </div>
+
+  <h3>A Rebelião</h3>
+  <p>
+    Fragmentada, ideologicamente instável e moralmente ambígua. A rebelião não é um exército —
+    é uma constelação de células com objetivos distintos e frequentemente conflitantes. Alguns
+    lutam por liberdade genuína. Outros por vingança pessoal. Outros por poder no vácuo que
+    um Império caído deixaria.
+  </p>
+  <p>
+    Algumas células <strong>não hesitam em sacrificar inocentes</strong> se isso significa atingir
+    o Império. Outras têm motivações puramente espirituais ou buscam legitimamente ajudar o povo.
+    Confiar em qualquer aliado rebelde é um ato de fé — literalmente.
+  </p>
+
+  <h3>O Harmonium</h3>
+  <p>
+    A fé antiga. Perseguida, mas não extinta. É o <strong>único verdadeiro bem estrutural</strong>
+    do cenário — tudo mais opera em tons de cinza ou está corrompido. O Harmonium ensina que o
+    universo é uma grande sinfonia, que cada ser tem um papel nela, e que a harmonia entre os
+    deuses e os mortais é possível e necessária.
+  </p>
+  <p>
+    Hoje, ele sobrevive em sussurros. Em templos escondidos. Em melodias cantadas baixinho,
+    de memória, por pessoas que nunca viram um sacerdote e ainda assim preservaram a fé
+    passando de geração em geração.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Personagens de Relevo</h2>
+
+  <div class="stat-block">
+    <h4>Corina — Rainha Mercadora de Olynn</h4>
+    <p>
+      Aliada dos heróis, mas com interesses próprios inegáveis. Funciona num espaço de tensão
+      permanente: tem poder suficiente para ajudar a rebelião e razões suficientes para
+      trair quando for conveniente. Não é má — é pragmática num mundo que pune a ingenuidade.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Bjorn Escudoverde — Líder de Capolus</h4>
+    <p>
+      Luta para proteger seu povo e a floresta. Não tem interesse em restaurar o Harmonium
+      nem em construir um novo regime — quer sobrevivência e autonomia. Um aliado honesto,
+      mas de horizonte limitado ao seu próprio território.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Alto-Inquisidor Deloth</h4>
+    <p>
+      Um dos rostos mais visíveis da repressão. Confrontado pelos heróis em Capolus durante
+      a defesa de um templo antigo do Harmonium. Representa a devoção fanática ao regime —
+      não é apenas executor, mas verdadeiro crente.
+    </p>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>As Grandes Questões</h2>
+
+  <p>
+    Qamareth não é um mundo de respostas fáceis. Seus dilemas são estruturais, não episódicos:
+  </p>
+
+  <ul>
+    <li>Pode-se derrubar um Império sem se tornar o que se combate?</li>
+    <li>A fé verdadeira pode sobreviver ao poder político — ou inevitavelmente o serve?</li>
+    <li>O que se deve ao povo que sobreviveu doutrinado? Eles são vítimas ou cúmplices?</li>
+    <li>Existe redenção para quem serviu o mal por ignorância? E para quem o fez sabendo?</li>
+  </ul>
+
+  <p>
+    Estas são as perguntas que o mundo faz aos seus heróis. E às vezes, não há resposta —
+    apenas escolha.
+  </p>
+
+</ContentLayout>

@@ -1,0 +1,164 @@
+---
+/**
+ * Sigil de Qamareth
+ * Crescente lunar (Qamar = Lua em árabe) + pauta musical
+ * O símbolo do sistema arcano-musical
+ */
+interface Props {
+  size?: number;
+  animate?: boolean;
+  class?: string;
+}
+
+const { size = 200, animate = true } = Astro.props;
+
+// ID único por instância (evita conflito de mask ID entre nav e hero)
+const uid = Math.random().toString(36).slice(2, 7);
+const maskId = `crescent-${uid}`;
+const glowId = `glow-${uid}`;
+const dotGlowId = `dotglow-${uid}`;
+
+// Marcações no anel externo — 24 ticks a cada 15°
+const ticks = Array.from({ length: 24 }, (_, i) => {
+  const angle = (i * 15 * Math.PI) / 180;
+  const isCardinal = i % 6 === 0;   // 0°, 90°, 180°, 270°
+  const isDiag = i % 3 === 0;        // 0°, 45°, 90°…
+  const r = 88;
+  const len = isCardinal ? 10 : isDiag ? 6 : 3;
+  return {
+    x1: parseFloat((100 + r * Math.sin(angle)).toFixed(3)),
+    y1: parseFloat((100 - r * Math.cos(angle)).toFixed(3)),
+    x2: parseFloat((100 + (r - len) * Math.sin(angle)).toFixed(3)),
+    y2: parseFloat((100 - (r - len) * Math.cos(angle)).toFixed(3)),
+    sw: isCardinal ? 1.6 : isDiag ? 1.0 : 0.6,
+    op: isCardinal ? 0.9 : isDiag ? 0.55 : 0.28,
+  };
+});
+---
+
+<svg
+  viewBox="0 0 200 200"
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  class:list={["sigil", animate && "sigil--animate"]}
+  aria-hidden="true"
+>
+  <defs>
+    <!-- Máscara para a crescente lunar -->
+    <mask id={maskId}>
+      <rect width="200" height="200" fill="white"/>
+      <circle cx="115" cy="98" r="38" fill="black"/>
+    </mask>
+
+    <!-- Filtro de brilho suave (pauta + crescente) -->
+    <filter id={glowId} x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Brilho intenso para o ponto central -->
+    <filter id={dotGlowId} x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ═══ ANEL EXTERNO (gira lentamente) ═══ -->
+  <g class="sigil-outer">
+    <circle cx="100" cy="100" r="88"
+      fill="none" stroke="#c9a44b" stroke-width="0.7" opacity="0.38"/>
+    {ticks.map(t => (
+      <line
+        x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2}
+        stroke="#c9a44b"
+        stroke-width={t.sw}
+        opacity={t.op}
+      />
+    ))}
+  </g>
+
+  <!-- ═══ ANEL INTERNO ═══ -->
+  <circle cx="100" cy="100" r="71"
+    fill="none" stroke="#c9a44b" stroke-width="0.5" opacity="0.25"/>
+
+  <!-- ═══ CRESCENTE LUNAR — Qamar ═══ -->
+  <!-- Preenchimento luminoso suave -->
+  <circle cx="100" cy="100" r="43"
+    fill="rgba(201,164,75,0.07)"
+    mask={`url(#${maskId})`}/>
+  <!-- Contorno com brilho -->
+  <circle cx="100" cy="100" r="43"
+    fill="none" stroke="#c9a44b" stroke-width="1.6"
+    mask={`url(#${maskId})`}
+    filter={`url(#${glowId})`}
+    opacity="0.92"/>
+
+  <!-- ═══ PAUTA MUSICAL (5 linhas) ═══ -->
+  <g filter={`url(#${glowId})`} opacity="0.62">
+    {[88, 94, 100, 106, 112].map(y => (
+      <line x1="50" y1={y} x2="150" y2={y}
+        stroke="#c9a44b" stroke-width="0.85"/>
+    ))}
+  </g>
+
+  <!-- ═══ DIAMANTE EXTERNO ═══ -->
+  <path d="M100,82 L118,100 L100,118 L82,100 Z"
+    fill="rgba(201,164,75,0.06)"
+    stroke="#c9a44b" stroke-width="1"
+    opacity="0.75"/>
+
+  <!-- ═══ DIAMANTE INTERNO ═══ -->
+  <path d="M100,93 L107,100 L100,107 L93,100 Z"
+    fill="rgba(201,164,75,0.22)"
+    stroke="#c9a44b" stroke-width="0.9"
+    opacity="0.88"/>
+
+  <!-- ═══ PONTO CENTRAL — o Tônico ═══ -->
+  <circle cx="100" cy="100" r="2.8"
+    fill="#e4c47a"
+    filter={`url(#${dotGlowId})`}
+    opacity="0.97"/>
+
+  <!-- ═══ MARCADORES CARDINAIS ═══ -->
+  <!-- Losangos nas 4 pontas (N, E, S, W) -->
+  <g fill="none" stroke="#c9a44b" stroke-width="1.1" opacity="0.48">
+    <path d="M100,23 L103,19 L100,15 L97,19 Z"/>   <!-- Norte  -->
+    <path d="M177,100 L181,103 L185,100 L181,97 Z"/> <!-- Leste  -->
+    <path d="M100,177 L103,181 L100,185 L97,181 Z"/> <!-- Sul   -->
+    <path d="M23,100 L19,103 L15,100 L19,97 Z"/>    <!-- Oeste  -->
+  </g>
+
+  <!-- Cruzes diagonais nos 45° -->
+  <g stroke="#c9a44b" stroke-width="0.75" opacity="0.32">
+    <!-- NE --> <line x1="149" y1="48" x2="156" y2="55"/><line x1="156" y1="48" x2="149" y2="55"/>
+    <!-- SE --> <line x1="149" y1="148" x2="156" y2="155"/><line x1="156" y1="148" x2="149" y2="155"/>
+    <!-- SO --> <line x1="44" y1="148" x2="51" y2="155"/><line x1="51" y1="148" x2="44" y2="155"/>
+    <!-- NO --> <line x1="44" y1="48" x2="51" y2="55"/><line x1="51" y1="48" x2="44" y2="55"/>
+  </g>
+</svg>
+
+<style>
+  .sigil {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .sigil-outer {
+    transform-origin: 100px 100px;
+  }
+
+  .sigil--animate .sigil-outer {
+    animation: sigil-orbit 90s linear infinite;
+  }
+
+  @keyframes sigil-orbit {
+    to { transform: rotate(360deg); }
+  }
+</style>

@@ -1,0 +1,255 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/grimorios',
+    label: 'Grimórios',
+    sub: [
+      { href: '/grimorios/motivos-de-origem',  label: 'Motivos de Origem' },
+      { href: '/grimorios/armas-ressonantes',  label: 'Armas Ressonantes' },
+      { href: '/grimorios/partituras',         label: 'Partituras' },
+      { href: '/grimorios/rituais',            label: 'Rituais' },
+      { href: '/grimorios/liturgias',         label: 'Liturgias Completas' },
+      { href: '/grimorios/armas-sencientes',  label: 'Armas Sencientes' },
+    ],
+  },
+];
+
+const modos = [
+  { nome: 'Jônico',    dom: 'Luz / Criação / Esperança',        perfil: 'O herói que crê no mundo mesmo quando o mundo falha. Melodia ampla, ascendente.' },
+  { nome: 'Dórico',    dom: 'Coragem / Transformação / Dever',  perfil: 'O guerreiro espiritual. Firme, austero, com beleza contida. A dor como oferta.' },
+  { nome: 'Frígio',    dom: 'Paixão / Instabilidade / Verdade',  perfil: 'O que sente demais — e não consegue mentir. Pode ser profeta ou chama que consome.' },
+  { nome: 'Lídio',     dom: 'Transcendência / Energia / Sonho', perfil: 'O visionário. Alcança o que outros não veem. Risco de se perder no além.' },
+  { nome: 'Mixolídio', dom: 'Comunidade / Coral / Liderança',   perfil: 'O que une. Força pela presença dos outros. Fraco sozinho; imbatível em coro.' },
+  { nome: 'Eólio',     dom: 'Memória / Luto / Resistência',     perfil: 'O sobrevivente. Carrega o peso do passado como escudo. A beleza da cicatriz.' },
+  { nome: 'Lócrio',    dom: 'Dissonância / Proibido / Ruptura', perfil: '⚠ Raramente adotado. O que questiona a ordem — ou a desfaz. Alto risco, alto custo.' },
+];
+
+const exemplos = [
+  {
+    nome: 'A Última Promessa',
+    modo: 'Eólio',
+    instrumento: 'Voz (solo)',
+    tema: 'Sobrevivência de uma perda que nunca fechou',
+    frase: 'Eu canto o que ficou. Não o que foi.',
+    mecanica: 'Quando um aliado cai a 0 HP, pode recuperar 1 dado de vida sem ação. 1x/descanso longo.',
+  },
+  {
+    nome: 'Batida da Viela',
+    modo: 'Frígio',
+    instrumento: 'Percussão (improvisada)',
+    tema: 'Sobreviver onde não deveria ter sobrevivido',
+    frase: 'Meu ritmo não é bonito. É honesto.',
+    mecanica: 'Em ambientes urbanos ou caóticos, +1 dado em testes de Furtividade e Iniciativa.',
+  },
+  {
+    nome: 'Cântico do Guardião',
+    modo: 'Mixolídio',
+    instrumento: 'Coro (voz + outros)',
+    tema: 'Proteger o que os outros abandonaram',
+    frase: 'Enquanto eu cantar, vocês não caem.',
+    mecanica: 'Ao sustentar um cântico de 1 turno inteiro sem atacar, aliados adjacentes ganham +1 em saves até o próximo turno do personagem.',
+  },
+  {
+    nome: 'Fissura Aberta',
+    modo: 'Lídio',
+    instrumento: 'Instrumento arcano (qualquer)',
+    tema: 'Ver além do que os outros enxergam — e carregar esse peso',
+    frase: 'Não é loucura. É só que eu escuto antes.',
+    mecanica: '1x/dia, pode fazer um teste de Percepção Arcana com vantagem para detectar magia ou ilusões ocultas.',
+  },
+];
+---
+
+<ContentLayout
+  title="Motivos de Origem · Grimórios · Qamareth"
+  section="grimorios"
+  navItems={navItems}
+  breadcrumb={[{ label: 'Grimórios', href: '/grimorios' }, { label: 'Motivos de Origem', href: '/grimorios/motivos-de-origem' }]}
+>
+
+  <h1>Motivos de Origem</h1>
+  <span class="tagline">
+    Todo conjurador tem uma melodia que é só sua. Encontrá-la não é opção — é destino.
+  </span>
+
+  <p>
+    O <strong>Motivo de Origem</strong> é a expressão musical da alma de um personagem. Não
+    é uma habilidade aprendida nem um estilo escolhido por conveniência — é a ressonância
+    interna que sempre esteve lá, esperando ser reconhecida. É a primeira nota que o mundo
+    ouviu quando aquela pessoa nasceu, e a última que ecoará quando partir.
+  </p>
+
+  <p>
+    Em termos práticos: o Motivo de Origem é o fundamento de toda a magia musical do personagem.
+    Ele define quais <strong>Modos</strong> ressoam naturalmente com ele, qual <strong>instrumento</strong>
+    carrega a maior parte de sua harmonia pessoal, e qual <strong>tema emocional</strong> alimenta
+    e ameaça seu poder.
+  </p>
+
+  <div class="callout">
+    "Você não escolhe seu Motivo. Você o descobre. E quando descobre, percebe que ele sempre
+    esteve cantando — você é que não estava ouvindo."
+    <br/><strong>— Mestre Resonante Aldric Tessavar</strong>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Estrutura de um Motivo de Origem</h2>
+
+  <p>
+    Um Motivo de Origem tem quatro elementos. Todos são igualmente importantes — o crunch e
+    o sabor são inseparáveis aqui.
+  </p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Nome</span>
+      <p>Uma frase poética que captura a essência do motivo. Não precisa ser técnico — precisa ser <em>verdadeiro</em>. Exemplos: "A Última Promessa", "Batida da Viela", "O Silêncio Antes".</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Modo Primário</span>
+      <p>O modo musical que define a natureza espiritual do personagem. Determina quais Partituras ele aprende com mais facilidade e como sua magia se manifesta esteticamente.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Instrumento</span>
+      <p>O veículo físico da magia. Pode ser voz, instrumento convencional, percussão corporal, ou objeto incomum com valor pessoal. O instrumento certo amplifica o Motivo; o errado o distorce.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Tema Emocional</span>
+      <p>A verdade interior que alimenta o Motivo — e que, quando corrompida, gera Dissonância. É o núcleo narrativo: o que este personagem carrega que o mundo ainda não entendeu.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Os Modos e Seus Perfis</h2>
+
+  <p>
+    Cada Modo Musical carrega uma filosofia espiritual inteira. Ao escolher o Modo Primário
+    do seu Motivo, você está dizendo algo sobre <em>como seu personagem entende o mundo</em>.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Modo</th>
+        <th>Domínio</th>
+        <th>Perfil do Portador</th>
+      </tr>
+    </thead>
+    <tbody>
+      {modos.map(m => (
+        <tr>
+          <td><strong style="color: var(--gold);">{m.nome}</strong></td>
+          <td style="font-size: 0.88rem; color: var(--text-muted);">{m.dom}</td>
+          <td style="font-size: 0.88rem;">{m.perfil}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="divider">✦</div>
+
+  <h2>Mecânica do Motivo de Origem</h2>
+
+  <p>
+    O Motivo de Origem não é só identidade — tem peso mecânico direto.
+  </p>
+
+  <div class="stat-block">
+    <h4>Ressonância Natural</h4>
+    <p>
+      Partituras escritas no Modo Primário do personagem têm seu <strong>CH reduzido em 1</strong>
+      quando executadas pelo portador do Motivo correspondente. A harmonia pessoal facilita o
+      que seria difícil para outros.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Poder de Motivo</h4>
+    <p>
+      Cada Motivo de Origem tem um <strong>poder único</strong> — um efeito mecânico menor mas
+      constante que reflete o tema emocional do personagem. Esse poder é sempre ativo quando o
+      personagem age de acordo com seu Tema. Quando age contra ele, o poder se apaga até o
+      próximo descanso longo.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Frase do Motivo</h4>
+    <p>
+      Uma única frase — dita em voz alta pelo jogador, em personagem — que o personagem pode
+      invocar uma vez por sessão para <strong>garantir um sucesso</strong> em um teste que
+      reflete diretamente o Tema do Motivo. Não é invencibilidade: é o momento em que a
+      harmonia pessoal ressoa tão verdadeiramente que o universo responde.
+    </p>
+  </div>
+
+  <div class="stat-block">
+    <h4>Dissonância Pessoal</h4>
+    <p>
+      Se o personagem age de forma radicalmente contrária ao seu Tema Emocional — traição
+      fundamental, não apenas um deslize — o Motivo entra em <strong>Dissonância Pessoal</strong>.
+      Toda magia baseada no Modo Primário sofre +1 PH por partitura até que o personagem
+      reconcilie a contradição narrativamente.
+    </p>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Criando Seu Motivo de Origem</h2>
+
+  <p>
+    Responda estas perguntas. As respostas são seu Motivo.
+  </p>
+
+  <ul>
+    <li><strong>Qual foi a primeira vez que você usou música — mesmo sem entender que era magia?</strong> O contexto define o instrumento e frequentemente o tema.</li>
+    <li><strong>O que você protege que não pode ser visto ou explicado?</strong> Essa é a verdade do Modo.</li>
+    <li><strong>Se alguém te ouvir cantar sem querer, o que essa música diria sobre você?</strong> Essa é a Frase do Motivo esperando ser encontrada.</li>
+    <li><strong>O que poderia fazer você parar de cantar completamente?</strong> Essa é a Dissonância Pessoal.</li>
+  </ul>
+
+  <div class="divider">✦</div>
+
+  <h2>Exemplos de Motivos de Origem</h2>
+
+  {exemplos.map(ex => (
+    <div class="stat-block">
+      <h4>"{ex.nome}"</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; font-size: 0.88rem;">
+        <div>
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 3px;">Modo</span>
+          <strong style="color: var(--gold);">{ex.modo}</strong>
+        </div>
+        <div>
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 3px;">Instrumento</span>
+          {ex.instrumento}
+        </div>
+        <div>
+          <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 3px;">Tema</span>
+          {ex.tema}
+        </div>
+      </div>
+      <p style="font-style: italic; color: var(--text-muted); margin-bottom: 10px; font-size: 0.92rem;">
+        "{ex.frase}"
+      </p>
+      <div style="padding: 10px 14px; background: rgba(201,164,75,0.04); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.9rem;">
+        <span style="color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 4px;">Poder de Motivo</span>
+        {ex.mecanica}
+      </div>
+    </div>
+  ))}
+
+  <div class="divider">✦</div>
+
+  <div class="callout">
+    <strong>Nota para o Narrador:</strong> O Motivo de Origem não é uma caixa de opções — é
+    uma conversa entre jogador e sistema. Se um jogador chegar com um Tema que não encaixa
+    perfeitamente em nenhum Modo, trabalhem juntos para encontrar o mais próximo ou considere
+    um Motivo híbrido (dois Modos em tensão). Isso, aliás, pode ser ótimo material dramático.
+  </div>
+
+</ContentLayout>
