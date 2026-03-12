@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/SectionLayout.astro
+layout: ../../layouts/ContentLayout.astro
 title: Template de Grimório
 section: templates
 ---
