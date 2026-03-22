@@ -1,0 +1,126 @@
+---
+import ContentLayout from '../../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/srd',
+    label: 'SRD',
+    sub: [
+      { href: '/srd/char-creation',                      label: '↳ Visão Geral' },
+      { href: '/srd/char-creation/20-perguntas',         label: 'As 20 Perguntas' },
+      { href: '/srd/char-creation/disciplinas',          label: 'Disciplinas' },
+      { href: '/srd/char-creation/disciplinas-iniciais', label: 'Distribuição Inicial' },
+      { href: '/srd/char-creation/motivo-de-origem',     label: 'Motivo de Origem' },
+      { href: '/srd/char-creation/paixoes',              label: 'Paixões (intro)' },
+      { href: '/srd/char-creation/honra-e-reputacao',    label: 'Honra & Reputação' },
+    ],
+  },
+];
+
+const sections = [
+  {
+    href: '/srd/char-creation/20-perguntas',
+    glyph: '①',
+    title: 'As 20 Perguntas',
+    desc: 'O processo completo de criação — cinco etapas, vinte perguntas, resultados mecânicos por resposta.',
+  },
+  {
+    href: '/srd/char-creation/disciplinas',
+    glyph: '⊞',
+    title: 'Disciplinas',
+    desc: 'As 35 disciplinas em cinco categorias: Físicas, Sociais, Mentais, Mágicas e Acadêmicas.',
+  },
+  {
+    href: '/srd/char-creation/disciplinas-iniciais',
+    glyph: '◈',
+    title: 'Distribuição Inicial',
+    desc: 'Como distribuir as 10 disciplinas iniciais e como o histórico determina o acesso.',
+  },
+  {
+    href: '/srd/char-creation/motivo-de-origem',
+    glyph: '♩',
+    title: 'Motivo de Origem',
+    desc: 'A nota que define a alma — tonalidade emocional e espiritual que orienta todo o desenvolvimento.',
+  },
+  {
+    href: '/srd/char-creation/paixoes',
+    glyph: '⚡',
+    title: 'Paixões',
+    desc: 'Visão geral das Paixões como surgem na criação. Sistema completo no Cap. 10.',
+  },
+  {
+    href: '/srd/char-creation/honra-e-reputacao',
+    glyph: '⚜',
+    title: 'Honra & Reputação',
+    desc: 'Como a percepção social é estabelecida na criação. Sistema completo no Cap. 09.',
+  },
+];
+---
+
+<ContentLayout
+  title="Criação de Personagem · SRD · Qamareth"
+  section="srd"
+  navItems={navItems}
+  breadcrumb={[
+    { label: 'SRD', href: '/srd' },
+    { label: 'Criação de Personagem', href: '/srd/char-creation' },
+  ]}
+>
+
+  <h1>Criação de Personagem</h1>
+  <span class="tagline">
+    Personagens em Qamareth não são construídos — são descobertos.
+  </span>
+
+  <p>
+    Em vez de distribuir pontos em fichas, a criação de personagem em Qamareth começa com
+    perguntas. Vinte delas, organizadas em cinco etapas. As respostas determinam quem o
+    personagem é, o que sabe, quem conhece e qual nota define sua alma.
+  </p>
+
+  <div class="callout">
+    <strong>Fluxo recomendado:</strong> Comece pelas 20 Perguntas. A resposta da Pergunta 5
+    (mentor) determina a Escola de Formação. Perguntas 6–7 determinam as primeiras Disciplinas.
+    A Pergunta 20 define o Motivo de Origem. Paixões surgem das Perguntas 3, 17 e 18.
+    Honra e IP inicial vêm das Perguntas 14–16.
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Documentos desta Seção</h2>
+
+  <div class="card-grid">
+    {sections.map(s => (
+      <a href={s.href} class="info-card" style="text-decoration:none; display:block;">
+        <span class="info-card-title">
+          <span style="font-size:1rem; margin-right:6px;">{s.glyph}</span>
+          {s.title}
+        </span>
+        <p style="font-size:0.9rem;">{s.desc}</p>
+      </a>
+    ))}
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Resultado Final da Criação</h2>
+
+  <table>
+    <thead>
+      <tr><th>Sistema</th><th>Fonte</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Escola de Formação</td><td>Pergunta 5</td></tr>
+      <tr><td>10 Disciplinas iniciais</td><td>2 por categoria, filtradas pelo histórico</td></tr>
+      <tr><td>1 Especialização</td><td>Pergunta 8</td></tr>
+      <tr><td>RS inicial (2–4)</td><td>Perguntas 9, 10, 11</td></tr>
+      <tr><td>2–3 Paixões identificadas</td><td>Perguntas 3, 17, 18 (nível 2–3)</td></tr>
+      <tr><td>Motivo de Origem</td><td>Pergunta 20</td></tr>
+      <tr><td>Honra inicial</td><td>Perguntas 1, 2, 15, 16</td></tr>
+      <tr><td>1 ponto de IP</td><td>Facção da Pergunta 16</td></tr>
+      <tr><td>1 aliado + 1 rival</td><td>Perguntas 14 e 13</td></tr>
+      <tr><td>2–3 Partituras iniciais</td><td>Perguntas 6, 10, 11</td></tr>
+    </tbody>
+  </table>
+
+</ContentLayout>

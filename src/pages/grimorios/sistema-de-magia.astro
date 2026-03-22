@@ -1,0 +1,196 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const navItems = [
+  {
+    href: '/grimorios',
+    label: 'Grimórios',
+    sub: [
+      { href: '/grimorios',                    label: 'Índice' },
+      { href: '/grimorios/sistema-de-magia',   label: 'Sistema de Magia' },
+      { href: '/grimorios/partituras',         label: 'Partituras' },
+      { href: '/grimorios/motivos-de-origem',  label: 'Motivos de Origem' },
+      { href: '/grimorios/armas-ressonantes',  label: 'Armas Ressonantes' },
+      { href: '/grimorios/rituais',            label: 'Rituais' },
+      { href: '/grimorios/liturgias',          label: 'Liturgias' },
+      { href: '/grimorios/armas-sencientes',   label: 'Armas Sencientes' },
+    ],
+  },
+];
+
+const choirs = [
+  { choir: 'Cantor',    combat: 'Casters divinos',           focus: 'Hinos e cânticos' },
+  { choir: 'Virtuoso',  combat: 'Bardos',                    focus: 'Motifs e improvisação' },
+  { choir: 'Maestro',   combat: 'Casters arcanos',           focus: 'Refrões em camadas complexas' },
+  { choir: 'Striker',   combat: 'Combate corpo-a-corpo',     focus: 'Percussão rítmica e batidas' },
+  { choir: 'Archer',    combat: 'Combate à distância',       focus: 'Instrumentos de sopro e zunidos' },
+];
+
+const rsEffects = [
+  { rs: 'RS 1–3', effect: 'Acesso básico a Motifs e Cânticos. Um uso por descanso longo.' },
+  { rs: 'RS 4–6', effect: '+1 ao DC de magia ou ataque musical. Pode tecer Motifs em ações.' },
+  { rs: 'RS 7–9', effect: 'Certas magias como ação bônus com componente musical. Visões divinas menores.' },
+  { rs: 'RS 10+', effect: 'Pode canalizar um Hino Verdadeiro — efeito milagroso, uma vez por arco maior.' },
+];
+---
+
+<ContentLayout
+  title="Sistema de Magia Musical · Grimórios · Qamareth"
+  section="grimorios"
+  navItems={navItems}
+  breadcrumb={[
+    { label: 'Grimórios', href: '/grimorios' },
+    { label: 'Sistema de Magia', href: '/grimorios/sistema-de-magia' },
+  ]}
+>
+
+  <h1>Sistema de Magia Musical</h1>
+  <span class="tagline">
+    Em Qamareth, a música é o Logos — a forma mais pura de expressão divina.
+    Conjurar não é recitar fórmulas. É <em>performar</em> verdades harmônicas.
+  </span>
+
+  <p>
+    Esta página é uma referência visual e condensada do sistema de magia. Para a fundamentação
+    teológica completa — RS como theosis, Dissonância como doença espiritual, o caminho de
+    redenção — veja o <a href="/srd/04-magia-musical">Capítulo 04 do SRD</a>.
+  </p>
+
+  <div class="divider">✦</div>
+
+  <h2>Ressonância (RS) — Efeitos por Faixa</h2>
+
+  <table>
+    <thead>
+      <tr><th>Faixa</th><th>Efeito em jogo</th></tr>
+    </thead>
+    <tbody>
+      {rsEffects.map(r => (
+        <tr><td><strong>{r.rs}</strong></td><td>{r.effect}</td></tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="divider">✦</div>
+
+  <h2>Os Corais (Choirs)</h2>
+
+  <p>
+    O "tipo" de um personagem determina seu <strong>Coral</strong>, que define que expressão
+    musical ele usa. Cada Coral desbloqueia um Motif único, uma habilidade escalonável e uma
+    transformação ressonante em RS alto.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Coral</th><th>Tipo de Combate</th><th>Foco Musical</th></tr>
+    </thead>
+    <tbody>
+      {choirs.map(c => (
+        <tr>
+          <td><strong>{c.choir}</strong></td>
+          <td>{c.combat}</td>
+          <td>{c.focus}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="divider">✦</div>
+
+  <h2>Motifs — Referência Rápida</h2>
+
+  <p>
+    Motifs são assinaturas musicais modulares adicionadas a partituras base. RS determina
+    quantos Motifs simultâneos: 1 em RS 1+, 2 em RS 4+, 3 em RS 7+. Exceder o limite
+    exige save de CAR (DC 10 + 2 por excesso) ou <strong>Feedback Psíquico</strong>.
+  </p>
+
+  <h3>Motifs Base (RS 0+)</h3>
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Vento Ascendente</span>
+      <p>Aumenta o alcance em 50%.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Durar</span>
+      <p>Efeito em área persiste por uma rodada extra.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Eco Harmônico</span>
+      <p>Se falhar: role 1d6. Em 6, relança automaticamente no próximo turno.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Vibrato</span>
+      <p>Alvo faz saves com desvantagem. Custo: 1d6 dano psíquico ao conjurador.</p>
+    </div>
+  </div>
+
+  <h3>Motifs de Ornamentação (RS 3+)</h3>
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Harmonia Dividida</span>
+      <p>Atinge segundo alvo a até 3m do primeiro.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Forte</span>
+      <p>Dobra alcance e dados de dano. Custo: ação bônus da próxima rodada.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Atração Ressonante</span>
+      <p>Puxa alvos afetados 1,5m em direção ao conjurador.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Coro Silencioso</span>
+      <p>Sem som. Imune a Contrafeitiço e efeitos de detecção mágica.</p>
+    </div>
+  </div>
+
+  <h3>Motifs Mestres (RS 6+)</h3>
+  <div class="card-grid">
+    <div class="info-card">
+      <span class="info-card-title">Estilhaço de Harmônico</span>
+      <p>Dano adicional igual ao RS para todos os inimigos em 3m.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Ligação Sinfônica</span>
+      <p>Imobiliza alvos. Save de FOR anula.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Quinta Perfeita</span>
+      <p>Lança um segundo feitiço ≤ 2º nível como ação bônus, se compartilhar Motif.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-title">Cadência Divina</span>
+      <p>Uma vez por dia: crítico automático se o ataque atingir.</p>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <h2>Motif de Origem — Exemplos</h2>
+
+  <p>
+    Definido na Pergunta 20 da criação. Disponível a RS 5+. Ecoa o núcleo espiritual do
+    personagem — trauma, virtude ou ideal. Ver <a href="/srd/char-creation/motivo-de-origem">Motivo de Origem</a>.
+  </p>
+
+  <div class="stat-block">
+    <h4>A Marcha Vazia</h4>
+    <p>Para um ex-soldado assombrado pela guerra. Bumbo lento, pontuado por silêncios.</p>
+    <p><strong>Efeito:</strong> Resistência contra medo. Se parado, vantagem em saves de resistência.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>O Berço do Trovão</h4>
+    <p>Para um feiticeiro com medo do próprio poder. Arpejos caóticos, relâmpagos rítmicos.</p>
+    <p><strong>Efeito:</strong> Uma vez por descanso longo, adiciona o RS a uma falha de save contra a própria magia.</p>
+  </div>
+
+  <div class="stat-block">
+    <h4>A Corrente que Canta</h4>
+    <p>Para um paladino dividido entre dever e dúvida. Cântico litúrgico com notas dissonantes.</p>
+    <p><strong>Efeito:</strong> Detecta mentiras uma vez por descanso longo, ouvindo a vibração "falsa" nas palavras.</p>
+  </div>
+
+</ContentLayout>

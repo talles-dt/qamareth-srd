@@ -27,6 +27,15 @@
   /* Prata lunar */
   --silver:      #9eafbf;
   --silver-dim:  rgba(158, 175, 191, 0.55);
+  --silver-ghost: rgba(158, 175, 191, 0.10);
+  --silver-border: rgba(158, 175, 191, 0.20);
+
+  /* Carmesim da Igreja da Luz Eterna */
+  --crimson:        #c97070;
+  --crimson-amber:  #c99050;
+  --crimson-dim:    rgba(180, 40, 40, 0.65);
+  --crimson-ghost:  rgba(180, 40, 40, 0.06);
+  --crimson-border: rgba(180, 40, 40, 0.20);
 
   /* Texto */
   --text:        #ede4cc;
