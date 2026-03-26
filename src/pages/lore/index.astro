@@ -68,16 +68,15 @@ const categories = [
 
 <Layout title="Lore · Qamareth" section="lore" description="A história, o mundo e as forças que moldam Qamareth.">
 
-  <!-- HERO DA SEÇÃO -->
-  <section class="section-hero">
-    <div class="section-hero-inner">
-      <div class="section-hero-sigil">
+  <section class="qa-hero">
+    <div class="qa-hero-inner">
+      <div class="qa-hero-sigil">
         <Sigil size={80} animate={false} />
       </div>
-      <div class="section-hero-text">
-        <p class="section-eyebrow font-cinzel">Lore</p>
-        <h1 class="section-title font-cinzel-d">O Mundo de Qamareth</h1>
-        <p class="section-desc font-garamond">
+      <div class="qa-hero-text">
+        <p class="qa-hero-eyebrow">Lore</p>
+        <h1 class="qa-hero-title">O Mundo de Qamareth</h1>
+        <p class="qa-hero-desc">
           Um continente dividido onde o Império governa com mão de ferro e a fé
           antiga do Harmonium — perseguida, mas não extinta — sussurra nas sombras.
           Harmonia, dissonância, fé e traição moldam o destino de todos.
@@ -86,30 +85,29 @@ const categories = [
     </div>
   </section>
 
-  <!-- GRID DE CATEGORIAS -->
-  <section class="lore-grid-section">
-    <div class="lore-grid-wrap">
-      <div class="lore-grid">
+  <section class="qa-grid-section">
+    <div class="qa-grid-wrap">
+      <div class="qa-grid">
         {categories.map((cat, i) => (
           cat.soon
             ? (
-              <div class="lore-card lore-card--soon" style={`animation-delay: ${0.1 + i * 0.07}s`}>
-                <span class="lore-card-glyph" aria-hidden="true">{cat.glyph}</span>
-                <div class="lore-card-body">
-                  <h2 class="lore-card-title font-cinzel">{cat.title}</h2>
-                  <p class="lore-card-desc font-garamond">{cat.desc}</p>
+              <div class="qa-card qa-card--soon" style={`animation-delay: ${0.1 + i * 0.07}s`}>
+                <span class="qa-card-glyph" aria-hidden="true">{cat.glyph}</span>
+                <div class="qa-card-body">
+                  <h2 class="qa-card-title">{cat.title}</h2>
+                  <p class="qa-card-desc">{cat.desc}</p>
                 </div>
-                <span class="lore-card-badge font-cinzel">Em breve</span>
+                <span class="qa-card-badge">Em breve</span>
               </div>
             )
             : (
-              <a href={cat.href} class="lore-card" style={`animation-delay: ${0.1 + i * 0.07}s`}>
-                <span class="lore-card-glyph" aria-hidden="true">{cat.glyph}</span>
-                <div class="lore-card-body">
-                  <h2 class="lore-card-title font-cinzel">{cat.title}</h2>
-                  <p class="lore-card-desc font-garamond">{cat.desc}</p>
+              <a href={cat.href} class="qa-card" style={`animation-delay: ${0.1 + i * 0.07}s`}>
+                <span class="qa-card-glyph" aria-hidden="true">{cat.glyph}</span>
+                <div class="qa-card-body">
+                  <h2 class="qa-card-title">{cat.title}</h2>
+                  <p class="qa-card-desc">{cat.desc}</p>
                 </div>
-                <span class="lore-card-arrow" aria-hidden="true">→</span>
+                <span class="qa-card-arrow" aria-hidden="true">→</span>
               </a>
             )
         ))}
@@ -118,159 +116,3 @@ const categories = [
   </section>
 
 </Layout>
-
-<style>
-  /* ─── HERO ─── */
-  .section-hero {
-    border-bottom: 1px solid var(--border);
-    padding: 52px 24px 48px;
-    background: linear-gradient(to bottom, rgba(201,164,75,0.03), transparent);
-  }
-  .section-hero-inner {
-    max-width: 880px;
-    margin: 0 auto;
-    display: flex;
-    gap: 32px;
-    align-items: center;
-  }
-  .section-hero-sigil {
-    flex-shrink: 0;
-    opacity: 0.65;
-    animation: qa-fade-in 0.8s var(--ease-out) both;
-  }
-  .section-eyebrow {
-    font-size: 0.62rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    margin-bottom: 8px;
-  }
-  .section-title {
-    font-size: clamp(1.6rem, 4vw, 2.6rem);
-    font-weight: 400;
-    color: var(--gold-bright);
-    margin-bottom: 14px;
-    animation: qa-rise 0.8s var(--ease-out) 0.1s both;
-  }
-  .section-desc {
-    font-size: 1.05rem;
-    font-style: italic;
-    color: var(--text-muted);
-    line-height: 1.8;
-    max-width: 620px;
-    animation: qa-drift 0.8s var(--ease-out) 0.2s both;
-  }
-
-  /* ─── GRID ─── */
-  .lore-grid-section { padding: 48px 24px 80px; }
-  .lore-grid-wrap { max-width: 880px; margin: 0 auto; }
-  .lore-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  .lore-card {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: start;
-    gap: 14px;
-    padding: 20px 18px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    text-decoration: none;
-    transition: transform 0.2s var(--ease-out), border-color 0.2s, background 0.2s, box-shadow 0.3s;
-    animation: qa-drift 0.6s var(--ease-out) both;
-    overflow: hidden;
-  }
-  .lore-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--gold-ghost), transparent 60%);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .lore-card:not(.lore-card--soon):hover {
-    transform: translateY(-2px);
-    border-color: var(--gold-hover);
-    background: var(--surface-2);
-    box-shadow: 0 10px 32px rgba(0,0,0,0.4);
-  }
-  .lore-card:not(.lore-card--soon):hover::before { opacity: 1; }
-  .lore-card--soon {
-    opacity: 0.42;
-    cursor: default;
-    pointer-events: none;
-  }
-
-  .lore-card-glyph {
-    font-size: 1.5rem;
-    color: var(--gold-dim);
-    width: 32px;
-    text-align: center;
-    margin-top: 2px;
-    transition: color 0.2s;
-    position: relative;
-  }
-  .lore-card:hover .lore-card-glyph { color: var(--gold); }
-
-  .lore-card-body { min-width: 0; position: relative; }
-
-  .lore-card-title {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 7px;
-    transition: color 0.2s;
-  }
-  .lore-card:hover .lore-card-title { color: var(--gold-bright); }
-
-  .lore-card-desc {
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--text-muted);
-    margin: 0;
-    transition: color 0.2s;
-  }
-  .lore-card:hover .lore-card-desc { color: var(--text); }
-
-  .lore-card-arrow {
-    color: var(--text-faint);
-    font-size: 1rem;
-    margin-top: 3px;
-    flex-shrink: 0;
-    transition: transform 0.2s var(--ease-out), color 0.2s;
-    position: relative;
-  }
-  .lore-card:hover .lore-card-arrow {
-    transform: translateX(3px);
-    color: var(--gold-dim);
-  }
-
-  .lore-card-badge {
-    font-size: 0.58rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    background: var(--surface-3);
-    border: 1px solid var(--border-2);
-    border-radius: 4px;
-    padding: 3px 8px;
-    white-space: nowrap;
-    margin-top: 3px;
-    align-self: start;
-  }
-
-  /* ─── RESPONSIVO ─── */
-  @media (max-width: 700px) {
-    .section-hero-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
-    .section-hero-sigil { display: none; }
-    .lore-grid { grid-template-columns: 1fr; }
-    .lore-card { grid-template-columns: auto 1fr; }
-    .lore-card-arrow { display: none; }
-  }
-</style>

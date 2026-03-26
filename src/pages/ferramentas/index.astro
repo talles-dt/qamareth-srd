@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sigil from '../../components/Sigil.astro';
+
+const tools = [
+  {
+    glyph: '♩',
+    title: 'Criação de Personagem',
+    href: '/ferramentas/criar-personagem',
+    desc: 'Percorra as 20 Perguntas, veja a ficha se construir em tempo real e exporte como PDF.',
+    accent: 'card--tool',
+  },
+];
+---
+
+<Layout
+  title="Ferramentas"
+  description="Ferramentas interativas para jogadores e narradores de Qamareth."
+  section="ferramentas"
+>
+
+  <section class="qa-hero">
+    <div class="qa-hero-inner" style="flex-direction: column; text-align: center;">
+      <div class="qa-hero-sigil">
+        <Sigil size={100} animate={false} />
+      </div>
+      <div class="qa-hero-text">
+        <p class="qa-hero-eyebrow">Ferramentas</p>
+        <h1 class="qa-hero-title">Utilitários</h1>
+        <p class="qa-hero-desc" style="max-width: 480px;">
+          Ferramentas interativas para <em style="color: var(--gold);">jogadores</em> e <em style="color: var(--gold);">narradores</em>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="qa-grid-section">
+    <div class="qa-grid-wrap">
+      <div class="qa-grid" style="grid-template-columns: 1fr; max-width: 600px; margin: 0 auto;">
+        {tools.map((tool, i) => (
+          <a href={tool.href} class="qa-card" style={`animation-delay: ${0.1 + i * 0.07}s`}>
+            <span class="qa-card-glyph" aria-hidden="true">{tool.glyph}</span>
+            <div class="qa-card-body">
+              <h2 class="qa-card-title">{tool.title}</h2>
+              <p class="qa-card-desc">{tool.desc}</p>
+            </div>
+            <span class="qa-card-arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

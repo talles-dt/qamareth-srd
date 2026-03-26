@@ -165,3 +165,201 @@ a {
   0%, 100% { filter: drop-shadow(0 0 6px rgba(201,164,75,0.25)); }
   50%       { filter: drop-shadow(0 0 18px rgba(201,164,75,0.50)); }
 }
+
+/* ═══════════════════════════════════════════════════════
+ *  COMPONENTES PADRONIZADOS — Use estas classes para
+ *  consistência visual em todas as páginas
+ * ═══════════════════════════════════════════════════════ */
+
+/* ── Seção Hero Padronizada ── */
+.qa-hero {
+  border-bottom: 1px solid var(--border);
+  padding: 52px 24px 48px;
+  background: linear-gradient(to bottom, rgba(201,164,75,0.03), transparent);
+}
+
+.qa-hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.qa-hero-sigil {
+  flex-shrink: 0;
+  opacity: 0.65;
+  animation: qa-fade-in 0.8s var(--ease-out) both;
+}
+
+.qa-hero-text { min-width: 0; }
+
+.qa-hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 8px;
+}
+
+.qa-hero-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 400;
+  color: var(--gold-bright);
+  margin-bottom: 14px;
+  animation: qa-rise 0.8s var(--ease-out) 0.1s both;
+}
+
+.qa-hero-desc {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 620px;
+  animation: qa-drift 0.8s var(--ease-out) 0.2s both;
+}
+
+/* ── Grid de Cards Padronizado ── */
+.qa-grid-section { padding: 48px 24px 80px; }
+
+.qa-grid-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.qa-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 700px) {
+  .qa-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Card Padronizado ── */
+.qa-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 14px;
+  padding: 20px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition:
+    transform 0.2s var(--ease-out),
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.3s;
+  animation: qa-drift 0.6s var(--ease-out) both;
+  overflow: hidden;
+}
+
+.qa-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold-ghost), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.qa-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-hover);
+  background: var(--surface-2);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.4);
+}
+
+.qa-card:hover::before { opacity: 1; }
+
+.qa-card-glyph {
+  font-size: 1.5rem;
+  color: var(--gold-dim);
+  width: 32px;
+  text-align: center;
+  margin-top: 2px;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.qa-card:hover .qa-card-glyph { color: var(--gold); }
+
+.qa-card-body { min-width: 0; position: relative; }
+
+.qa-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 7px;
+  transition: color 0.2s;
+}
+
+.qa-card:hover .qa-card-title { color: var(--gold-bright); }
+
+.qa-card-desc {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+  transition: color 0.2s;
+}
+
+.qa-card:hover .qa-card-desc { color: var(--text); }
+
+.qa-card-arrow {
+  color: var(--text-faint);
+  font-size: 1rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+  transition: transform 0.2s var(--ease-out), color 0.2s;
+  position: relative;
+}
+
+.qa-card:hover .qa-card-arrow {
+  transform: translateX(3px);
+  color: var(--gold-dim);
+}
+
+/* Card desativado (Em breve) */
+.qa-card--soon {
+  opacity: 0.42;
+  cursor: default;
+  pointer-events: none;
+}
+
+.qa-card-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: var(--surface-3);
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  margin-top: 3px;
+  align-self: start;
+}
+
+/* ── Responsivo para Hero ── */
+@media (max-width: 700px) {
+  .qa-hero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .qa-hero-sigil { display: none; }
+  .qa-card { grid-template-columns: auto 1fr; }
+  .qa-card-arrow { display: none; }
+}
