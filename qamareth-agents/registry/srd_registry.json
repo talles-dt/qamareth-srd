@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "last_updated": "2026-01-01T00:00:00Z"
+  },
+  "rules": [],
+  "conditions": [
+    {"name": "Desritmado", "subsystem": "combat", "effect": "Next action costs +1 beat", "trigger": "Interrupted action"},
+    {"name": "Exposto", "subsystem": "combat", "effect": "Next hit is undefended", "trigger": "Lost reaction or flanked"},
+    {"name": "Atordoado", "subsystem": "combat", "effect": "Skip next compasso reaction", "trigger": "Decisive strike"},
+    {"name": "Sangrando", "subsystem": "combat", "effect": "Resilience thresholds lower by 1", "trigger": "Specific weapon condition"},
+    {"name": "Imobilizado", "subsystem": "combat", "effect": "Cannot change zones", "trigger": "Grapple, terrain, magic"},
+    {"name": "Dominado", "subsystem": "combat", "effect": "Opponent has beat 0 option against you", "trigger": "Opponent achieved Dominante"},
+    {"name": "Pesado", "subsystem": "combat", "effect": "Beat +1 on all movement", "trigger": "Armor cost or heavy blow"},
+    {"name": "Dissonância", "subsystem": "magic", "effect": "+2 beat cost on next execution", "trigger": "Interruption or failure"},
+    {"name": "Harmônico", "subsystem": "magic", "effect": "Next collective execution: +1 scale tier", "trigger": "Perfect execution or Transcendência"},
+    {"name": "Saturado", "subsystem": "magic", "effect": "Same-discipline executions cost +1 beat until cleared", "trigger": "Rapid successive executions"},
+    {"name": "Ressonante", "subsystem": "magic", "effect": "All executions in scene have raised threshold; Transcendências doubled", "trigger": "Scene-wide collective effect"},
+    {"name": "Silenciado", "subsystem": "magic+social", "effect": "Cannot use Voice/Instrument disciplines; cannot speak in social scene", "trigger": "Medium destroyed or suppressed; social Broken state"}
+  ],
+  "disciplines": [
+    {"name": "Lâmina", "category": "combat"},
+    {"name": "Impacto", "category": "combat"},
+    {"name": "Alcance", "category": "combat"},
+    {"name": "Defesa", "category": "combat"},
+    {"name": "Movimento", "category": "combat"},
+    {"name": "Voz", "category": "magic"},
+    {"name": "Instrumento", "category": "magic"},
+    {"name": "Escrita", "category": "magic"},
+    {"name": "Gesto", "category": "magic"},
+    {"name": "Coletivo", "category": "magic"},
+    {"name": "Retórica", "category": "social"},
+    {"name": "Negociação", "category": "social"},
+    {"name": "Reputação", "category": "social"},
+    {"name": "Intimidação", "category": "social"},
+    {"name": "Leitura", "category": "social"},
+    {"name": "Grimório", "category": "knowledge"},
+    {"name": "Tática", "category": "knowledge"},
+    {"name": "História Harmônica", "category": "knowledge"},
+    {"name": "Magi-tech", "category": "knowledge"}
+  ],
+  "attributes": [
+    {"name": "Força", "english": "Brawn"},
+    {"name": "Destreza", "english": "Finesse"},
+    {"name": "Ressonância", "english": "Resonance"},
+    {"name": "Compostura", "english": "Composure"},
+    {"name": "Agudeza", "english": "Acuity"},
+    {"name": "Firmeza", "english": "Grit"}
+  ],
+  "resilience_states": [
+    {"name": "Claro", "english": "Clear"},
+    {"name": "Pressionado", "english": "Pressured"},
+    {"name": "Comprometido", "english": "Compromised"},
+    {"name": "Quebrado", "english": "Broken"}
+  ],
+  "lore_entities": [],
+  "grimoires": [],
+  "creatures": [],
+  "items": [],
+  "factions": [],
+  "traditions": []
+}

@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-ink: #0D0F14;
+  --color-surface: #141820;
+  --color-surface-alt: #1C2230;
+  --color-border: #2A3348;
+  --color-brass: #C8973A;
+  --color-steel: #7B9DB4;
+  --color-crimson: #8B3A3A;
+  --color-grove: #4A7C59;
+  --color-parchment: #E8DCC8;
+  --color-parchment-dim: #9A8E7C;
+  --color-marginalia: #5A5248;
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "IBM Plex Serif", serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2A3348; border-radius: 0; }
