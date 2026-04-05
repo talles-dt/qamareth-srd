@@ -8,7 +8,7 @@ from registry.registry import load_registry, format_registry_for_context
 load_dotenv()
 
 SKILLS_DIR = Path(__file__).parent.parent / "skills"
-client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+client = Anthropic()
 
 SHARED_PROTOCOL = (SKILLS_DIR / "00-shared-protocol.md").read_text()
 

@@ -7,7 +7,7 @@ from registry.registry import load_registry, format_registry_for_context
 
 load_dotenv()
 
-client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+client = Anthropic()
 
 
 async def run_audit(payload: dict) -> dict:

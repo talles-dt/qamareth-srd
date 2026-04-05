@@ -14,7 +14,7 @@ from jobs import submit_job, get_job, update_job, list_jobs
 load_dotenv()
 
 app = FastAPI(title="Qamareth Agent System")
-client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+client = Anthropic()
 
 app.add_middleware(
     CORSMiddleware,

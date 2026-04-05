@@ -7,7 +7,7 @@ from registry.registry import load_registry, format_registry_for_context
 
 load_dotenv()
 
-client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+client = Anthropic()
 
 CHUNK_SIZE = 8000  # chars per pass-1 chunk; 200-page doc needs batching
 
