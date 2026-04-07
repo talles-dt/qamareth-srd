@@ -1,6 +1,6 @@
 const PROXY = "/api/proxy"
 
-import type { Job } from "./types"
+import type { Job, CharacterSheet } from "./types"
 
 export async function streamChat(
   agent: string,
@@ -72,4 +72,24 @@ export async function commitToRegistry(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(entry),
   })
+}
+
+export async function createCharacter(
+  data: {
+    concept?: string
+    q1_inherit?: string
+    q2_survive?: string
+    q3_master?: string
+    q4_denied?: string
+    q5_carry?: string
+    name?: string
+    attribute_array?: string
+  }
+): Promise<{ status: string; character?: CharacterSheet; raw?: string }> {
+  const res = await fetch(`${PROXY}/character/create`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+  return res.json()
 }

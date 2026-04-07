@@ -40,3 +40,24 @@ export interface Job {
 }
 
 export type TaskType = "lore_ingest" | "audit"
+
+export interface CharacterSheet {
+  name: string
+  concept: string
+  attributes: Record<string, string>
+  disciplines: Record<string, number>
+  scar_condition: {
+    name: string
+    trigger: string
+    condition_applied: string
+    heightened_access: string
+    resolution: string
+  }
+  starting_position: {
+    faction: string
+    standing: string
+    grimoire_hook: string
+  }
+  drive: string
+  summary: string
+}
