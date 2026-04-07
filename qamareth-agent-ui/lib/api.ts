@@ -91,5 +91,16 @@ export async function createCharacter(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   })
-  return res.json()
+
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(text || `HTTP ${res.status}`)
+  }
+
+  const text = await res.text()
+  if (!text.trim()) {
+    throw new Error("Empty response from server")
+  }
+
+  return JSON.parse(text)
 }

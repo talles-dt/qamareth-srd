@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
 const BACKEND = process.env.BACKEND_URL!
 
@@ -21,6 +21,7 @@ async function forward(req: NextRequest, params: { path: string[] }) {
   const isSSE = res.headers.get("content-type")?.includes("text/event-stream")
   if (isSSE) {
     return new Response(res.body, {
+      status: res.status,
       headers: {
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache",
@@ -29,9 +30,13 @@ async function forward(req: NextRequest, params: { path: string[] }) {
     })
   }
 
-  return new Response(res.body, {
+  // Buffer the response to avoid stream issues with long-running requests
+  const data = await res.arrayBuffer()
+  return new Response(data, {
     status: res.status,
-    headers: { "Content-Type": res.headers.get("content-type") || "application/json" },
+    headers: {
+      "Content-Type": res.headers.get("content-type") || "application/json",
+    },
   })
 }
 
