@@ -8,7 +8,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from anthropic import Anthropic
 from graph.nodes import AGENT_SKILLS, build_system_prompt, inject_registry
-from registry.registry import update_registry
+from registry.registry import update_registry, load_registry, format_registry_for_context
 from jobs import submit_job, get_job, update_job, list_jobs
 
 load_dotenv()
@@ -29,6 +29,18 @@ class ChatRequest(BaseModel):
     agent: str
     messages: list[dict]
     orchestrated: bool = False
+
+
+class CharacterCreateRequest(BaseModel):
+    """Provenance answers for character creation."""
+    concept: str = ""
+    q1_inherit: str = ""      # What did you inherit?
+    q2_survive: str = ""      # What did you survive?
+    q3_master: str = ""       # What did you master?
+    q4_denied: str = ""       # What were you denied?
+    q5_carry: str = ""        # What do you carry?
+    attribute_array: str = "" # "focused", "balanced", or "resilient"
+    name: str = ""
 
 
 @app.get("/agents")
@@ -156,3 +168,159 @@ def task_status(job_id: str):
 @app.get("/tasks")
 def task_list():
     return list_jobs()
+
+
+# ─── Character Creation ───────────────────────────────────────────────────────
+
+@app.post("/character/create/stream")
+async def character_create_stream(body: CharacterCreateRequest):
+    """Streaming character creation using the First Question agent."""
+    system_prompt = build_system_prompt(AGENT_SKILLS["character-creation"])
+    registry = load_registry()
+    srd_context = format_registry_for_context(registry)
+
+    # Build the character creation prompt from provenance answers
+    answers = []
+    if body.q1_inherit:
+        answers.append(f"**Q1 — What did you inherit?**\n{body.q1_inherit}")
+    if body.q2_survive:
+        answers.append(f"**Q2 — What did you survive?**\n{body.q2_survive}")
+    if body.q3_master:
+        answers.append(f"**Q3 — What did you master?**\n{body.q3_master}")
+    if body.q4_denied:
+        answers.append(f"**Q4 — What were you denied?**\n{body.q4_denied}")
+    if body.q5_carry:
+        answers.append(f"**Q5 — What do you carry?**\n{body.q5_carry}")
+
+    if not answers:
+        raise HTTPException(400, "At least one provenance answer is required")
+
+    array_pref = f"\n\nPreferred attribute array: {body.attribute_array}" if body.attribute_array else ""
+    char_name = f"\nCharacter name: {body.name}" if body.name else ""
+    char_concept = f"\nConcept: {body.concept}" if body.concept else ""
+
+    prompt = f"""{srd_context}
+
+---
+
+Create a complete Qamareth character sheet based on the following provenance answers.
+
+{char_concept}{char_name}{array_pref}
+
+## Provenance Answers
+
+{"\n\n".join(answers)}
+
+---
+
+Please produce a complete character sheet with the following sections:
+1. **Name** (if not provided, suggest one)
+2. **Attributes** — die quality for each of the 6 attributes
+3. **Disciplines** — Primary (3 dice), Secondary (2 dice), Tertiary (1 die)
+4. **Scar Condition** — name, trigger, mechanical effect, heightened access, resolution
+5. **Starting Position** — faction standing and grimoire hook
+6. **Drive** — the narrative engine
+7. **Summary** — 2-3 paragraph narrative backstory
+
+Format the output as structured JSON with these keys:
+- name, concept
+- attributes (dict of 6 attributes → die type)
+- disciplines (dict of discipline → dice count)
+- scar_condition (dict with name, trigger, condition_applied, heightened_access, resolution)
+- starting_position (dict with faction, standing, grimoire_hook)
+- drive (string)
+- summary (string)
+
+Include both the JSON block AND the full narrative summary after it."""
+
+    messages = [{"role": "user", "content": prompt}]
+
+    async def stream():
+        with client.messages.stream(
+            model="claude-sonnet-4-20250514",
+            max_tokens=8192,
+            system=system_prompt,
+            messages=messages,
+        ) as s:
+            for text in s.text_stream:
+                yield f"data: {json.dumps({'text': text})}\n\n"
+        yield "data: [DONE]\n\n"
+
+    return StreamingResponse(stream(), media_type="text/event-stream")
+
+
+@app.post("/character/create")
+async def character_create(body: CharacterCreateRequest):
+    """Non-streaming character creation. Returns structured JSON."""
+    system_prompt = build_system_prompt(AGENT_SKILLS["character-creation"])
+    registry = load_registry()
+    srd_context = format_registry_for_context(registry)
+
+    answers = []
+    if body.q1_inherit:
+        answers.append(f"**Q1 — What did you inherit?**\n{body.q1_inherit}")
+    if body.q2_survive:
+        answers.append(f"**Q2 — What did you survive?**\n{body.q2_survive}")
+    if body.q3_master:
+        answers.append(f"**Q3 — What did you master?**\n{body.q3_master}")
+    if body.q4_denied:
+        answers.append(f"**Q4 — What were you denied?**\n{body.q4_denied}")
+    if body.q5_carry:
+        answers.append(f"**Q5 — What do you carry?**\n{body.q5_carry}")
+
+    if not answers:
+        raise HTTPException(400, "At least one provenance answer is required")
+
+    array_pref = f"\n\nPreferred attribute array: {body.attribute_array}" if body.attribute_array else ""
+    char_name = f"\nCharacter name: {body.name}" if body.name else ""
+    char_concept = f"\nConcept: {body.concept}" if body.concept else ""
+
+    prompt = f"""{srd_context}
+
+---
+
+Create a complete Qamareth character sheet based on the following provenance answers.
+
+{char_concept}{char_name}{array_pref}
+
+## Provenance Answers
+
+{"\n\n".join(answers)}
+
+---
+
+Produce ONLY a JSON object with these keys:
+- name (string)
+- concept (string)
+- attributes (dict of 6 attribute names → die type string: "d4", "d6", "d8", "d10", or "d12")
+- disciplines (dict of discipline names → integer dice count 1-5)
+- scar_condition (dict with: name, trigger, condition_applied, heightened_access, resolution — all strings)
+- starting_position (dict with: faction, standing, grimoire_hook — all strings)
+- drive (string)
+- summary (string, 2-3 paragraph narrative backstory)
+
+No markdown, no explanation — just the JSON."""
+
+    response = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=8192,
+        system=system_prompt,
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    content = response.content[0].text
+
+    # Extract JSON from response (may have markdown code blocks)
+    content = content.strip()
+    if content.startswith("```"):
+        content = content.split("\n", 1)[1]
+        if content.endswith("```"):
+            content = content[:-3]
+        content = content.strip()
+
+    try:
+        character = json.loads(content)
+        return {"status": "ok", "character": character}
+    except json.JSONDecodeError:
+        # Return raw text if parsing failed
+        return {"status": "ok", "raw": content}
