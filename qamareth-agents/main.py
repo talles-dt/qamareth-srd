@@ -13,12 +13,32 @@ from jobs import submit_job, get_job, update_job, list_jobs
 
 load_dotenv()
 
+ALLOWED = os.getenv("ALLOWED_ORIGIN", "http://localhost:3000")
+
 app = FastAPI(title="Qamareth Agent System")
 client = Anthropic()
 
+@app.middleware("http")
+async def add_cors_headers(request, call_next):
+    """Ensure CORS headers on every response, including OPTIONS preflight."""
+    if request.method == "OPTIONS":
+        from fastapi.responses import Response
+        return Response(
+            status_code=200,
+            headers={
+                "Access-Control-Allow-Origin": ALLOWED,
+                "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                "Access-Control-Max-Age": "86400",
+            },
+        )
+    response = await call_next(request)
+    response.headers["Access-Control-Allow-Origin"] = ALLOWED
+    return response
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("ALLOWED_ORIGIN", "http://localhost:3000")],
+    allow_origins=[ALLOWED],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
