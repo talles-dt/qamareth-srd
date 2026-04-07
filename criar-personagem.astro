@@ -1,0 +1,729 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Criação de Personagem"
+  description="Guia interativo das 20 Perguntas — crie seu personagem e gere a ficha em PDF."
+  section="ferramentas"
+>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-sigil" aria-hidden="true">
+    <svg width="120" height="120" viewBox="0 0 60 60" fill="none" class="hero-sigil-svg">
+      <circle cx="30" cy="30" r="27" stroke="var(--gold)" stroke-width="0.8" stroke-opacity="0.45"/>
+      <circle cx="30" cy="30" r="18" stroke="var(--gold)" stroke-width="0.5" stroke-opacity="0.25"/>
+      <path d="M30 6 C40 16 40 30 40 30 C40 44 30 54 30 54 C20 44 20 30 20 30 C20 16 30 6 30 6Z"
+            stroke="var(--gold)" stroke-width="0.8" fill="none" stroke-opacity="0.6"/>
+      <line x1="6"  y1="30" x2="54" y2="30" stroke="var(--gold)" stroke-width="0.6" stroke-opacity="0.35"/>
+      <line x1="30" y1="6"  x2="30" y2="54" stroke="var(--gold)" stroke-width="0.6" stroke-opacity="0.2"/>
+      <rect x="26.5" y="26.5" width="7" height="7" transform="rotate(45 30 30)"
+            stroke="var(--gold)" stroke-width="0.8" fill="var(--gold)" fill-opacity="0.15"/>
+      <circle cx="30" cy="30" r="2.5" fill="var(--gold)" fill-opacity="0.5"/>
+    </svg>
+  </div>
+  <h1 class="hero-title font-cinzel-d" id="cp-hero-title">As 20 Perguntas</h1>
+  <div class="hero-ornament" aria-hidden="true">
+    <span class="orn-line"></span>
+    <span class="orn-gem">✦</span>
+    <span class="orn-line"></span>
+  </div>
+  <p class="hero-tagline font-garamond" id="cp-hero-sub">
+    Criação de personagem através de <em>história</em>, não de fichas.
+  </p>
+  <p class="hero-system font-cinzel">Ferramenta Interativa · Qamareth SRD</p>
+</section>
+
+<!-- ═══ APP ═══ -->
+<div class="page-wrap" id="cp-app"></div>
+
+</Layout>
+
+<style>
+  /* ── HERO ── */
+  .hero {
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    padding: 56px 24px 40px; gap: 0;
+  }
+  .hero-sigil {
+    animation: qa-fade-in 0.9s var(--ease-out) both;
+    filter: drop-shadow(0 0 28px rgba(201,164,75,0.18));
+    margin-bottom: 28px;
+  }
+  .hero-sigil-svg { animation: pulse-glow 4s ease-in-out infinite; }
+  .hero-title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 400; letter-spacing: 0.1em;
+    color: var(--gold-bright);
+    text-shadow: 0 0 60px rgba(228,196,122,0.2);
+    animation: qa-rise 0.9s var(--ease-out) 0.1s both;
+    margin-bottom: 16px;
+  }
+  .hero-ornament {
+    display: flex; align-items: center;
+    gap: 14px; width: 220px;
+    animation: qa-fade-in 0.8s var(--ease-out) 0.25s both;
+    margin-bottom: 16px;
+  }
+  .orn-line { flex: 1; height: 1px; }
+  .orn-line:first-child { background: linear-gradient(to right, transparent, var(--gold-dim)); }
+  .orn-line:last-child  { background: linear-gradient(to left,  transparent, var(--gold-dim)); }
+  .orn-gem {
+    color: var(--gold); font-size: 0.7rem;
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+  .hero-tagline {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-style: italic; color: var(--text-muted);
+    line-height: 1.8; max-width: 520px;
+    animation: qa-rise 0.9s var(--ease-out) 0.35s both;
+    margin-bottom: 14px;
+  }
+  .hero-tagline em { color: var(--gold); }
+  .hero-system {
+    font-size: 0.6rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--text-faint);
+    animation: qa-fade-in 0.8s var(--ease-out) 0.5s both;
+  }
+
+  /* ── PAGE WRAP ── */
+  .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 10px; margin-bottom: 28px;
+    animation: qa-drift 0.6s var(--ease-out) 0.3s both;
+  }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px; text-align: center;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .stat-card.has-val { border-color: var(--gold-border); }
+  .stat-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .stat-card.has-val::before { opacity: 1; }
+  .stat-val {
+    font-family: 'Cinzel', serif; font-size: 1.3rem;
+    color: var(--gold); display: block; line-height: 1; margin-bottom: 4px;
+  }
+  .stat-val.empty { color: var(--text-faint); font-size: 1rem; }
+  .stat-name {
+    font-family: 'Cinzel', serif; font-size: 0.5rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--text-faint); display: block;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-section {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 40px;
+    animation: qa-drift 0.7s var(--ease-out) 0.4s both;
+  }
+  .div-line { flex: 1; height: 1px; background: var(--border); }
+  .progress-label {
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--text-faint); white-space: nowrap;
+  }
+  .progress-track {
+    width: 120px; height: 2px;
+    background: var(--surface-3); border-radius: 2px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--gold-dim), var(--gold));
+    transition: width 0.4s var(--ease-out);
+  }
+
+  /* ── QUESTION CARD ── */
+  .q-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 36px 40px;
+    position: relative; overflow: hidden;
+    animation: qa-drift 0.5s var(--ease-out) both;
+    margin-bottom: 20px;
+  }
+  .q-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  }
+  .q-stage-label {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--text-faint); margin-bottom: 6px;
+  }
+  .q-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: var(--surface-3); line-height: 1;
+    margin-bottom: -10px; user-select: none;
+  }
+  .q-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+    font-weight: 500; color: var(--gold);
+    letter-spacing: 0.07em; margin-bottom: 10px; line-height: 1.3;
+  }
+  .q-hint {
+    font-size: 1rem; font-style: italic;
+    color: var(--text-faint); line-height: 1.7;
+  }
+
+  /* ── MECH NOTE ── */
+  .mech-note {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim); border-radius: var(--radius-sm);
+    padding: 12px 16px; margin-top: 20px;
+    font-style: italic; color: var(--text-muted); font-size: 0.92rem;
+  }
+  .mech-note strong { color: var(--gold); font-style: normal; }
+
+  /* ── OPTION CARDS ── */
+  .options-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 12px; margin-top: 20px;
+  }
+  .opt-card {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    cursor: pointer; text-align: left;
+    transition: transform 0.2s var(--ease-out), border-color 0.2s, background 0.2s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .opt-card::before {
+    content: ''; position: absolute;
+    top: -1px; left: -1px; right: -1px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-ghost), transparent);
+    border-radius: var(--radius) var(--radius) 0 0;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .opt-card:hover::before, .opt-card.sel::before { opacity: 1; }
+  .opt-card:hover {
+    transform: translateY(-2px); border-color: var(--gold-hover);
+    background: var(--surface-2);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 0 1px var(--gold-ghost);
+  }
+  .opt-card.sel {
+    border-color: var(--gold); background: var(--surface-2);
+    box-shadow: 0 0 0 1px var(--gold-ghost);
+  }
+  .opt-glyph {
+    font-size: 1.3rem; color: var(--gold-dim);
+    transition: color 0.2s; flex-shrink: 0; width: 28px; text-align: center;
+  }
+  .opt-card:hover .opt-glyph, .opt-card.sel .opt-glyph { color: var(--gold); }
+  .opt-label {
+    font-family: 'EB Garamond', serif; font-size: 1.02rem;
+    color: var(--text-muted); transition: color 0.2s; line-height: 1.4;
+  }
+  .opt-card:hover .opt-label, .opt-card.sel .opt-label { color: var(--text); }
+
+  /* ── TEXTAREA ── */
+  .q-textarea {
+    width: 100%; margin-top: 20px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text);
+    font-family: 'EB Garamond', serif; font-size: 1.05rem;
+    line-height: 1.75; padding: 16px 18px;
+    resize: vertical; min-height: 110px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .q-textarea:focus { border-color: var(--gold-dim); }
+  .q-textarea::placeholder { color: var(--text-faint); font-style: italic; }
+
+  /* ── EXAMPLE TAGS ── */
+  .ex-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .ex-tag {
+    font-family: 'Cinzel', serif; font-size: 0.56rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-faint); padding: 4px 11px;
+    border: 1px solid var(--border); border-radius: 20px;
+    cursor: pointer; transition: all 0.2s; background: transparent;
+  }
+  .ex-tag:hover {
+    color: var(--gold-dim); border-color: var(--gold-border);
+    background: var(--gold-ghost);
+  }
+
+  /* ── BUTTONS ── */
+  .nav-row {
+    display: flex; gap: 12px; align-items: center;
+    justify-content: center; margin-top: 28px;
+  }
+  .btn-primary {
+    font-family: 'Cinzel', serif; font-size: 0.64rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    background: var(--gold); color: var(--bg);
+    border: none; border-radius: var(--radius-sm);
+    padding: 13px 28px; cursor: pointer; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-bright); }
+  .btn-secondary {
+    font-family: 'Cinzel', serif; font-size: 0.64rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    background: transparent; color: var(--text-faint);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 13px 20px; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-secondary:hover { color: var(--text-muted); border-color: var(--gold-border); }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    display: flex; align-items: center; gap: 20px; margin-bottom: 36px;
+  }
+  .div-center {
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-faint);
+  }
+
+  /* ── SHEET ── */
+  .sheet-hero {
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    padding: 56px 24px 40px;
+  }
+  .sheet-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 400; letter-spacing: 0.1em;
+    color: var(--gold-bright);
+    text-shadow: 0 0 60px rgba(228,196,122,0.2);
+    animation: qa-rise 0.9s var(--ease-out) 0.1s both;
+    margin-bottom: 16px;
+  }
+  .sheet-sub {
+    font-size: 1rem; font-style: italic;
+    color: var(--text-faint); line-height: 1.8;
+    animation: qa-rise 0.9s var(--ease-out) 0.25s both;
+  }
+  .sheet-grid {
+    display: grid; grid-template-columns: repeat(2,1fr);
+    gap: 14px; margin-bottom: 14px;
+  }
+  .s-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 22px 24px;
+    position: relative; overflow: hidden;
+    animation: qa-drift 0.5s var(--ease-out) both;
+  }
+  .s-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  }
+  .s-card.full { grid-column: 1 / -1; }
+  .s-card-title {
+    font-family: 'Cinzel', serif; font-size: 0.56rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-dim); margin-bottom: 14px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  }
+  .s-card p {
+    font-size: 0.93rem; color: var(--text-muted);
+    line-height: 1.65; margin-bottom: 6px;
+  }
+  .s-card p:last-child { margin-bottom: 0; }
+  .s-card strong { color: var(--text); }
+  .mech-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  .mech-pill {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 8px 16px; text-align: center;
+  }
+  .mech-pill-val {
+    font-family: 'Cinzel', serif; font-size: 1.3rem;
+    color: var(--gold); display: block;
+  }
+  .mech-pill-name {
+    font-family: 'Cinzel', serif; font-size: 0.48rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-faint); display: block; margin-top: 2px;
+  }
+  .paixao-tag {
+    display: inline-block; font-size: 0.8rem;
+    padding: 3px 10px; border-radius: 12px;
+    margin: 2px 2px 2px 0; border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .paixao-tag.pos { border-color: rgba(158,175,191,0.3); color: var(--silver); }
+  .paixao-tag.neg { border-color: var(--crimson); color: var(--crimson); opacity: 0.85; }
+  .q-log-item { padding: 8px 0; border-bottom: 1px solid var(--border-2); }
+  .q-log-item:last-child { border-bottom: none; }
+  .q-log-n {
+    font-family: 'Cinzel', serif; font-size: 0.52rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-dim); margin-bottom: 2px;
+  }
+  .q-log-a { font-size: 0.93rem; color: var(--text-muted); line-height: 1.55; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .options-grid { grid-template-columns: 1fr; }
+    .sheet-grid   { grid-template-columns: 1fr; }
+    .stats-bar    { grid-template-columns: repeat(2,1fr); }
+    .q-card       { padding: 24px 20px; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .hero, .stats-bar, .progress-section, .nav-row { display: none !important; }
+    .s-card { background: #faf8f4 !important; border-color: #c9a44b !important; break-inside: avoid; }
+    .s-card-title { color: #8a6820 !important; border-color: #ddd !important; }
+    .s-card p, .q-log-a { color: #333 !important; }
+    .s-card strong { color: #111 !important; }
+    .sheet-title { color: #8a6820 !important; text-shadow: none !important; }
+    .sheet-sub { color: #666 !important; }
+    .mech-pill { background: #f0ebe0 !important; border-color: #c9a44b !important; }
+    .mech-pill-val { color: #8a6820 !important; }
+    .paixao-tag { color: #333 !important; border-color: #aaa !important; }
+    .paixao-tag.neg { color: #8b2020 !important; border-color: #8b2020 !important; }
+    .q-log-n { color: #8a6820 !important; }
+    .sheet-grid, .sheet-hero { display: grid !important; }
+  }
+</style>
+
+<script>
+const STAGES = [
+  { n:1, label:'Origem',    qs:[1,2,3,4] },
+  { n:2, label:'Formação',  qs:[5,6,7,8] },
+  { n:3, label:'Harmonia',  qs:[9,10,11,12] },
+  { n:4, label:'Conflitos', qs:[13,14,15,16] },
+  { n:5, label:'Destino',   qs:[17,18,19,20] },
+];
+
+const GLYPHS = ['✦','☽','♩','⚔','♬','⬡','✧','◈','⚜','⌘','☽','✦','✸','✦','⚔','⬡','✦','✸','♩','◈'];
+
+const QS = [
+  {n:1,s:1,title:'Onde você nasceu?',
+   hint:'Define sua cultura inicial, tradições locais e possíveis conexões sociais.',
+   ex:['Meadowlands','Deep Woods','Desert','Marshes','Coastal Regions','Aurelia Prime'],
+   type:'text',mech:null},
+  {n:2,s:1,title:'Qual era a ocupação da sua família?',
+   hint:'Familiaridade com profissões, acesso a contatos, conhecimentos práticos.',
+   ex:['Agricultores','Mercadores','Artesãos','Militares','Clérigos','Acadêmicos','Nômades','Criminosos'],
+   type:'text',mech:null},
+  {n:3,s:1,title:'Como foi sua infância?',
+   hint:'Gera uma Paixão inicial (nível 2–3).',
+   ex:['Confortável','Disciplinada','Pobre','Violenta','Protegida','Itinerante'],
+   type:'text',mech:'paixao_1',mechLabel:'→ Paixão inicial (nível 2–3)'},
+  {n:4,s:1,title:'Que evento marcou sua juventude?',
+   hint:'Uma tragédia, descoberta, revelação, perda ou triunfo inesperado.',
+   ex:[],type:'text',mech:null},
+  {n:5,s:2,title:'Quem foi seu mentor?',
+   hint:'Define Escola de Formação, disciplinas disponíveis e rede de contato.',
+   ex:['Sacerdote','Soldado','Músico','Mago','Engenheiro Magi-Tech','Caçador','Espião'],
+   type:'text',mech:'escola',mechLabel:'→ Escola de Formação'},
+  {n:6,s:2,title:'O que você aprendeu primeiro?',
+   hint:'Define a primeira Disciplina que o personagem domina.',
+   ex:[],type:'text',mech:'disc1',mechLabel:'→ Disciplina inicial'},
+  {n:7,s:2,title:'Você teve acesso à educação formal?',
+   hint:'Influencia acesso a conhecimentos teóricos e tradições.',
+   ex:['Academia','Templo','Aprendizado informal','Autodidata'],
+   type:'options',mech:null},
+  {n:8,s:2,title:'Qual habilidade você domina melhor?',
+   hint:'Define sua especialização inicial — foco intenso dentro de uma Disciplina.',
+   ex:[],type:'text',mech:'spec',mechLabel:'→ Especialização inicial'},
+  {n:9,s:3,title:'Quando você percebeu que o mundo canta?',
+   hint:'Contribui para o RS inicial (junto com perguntas 10 e 11).',
+   ex:['Desde criança','Durante o treinamento','Em um evento marcante','Ainda não compreendo completamente'],
+   type:'options',
+   rsV:{'Desde criança':2,'Durante o treinamento':1,'Em um evento marcante':1,'Ainda não compreendo completamente':0},
+   mech:'rs',mechLabel:'→ RS +2 / +1 / +1 / +0'},
+  {n:10,s:3,title:'Você foi treinado para usar magia?',
+   hint:'Influencia acesso inicial a Partituras e rituais.',
+   ex:['Treinamento formal','Aprendizado fragmentado','Tradição familiar','Nenhum treinamento'],
+   type:'options',
+   rsV:{'Treinamento formal':2,'Aprendizado fragmentado':1,'Tradição familiar':1,'Nenhum treinamento':0},
+   mech:'rs',mechLabel:'→ RS +2 / +1 / +1 / +0'},
+  {n:11,s:3,title:'Qual tradição musical mais influenciou você?',
+   hint:'Define inclinação harmônica e escolas de magia mais acessíveis.',
+   ex:['Litúrgica','Marcial','Erudita','Natural','Popular'],
+   type:'options',
+   rsV:{'Litúrgica':1,'Marcial':0,'Erudita':1,'Natural':0,'Popular':0},
+   mech:'rs',mechLabel:'→ Inclinação harmônica + RS'},
+  {n:12,s:3,title:'Qual som define sua memória mais forte?',
+   hint:'Define identidade musical e possível Motivo secundário.',
+   ex:['Canto coral','Ruído de batalha','Vento nas árvores','Máquinas ressonantes','Silêncio absoluto'],
+   type:'text',mech:null},
+  {n:13,s:4,title:'Quem você decepcionou?',
+   hint:'Cria um rival, inimigo ou mentor frustrado.',
+   ex:[],type:'text',mech:'rival',mechLabel:'→ Rival estabelecido'},
+  {n:14,s:4,title:'Quem confia em você?',
+   hint:'Cria um aliado que pode ajudar em momentos críticos.',
+   ex:[],type:'text',mech:'aliado',mechLabel:'→ Aliado inicial'},
+  {n:15,s:4,title:'Qual lei você já quebrou?',
+   hint:'Define relação inicial com autoridades.',
+   ex:['Contrabando','Heresia','Espionagem','Deserção','Rebelião'],
+   type:'text',mech:null},
+  {n:16,s:4,title:'Qual facção conhece seu nome?',
+   hint:'+1 ponto de IP com essa facção. Define Honra inicial.',
+   ex:['Harmonium','Ember Vanguard','Silent Accord','Verdant Shield','Silver Dawn','Ashen Path','Inquisição'],
+   type:'text',mech:'faccao',mechLabel:'→ +1 IP com essa facção'},
+  {n:17,s:5,title:'Qual foi sua maior vitória?',
+   hint:'Gera uma Paixão positiva (nível 2–3).',
+   ex:[],type:'text',mech:'paixao_pos',mechLabel:'→ Paixão positiva (nível 2–3)'},
+  {n:18,s:5,title:'Qual foi seu maior fracasso?',
+   hint:'Gera uma Paixão negativa (nível 2–3).',
+   ex:[],type:'text',mech:'paixao_neg',mechLabel:'→ Paixão negativa (nível 2–3)'},
+  {n:19,s:5,title:'Por que você continua lutando?',
+   hint:'Motivação central do personagem no presente.',
+   ex:['Fé','Liberdade','Conhecimento','Família','Poder','Redenção','Justiça','Vingança'],
+   type:'text',mech:null},
+  {n:20,s:5,title:'Qual é a nota que define sua alma?',
+   hint:'Define o Motivo de Origem — tonalidade emocional e espiritual que orienta todo o desenvolvimento.',
+   ex:['Esperança','Vingança','Devoção','Curiosidade','Liberdade','Ambição','Redenção','Proteção','Justiça','Conhecimento'],
+   type:'text',mech:'motivo',mechLabel:'→ Motivo de Origem'},
+];
+
+let st = { cur: 0, ans: Array(20).fill(''), done: false };
+
+function stageOf(n) { return STAGES.find(s => s.qs.includes(n)); }
+
+function calcRS() {
+  let rs = 2;
+  const v9=QS[8].rsV, v10=QS[9].rsV, v11=QS[10].rsV;
+  if (v9  && v9[st.ans[8]]  !== undefined) rs += v9[st.ans[8]]  - 1;
+  if (v10 && v10[st.ans[9]] !== undefined) rs += v10[st.ans[9]] - 1;
+  if (v11 && v11[st.ans[10]]) rs += 1;
+  return Math.max(2, Math.min(4, rs));
+}
+
+function getPaixoes() {
+  const p = [];
+  if (st.ans[2])  p.push({ l: st.ans[2].slice(0,30),  t: '' });
+  if (st.ans[16]) p.push({ l: st.ans[16].slice(0,30), t: 'pos' });
+  if (st.ans[17]) p.push({ l: st.ans[17].slice(0,30), t: 'neg' });
+  return p;
+}
+
+function clip(s, n) { return s && s.length > n ? s.slice(0, n-1) + '…' : (s || '—'); }
+
+function statCard(val, hasVal, name) {
+  const cls    = hasVal && val !== '—' ? 'has-val' : '';
+  const valCls = hasVal && val !== '—' ? '' : 'empty';
+  return `<div class="stat-card ${cls}">
+    <span class="stat-val ${valCls}">${val}</span>
+    <span class="stat-name">${name}</span>
+  </div>`;
+}
+
+// ── RENDER ─────────────────────────────────────────────
+function render() {
+  const app = document.getElementById('cp-app');
+  app.innerHTML = st.done ? renderSheet() : renderWizard();
+
+  // Update hero subtitle dynamically
+  const sub = document.getElementById('cp-hero-sub');
+  const ttl = document.getElementById('cp-hero-title');
+  if (!st.done && sub && ttl) {
+    const stage = stageOf(QS[st.cur].n);
+    sub.innerHTML = `Etapa <em>${stage.n}</em> de 5 — <em>${stage.label}</em>`;
+  } else if (st.done && sub && ttl) {
+    ttl.textContent = st.ans[19] || 'Personagem de Qamareth';
+    sub.textContent = [st.ans[0], st.ans[4], st.ans[15]].filter(Boolean).join(' · ')
+      || 'Ficha gerada pelas 20 Perguntas';
+  }
+
+  bind();
+}
+
+function renderWizard() {
+  const q   = QS[st.cur];
+  const pct = ((st.cur + 1) / 20) * 100;
+  const stage = stageOf(q.n);
+  const rs = st.ans[8] || st.ans[9] || st.ans[10] ? calcRS() : '?';
+  const a  = st.ans;
+
+  return `
+  <div class="stats-bar">
+    ${statCard(rs, rs !== '?', 'Ressonância')}
+    ${statCard(clip(a[4],10), !!a[4], 'Escola')}
+    ${statCard(clip(a[15],10), !!a[15], 'Facção')}
+    ${statCard(clip(a[19],10), !!a[19], 'Motivo')}
+  </div>
+
+  <div class="progress-section">
+    <div class="div-line"></div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:${pct}%"></div>
+    </div>
+    <span class="progress-label">${st.cur + 1} / 20</span>
+    <div class="div-line"></div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-stage-label">Pergunta ${q.n} · ${stage.label}</div>
+    <div class="q-number">${q.n < 10 ? '0' : ''}${q.n}</div>
+    <h2 class="q-title">${q.title}</h2>
+    <p class="q-hint">${q.hint}</p>
+
+    ${q.mech ? `<div class="mech-note"><strong>${q.mechLabel}</strong></div>` : ''}
+
+    ${q.type === 'options' ? `
+      <div class="options-grid">
+        ${q.ex.map((e, i) => `
+          <button class="opt-card${st.ans[st.cur] === e ? ' sel' : ''}" data-opt="${e}">
+            <span class="opt-glyph">${GLYPHS[i] || '·'}</span>
+            <span class="opt-label">${e}</span>
+          </button>`).join('')}
+      </div>
+      <textarea class="q-textarea" id="qta" placeholder="Ou descreva livremente…" rows="2">${
+        st.ans[st.cur] && !q.ex.includes(st.ans[st.cur]) ? st.ans[st.cur] : ''
+      }</textarea>
+    ` : `
+      ${q.ex.length ? `<div class="ex-row">${q.ex.map(e =>
+        `<button class="ex-tag" data-ex="${e}">${e}</button>`).join('')}</div>` : ''}
+      <textarea class="q-textarea" id="qta" placeholder="Escreva livremente…" rows="4">${st.ans[st.cur]}</textarea>
+    `}
+  </div>
+
+  <div class="nav-row">
+    ${st.cur > 0 ? `<button class="btn-secondary" id="bback">← Anterior</button>` : ''}
+    <button class="btn-primary" id="bnext">${st.cur < 19 ? 'Próxima →' : 'Gerar ficha ✦'}</button>
+  </div>`;
+}
+
+function renderSheet() {
+  const a = st.ans;
+  const rs = calcRS();
+  const paixoes = getPaixoes();
+
+  return `
+  <div class="section-divider">
+    <div class="div-line"></div>
+    <span class="div-center">Ficha de Personagem</span>
+    <div class="div-line"></div>
+  </div>
+
+  <div class="sheet-grid">
+
+    <div class="s-card" style="animation-delay:0.1s">
+      <div class="s-card-title">Mecânicas Derivadas</div>
+      <div class="mech-pills">
+        <div class="mech-pill"><span class="mech-pill-val">${rs}</span><span class="mech-pill-name">RS inicial</span></div>
+        <div class="mech-pill"><span class="mech-pill-val">10</span><span class="mech-pill-name">Disciplinas</span></div>
+        <div class="mech-pill"><span class="mech-pill-val">1</span><span class="mech-pill-name">IP facção</span></div>
+        <div class="mech-pill"><span class="mech-pill-val">${paixoes.length}</span><span class="mech-pill-name">Paixões</span></div>
+      </div>
+      <p style="font-size:0.8rem;font-style:italic;color:var(--text-faint);">RS = Q9 + Q10 + Q11 + base 2</p>
+    </div>
+
+    <div class="s-card" style="animation-delay:0.15s">
+      <div class="s-card-title">Treinamento</div>
+      <p><strong>Escola:</strong> ${a[4]||'—'}</p>
+      <p><strong>Disciplina inicial:</strong> ${a[5]||'—'}</p>
+      <p><strong>Especialização:</strong> ${a[7]||'—'}</p>
+      <p><strong>Formação:</strong> ${a[6]||'—'}</p>
+    </div>
+
+    <div class="s-card" style="animation-delay:0.2s">
+      <div class="s-card-title">Relações</div>
+      <p><strong>Aliado:</strong> ${a[13]||'—'}</p>
+      <p><strong>Rival:</strong> ${a[12]||'—'}</p>
+      <p><strong>Facção (+1 IP):</strong> ${a[15]||'—'}</p>
+      <p><strong>Transgressão:</strong> ${a[14]||'—'}</p>
+    </div>
+
+    <div class="s-card" style="animation-delay:0.25s">
+      <div class="s-card-title">Paixões</div>
+      <div style="margin-bottom:8px;">
+        ${paixoes.length
+          ? paixoes.map(p => `<span class="paixao-tag ${p.t}">${p.l}</span>`).join('')
+          : '<em style="font-size:0.88rem;color:var(--text-faint);">—</em>'}
+      </div>
+      <p style="font-size:0.8rem;font-style:italic;color:var(--text-faint);">Nível 2–3. Cap. 10 para o sistema completo.</p>
+    </div>
+
+    <div class="s-card full" style="animation-delay:0.3s">
+      <div class="s-card-title">Motivo de Origem · Harmonia</div>
+      <p style="font-size:1.08rem;font-style:italic;color:var(--gold);margin-bottom:10px;">${a[19]||'—'}</p>
+      <p><strong>Tradição musical:</strong> ${a[10]||'—'} &nbsp;·&nbsp; <strong>Som definidor:</strong> ${a[11]||'—'}</p>
+      <p><strong>Por que continua lutando:</strong> ${a[18]||'—'}</p>
+    </div>
+
+    <div class="s-card full" style="animation-delay:0.35s">
+      <div class="s-card-title">As 20 Respostas</div>
+      ${QS.map((q, i) => `
+        <div class="q-log-item">
+          <div class="q-log-n">P${q.n} — ${q.title}</div>
+          <div class="q-log-a">${a[i] || '<em style="opacity:0.4">não respondida</em>'}</div>
+        </div>`).join('')}
+    </div>
+
+  </div>
+
+  <div class="nav-row" style="margin-top:36px;padding-top:28px;border-top:1px solid var(--border);">
+    <button class="btn-primary" onclick="window.print()">↓ Salvar como PDF</button>
+    <button class="btn-secondary" id="brestart">Criar novo personagem</button>
+  </div>`;
+}
+
+// ── BIND ───────────────────────────────────────────────
+function bind() {
+  if (st.done) {
+    const br = document.getElementById('brestart');
+    if (br) br.onclick = () => {
+      st = { cur: 0, ans: Array(20).fill(''), done: false };
+      render();
+    };
+    return;
+  }
+
+  const q  = QS[st.cur];
+  const ta = document.getElementById('qta');
+
+  if (ta) ta.oninput = () => { st.ans[st.cur] = ta.value; updateStats(); };
+
+  document.querySelectorAll('.ex-tag').forEach(b => {
+    b.onclick = () => {
+      st.ans[st.cur] = b.dataset.ex;
+      if (ta) ta.value = b.dataset.ex;
+      updateStats();
+    };
+  });
+
+  document.querySelectorAll('.opt-card').forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll('.opt-card').forEach(x => x.classList.remove('sel'));
+      b.classList.add('sel');
+      st.ans[st.cur] = b.dataset.opt;
+      if (ta) ta.value = '';
+      updateStats();
+    };
+  });
+
+  document.getElementById('bnext').onclick = () => {
+    if (ta && ta.value) st.ans[st.cur] = ta.value;
+    if (st.cur < 19) { st.cur++; render(); }
+    else { st.done = true; render(); }
+  };
+
+  const bb = document.getElementById('bback');
+  if (bb) bb.onclick = () => { if (st.cur > 0) { st.cur--; render(); } };
+}
+
+function updateStats() {
+  const rs = st.ans[8] || st.ans[9] || st.ans[10] ? calcRS() : '?';
+  const a  = st.ans;
+  const bar = document.querySelector('.stats-bar');
+  if (!bar) return;
+  bar.innerHTML =
+    statCard(rs, rs !== '?', 'Ressonância') +
+    statCard(clip(a[4], 10),  !!a[4],  'Escola')  +
+    statCard(clip(a[15], 10), !!a[15], 'Facção')  +
+    statCard(clip(a[19], 10), !!a[19], 'Motivo');
+}
+
+// ── INIT ───────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', render);
+document.addEventListener('astro:page-load', render);
+</script>
