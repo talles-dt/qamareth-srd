@@ -2,7 +2,8 @@
 import { useState, useRef, useEffect } from "react"
 import type { CharacterSheet } from "@/lib/types"
 
-const PROXY = "/api/proxy"
+// Call backend directly — Vercel proxy has a 10s timeout which is too slow
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000"
 
 const STEPS = ["Concept", "Origin", "Survival", "Mastery", "Denial", "Burden"]
 
@@ -75,7 +76,7 @@ export default function CharacterCreatePage() {
     setCharacter(null)
 
     try {
-      const res = await fetch(`${PROXY}/character/create/stream`, {
+      const res = await fetch(`${BACKEND}/character/create/stream`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(answers),
