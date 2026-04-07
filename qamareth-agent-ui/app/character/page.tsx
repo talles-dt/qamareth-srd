@@ -1,7 +1,8 @@
 "use client"
-import { useState } from "react"
-import { createCharacter } from "@/lib/api"
+import { useState, useRef, useEffect } from "react"
 import type { CharacterSheet } from "@/lib/types"
+
+const PROXY = "/api/proxy"
 
 const STEPS = ["Concept", "Origin", "Survival", "Mastery", "Denial", "Burden"]
 
@@ -12,7 +13,6 @@ const QUESTIONS = [
     title: "Who is this person?",
     subtitle: "A brief concept — a soldier, a witch's heir, a wandering minstrel…",
     placeholder: "e.g. A defected imperial soldier",
-    multiline: true,
   },
   {
     key: "q1_inherit",
@@ -20,7 +20,6 @@ const QUESTIONS = [
     title: "What did you inherit?",
     subtitle: "What did your family or community give you that you couldn't choose — blood, reputation, debt, gift?",
     placeholder: "e.g. My father's sword, his debts, and his reputation among the officers…",
-    multiline: true,
   },
   {
     key: "q2_survive",
@@ -28,7 +27,6 @@ const QUESTIONS = [
     title: "What did you survive?",
     subtitle: "What broke you once, and what remains of you after it?",
     placeholder: "e.g. The Inquisition burned my home. I walked out, but my face never heals…",
-    multiline: true,
   },
   {
     key: "q3_master",
@@ -36,7 +34,6 @@ const QUESTIONS = [
     title: "What did you master?",
     subtitle: "What one thing can you do that most people cannot — and how did you learn it?",
     placeholder: "e.g. I can read a battlefield — not just positions, but morale, supply lines, weakness…",
-    multiline: true,
   },
   {
     key: "q4_denied",
@@ -44,7 +41,6 @@ const QUESTIONS = [
     title: "What were you denied?",
     subtitle: "What knowledge, access, or recognition was withheld from you — and why?",
     placeholder: "e.g. I was denied formal education because my family had no papers…",
-    multiline: true,
   },
   {
     key: "q5_carry",
@@ -52,7 +48,6 @@ const QUESTIONS = [
     title: "What do you carry?",
     subtitle: "Not equipment. What is the thing — memory, vow, name, grief — that you bring into every room?",
     placeholder: "e.g. I carry the names of every soldier I commanded. All twelve of them…",
-    multiline: true,
   },
 ]
 
@@ -60,9 +55,14 @@ export default function CharacterCreatePage() {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [generating, setGenerating] = useState(false)
+  const [streamText, setStreamText] = useState("")
   const [character, setCharacter] = useState<CharacterSheet | null>(null)
-  const [rawOutput, setRawOutput] = useState("")
   const [error, setError] = useState("")
+  const streamRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    streamRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [streamText])
 
   function updateAnswer(key: string, value: string) {
     setAnswers(prev => ({ ...prev, [key]: value }))
@@ -71,30 +71,47 @@ export default function CharacterCreatePage() {
   async function generate() {
     setGenerating(true)
     setError("")
-    setRawOutput("")
+    setStreamText("")
     setCharacter(null)
+
     try {
-      const result = await createCharacter(answers)
-      if (result.status === "ok" && result.character) {
-        setCharacter(result.character)
-      } else if (result.raw) {
-        setRawOutput(result.raw)
-        // Try to parse JSON from raw markdown
-        const raw = result.raw
-        if (raw.includes("```")) {
-          const parts = raw.split("```")
-          for (const p of parts) {
-            const cleaned = p.startsWith("json") ? p.slice(4).trim() : p.trim()
-            if (cleaned.startsWith("{")) {
-              try {
-                setCharacter(JSON.parse(cleaned))
-                break
-              } catch { /* continue */ }
-            }
+      const res = await fetch(`${PROXY}/character/create/stream`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(answers),
+      })
+
+      if (!res.ok || !res.body) {
+        throw new Error(`Server error: ${res.status}`)
+      }
+
+      const reader = res.body.getReader()
+      const decoder = new TextDecoder()
+      let buffer = ""
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+
+        const raw = decoder.decode(value)
+        for (const line of raw.split("\n\n")) {
+          if (!line.startsWith("data:")) continue
+          const payload = line.slice(5).trim()
+          if (payload === "[DONE]") {
+            // Try to parse JSON from the streamed text
+            tryParseCharacter(buffer)
+            break
+          }
+          try {
+            const { text } = JSON.parse(payload)
+            buffer += text
+            setStreamText(buffer)
+          } catch {
+            // partial JSON, just append text
+            buffer += payload
+            setStreamText(buffer)
           }
         }
-      } else {
-        setError("Character generation returned no data.")
       }
     } catch (e: any) {
       setError(e.message || "Failed to generate character")
@@ -102,11 +119,37 @@ export default function CharacterCreatePage() {
     setGenerating(false)
   }
 
+  function tryParseCharacter(fullText: string) {
+    // Extract JSON from markdown code block
+    let jsonStr = fullText
+    if (fullText.includes("```")) {
+      const parts = fullText.split("```")
+      for (const p of parts) {
+        const cleaned = p.startsWith("json") ? p.slice(4).trim() : p.trim()
+        if (cleaned.startsWith("{")) {
+          jsonStr = cleaned
+          break
+        }
+      }
+    }
+    // Find first { to last }
+    const start = jsonStr.indexOf("{")
+    const end = jsonStr.lastIndexOf("}")
+    if (start !== -1 && end !== -1) {
+      try {
+        const char: CharacterSheet = JSON.parse(jsonStr.slice(start, end + 1))
+        setCharacter(char)
+      } catch {
+        // Parsing failed, keep raw text display
+      }
+    }
+  }
+
   function reset() {
     setStep(0)
     setAnswers({})
     setCharacter(null)
-    setRawOutput("")
+    setStreamText("")
     setError("")
   }
 
@@ -243,22 +286,49 @@ export default function CharacterCreatePage() {
           >
             EXPORT JSON
           </button>
-          {rawOutput && (
-            <button
-              onClick={() => {
-                const blob = new Blob([rawOutput], { type: "text/plain" })
-                const url = URL.createObjectURL(blob)
-                const a = document.createElement("a")
-                a.href = url
-                a.download = `${character.name.toLowerCase().replace(/\s+/g, "-")}.md`
-                a.click()
-              }}
-              className="font-mono text-xs text-steel hover:text-parchment border border-border px-4 py-2"
-            >
-              EXPORT FULL
-            </button>
-          )}
         </div>
+      </div>
+    )
+  }
+
+  // ─── Streaming display while generating ────────────────────────────────
+  if (generating || streamText) {
+    return (
+      <div className="min-h-screen p-8 max-w-4xl mx-auto">
+        <h1 className="font-display text-3xl text-parchment mb-8 tracking-wide">
+          Forging Character
+        </h1>
+
+        {generating && (
+          <div className="font-mono text-xs text-brass animate-pulse tracking-widest mb-4">
+            CONSULTING THE FIRST QUESTION…
+          </div>
+        )}
+
+        <div ref={streamRef} className="bg-surface border border-border p-6 min-h-[300px]">
+          <pre className="font-body text-sm text-parchment-dim whitespace-pre-wrap leading-relaxed">
+            {streamText}
+            {generating && <span className="animate-pulse">▋</span>}
+          </pre>
+        </div>
+      </div>
+    )
+  }
+
+  // ─── Error display ─────────────────────────────────────────────────────
+  if (error && !generating) {
+    return (
+      <div className="min-h-screen p-8 max-w-2xl mx-auto text-center">
+        <div className="bg-surface border border-crimson p-6 mb-6">
+          <h2 className="font-mono text-xs text-crimson tracking-widest mb-2">ERROR</h2>
+          <p className="font-body text-parchment-dim text-sm">{error}</p>
+        </div>
+        <button
+          onClick={reset}
+          className="font-mono text-xs text-steel hover:text-parchment border border-border px-6 py-2"
+        >
+          TRY AGAIN
+        </button>
       </div>
     )
   }
@@ -319,13 +389,6 @@ export default function CharacterCreatePage() {
         />
       </div>
 
-      {/* Error */}
-      {error && (
-        <div className="bg-surface border border-crimson p-4 mb-6">
-          <p className="font-mono text-xs text-crimson">{error}</p>
-        </div>
-      )}
-
       {/* Navigation */}
       <div className="flex justify-between">
         <button
@@ -349,29 +412,13 @@ export default function CharacterCreatePage() {
         ) : (
           <button
             onClick={generate}
-            disabled={generating}
             className="px-8 py-3 bg-steel text-ink font-mono text-xs tracking-widest
-                       uppercase disabled:opacity-40 disabled:cursor-not-allowed
-                       hover:bg-parchment transition-colors"
+                       uppercase hover:bg-parchment transition-colors"
           >
-            {generating ? "FORGING CHARACTER…" : "CREATE CHARACTER"}
+            CREATE CHARACTER
           </button>
         )}
       </div>
-
-      {/* Loading overlay */}
-      {generating && (
-        <div className="fixed inset-0 bg-ink/80 flex items-center justify-center z-50">
-          <div className="text-center">
-            <div className="font-mono text-xs text-brass animate-pulse tracking-widest mb-2">
-              FORGING CHARACTER
-            </div>
-            <div className="font-mono text-xs text-marginalia">
-              Consulting the First Question…
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
