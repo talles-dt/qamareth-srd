@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 
-export const maxDuration = 60 // Extend timeout to 60s for long AI responses
-
 const BACKEND = process.env.BACKEND_URL!
 
-async function forward(req: NextRequest, params: { path: string[] }) {
-  const path = params.path.join("/")
+async function forward(req: NextRequest, params: Promise<{ path: string[] }> | { path: string[] }) {
+  const resolved = await params
+  const path = resolved.path.join("/")
   const url = `${BACKEND}/${path}${req.nextUrl.search}`
   const contentType = req.headers.get("content-type") || ""
 
@@ -32,7 +31,7 @@ async function forward(req: NextRequest, params: { path: string[] }) {
     })
   }
 
-  // Buffer the response to avoid stream issues with long-running requests
+  // Buffer the response for non-SSE requests
   const data = await res.arrayBuffer()
   return new Response(data, {
     status: res.status,
@@ -42,5 +41,5 @@ async function forward(req: NextRequest, params: { path: string[] }) {
   })
 }
 
-export const GET  = (req: NextRequest, ctx: any) => forward(req, ctx.params)
-export const POST = (req: NextRequest, ctx: any) => forward(req, ctx.params)
+export const GET = async (req: NextRequest, ctx: any) => forward(req, ctx.params)
+export const POST = async (req: NextRequest, ctx: any) => forward(req, ctx.params)
