@@ -3,7 +3,10 @@ import { useState, useRef, useEffect } from "react"
 import type { CharacterSheet } from "@/lib/types"
 
 // Call backend directly — Vercel proxy has a 10s timeout which is too slow
-const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000"
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ||
+  (typeof window !== "undefined" && window.location.hostname !== "localhost"
+    ? "https://qamareth-srd-production.up.railway.app"
+    : "http://localhost:8000")
 
 const STEPS = ["Concept", "Origin", "Survival", "Mastery", "Denial", "Burden"]
 
