@@ -2,9 +2,8 @@
 import { useState, useRef, useEffect } from "react"
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
-const BACKEND = typeof window !== "undefined" && window.location.hostname !== "localhost"
-  ? "https://qamareth-srd-production.up.railway.app"
-  : "http://localhost:8000"
+// Use Vercel proxy (same-origin) to avoid Railway CORS blocking
+const STREAM_URL = "/api/proxy/character/create/stream"
 
 const STAGES = [
   { n: 1, label: "Origem",     qs: [1, 2, 3, 4] },
@@ -207,7 +206,7 @@ export default function CharacterCreatePage() {
         `P${qq.n} — ${qq.title}\n${ans[i] || "(sem resposta)"}`
       ).join("\n\n")
 
-      const res = await fetch(`${BACKEND}/character/create/stream`, {
+      const res = await fetch(STREAM_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
