@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 
+export const maxDuration = 60 // Extend timeout to 60s for long AI responses
+
 const BACKEND = process.env.BACKEND_URL!
 
 async function forward(req: NextRequest, params: { path: string[] }) {
