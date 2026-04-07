@@ -18,9 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-ink text-parchment font-body antialiased">
         <nav className="flex gap-6 px-6 py-3 border-b border-border bg-surface">
-          <a href="/chat"      className="font-mono text-xs text-parchment-dim hover:text-parchment tracking-widest">CHAT</a>
-          <a href="/character" className="font-mono text-xs text-parchment-dim hover:text-parchment tracking-widest">CHARACTER</a>
-          <a href="/tasks"     className="font-mono text-xs text-parchment-dim hover:text-parchment tracking-widest">TASKS</a>
+          <a href="/chat"       className="font-mono text-xs text-parchment-dim hover:text-parchment tracking-widest">CHAT</a>
+          <a href="/templates"  className="font-mono text-xs text-parchment-dim hover:text-parchment tracking-widest">TEMPLATES</a>
+          <a href="/tasks"      className="font-mono text-xs text-parchment-dim hover:text-parchment tracking-widest">TASKS</a>
         </nav>
         {children}
       </body>
