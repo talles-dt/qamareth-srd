@@ -1,13 +1,17 @@
 import asyncio
 import os
 from dotenv import load_dotenv
-from anthropic import Anthropic
+from openai import OpenAI
 from graph.nodes import build_system_prompt, inject_registry
 from registry.registry import load_registry, format_registry_for_context
 
 load_dotenv()
 
-client = Anthropic()
+client = OpenAI(
+    base_url="https://integrate.api.nvidia.com/v1",
+    api_key=os.getenv("NVIDIA_API_KEY", ""),
+)
+MODEL = "meta/llama-3.3-70b-instruct"
 
 CHUNK_SIZE = 8000  # chars per pass-1 chunk; 200-page doc needs batching
 
@@ -51,18 +55,17 @@ async def run_lore_ingest(payload: dict) -> dict:
         ),
     ]
 
-    messages: list[dict] = []
-    results: dict[str, str] = {}
+    messages = []
+    results = {}
 
     for pass_name, prompt in passes:
         messages.append({"role": "user", "content": prompt})
-        response = client.messages.create(
-            model="claude-sonnet-4-20250514",
+        response = client.chat.completions.create(
+            model=MODEL,
             max_tokens=4096,
-            system=system_prompt,
-            messages=messages,
+            messages=[{"role": "system", "content": system_prompt}] + messages,
         )
-        content = response.content[0].text
+        content = response.choices[0].message.content
         messages.append({"role": "assistant", "content": content})
         results[pass_name] = content
         await asyncio.sleep(0.5)

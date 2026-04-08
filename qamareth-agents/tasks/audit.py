@@ -1,13 +1,17 @@
 import asyncio
 import os
 from dotenv import load_dotenv
-from anthropic import Anthropic
+from openai import OpenAI
 from graph.nodes import build_system_prompt
 from registry.registry import load_registry, format_registry_for_context
 
 load_dotenv()
 
-client = Anthropic()
+client = OpenAI(
+    base_url="https://integrate.api.nvidia.com/v1",
+    api_key=os.getenv("NVIDIA_API_KEY", ""),
+)
+MODEL = "meta/llama-3.3-70b-instruct"
 
 
 async def run_audit(payload: dict) -> dict:
@@ -27,14 +31,16 @@ async def run_audit(payload: dict) -> dict:
         "Produce a full Audit Record covering all relevant axes."
     )
 
-    response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+    response = client.chat.completions.create(
+        model=MODEL,
         max_tokens=4096,
-        system=system_prompt,
-        messages=[{"role": "user", "content": prompt}],
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt},
+        ],
     )
 
     return {
         "element": element_name,
-        "audit": response.content[0].text,
+        "audit": response.choices[0].message.content,
     }

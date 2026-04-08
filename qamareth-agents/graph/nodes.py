@@ -1,14 +1,18 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-from anthropic import Anthropic
+from openai import OpenAI
 from graph.state import QamarethState
 from registry.registry import load_registry, format_registry_for_context
 
 load_dotenv()
 
 SKILLS_DIR = Path(__file__).parent.parent / "skills"
-client = Anthropic()
+client = OpenAI(
+    base_url="https://integrate.api.nvidia.com/v1",
+    api_key=os.getenv("NVIDIA_API_KEY", ""),
+)
+MODEL = "meta/llama-3.3-70b-instruct"
 
 SHARED_PROTOCOL = (SKILLS_DIR / "00-shared-protocol.md").read_text()
 
@@ -44,7 +48,7 @@ def inject_registry(messages: list) -> list:
         return messages
     messages = list(messages)
     first = messages[0]
-    # LangChain messages have .content; raw dicts has ["content"]
+    # LangChain messages have .content; raw dicts have ["content"]
     if hasattr(first, "content"):
         from langchain_core.messages import HumanMessage
         first = HumanMessage(content=f"{srd_context}\n\n---\n\n{first.content}")
@@ -59,24 +63,23 @@ def make_agent_node(skill_file: str):
 
     def node(state: QamarethState) -> dict:
         messages = inject_registry(state["messages"])
-        # Convert LangChain messages to Anthropic format dicts
-        anthropic_messages = []
+        # Convert LangChain messages to OpenAI format dicts
+        openai_messages = [{"role": "system", "content": system_prompt}]
         for msg in messages:
             if hasattr(msg, "content"):
                 # LangChain message object
                 role = "user" if msg.type == "human" else "assistant"
-                anthropic_messages.append({"role": role, "content": msg.content})
+                openai_messages.append({"role": role, "content": msg.content})
             else:
                 # Already a dict
-                anthropic_messages.append(msg)
+                openai_messages.append(msg)
 
-        response = client.messages.create(
-            model="claude-sonnet-4-20250514",
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=openai_messages,
             max_tokens=4096,
-            system=system_prompt,
-            messages=anthropic_messages,
         )
-        content = response.content[0].text
+        content = response.choices[0].message.content
         return {
             "messages": [{"role": "assistant", "content": content}],
             "iteration_count": state.get("iteration_count", 0) + 1,

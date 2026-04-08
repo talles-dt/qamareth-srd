@@ -6,7 +6,7 @@ from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from anthropic import Anthropic
+from openai import OpenAI
 from graph.nodes import AGENT_SKILLS, build_system_prompt, inject_registry
 from registry.registry import update_registry, load_registry, format_registry_for_context
 from jobs import submit_job, get_job, update_job, list_jobs
@@ -14,9 +14,15 @@ from jobs import submit_job, get_job, update_job, list_jobs
 load_dotenv()
 
 ALLOWED = os.getenv("ALLOWED_ORIGIN", "http://localhost:3000")
+NVIDIA_KEY = os.getenv("NVIDIA_API_KEY", "")
 
 app = FastAPI(title="Qamareth Agent System")
-client = Anthropic()
+client = OpenAI(
+    base_url="https://integrate.api.nvidia.com/v1",
+    api_key=NVIDIA_KEY,
+)
+
+MODEL = "meta/llama-3.3-70b-instruct"
 
 @app.middleware("http")
 async def add_cors_headers(request, call_next):
@@ -93,6 +99,11 @@ def add_registry_entry(entry_type: str, entry: dict):
     return {"status": "ok"}
 
 
+def _prep_messages(system_prompt: str, messages: list[dict]) -> list[dict]:
+    """Convert messages to OpenAI format with system prompt."""
+    return [{"role": "system", "content": system_prompt}] + messages
+
+
 @app.post("/chat/stream")
 async def chat_stream(body: ChatRequest):
     if body.agent not in AGENT_SKILLS:
@@ -118,7 +129,6 @@ async def chat_stream(body: ChatRequest):
             result = await asyncio.get_event_loop().run_in_executor(
                 None, lambda: qamareth_graph.invoke(initial)
             )
-            # Extract text from last message (could be LangChain object or dict)
             last_msg = result["messages"][-1]
             final = last_msg.content if hasattr(last_msg, "content") else last_msg["content"]
             for word in final.split(" "):
@@ -131,16 +141,19 @@ async def chat_stream(body: ChatRequest):
     else:
         system_prompt = build_system_prompt(AGENT_SKILLS[body.agent])
         messages = inject_registry(body.messages)
+        openai_msgs = _prep_messages(system_prompt, messages)
 
         async def direct_stream():
-            with client.messages.stream(
-                model="claude-sonnet-4-20250514",
+            stream = client.chat.completions.create(
+                model=MODEL,
+                messages=openai_msgs,
                 max_tokens=4096,
-                system=system_prompt,
-                messages=messages,
-            ) as s:
-                for text in s.text_stream:
-                    yield f"data: {json.dumps({'text': text})}\n\n"
+                stream=True,
+            )
+            for chunk in stream:
+                content = chunk.choices[0].delta.content
+                if content:
+                    yield f"data: {json.dumps({'text': content})}\n\n"
             yield "data: [DONE]\n\n"
 
         return StreamingResponse(direct_stream(), media_type="text/event-stream")
@@ -200,8 +213,7 @@ def task_list():
 
 @app.post("/character/create/stream")
 async def character_create_stream(body: CharacterCreateRequest):
-    """Streaming character creation using the First Question agent.
-    Takes all 20 answers and produces a complete, mechanically valid character sheet."""
+    """Streaming character creation using the First Question agent."""
     system_prompt = build_system_prompt(AGENT_SKILLS["character-creation"])
     registry = load_registry()
     srd_context = format_registry_for_context(registry)
@@ -214,114 +226,52 @@ async def character_create_stream(body: CharacterCreateRequest):
         f"**Q5 — What do you carry?**\n{body.q5_carry}",
     ])
 
-    education = body.education or ""
-    magic_training = body.magic_training or ""
-    musical_tradition = body.musical_tradition or ""
-    memory_sound = body.memory_sound or ""
-
     prompt = f"""{srd_context}
 
 ---
 
 You are creating a COMPLETE, PLAYABLE Qamareth character sheet from the 20 Questions answers below.
 
+## Provenance Answers
+
+{answers_block}
+
 ## Character Sheet Requirements
 
-Produce a JSON with ALL of these sections. Every field must be filled with specific, mechanically meaningful content derived from the narrative answers:
+Produce ONLY a JSON object with ALL of these fields:
+- name, motivo_origem, regiao, ocupacao_familia, infancia, evento_juventude, som_memoria
+- attributes: dict with Forca, Destreza, Ressonancia, Compostura, Agudeza, Firmeza → die size strings
+- disciplines: dict of discipline name → dice count (1-5), total 10 disciplines
+- rs: integer (2-6)
+- theosis_stage: string
+- motif_capacity: integer
+- scar: dict with name, trigger, condition_applied, heightened_access, resolution
+- passions: list of {{name, level}} for ALL 8 passions (Gula, Luxuria, Avareza, Ira, Tristeza, Acedia, Vainagloria, Soberba)
+- honra: integer (0-5)
+- ip_factions: list of {{faction, ip}}
+- faction_standing, grimoire_hook: strings
+- aliado, rival, lei_quebrada: strings
+- partituras: list of {{name, mode, effect, rhythm}}
+- combat_motifs: list of {{name, type, condition, effect}}
+- weapons: list of {{name, tempo, function, speed}}
+- motivacao, escola: strings
+- summary: 2-3 paragraph backstory
 
-### 1. Identity
-- **name**: Suggest a fitting Portuguese name
-- **motivo_origem**: Poetic phrase capturing the character's essence (from Q20)
-- **regiao**: Region of origin (from Q1)
-- **ocupacao_familia**: Family occupation (from Q2)
-- **infancia**: Childhood description (from Q3)
-- **evento_juventude**: Defining youth event (from Q4)
-- **som_memoria**: Strongest memory sound (from Q12)
+Derive EVERYTHING from the answers. Use Portuguese names. Return ONLY JSON."""
 
-### 2. Attributes — assign the {body.attribute_array or "balanced"} array (d10/d8/d6/d6/d6/d4 or d8/d8/d6/d6/d6/d6)
-- **attributes**: Dict with exactly these 6 keys → die size strings (d4-d12)
-  - Forca, Destreza, Ressonancia, Compostura, Agudeza, Firmeza
-- Assign based on narrative: primary attribute from Q1 gets highest die, secondary from Q2 gets second-highest, Ressonancia from Q5, etc.
-- **attribute_array**: Which array was used
-
-### 3. Disciplines — 10 total starting disciplines
-- **disciplines**: Dict of discipline name → dice count (1-5)
-- Primary Discipline (from Q6/Q3 answer): 3 dice
-- Secondary (thematically related): 2 dice  
-- Tertiary: 1 die
-- Also include 7 more at 1 die each to reach 10 total, distributed across categories (2 physical, 2 social, 2 mental, 2 magical, 2 academic)
-- Include specialization note for the primary
-
-### 4. Ressonância
-- **rs**: Calculate from Q9 (0-2), Q10 (0-2), Q11 (+1 if applicable). Range 2-4.
-- **theosis_stage**: "Praxis (Iniciante)" for RS 2-3, "Theoria (Aprendiz)" for RS 4-6
-- **motif_capacity**: RS // 2 (floor division)
-
-### 5. Scar Condition (from Q2 — "What did you survive?")
-- **scar**: Dict with: name, trigger, condition_applied, heightened_access, resolution
-- Must have BOTH a downside (condition) AND an upside (heightened access)
-- The wound is also the teacher
-
-### 6. Passions (all 8 tracked, 0-10 scale)
-- **passions**: List of {{name, level}} for ALL 8 passions:
-  Gula, Luxuria, Avareza, Ira, Tristeza, Acedia, Vainagloria, Soberba
-- All start at 0. Elevate 2-3 of them to level 2-3 based on Q3 (childhood), Q17 (victory), Q18 (failure)
-- Map childhood to a relevant passion, victory to a positive passion, failure to a negative one
-
-### 7. Social Mechanics
-- **honra**: 0-5, based on Q1 (inheritance), Q2 (family), Q15 (law broken), Q16 (faction)
-- **ip_factions**: List of {{faction, ip}} — at least 1 IP with the faction from Q16
-- **faction_standing**: "Aliado", "Observado", or "Marcado" based on Q4
-- **grimoire_hook**: "Herdado", "Buscado", or "Negado" based on background
-
-### 8. NPCs & Relationships
-- **aliado**: Name and description of ally (from Q14)
-- **rival**: Name and description of rival/antagonist (from Q13)
-- **lei_quebrada**: Law broken (from Q15)
-
-### 9. Partituras (starting magical scores, from Q7/Q10/Q11)
-- **partituras**: List of {{name, mode, effect, rhythm}}
-- Formal training (Academia/Templo): 3 partituras
-- Fragmented/family: 2 partituras
-- No training: 1 intuitive partitura
-- Each should have a fitting name, mode (litúrgico, marcial, erudito, natural, popular), effect description, and rhythm
-
-### 10. Combat Motifs
-- **combat_motifs**: List of {{name, type, condition, effect}} — at least 1 starting motif
-- Types: Offensive, Defensive, Movement, Coordination
-- Should match the character's combat style based on their disciplines
-
-### 11. Weapons & Equipment
-- **weapons**: List of {{name, tempo, function, speed}}
-- Derived from family occupation, region, mentor
-- Tempo: "Ligeiro", "Médio", or "Pesado"
-- Function: "Controle", "Impacto", or "Alcance"
-- Speed: "1", "2", "3", or "4"
-
-### 12. Background
-- **motivacao**: Why they keep fighting (from Q19)
-- **escola**: School of Formation (from Q5/Q6)
-- **summary**: 2-3 paragraph narrative backstory weaving ALL 20 answers into a coherent life story
-
-## Rules
-- Derive EVERYTHING from the 20 answers — no random choices
-- All mechanics must be internally consistent
-- Use Portuguese names for attributes, passions, disciplines as defined in the SRD
-- The character must be fully playable — every mechanical field filled
-
-Return ONLY a JSON object. No markdown, no explanation."""
-
-    messages = [{"role": "user", "content": prompt}]
+    openai_msgs = [{"role": "system", "content": system_prompt}, {"role": "user", "content": prompt}]
 
     async def stream():
-        with client.messages.stream(
-            model="claude-sonnet-4-20250514",
+        s = client.chat.completions.create(
+            model=MODEL,
+            messages=openai_msgs,
             max_tokens=8192,
-            system=system_prompt,
-            messages=messages,
-        ) as s:
-            for text in s.text_stream:
-                yield f"data: {json.dumps({'text': text})}\n\n"
+            stream=True,
+        )
+        for chunk in s:
+            content = chunk.choices[0].delta.content
+            if content:
+                yield f"data: {json.dumps({'text': content})}\n\n"
         yield "data: [DONE]\n\n"
 
     return StreamingResponse(stream(), media_type="text/event-stream")
@@ -370,25 +320,26 @@ Create a complete Qamareth character sheet based on the following provenance ans
 Produce ONLY a JSON object with these keys:
 - name (string)
 - concept (string)
-- attributes (dict of 6 attribute names → die type string: "d4", "d6", "d8", "d10", or "d12")
+- attributes (dict of 6 attribute names → die type string)
 - disciplines (dict of discipline names → integer dice count 1-5)
-- scar_condition (dict with: name, trigger, condition_applied, heightened_access, resolution — all strings)
-- starting_position (dict with: faction, standing, grimoire_hook — all strings)
+- scar_condition (dict with: name, trigger, condition_applied, heightened_access, resolution)
+- starting_position (dict with: faction, standing, grimoire_hook)
 - drive (string)
 - summary (string, 2-3 paragraph narrative backstory)
 
 No markdown, no explanation — just the JSON."""
 
-    response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+    openai_msgs = [{"role": "system", "content": system_prompt}, {"role": "user", "content": prompt}]
+
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages=openai_msgs,
         max_tokens=8192,
-        system=system_prompt,
-        messages=[{"role": "user", "content": prompt}],
     )
 
-    content = response.content[0].text
+    content = response.choices[0].message.content
 
-    # Extract JSON from response (may have markdown code blocks)
+    # Extract JSON from response
     content = content.strip()
     if content.startswith("```"):
         content = content.split("\n", 1)[1]
@@ -400,5 +351,4 @@ No markdown, no explanation — just the JSON."""
         character = json.loads(content)
         return {"status": "ok", "character": character}
     except json.JSONDecodeError:
-        # Return raw text if parsing failed
         return {"status": "ok", "raw": content}
