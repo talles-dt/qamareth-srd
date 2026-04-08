@@ -1,179 +1,1136 @@
 {
   "_meta": {
-    "version": "2.0",
-    "last_updated": "2026-04-06T06:30:00Z",
-    "description": "Updated with Faction Compendium, Passion System, Economic Simulation, Liturgical Services, Sentient Weapons, and Master Document content"
+    "version": "3.0",
+    "last_updated": "2026-04-08T20:22:35.165503Z",
+    "description": "SRD v3.0 — Unified rules with 15 attributes, 19 disciplines, VP, Passions, beat economy, conditions over modifiers"
   },
   "rules": [
-    {"name": "Motif Point System", "subsystem": "magic", "description": "RS/2 = motif capacity. Base=1pt, Embellishing=2pt, Master=3pt"},
-    {"name": "Passion Progression", "subsystem": "spiritual", "description": "All passions start at 2 (0-10 scale). Stages: Natural(0-2), Struggle(3-5), Dominance(6-8), Enslavement(9-10)"},
-    {"name": "Evagrian Chain", "subsystem": "spiritual", "description": "Passions feed each other: Gluttony→Lust→Avarice→Anger→Sadness→Acedia→Vainglory→Pride"},
-    {"name": "Passion Healing", "subsystem": "spiritual", "description": "Confession(-2), Penance, cultivation of contrary virtue"},
-    {"name": "Theosis Scale", "subsystem": "spiritual", "description": "RS = growing union with divine: Praxis(purification)→Theoria(illumination)→Theosis(union)"},
-    {"name": "Divine Intervention", "subsystem": "magic", "description": "At RS 10, d100 table for divine intervention effects"},
-    {"name": "Forbidden Dissonance", "subsystem": "magic", "description": "Three root passions unleashed: Shrieking Note(Wrath), Broken Chord(Avarice), Cacophonic Scream(Pride)"},
-    {"name": "Corruption Track", "subsystem": "spiritual", "description": "Confession→Penance→Eucharist sacramental redemption path"},
-    {"name": "Supply & Demand", "subsystem": "economy", "description": "Regional price modifiers based on resource availability"},
-    {"name": "Trade Route Health", "subsystem": "economy", "description": "0-100 scale tracking trade route security and profitability"},
-    {"name": "Sentient Weapon Ego", "subsystem": "items", "description": "Ego = Int+Wis+Cha+bonuses. Contests when wielder acts against weapon purpose"},
-    {"name": "Weapon Bond Tiers", "subsystem": "items", "description": "5 tiers: Awakened(L1-4,+1), Recognized(L5-8,+2), Trusted(L9-12,+3), Bonded(L13-16,+3+epic), Unified(L17-20,artifact)"}
+    {
+      "name": "Motif Point System",
+      "subsystem": "magic",
+      "description": "RS/2 = motif capacity. Base=1pt, Embellishing=2pt, Master=3pt"
+    },
+    {
+      "name": "Passion Progression",
+      "subsystem": "spiritual",
+      "description": "All passions start at 2 (0-10 scale). Stages: Natural(0-2), Struggle(3-5), Dominance(6-8), Enslavement(9-10)"
+    },
+    {
+      "name": "Evagrian Chain",
+      "subsystem": "spiritual",
+      "description": "Passions feed each other: Gluttony→Lust→Avarice→Anger→Sadness→Acedia→Vainglory→Pride"
+    },
+    {
+      "name": "Passion Healing",
+      "subsystem": "spiritual",
+      "description": "Confession(-2), Penance, cultivation of contrary virtue"
+    },
+    {
+      "name": "Theosis Scale",
+      "subsystem": "spiritual",
+      "description": "RS = growing union with divine: Praxis(purification)→Theoria(illumination)→Theosis(union)"
+    },
+    {
+      "name": "Divine Intervention",
+      "subsystem": "magic",
+      "description": "At RS 10, d100 table for divine intervention effects"
+    },
+    {
+      "name": "Forbidden Dissonance",
+      "subsystem": "magic",
+      "description": "Three root passions unleashed: Shrieking Note(Wrath), Broken Chord(Avarice), Cacophonic Scream(Pride)"
+    },
+    {
+      "name": "Corruption Track",
+      "subsystem": "spiritual",
+      "description": "Confession→Penance→Eucharist sacramental redemption path"
+    },
+    {
+      "name": "Supply & Demand",
+      "subsystem": "economy",
+      "description": "Regional price modifiers based on resource availability"
+    },
+    {
+      "name": "Trade Route Health",
+      "subsystem": "economy",
+      "description": "0-100 scale tracking trade route security and profitability"
+    },
+    {
+      "name": "Sentient Weapon Ego",
+      "subsystem": "items",
+      "description": "Ego = Int+Wis+Cha+bonuses. Contests when wielder acts against weapon purpose"
+    },
+    {
+      "name": "Weapon Bond Tiers",
+      "subsystem": "items",
+      "description": "5 tiers: Awakened(L1-4,+1), Recognized(L5-8,+2), Trusted(L9-12,+3), Bonded(L13-16,+3+epic), Unified(L17-20,artifact)"
+    }
   ],
   "conditions": [
-    {"name": "Desritmado", "subsystem": "combat", "effect": "Next action costs +1 beat", "trigger": "Interrupted action"},
-    {"name": "Exposto", "subsystem": "combat", "effect": "Next hit is undefended", "trigger": "Lost reaction or flanked"},
-    {"name": "Atordoado", "subsystem": "combat", "effect": "Skip next compasso reaction", "trigger": "Decisive strike"},
-    {"name": "Sangrando", "subsystem": "combat", "effect": "Resilience thresholds lower by 1", "trigger": "Specific weapon condition"},
-    {"name": "Imobilizado", "subsystem": "combat", "effect": "Cannot change zones", "trigger": "Grapple, terrain, magic"},
-    {"name": "Dominado", "subsystem": "combat", "effect": "Opponent has beat 0 option against you", "trigger": "Opponent achieved Dominante"},
-    {"name": "Pesado", "subsystem": "combat", "effect": "Beat +1 on all movement", "trigger": "Armor cost or heavy blow"},
-    {"name": "Dissonância", "subsystem": "magic", "effect": "+2 beat cost on next execution", "trigger": "Interruption or failure"},
-    {"name": "Harmônico", "subsystem": "magic", "effect": "Next collective execution: +1 scale tier", "trigger": "Perfect execution or Transcendência"},
-    {"name": "Saturado", "subsystem": "magic", "effect": "Same-discipline executions cost +1 beat until cleared", "trigger": "Rapid successive executions"},
-    {"name": "Ressonante", "subsystem": "magic", "effect": "All executions in scene have raised threshold; Transcendências doubled", "trigger": "Scene-wide collective effect"},
-    {"name": "Silenciado", "subsystem": "magic+social", "effect": "Cannot use Voice/Instrument disciplines; cannot speak in social scene", "trigger": "Medium destroyed or suppressed; social Broken state"},
-    {"name": "Gula", "subsystem": "spiritual", "effect": "Hoarding, addiction, refusing to share", "trigger": "Passion of Gluttony raised"},
-    {"name": "Luxúria", "subsystem": "spiritual", "effect": "Objectifying persons, manipulative seduction", "trigger": "Passion of Lust raised"},
-    {"name": "Avareza", "subsystem": "spiritual", "effect": "Love of money, hoarding wealth", "trigger": "Passion of Avarice raised"},
-    {"name": "Ira", "subsystem": "spiritual", "effect": "Wrath, revenge, refusing to forgive", "trigger": "Passion of Anger raised"},
-    {"name": "Tristeza", "subsystem": "spiritual", "effect": "Despair, hopelessness, 'the empire can never fall'", "trigger": "Passion of Sadness raised"},
-    {"name": "Acídia", "subsystem": "spiritual", "effect": "Spiritual laziness, skipping prayer, 'noonday demon'", "trigger": "Passion of Acedia raised"},
-    {"name": "Vaineglória", "subsystem": "spiritual", "effect": "Bragging, performing virtue for applause", "trigger": "Passion of Vainglory raised"},
-    {"name": "Soberba", "subsystem": "spiritual", "effect": "Self-reliance, 'I don't need God', God-Emperor's sin", "trigger": "Passion of Pride raised"},
-    {"name": "Motif Overflow", "subsystem": "magic", "effect": "Exceeding motif capacity causes dissonance", "trigger": "Too many motifs in single execution"},
-    {"name": "Kenotic State", "subsystem": "spiritual", "effect": "True power through sacrificial love; victory through suffering", "trigger": "Achieved through kenosis practice"},
-    {"name": "Nepsis Focus", "subsystem": "spiritual", "effect": "Watchfulness grants advantage against logismoi", "trigger": "Prayer of the Heart practice (5 levels)"}
+    {
+      "name": "Desritmado",
+      "subsystem": "combat",
+      "effect": "Next action costs +1 beat",
+      "trigger": "Interrupted action"
+    },
+    {
+      "name": "Exposto",
+      "subsystem": "combat",
+      "effect": "Next hit is undefended",
+      "trigger": "Lost reaction or flanked"
+    },
+    {
+      "name": "Atordoado",
+      "subsystem": "combat",
+      "effect": "Skip next compasso reaction",
+      "trigger": "Decisive strike"
+    },
+    {
+      "name": "Sangrando",
+      "subsystem": "combat",
+      "effect": "Resilience thresholds lower by 1",
+      "trigger": "Specific weapon condition"
+    },
+    {
+      "name": "Imobilizado",
+      "subsystem": "combat",
+      "effect": "Cannot change zones",
+      "trigger": "Grapple, terrain, magic"
+    },
+    {
+      "name": "Dominado",
+      "subsystem": "combat",
+      "effect": "Opponent has beat 0 option against you",
+      "trigger": "Opponent achieved Dominante"
+    },
+    {
+      "name": "Pesado",
+      "subsystem": "combat",
+      "effect": "Beat +1 on all movement",
+      "trigger": "Armor cost or heavy blow"
+    },
+    {
+      "name": "Dissonância",
+      "subsystem": "magic",
+      "effect": "+2 beat cost on next execution",
+      "trigger": "Interruption or failure"
+    },
+    {
+      "name": "Harmônico",
+      "subsystem": "magic",
+      "effect": "Next collective execution: +1 scale tier",
+      "trigger": "Perfect execution or Transcendência"
+    },
+    {
+      "name": "Saturado",
+      "subsystem": "magic",
+      "effect": "Same-discipline executions cost +1 beat until cleared",
+      "trigger": "Rapid successive executions"
+    },
+    {
+      "name": "Ressonante",
+      "subsystem": "magic",
+      "effect": "All executions in scene have raised threshold; Transcendências doubled",
+      "trigger": "Scene-wide collective effect"
+    },
+    {
+      "name": "Silenciado",
+      "subsystem": "magic+social",
+      "effect": "Cannot use Voice/Instrument disciplines; cannot speak in social scene",
+      "trigger": "Medium destroyed or suppressed; social Broken state"
+    },
+    {
+      "name": "Gula",
+      "subsystem": "spiritual",
+      "effect": "Hoarding, addiction, refusing to share",
+      "trigger": "Passion of Gluttony raised"
+    },
+    {
+      "name": "Luxúria",
+      "subsystem": "spiritual",
+      "effect": "Objectifying persons, manipulative seduction",
+      "trigger": "Passion of Lust raised"
+    },
+    {
+      "name": "Avareza",
+      "subsystem": "spiritual",
+      "effect": "Love of money, hoarding wealth",
+      "trigger": "Passion of Avarice raised"
+    },
+    {
+      "name": "Ira",
+      "subsystem": "spiritual",
+      "effect": "Wrath, revenge, refusing to forgive",
+      "trigger": "Passion of Anger raised"
+    },
+    {
+      "name": "Tristeza",
+      "subsystem": "spiritual",
+      "effect": "Despair, hopelessness, 'the empire can never fall'",
+      "trigger": "Passion of Sadness raised"
+    },
+    {
+      "name": "Acídia",
+      "subsystem": "spiritual",
+      "effect": "Spiritual laziness, skipping prayer, 'noonday demon'",
+      "trigger": "Passion of Acedia raised"
+    },
+    {
+      "name": "Vaineglória",
+      "subsystem": "spiritual",
+      "effect": "Bragging, performing virtue for applause",
+      "trigger": "Passion of Vainglory raised"
+    },
+    {
+      "name": "Soberba",
+      "subsystem": "spiritual",
+      "effect": "Self-reliance, 'I don't need God', God-Emperor's sin",
+      "trigger": "Passion of Pride raised"
+    },
+    {
+      "name": "Motif Overflow",
+      "subsystem": "magic",
+      "effect": "Exceeding motif capacity causes dissonance",
+      "trigger": "Too many motifs in single execution"
+    },
+    {
+      "name": "Kenotic State",
+      "subsystem": "spiritual",
+      "effect": "True power through sacrificial love; victory through suffering",
+      "trigger": "Achieved through kenosis practice"
+    },
+    {
+      "name": "Nepsis Focus",
+      "subsystem": "spiritual",
+      "effect": "Watchfulness grants advantage against logismoi",
+      "trigger": "Prayer of the Heart practice (5 levels)"
+    }
   ],
   "disciplines": [
-    {"name": "Lâmina", "category": "combat"},
-    {"name": "Impacto", "category": "combat"},
-    {"name": "Alcance", "category": "combat"},
-    {"name": "Defesa", "category": "combat"},
-    {"name": "Movimento", "category": "combat"},
-    {"name": "Voz", "category": "magic"},
-    {"name": "Instrumento", "category": "magic"},
-    {"name": "Escrita", "category": "magic"},
-    {"name": "Gesto", "category": "magic"},
-    {"name": "Coletivo", "category": "magic"},
-    {"name": "Retórica", "category": "social"},
-    {"name": "Negociação", "category": "social"},
-    {"name": "Reputação", "category": "social"},
-    {"name": "Intimidação", "category": "social"},
-    {"name": "Leitura", "category": "social"},
-    {"name": "Grimório", "category": "knowledge"},
-    {"name": "Tática", "category": "knowledge"},
-    {"name": "História Harmônica", "category": "knowledge"},
-    {"name": "Magi-tech", "category": "knowledge"}
+    {
+      "name": "Lâmina",
+      "category": "combat"
+    },
+    {
+      "name": "Impacto",
+      "category": "combat"
+    },
+    {
+      "name": "Alcance",
+      "category": "combat"
+    },
+    {
+      "name": "Defesa",
+      "category": "combat"
+    },
+    {
+      "name": "Movimento",
+      "category": "combat"
+    },
+    {
+      "name": "Voz",
+      "category": "magic"
+    },
+    {
+      "name": "Instrumento",
+      "category": "magic"
+    },
+    {
+      "name": "Escrita",
+      "category": "magic"
+    },
+    {
+      "name": "Gesto",
+      "category": "magic"
+    },
+    {
+      "name": "Coletivo",
+      "category": "magic"
+    },
+    {
+      "name": "Retórica",
+      "category": "social"
+    },
+    {
+      "name": "Negociação",
+      "category": "social"
+    },
+    {
+      "name": "Reputação",
+      "category": "social"
+    },
+    {
+      "name": "Intimidação",
+      "category": "social"
+    },
+    {
+      "name": "Leitura",
+      "category": "social"
+    },
+    {
+      "name": "Grimório",
+      "category": "knowledge"
+    },
+    {
+      "name": "Tática",
+      "category": "knowledge"
+    },
+    {
+      "name": "História Harmônica",
+      "category": "knowledge"
+    },
+    {
+      "name": "Magi-tech",
+      "category": "knowledge"
+    }
   ],
   "attributes": [
-    {"name": "Força", "english": "Brawn"},
-    {"name": "Destreza", "english": "Finesse"},
-    {"name": "Ressonância", "english": "Resonance"},
-    {"name": "Compostura", "english": "Composure"},
-    {"name": "Agudeza", "english": "Acuity"},
-    {"name": "Firmeza", "english": "Grit"}
+    {
+      "name": "Força",
+      "english": "Brawn"
+    },
+    {
+      "name": "Destreza",
+      "english": "Finesse"
+    },
+    {
+      "name": "Ressonância",
+      "english": "Resonance"
+    },
+    {
+      "name": "Compostura",
+      "english": "Composure"
+    },
+    {
+      "name": "Agudeza",
+      "english": "Acuity"
+    },
+    {
+      "name": "Firmeza",
+      "english": "Grit"
+    }
   ],
   "resilience_states": [
-    {"name": "Claro", "english": "Clear"},
-    {"name": "Pressionado", "english": "Pressured"},
-    {"name": "Comprometido", "english": "Compromised"},
-    {"name": "Quebrado", "english": "Broken"}
+    {
+      "name": "Claro",
+      "english": "Clear"
+    },
+    {
+      "name": "Pressionado",
+      "english": "Pressured"
+    },
+    {
+      "name": "Comprometido",
+      "english": "Compromised"
+    },
+    {
+      "name": "Quebrado",
+      "english": "Broken"
+    }
   ],
   "lore_entities": [
-    {"name": "Solandris", "type": "God-Emperor", "description": "Scholar who discovered divine power comes from belief, then hijacked it. Has not been seen in decades.", "status": "missing/dead/ascended"},
-    {"name": "Malakar", "type": "Ascendant", "description": "Leads internal church/theology of Church of Eternal Light", "status": "active"},
-    {"name": "Valerius the Pure", "type": "Ascendant", "description": "Leads the Inquisition, ~8,000 active Inquisitors", "status": "active"},
-    {"name": "Elvara", "type": "Ascendant", "description": "External propaganda for Church of Eternal Light, competes with Malakar", "status": "active"},
-    {"name": "Zephyrion", "type": "Ascendant", "description": "Spymaster of the empire, Eyes of the Emperor", "status": "active"},
-    {"name": "Draeven", "type": "Ascendant", "description": "Treasury, controls imperial finances", "status": "active"},
-    {"name": "Selenara the Unyielding", "type": "Ascendant", "description": "Council member", "status": "active"},
-    {"name": "Meridion the Unshaken", "type": "Ascendant", "description": "Council member", "status": "active"},
-    {"name": "Cassian Veldar", "type": "NPC", "description": "High Merchant of Olynn, leader of Merchant Lords", "faction": "Merchant Lords of Olynn"},
-    {"name": "Elowen Greycrop", "type": "NPC", "description": "Code name 'Harvest', secretly Silver Dawn priestess, leads ~2,000 fighters", "faction": "The Silent Scythe"},
-    {"name": "Archdruid Silmara Thornwhisper", "type": "NPC", "description": "300+ year old leader of Circle of the Verdant Moon", "faction": "Circle of the Verdant Moon"},
-    {"name": "Commander Thalorian Oakblade", "type": "NPC", "description": "Eco-militant leader in Deep Woods", "faction": "Sylvan Vanguard"},
-    {"name": "Queen Lirael the Moonlit", "type": "NPC", "description": "Three beings in one form, leads Fey Court", "faction": "Fey Court of Whispers"},
-    {"name": "Chieftain Razul Sandborn", "type": "NPC", "description": "Tribal confederation leader", "faction": "Sunfire Nomads"},
-    {"name": "Jaleel the Undying", "type": "NPC", "description": "400+ year old Grandmaster Aquamancer with demon deal", "faction": "Oasis Keepers"},
-    {"name": "Captain Marlowe 'Gills' Brackwater", "type": "NPC", "description": "Smuggler alliance leader", "faction": "Deepend Smugglers' Alliance"},
-    {"name": "Matriarch Ygraine the Peat-Born", "type": "NPC", "description": "Three sisters sharing consciousness, serve elder god beneath swamp", "faction": "Bog Witches Coven"},
-    {"name": "High Priestess Lyria Starsong", "type": "NPC", "description": "Code name 'Dawn', leads Harmonium underground", "faction": "Silver Dawn"},
-    {"name": "Commander Kael Ashborn", "type": "NPC", "description": "Former Ascendant's guard, leads revolutionary army", "faction": "Ember Vanguard"},
-    {"name": "The Whisper", "type": "NPC", "description": "Possibly Harmonium god, possibly AI, possibly three former Ascendants", "faction": "Silent Accord"},
-    {"name": "Primarch Thorian Wildroot", "type": "NPC", "description": "Environmental guerrilla leader", "faction": "Verdant Shield"},
-    {"name": "Lady Aerin Stormridge", "type": "Historical Figure", "description": "Hero of the War of Sundering", "era": "War of Sundering"},
-    {"name": "Lord Cedric Ironclad", "type": "Historical Figure", "description": "Hero of the War of Sundering", "era": "War of Sundering"},
-    {"name": "High Priestess Eliara Moonshadow", "type": "Historical Figure", "description": "Hero of the War of Sundering", "era": "War of Sundering"},
-    {"name": "Archmage Thalivar", "type": "Historical Figure", "description": "Hero of the War of Sundering", "era": "War of Sundering"},
-    {"name": "Erenaios the Beacon", "type": "Saint", "description": "Saint of the Harmonium Uprising", "era": "Harmonium Uprising"},
-    {"name": "Theodora of the Everflow", "type": "Saint", "description": "Saint of the Harmonium Uprising", "era": "Harmonium Uprising"},
-    {"name": "Ilyas Stoneheart", "type": "Saint", "description": "Saint of the Harmonium Uprising", "era": "Harmonium Uprising"},
-    {"name": "Frostbite", "type": "Sentient Weapon", "description": "Lawful Neutral longsword, protects frozen wastes", "tier": "varies"},
-    {"name": "Ember's Whisper", "type": "Sentient Weapon", "description": "Chaotic Good scimitar, overthrows tyrants", "tier": "varies"},
-    {"name": "Voidshard", "type": "Sentient Weapon", "description": "Chaotic Evil greatsword, consumes souls", "tier": "varies"},
-    {"name": "Council of Ascendants", "type": "Governing Body", "description": "12 rulers under God-Emperor Solandris", "faction": "Imperial"},
-    {"name": "The Inquisition", "type": "Organization", "description": "Thought police, ~8,000 active Inquisitors", "faction": "Imperial"},
-    {"name": "Eyes of the Emperor", "type": "Organization", "description": "Imperial spy network", "faction": "Imperial"},
-    {"name": "Dawnspire", "type": "Location", "description": "The Radiant Citadel", "region": "Imperial"},
-    {"name": "Harmonium Uprising", "type": "Historical Event", "description": "Rebellion led by saints against imperial rule"},
-    {"name": "Arcane Uprising", "type": "Historical Event", "description": "Rebellion by arcane practitioners"},
-    {"name": "Year 301 IE", "type": "Prophecy", "description": "When three centuries pass, the False Crown shall shatter"}
+    {
+      "name": "Solandris",
+      "type": "God-Emperor",
+      "description": "Scholar who discovered divine power comes from belief, then hijacked it. Has not been seen in decades.",
+      "status": "missing/dead/ascended"
+    },
+    {
+      "name": "Malakar",
+      "type": "Ascendant",
+      "description": "Leads internal church/theology of Church of Eternal Light",
+      "status": "active"
+    },
+    {
+      "name": "Valerius the Pure",
+      "type": "Ascendant",
+      "description": "Leads the Inquisition, ~8,000 active Inquisitors",
+      "status": "active"
+    },
+    {
+      "name": "Elvara",
+      "type": "Ascendant",
+      "description": "External propaganda for Church of Eternal Light, competes with Malakar",
+      "status": "active"
+    },
+    {
+      "name": "Zephyrion",
+      "type": "Ascendant",
+      "description": "Spymaster of the empire, Eyes of the Emperor",
+      "status": "active"
+    },
+    {
+      "name": "Draeven",
+      "type": "Ascendant",
+      "description": "Treasury, controls imperial finances",
+      "status": "active"
+    },
+    {
+      "name": "Selenara the Unyielding",
+      "type": "Ascendant",
+      "description": "Council member",
+      "status": "active"
+    },
+    {
+      "name": "Meridion the Unshaken",
+      "type": "Ascendant",
+      "description": "Council member",
+      "status": "active"
+    },
+    {
+      "name": "Cassian Veldar",
+      "type": "NPC",
+      "description": "High Merchant of Olynn, leader of Merchant Lords",
+      "faction": "Merchant Lords of Olynn"
+    },
+    {
+      "name": "Elowen Greycrop",
+      "type": "NPC",
+      "description": "Code name 'Harvest', secretly Silver Dawn priestess, leads ~2,000 fighters",
+      "faction": "The Silent Scythe"
+    },
+    {
+      "name": "Archdruid Silmara Thornwhisper",
+      "type": "NPC",
+      "description": "300+ year old leader of Circle of the Verdant Moon",
+      "faction": "Circle of the Verdant Moon"
+    },
+    {
+      "name": "Commander Thalorian Oakblade",
+      "type": "NPC",
+      "description": "Eco-militant leader in Deep Woods",
+      "faction": "Sylvan Vanguard"
+    },
+    {
+      "name": "Queen Lirael the Moonlit",
+      "type": "NPC",
+      "description": "Three beings in one form, leads Fey Court",
+      "faction": "Fey Court of Whispers"
+    },
+    {
+      "name": "Chieftain Razul Sandborn",
+      "type": "NPC",
+      "description": "Tribal confederation leader",
+      "faction": "Sunfire Nomads"
+    },
+    {
+      "name": "Jaleel the Undying",
+      "type": "NPC",
+      "description": "400+ year old Grandmaster Aquamancer with demon deal",
+      "faction": "Oasis Keepers"
+    },
+    {
+      "name": "Captain Marlowe 'Gills' Brackwater",
+      "type": "NPC",
+      "description": "Smuggler alliance leader",
+      "faction": "Deepend Smugglers' Alliance"
+    },
+    {
+      "name": "Matriarch Ygraine the Peat-Born",
+      "type": "NPC",
+      "description": "Three sisters sharing consciousness, serve elder god beneath swamp",
+      "faction": "Bog Witches Coven"
+    },
+    {
+      "name": "High Priestess Lyria Starsong",
+      "type": "NPC",
+      "description": "Code name 'Dawn', leads Harmonium underground",
+      "faction": "Silver Dawn"
+    },
+    {
+      "name": "Commander Kael Ashborn",
+      "type": "NPC",
+      "description": "Former Ascendant's guard, leads revolutionary army",
+      "faction": "Ember Vanguard"
+    },
+    {
+      "name": "The Whisper",
+      "type": "NPC",
+      "description": "Possibly Harmonium god, possibly AI, possibly three former Ascendants",
+      "faction": "Silent Accord"
+    },
+    {
+      "name": "Primarch Thorian Wildroot",
+      "type": "NPC",
+      "description": "Environmental guerrilla leader",
+      "faction": "Verdant Shield"
+    },
+    {
+      "name": "Lady Aerin Stormridge",
+      "type": "Historical Figure",
+      "description": "Hero of the War of Sundering",
+      "era": "War of Sundering"
+    },
+    {
+      "name": "Lord Cedric Ironclad",
+      "type": "Historical Figure",
+      "description": "Hero of the War of Sundering",
+      "era": "War of Sundering"
+    },
+    {
+      "name": "High Priestess Eliara Moonshadow",
+      "type": "Historical Figure",
+      "description": "Hero of the War of Sundering",
+      "era": "War of Sundering"
+    },
+    {
+      "name": "Archmage Thalivar",
+      "type": "Historical Figure",
+      "description": "Hero of the War of Sundering",
+      "era": "War of Sundering"
+    },
+    {
+      "name": "Erenaios the Beacon",
+      "type": "Saint",
+      "description": "Saint of the Harmonium Uprising",
+      "era": "Harmonium Uprising"
+    },
+    {
+      "name": "Theodora of the Everflow",
+      "type": "Saint",
+      "description": "Saint of the Harmonium Uprising",
+      "era": "Harmonium Uprising"
+    },
+    {
+      "name": "Ilyas Stoneheart",
+      "type": "Saint",
+      "description": "Saint of the Harmonium Uprising",
+      "era": "Harmonium Uprising"
+    },
+    {
+      "name": "Frostbite",
+      "type": "Sentient Weapon",
+      "description": "Lawful Neutral longsword, protects frozen wastes",
+      "tier": "varies"
+    },
+    {
+      "name": "Ember's Whisper",
+      "type": "Sentient Weapon",
+      "description": "Chaotic Good scimitar, overthrows tyrants",
+      "tier": "varies"
+    },
+    {
+      "name": "Voidshard",
+      "type": "Sentient Weapon",
+      "description": "Chaotic Evil greatsword, consumes souls",
+      "tier": "varies"
+    },
+    {
+      "name": "Council of Ascendants",
+      "type": "Governing Body",
+      "description": "12 rulers under God-Emperor Solandris",
+      "faction": "Imperial"
+    },
+    {
+      "name": "The Inquisition",
+      "type": "Organization",
+      "description": "Thought police, ~8,000 active Inquisitors",
+      "faction": "Imperial"
+    },
+    {
+      "name": "Eyes of the Emperor",
+      "type": "Organization",
+      "description": "Imperial spy network",
+      "faction": "Imperial"
+    },
+    {
+      "name": "Dawnspire",
+      "type": "Location",
+      "description": "The Radiant Citadel",
+      "region": "Imperial"
+    },
+    {
+      "name": "Harmonium Uprising",
+      "type": "Historical Event",
+      "description": "Rebellion led by saints against imperial rule"
+    },
+    {
+      "name": "Arcane Uprising",
+      "type": "Historical Event",
+      "description": "Rebellion by arcane practitioners"
+    },
+    {
+      "name": "Year 301 IE",
+      "type": "Prophecy",
+      "description": "When three centuries pass, the False Crown shall shatter"
+    }
   ],
-  "grimoires": [],
-  "creatures": [],
+  "grimoires": [
+    {
+      "name": "Cantico do Sol",
+      "type": "Vivo",
+      "tradition": "Harmonia Solar",
+      "access_condition": "RS 5+, Historia Harmonica 3+",
+      "content_summary": "Complete record of solar harmonics, granting access to advanced Voz and Instrumento executions",
+      "mechanical_rules": "Grants full discipline access to Voz and Instrumento; Conductor can invoke Harmonico condition on collective executions"
+    },
+    {
+      "name": "Fragmentos de Luna",
+      "type": "Fragmento",
+      "tradition": "Lunaria",
+      "access_condition": "RS 3+, Grimorio 2+",
+      "content_summary": "Partial record of lunar harmonics, granting access to standard Escrita and Gesto executions",
+      "mechanical_rules": "Grants partial discipline access to Escrita and Gesto; failed executions risk Dissonancia Forcada"
+    },
+    {
+      "name": "Tratado de Magia Antiga",
+      "type": "Morto",
+      "tradition": "Magia Arcana",
+      "access_condition": "RS 4+, Historia Harmonica 4+",
+      "content_summary": "Complete text of ancient magic, but without living tradition context",
+      "mechanical_rules": "Acts as research object; reconstruction requires extended Retiro and Historia Harmonica discipline"
+    },
+    {
+      "name": "Partituras Imperiais",
+      "type": "Forjado",
+      "tradition": "Imperial",
+      "access_condition": "RS 2+, Grimorio 1+",
+      "content_summary": "Sanitized reissue of captured grimoires, granting access to surface-level Coletivo executions",
+      "mechanical_rules": "Grants access to surface-level Coletivo executions; cannot participate in collective amplification above Ensemble tier"
+    },
+    {
+      "name": "Grimorio Corrompido",
+      "type": "Corrompido",
+      "tradition": "Tenebrous",
+      "access_condition": "RS 6+, Grimorio 5+",
+      "content_summary": "Living grimoire with corrupted harmonic sequences, granting access to advanced but unstable executions",
+      "mechanical_rules": "Grants access to advanced executions, but with risk of Harmonic Interference conditions; corruption can be reversed through dedicated reconstruction"
+    }
+  ],
+  "creatures": [
+    {
+      "name": "Echoflux",
+      "type": "Ressonante",
+      "region": "Meadowlands",
+      "attributes": {
+        "Força": 2,
+        "Destreza": 3,
+        "Ressonância": 4,
+        "Compostura": 2,
+        "Agudeza": 1,
+        "Firmeza": 1
+      },
+      "disciplines": {
+        "Voz": 2,
+        "Instrumento": 1,
+        "Escrita": 0,
+        "Gesto": 0,
+        "Coletivo": 3
+      },
+      "beat_economy_disruption": "Acceleration",
+      "condition_on_hit": "Desritmado",
+      "vp_capacity": 5,
+      "ecology": "Echoflux are found in areas where the harmonic resonance is strongest, often near ancient ruins or places of great historical significance.",
+      "narrative_hook": "The Echoflux are guardians of the meadowlands' harmony, and will fiercely defend against those who seek to disrupt the balance."
+    },
+    {
+      "name": "Shadowstalker",
+      "type": "Selvagem",
+      "region": "Deep Woods",
+      "attributes": {
+        "Força": 3,
+        "Destreza": 4,
+        "Ressonância": 1,
+        "Compostura": 2,
+        "Agudeza": 3,
+        "Firmeza": 2
+      },
+      "disciplines": {
+        "Lâmina": 3,
+        "Impacto": 2,
+        "Alcance": 1,
+        "Defesa": 2,
+        "Movimento": 3
+      },
+      "beat_economy_disruption": "Deceleration",
+      "condition_on_hit": "Exposto",
+      "vp_capacity": 6,
+      "ecology": "Shadowstalkers are apex predators in the deep woods, using their cunning and stealth to hunt their prey.",
+      "narrative_hook": "The Shadowstalkers are rumored to be able to communicate with the ancient trees of the deep woods, and will stop at nothing to protect their territory."
+    },
+    {
+      "name": "Duneshaper",
+      "type": "Construto",
+      "region": "Desert",
+      "attributes": {
+        "Força": 4,
+        "Destreza": 2,
+        "Ressonância": 3,
+        "Compostura": 3,
+        "Agudeza": 1,
+        "Firmeza": 3
+      },
+      "disciplines": {
+        "Grimório": 2,
+        "Tática": 1,
+        "História Harmônica": 0,
+        "Magi-tech": 3
+      },
+      "beat_economy_disruption": "Beat Erasure",
+      "condition_on_hit": "Atordoado",
+      "vp_capacity": 7,
+      "ecology": "Duneshapers are massive constructs created by the ancient civilizations of the desert, used to shape and control the dunes.",
+      "narrative_hook": "The Duneshapers hold the secrets of the ancient desert civilizations, and those who can unlock their knowledge will gain immense power."
+    },
+    {
+      "name": "Tideweaver",
+      "type": "Ressonante",
+      "region": "Coastal",
+      "attributes": {
+        "Força": 2,
+        "Destreza": 3,
+        "Ressonância": 4,
+        "Compostura": 2,
+        "Agudeza": 1,
+        "Firmeza": 1
+      },
+      "disciplines": {
+        "Voz": 2,
+        "Instrumento": 1,
+        "Escrita": 0,
+        "Gesto": 0,
+        "Coletivo": 3
+      },
+      "beat_economy_disruption": "Compasso Split",
+      "condition_on_hit": "Sangrando",
+      "vp_capacity": 5,
+      "ecology": "Tideweavers are guardians of the coastal harmony, using their powers to control the tides and protect the shore.",
+      "narrative_hook": "The Tideweavers are said to be able to communicate with the sea creatures, and will summon great storms to defend their territory."
+    },
+    {
+      "name": "Bogwraith",
+      "type": "Espectral",
+      "region": "Marshes",
+      "attributes": {
+        "Força": 1,
+        "Destreza": 2,
+        "Ressonância": 3,
+        "Compostura": 1,
+        "Agudeza": 2,
+        "Firmeza": 1
+      },
+      "disciplines": {
+        "Retórica": 2,
+        "Negociação": 1,
+        "Reputação": 0,
+        "Intimidação": 0,
+        "Leitura": 2
+      },
+      "beat_economy_disruption": "Compasso Collapse",
+      "condition_on_hit": "Imobilizado",
+      "vp_capacity": 4,
+      "ecology": "Bogwraiths are the echoes of those who died in the marshes, trapped between worlds and seeking peace.",
+      "narrative_hook": "The Bogwraiths will try to communicate with the living, seeking to resolve their unfinished business and find peace."
+    },
+    {
+      "name": "Clockworker",
+      "type": "Construto",
+      "region": "Aurelia Prime",
+      "attributes": {
+        "Força": 3,
+        "Destreza": 2,
+        "Ressonância": 1,
+        "Compostura": 2,
+        "Agudeza": 1,
+        "Firmeza": 2
+      },
+      "disciplines": {
+        "Grimório": 1,
+        "Tática": 0,
+        "História Harmônica": 0,
+        "Magi-tech": 2
+      },
+      "beat_economy_disruption": "Harmonic Interference",
+      "condition_on_hit": "Dominado",
+      "vp_capacity": 6,
+      "ecology": "Clockworkers are the creations of the Imperial engineers, used to maintain order and control in the city.",
+      "narrative_hook": "The Clockworkers are rumored to have a hidden purpose, one that could change the course of the Empire's history."
+    }
+  ],
   "items": [
-    {"name": "Imperial Sovereigns", "category": "currency", "description": "Primary currency of the empire"},
-    {"name": "Copper Marks", "category": "currency", "description": "Low-denomination currency"},
-    {"name": "Silver Talents", "category": "currency", "description": "Mid-denomination currency"},
-    {"name": "Platinum Crowns", "category": "currency", "description": "High-denomination currency"}
+    {
+      "name": "Luminous Rapier",
+      "type": "weapon",
+      "tempo": "Ligeiro",
+      "function": "Controle",
+      "speed": 1,
+      "armor_interaction": "cuts through light armor",
+      "condition_on_hit": "Desritmado"
+    },
+    {
+      "name": "Aurora Axe",
+      "type": "weapon",
+      "tempo": "Medio",
+      "function": "Impacto",
+      "speed": 2,
+      "armor_interaction": "shatters medium armor",
+      "condition_on_hit": "Atordoado"
+    },
+    {
+      "name": "Stellar Bow",
+      "type": "weapon",
+      "tempo": "Ligeiro",
+      "function": "Alcance",
+      "speed": 1,
+      "armor_interaction": "pierces light armor at range",
+      "condition_on_hit": "Sangrando"
+    },
+    {
+      "name": "Dawnbreaker Sword",
+      "type": "weapon",
+      "tempo": "Medio",
+      "function": "Impacto",
+      "speed": 2,
+      "armor_interaction": "cuts through medium armor",
+      "condition_on_hit": "Exposto"
+    },
+    {
+      "name": "Moonwhisper Dagger",
+      "type": "weapon",
+      "tempo": "Ligeiro",
+      "function": "Controle",
+      "speed": 1,
+      "armor_interaction": "ineffective vs. heavy armor",
+      "condition_on_hit": "Desritmado"
+    },
+    {
+      "name": "Sunblade Staff",
+      "type": "weapon",
+      "tempo": "Medio",
+      "function": "Controle",
+      "speed": 2,
+      "armor_interaction": "deflects light attacks",
+      "condition_on_hit": "Imobilizado"
+    },
+    {
+      "name": "Nova Spear",
+      "type": "weapon",
+      "tempo": "Medio",
+      "function": "Alcance",
+      "speed": 2,
+      "armor_interaction": "keeps armored foes at distance",
+      "condition_on_hit": "Pesado"
+    },
+    {
+      "name": "Galactic Hammer",
+      "type": "weapon",
+      "tempo": "Pesado",
+      "function": "Impacto",
+      "speed": 3,
+      "armor_interaction": "cracks heavy armor",
+      "condition_on_hit": "Atordoado"
+    },
+    {
+      "name": "Mythic Plate",
+      "type": "armor",
+      "converts": "reduces impact intensity",
+      "coverage": "full body",
+      "drawback": "beat +2 on all actions"
+    },
+    {
+      "name": "Leather Armor",
+      "type": "armor",
+      "converts": "absorbs light conditions",
+      "coverage": "torso and arms",
+      "drawback": "no drawback"
+    },
+    {
+      "name": "Chainmail",
+      "type": "armor",
+      "converts": "absorbs medium conditions",
+      "coverage": "full body",
+      "drawback": "beat +1 on all actions"
+    },
+    {
+      "name": "Starlight Amulet",
+      "type": "magical",
+      "activation_condition": "Motivo de Origem alignment",
+      "effect": "grants access to Harmônico condition",
+      "cost": "RS cost: 1"
+    },
+    {
+      "name": "Moonstone Ring",
+      "type": "magical",
+      "activation_condition": "specific discipline usage",
+      "effect": "grants +1 scale tier on collective executions",
+      "cost": "beat cost: +1"
+    },
+    {
+      "name": "Aurora Crystal",
+      "type": "magical",
+      "activation_condition": "narrative milestone",
+      "effect": "resolves Dissonância condition",
+      "cost": "narrative sacrifice"
+    }
   ],
   "factions": [
-    {"name": "Council of Ascendants", "status": "imperial", "region": "Imperial", "description": "12 rulers under God-Emperor Solandris"},
-    {"name": "The Inquisition", "status": "imperial", "region": "Imperial", "description": "Thought police led by Valerius the Pure, ~8,000 Inquisitors"},
-    {"name": "Church of Eternal Light", "status": "imperial", "region": "Imperial", "description": "State religion replacing Harmonium faith, led by Malakar (internal) and Elvara (external)"},
-    {"name": "Eyes of the Emperor", "status": "imperial", "region": "Multi-Regional", "description": "Imperial spy network led by Zephyrion"},
-    {"name": "Farmers' Collective", "status": "rebel", "region": "Meadowlands", "description": "Grassroots labor org, ~50,000 members, Council of 7 Elders"},
-    {"name": "Merchant Lords of Olynn", "status": "neutral", "region": "Meadowlands", "description": "Economic oligarchy led by Cassian Veldar"},
-    {"name": "The Silent Scythe", "status": "rebel", "region": "Meadowlands", "description": "Rebel cell led by Elowen Greycrop (Harvest), ~2,000 fighters"},
-    {"name": "Circle of the Verdant Moon", "status": "neutral", "region": "Deep Woods", "description": "Druidic order led by Archdruid Silmara Thornwhisper (300+ years)"},
-    {"name": "Sylvan Vanguard", "status": "rebel", "region": "Deep Woods", "description": "Eco-militants led by Commander Thalorian Oakblade"},
-    {"name": "Fey Court of Whispers", "status": "supernatural", "region": "Deep Woods", "description": "Supernatural court led by Queen Lirael the Moonlit (three beings in one)"},
-    {"name": "Sunfire Nomads", "status": "neutral", "region": "Desert", "description": "Tribal confederation led by Chieftain Razul Sandborn"},
-    {"name": "Oasis Keepers", "status": "neutral", "region": "Desert", "description": "Water monopoly led by Jaleel the Undying (400+ years, demon deal)"},
-    {"name": "Deepend Smugglers' Alliance", "status": "criminal", "region": "Marshlands", "description": "Black market syndicate led by Captain Marlowe 'Gills' Brackwater"},
-    {"name": "Bog Witches Coven", "status": "supernatural", "region": "Marshlands", "description": "13 witches led by Matriarch Ygraine (three sisters, serve elder god)"},
-    {"name": "Silver Dawn", "status": "rebel", "region": "Aurelia Prime", "description": "Harmonium underground led by High Priestess Lyria Starsong (Dawn)"},
-    {"name": "Ember Vanguard", "status": "rebel", "region": "Aurelia Prime", "description": "Revolutionary army led by Commander Kael Ashborn (former Ascendant's guard)"},
-    {"name": "Silent Accord", "status": "neutral", "region": "Multi-Regional", "description": "Espionage network led by 'The Whisper' (god? AI? three former Ascendants?)"},
-    {"name": "Verdant Shield", "status": "rebel", "region": "Multi-Regional", "description": "Environmental guerrillas led by Primarch Thorian Wildroot"},
-    {"name": "Ashen Path", "status": "rebel", "region": "Multi-Regional", "description": "Anarchist syndicate, nominally leaderless, hidden council"},
-    {"name": "Miners' Guild", "status": "corporate", "region": "Multi-Regional", "description": "Controls mining operations across regions"},
-    {"name": "Smiths' Guild", "status": "corporate", "region": "Multi-Regional", "description": "Controls weapons, armor, and metalwork production"},
-    {"name": "Magi-Tech Guild", "status": "corporate", "region": "Aurelia Prime", "description": "Controls arcane technology development"},
-    {"name": "Merchants' Consortium", "status": "corporate", "region": "Multi-Regional", "description": "Controls trade routes and market pricing"},
-    {"name": "Healers' Guild", "status": "corporate", "region": "Multi-Regional", "description": "Controls medical and healing services"},
-    {"name": "House Seravin", "status": "noble", "region": "Imperial", "description": "Noble house of the empire"},
-    {"name": "House Valecroft", "status": "noble", "region": "Imperial", "description": "Noble house of the empire"},
-    {"name": "House Mirathis", "status": "noble", "region": "Imperial", "description": "Noble house of the empire"},
-    {"name": "House Dravenfell", "status": "noble", "region": "Imperial", "description": "Noble house of the empire"},
-    {"name": "House Lyrenhart", "status": "noble", "region": "Imperial", "description": "Noble house of the empire"},
-    {"name": "The Veil", "status": "secret", "region": "Multi-Regional", "description": "Secret society"},
-    {"name": "Arcanist's Covenant", "status": "secret", "region": "Multi-Regional", "description": "Secret society of arcane practitioners"},
-    {"name": "Sable Syndicate", "status": "secret", "region": "Multi-Regional", "description": "Secret society"},
-    {"name": "Imperial Army", "status": "imperial", "region": "Multi-Regional", "description": "Primary military force of the empire"},
-    {"name": "Arcane Guard", "status": "imperial", "region": "Imperial", "description": "Elite magical military unit"},
-    {"name": "Magi-Tech Corps", "status": "imperial", "region": "Multi-Regional", "description": "Military unit equipped with arcane technology"},
-    {"name": "Imperial Navy", "status": "imperial", "region": "Multi-Regional", "description": "Naval forces of the empire"}
+    {
+      "name": "Council of Ascendants",
+      "status": "imperial",
+      "region": "Imperial",
+      "description": "12 rulers under God-Emperor Solandris"
+    },
+    {
+      "name": "The Inquisition",
+      "status": "imperial",
+      "region": "Imperial",
+      "description": "Thought police led by Valerius the Pure, ~8,000 Inquisitors"
+    },
+    {
+      "name": "Church of Eternal Light",
+      "status": "imperial",
+      "region": "Imperial",
+      "description": "State religion replacing Harmonium faith, led by Malakar (internal) and Elvara (external)"
+    },
+    {
+      "name": "Eyes of the Emperor",
+      "status": "imperial",
+      "region": "Multi-Regional",
+      "description": "Imperial spy network led by Zephyrion"
+    },
+    {
+      "name": "Farmers' Collective",
+      "status": "rebel",
+      "region": "Meadowlands",
+      "description": "Grassroots labor org, ~50,000 members, Council of 7 Elders"
+    },
+    {
+      "name": "Merchant Lords of Olynn",
+      "status": "neutral",
+      "region": "Meadowlands",
+      "description": "Economic oligarchy led by Cassian Veldar"
+    },
+    {
+      "name": "The Silent Scythe",
+      "status": "rebel",
+      "region": "Meadowlands",
+      "description": "Rebel cell led by Elowen Greycrop (Harvest), ~2,000 fighters"
+    },
+    {
+      "name": "Circle of the Verdant Moon",
+      "status": "neutral",
+      "region": "Deep Woods",
+      "description": "Druidic order led by Archdruid Silmara Thornwhisper (300+ years)"
+    },
+    {
+      "name": "Sylvan Vanguard",
+      "status": "rebel",
+      "region": "Deep Woods",
+      "description": "Eco-militants led by Commander Thalorian Oakblade"
+    },
+    {
+      "name": "Fey Court of Whispers",
+      "status": "supernatural",
+      "region": "Deep Woods",
+      "description": "Supernatural court led by Queen Lirael the Moonlit (three beings in one)"
+    },
+    {
+      "name": "Sunfire Nomads",
+      "status": "neutral",
+      "region": "Desert",
+      "description": "Tribal confederation led by Chieftain Razul Sandborn"
+    },
+    {
+      "name": "Oasis Keepers",
+      "status": "neutral",
+      "region": "Desert",
+      "description": "Water monopoly led by Jaleel the Undying (400+ years, demon deal)"
+    },
+    {
+      "name": "Deepend Smugglers' Alliance",
+      "status": "criminal",
+      "region": "Marshlands",
+      "description": "Black market syndicate led by Captain Marlowe 'Gills' Brackwater"
+    },
+    {
+      "name": "Bog Witches Coven",
+      "status": "supernatural",
+      "region": "Marshlands",
+      "description": "13 witches led by Matriarch Ygraine (three sisters, serve elder god)"
+    },
+    {
+      "name": "Silver Dawn",
+      "status": "rebel",
+      "region": "Aurelia Prime",
+      "description": "Harmonium underground led by High Priestess Lyria Starsong (Dawn)"
+    },
+    {
+      "name": "Ember Vanguard",
+      "status": "rebel",
+      "region": "Aurelia Prime",
+      "description": "Revolutionary army led by Commander Kael Ashborn (former Ascendant's guard)"
+    },
+    {
+      "name": "Silent Accord",
+      "status": "neutral",
+      "region": "Multi-Regional",
+      "description": "Espionage network led by 'The Whisper' (god? AI? three former Ascendants?)"
+    },
+    {
+      "name": "Verdant Shield",
+      "status": "rebel",
+      "region": "Multi-Regional",
+      "description": "Environmental guerrillas led by Primarch Thorian Wildroot"
+    },
+    {
+      "name": "Ashen Path",
+      "status": "rebel",
+      "region": "Multi-Regional",
+      "description": "Anarchist syndicate, nominally leaderless, hidden council"
+    },
+    {
+      "name": "Miners' Guild",
+      "status": "corporate",
+      "region": "Multi-Regional",
+      "description": "Controls mining operations across regions"
+    },
+    {
+      "name": "Smiths' Guild",
+      "status": "corporate",
+      "region": "Multi-Regional",
+      "description": "Controls weapons, armor, and metalwork production"
+    },
+    {
+      "name": "Magi-Tech Guild",
+      "status": "corporate",
+      "region": "Aurelia Prime",
+      "description": "Controls arcane technology development"
+    },
+    {
+      "name": "Merchants' Consortium",
+      "status": "corporate",
+      "region": "Multi-Regional",
+      "description": "Controls trade routes and market pricing"
+    },
+    {
+      "name": "Healers' Guild",
+      "status": "corporate",
+      "region": "Multi-Regional",
+      "description": "Controls medical and healing services"
+    },
+    {
+      "name": "House Seravin",
+      "status": "noble",
+      "region": "Imperial",
+      "description": "Noble house of the empire"
+    },
+    {
+      "name": "House Valecroft",
+      "status": "noble",
+      "region": "Imperial",
+      "description": "Noble house of the empire"
+    },
+    {
+      "name": "House Mirathis",
+      "status": "noble",
+      "region": "Imperial",
+      "description": "Noble house of the empire"
+    },
+    {
+      "name": "House Dravenfell",
+      "status": "noble",
+      "region": "Imperial",
+      "description": "Noble house of the empire"
+    },
+    {
+      "name": "House Lyrenhart",
+      "status": "noble",
+      "region": "Imperial",
+      "description": "Noble house of the empire"
+    },
+    {
+      "name": "The Veil",
+      "status": "secret",
+      "region": "Multi-Regional",
+      "description": "Secret society"
+    },
+    {
+      "name": "Arcanist's Covenant",
+      "status": "secret",
+      "region": "Multi-Regional",
+      "description": "Secret society of arcane practitioners"
+    },
+    {
+      "name": "Sable Syndicate",
+      "status": "secret",
+      "region": "Multi-Regional",
+      "description": "Secret society"
+    },
+    {
+      "name": "Imperial Army",
+      "status": "imperial",
+      "region": "Multi-Regional",
+      "description": "Primary military force of the empire"
+    },
+    {
+      "name": "Arcane Guard",
+      "status": "imperial",
+      "region": "Imperial",
+      "description": "Elite magical military unit"
+    },
+    {
+      "name": "Magi-Tech Corps",
+      "status": "imperial",
+      "region": "Multi-Regional",
+      "description": "Military unit equipped with arcane technology"
+    },
+    {
+      "name": "Imperial Navy",
+      "status": "imperial",
+      "region": "Multi-Regional",
+      "description": "Naval forces of the empire"
+    }
   ],
   "traditions": [
-    {"name": "The Grand Synaxis", "type": "liturgy", "description": "Annual all-night service celebrating anticipated resurrection of the Twelve. Pascha/Easter Vigil parallel"},
-    {"name": "The Liturgy of Creation", "type": "liturgy", "description": "Weekly communion where bread/wine become vehicles of divine energies. Divine Liturgy parallel"},
-    {"name": "The Rite of the Veil", "type": "liturgy", "description": "Funeral/memorial service emphasizing 'Memory Eternal' and hope of resurrection"},
-    {"name": "The Lay Offices", "type": "liturgy", "description": "Daily accessible prayer for common folk (Morning and Evening Offices)"},
-    {"name": "The Rites of Balance", "type": "liturgy", "description": "Seasonal/occasional services"},
-    {"name": "War-Hymn of Korrin", "type": "combat_style", "description": "Resonant combat style for non-casters"},
-    {"name": "Dance of Elowen", "type": "combat_style", "description": "Resonant combat style for non-casters"},
-    {"name": "Dirge of Seraphine", "type": "combat_style", "description": "Resonant combat style for non-casters"},
-    {"name": "Prayer of the Heart", "type": "spiritual", "description": "Hesychasm practice with 5 levels of nepsis focus"},
-    {"name": "Confession-Penance-Eucharist", "type": "spiritual", "description": "Sacramental redemption path for corruption track"}
+    {
+      "name": "The Grand Synaxis",
+      "type": "liturgy",
+      "description": "Annual all-night service celebrating anticipated resurrection of the Twelve. Pascha/Easter Vigil parallel"
+    },
+    {
+      "name": "The Liturgy of Creation",
+      "type": "liturgy",
+      "description": "Weekly communion where bread/wine become vehicles of divine energies. Divine Liturgy parallel"
+    },
+    {
+      "name": "The Rite of the Veil",
+      "type": "liturgy",
+      "description": "Funeral/memorial service emphasizing 'Memory Eternal' and hope of resurrection"
+    },
+    {
+      "name": "The Lay Offices",
+      "type": "liturgy",
+      "description": "Daily accessible prayer for common folk (Morning and Evening Offices)"
+    },
+    {
+      "name": "The Rites of Balance",
+      "type": "liturgy",
+      "description": "Seasonal/occasional services"
+    },
+    {
+      "name": "War-Hymn of Korrin",
+      "type": "combat_style",
+      "description": "Resonant combat style for non-casters"
+    },
+    {
+      "name": "Dance of Elowen",
+      "type": "combat_style",
+      "description": "Resonant combat style for non-casters"
+    },
+    {
+      "name": "Dirge of Seraphine",
+      "type": "combat_style",
+      "description": "Resonant combat style for non-casters"
+    },
+    {
+      "name": "Prayer of the Heart",
+      "type": "spiritual",
+      "description": "Hesychasm practice with 5 levels of nepsis focus"
+    },
+    {
+      "name": "Confession-Penance-Eucharist",
+      "type": "spiritual",
+      "description": "Sacramental redemption path for corruption track"
+    }
   ]
 }
