@@ -1,47 +1,65 @@
 ---
-layout: ../../layouts/SrdLayout.astro
-title: Introdução
+layout: '../../layouts/SrdLayout.astro'
+title: 'Introdução'
 ---
 
-# Introdução ao Sistema de Qamareth
+# Introdução ao SRD de Qamareth
 
-Qamareth é um sistema de jogo narrativo de fantasia arcano-musical, projetado para campanhas de alto drama, intriga política e profundidade espiritual.
+Qamareth é um RPG onde **a ficção determina a mecânica, não o contrário**. Personagens são definidos por **histórias, não por estatísticas**. O mundo é um império totalitário governado pelo Deus-Imperador Solandris e seus 12 Ascendentes. O ano é 301 IE — a profecia diz: *"quando três séculos passarem, a Falsa Coroa se estilhaçará."*
 
-Neste mundo, a música não é adorno — é a **linguagem fundamental da realidade**. A criação emergiu do Canto das Divindades, e os ecos desse Canto primordial ainda percorrem o tecido do universo. Quem aprende a ouvir — e a responder — pode dobrar o mundo à sua vontade.
+## Princípios Fundamentais
 
----
+### Condições sobre Modificadores
 
-## O que este SRD cobre
+Pressão mecânica muda **o que você pode fazer**, não **o quão bem você faz**. Não existem bônus de +1/-1. Existem condições como *Desritmado*, *Exposto*, *Silenciado* — cada uma altera suas opções de ação, nunca seus números.
 
-Este **Sistema de Referência de Design (SRD)** contém as regras fundamentais de Qamareth, organizadas em capítulos progressivos:
+### Ritmo sobre Iniciativa
 
-- Criação de personagem e atributos
-- Resolução de testes
-- Magia musical — Modos, Ritmos, Intervalos e Partituras
-- Tensão Harmônica e consequências da dissonância
-- Combate, ferimentos e recuperação
-- Magi-tech, política, economia e territórios
-- Paixões, arquétipos de inimigos e temas de campanha
+O combate é dividido em **compassos** de 4 batidas. Ações custam batidas: Reação (0), Ligeiro (1), Médio (2), Pesado (3-4). Todos agem a cada compasso. Ninguém espera. Ninguém age duas vezes antes de outro agir.
 
----
+### Ficção sobre Números
 
-## Princípios de Design
+Um personagem não é um conjunto de stats — é a **resposta a uma série de perguntas**. As 20 Perguntas de criação produzem ficção primeiro; a mecânica emerge naturalmente.
 
-Qamareth é construído sobre três pilares:
+### Convite sobre Comando
 
-**Coerência estética.** As mecânicas emergem da ficção — pool de dados, escalas de Tensão Harmônica, a própria estrutura dos Modos — tudo reflete a realidade musical do mundo.
+A magia não força a realidade — **harmoniza com a Canção da Criação**. Executar uma Partitura é convidar o divino a agir através de você. Falhar é perder o ritmo, não ser rejeitado.
 
-**Drama moral real.** As Paixões, o RS, a Dissonância — são instrumentos narrativos tanto quanto mecânicos. O sistema empurra personagens para escolhas difíceis.
+## O Que Este Documento Cobre
 
-**Abertura criativa.** O SRD é um ponto de partida, não uma prisão. Conteúdo derivado, adaptações e expansões são bem-vindas sob a **Licença CC BY 4.0**.
+| Seção | Conteúdo |
+|---|---|
+| **01 — Criação de Personagem** | As 20 Perguntas, atribuição de atributos, disciplinas, RS, Paixões |
+| **02 — Atributos e Pilares** | Os 15 atributos em 5 Pilares, escalas de rating |
+| **03 — Resolução de Ações** | Pool × Tipo de Dado → sucessos (7+), thresholds, dados explosivos |
+| **04 — VP e Condições** | Pool de Vitalidade, Estados de Resiliência, lista de condições |
+| **05 — Magia Musical** | Partituras, Modos, Intervalos, Ritmos, execução via RS |
+| **06 — Tensão Harmônica** | Peso harmônico, ruptura, dissonância |
+| **07 — Combate** | Economia de batidas, compasso, posturas como condições |
+| **08 — Armas e Armaduras** | Perfis de ritmo, conversão de condições |
+| **09 — Posicionamento** | Zonas, movimento, estados posicionais |
+| **10 — Paixões** | Os 8 logismoi, bloqueios comportamentais, estados elevados |
+| **11 — Ressonância (RS)** | RS como recurso dinâmico, Catatonia, Intervenção Divina |
+| **12 — Magi-Tech** | Disciplina de conhecimento, dispositivos, mecanismos |
+| **13 — Magia Coletiva** | Amplificação em tiers (Individual→Ensemble→Choir→Concerto) |
+| **14 — Encontros Sociais** | Compasso social, Honra, IP, condições sociais |
+| **15 — Facções** | Escala de IP, standing faccional, reações |
+| **16 — Economia** | Mercados baseados em condições, Acesso/Dívida/Generosidade |
+| **17 — Bastiões** | Desenvolvimento, melhorias, eventos |
+| **18 — Jornadas** | Viagens como compassos, eventos, condições de viagem |
+| **19 — Recuperação** | Compasso de Pausa, Retiro, Vigília |
+| **20 — Escolas e Tradições** | Escolas de formação, técnicas, redes de contato |
+| **21 — Temas e Conflitos** | Harmonia vs Dissonância, Fé vs Controle |
+| **22 — Inimigos e Criaturas** | Arquétipos, VP de criaturas, ecologia |
+| **23 — Campanha e Facções** | Escalada de campanha, guerras faccionais |
 
----
+## O Que Qamareth NÃO É
 
-## Como usar este documento
-
-Leia os capítulos em ordem para uma introdução completa. Capítulos individuais também funcionam como referência rápida durante o jogo.
-
-Links de navegação no final de cada capítulo conectam o SRD em sequência.
+- Sem pontos de vida, slots de magia, níveis ou classes
+- Sem modificadores numéricos +N/-N
+- Sem vantagem/desvantagem, testes de CD, defesa passiva
+- Sem descanso curto/longo, ações bônus, quadrículas de grid
+- Sem terminologia D&D ou atalhos mecânicos
 
 ---
 

@@ -1,58 +1,38 @@
 ---
-layout: ../../layouts/SrdLayout.astro
-title: Template · Partitura
+layout: '../../layouts/SrdLayout.astro'
+title: 'Template — Partitura'
 ---
 
-# Template • Partitura
+# Template: Partitura
 
-Use esta estrutura para criar e documentar qualquer partitura do sistema Qamareth.
+## Estrutura
 
----
+| Campo | Descrição |
+|---|---|
+| **Nome** | Nome poético da Partitura |
+| **Modo** | Jônico, Dórico, Frígio, Lídio, Mixolídio, Eólio, Lócrio |
+| **Intervalo** | Terça, Quarta, Quinta, Sexta, Sétima, Segunda |
+| **Ritmo** | 4/4, 3/4, 5/4, 7/8, Polirritmia |
+| **Complexidade** | Simples (RS 2+), Padrão (RS 3+), Avançada (RS 5+), Obra-prima (RS 7+), Transcendente (RS 9+) |
+| **Custo de RS** | 1-3 RS |
+| **Disciplina** | Voz, Instrumento, Escrita, Gesto, Coletivo |
+| **Threshold** | 2-5+ sucessos |
+| **Efeito** | Descrição narrativa + condições criadas |
+| **Interrupção** | Consequência se interrompido |
 
-**Nome:**
-**Modo:**
-**Ritmo:**
-**Notas / Intervalo / Acorde:**
-**CH:**
-**PH:** *(normalmente = CH)*
+## Exemplo: Canto da Aurora
 
-**Execução:** *(1–2 frases — como a partitura soa e é executada)*
+| Campo | Valor |
+|---|---|
+| **Nome** | Canto da Aurora |
+| **Modo** | Jônico |
+| **Intervalo** | Quinta |
+| **Ritmo** | 4/4 |
+| **Complexidade** | Padrão (RS 3+) |
+| **Custo** | 1 RS |
+| **Disciplina** | Voz |
+| **Threshold** | 2+ |
+| **Efeito** | Restaura 1 condição de VP em todos os aliados na zona. Cria Harmônico se executado como parte de um Coro. |
+| **Interrupção** | Dissonância + a condição não é curada |
 
-**Efeito:** *(curto e claro — o que acontece mecanicamente)*
-
-**Gasto / Condição:** *(custo adicional, se houver — reagente, postura, etc.)*
-
-**Falha:** *(dissonância gerada + eventual efeito de paixão)*
-
-**Coral:** *(o que muda quando executada em harmonia coletiva)*
-
----
-
-# Exemplo Preenchido
-
-## Hino da Aurora
-
-**Modo:** Jônico
-**Ritmo:** 4/4
-**Notas:** Dó – Mi – Sol
-**CH:** 2
-**PH:** 2
-
-**Execução:** Uma terça seguida de quinta em modo jônico, sustentada por compasso estável. Canto alto e claro, sem hesitação.
-
-**Efeito:** Cura moderada em um aliado (2d6 + RS).
-
-**Gasto / Condição:** —
-
-**Falha:** Dissonância drena o conjurador — perde 1d6 de vida temporária.
-
-**Coral:** Se três ou mais cantores executarem simultaneamente, a cura afeta todos os aliados em alcance próximo.
-
----
-
-# Notas de Design
-
-- **CH e PH** costumam ser iguais. Separe apenas quando a partitura for especialmente instável ou controlada.
-- **Execução** deve evocar como a partitura *soa* — não apenas o que faz. Isso ancora o sabor.
-- **Coral** não é obrigatório. Se a partitura for intrinsecamente solo, escreva "Não aplicável".
-- **Falha** deve ter consequência proporcional ao CH. CH 2 → pequena penalidade. CH 7+ → consequência grave.
+[← Anterior: Campanha](/srd/23-campanha)

@@ -1,362 +1,129 @@
 ---
-layout: ../../layouts/SrdLayout.astro
-title: Atributos e Disciplinas
----
-# Atributos e Disciplinas • 3×5
-
-# Atributos
-
-Atributos representam as capacidades fundamentais de um personagem.
-
-Eles descrevem não apenas habilidades físicas ou mentais, mas também qualidades sociais, espirituais e perceptivas que determinam como um indivíduo interage com o mundo.
-
-Em Qamareth, os atributos são organizados em **cinco pilares**, cada um representando um aspecto essencial da experiência humana.
-
-Cada pilar contém **três atributos**, totalizando **15 atributos**.
-
-Os pilares são:
-
-- Espírito
-- Presença
-- Engenho
-- Vigor
-- Discernimento
-
-A maioria dos testes no sistema utiliza:
-
-**Atributo + Disciplina**
-
+layout: '../../layouts/SrdLayout.astro'
+title: 'Atributos e Pilares'
 ---
 
-# Espírito
+# Atributos e Pilares
 
-O pilar do **Espírito** representa a força interior do personagem.
+Cada personagem possui **15 atributos** organizados em **5 Pilares**. Cada Pilar representa uma forma fundamental de interagir com o mundo.
 
-Ele governa convicções, fé, emoções profundas e a capacidade de manter princípios mesmo sob pressão.
+## Os Cinco Pilares
 
-Espírito é frequentemente usado em situações envolvendo:
+| Pilar | Governa |
+|---|---|
+| **Espírito** | Fé, convicção, conexão com o divino, centro moral |
+| **Presença** | Peso social, influência emocional, autoridade, carisma |
+| **Engenho** | Análise, estratégia, percepção, compreensão técnica |
+| **Vigor** | Poder físico, resistência, velocidade, resiliência |
+| **Discernimento** | Intuição, insight, leitura de ambiente, conhecimento oculto |
 
-- resistência psicológica
-- fé ou devoção
-- empatia emocional
-- convicção moral
-- práticas espirituais
+## Os Quinze Atributos
 
-## Fé
+### Espírito
+| Atributo | Governa |
+|---|---|
+| **Fé** | Confiança no divino, resiliência espiritual, poder litúrgico |
+| **Convicção** | Adesão à verdade pessoal, resistência a pressão ideológica |
+| **Empatia** | Leitura de estados emocionais, compaixão, sofrimento compartilhado |
 
-Fé representa a ligação espiritual do personagem com crenças, ideais ou forças transcendentais.
+### Presença
+| Atributo | Governa |
+|---|---|
+| **Etiqueta** | Navegação social formal, protocolo, fluência cultural |
+| **Comando** | Liderança, autoridade, inspirar ou intimidar outros |
+| **Manipulação** | Engano, alavancagem, engenharia social |
 
-Ela pode estar ligada a religião, filosofia pessoal ou convicção metafísica.
+### Engenho
+| Atributo | Governa |
+|---|---|
+| **Mecânica** | Compreensão técnica, operação de magi-tech, lógica de fabricação |
+| **Estratégia** | Planejamento tático, leitura de campo de batalha, posicionamento |
+| **Logística** | Gestão de recursos, cadeias de suprimento, planejamento de viagem |
 
-Fé é usada quando o personagem:
+### Vigor
+| Atributo | Governa |
+|---|---|
+| **Força** | Poder físico, levantamento, golpe, quebra de coisas |
+| **Agilidade** | Velocidade, precisão, evasão, sutileza física |
+| **Resistência** | Tolerância à dor, resistência, manter posição sob pressão |
 
-- realiza rituais religiosos
-- busca orientação espiritual
-- resiste a corrupção espiritual
-- interpreta símbolos sagrados
-- invoca tradições espirituais
+### Discernimento
+| Atributo | Governa |
+|---|---|
+| **Percepção** | Notar detalhes, ler ambientes, detectar ameaças |
+| **Intuição** | Pressentimentos, reconhecimento de padrões, detectar verdades ocultas |
+| **Astúcia** | Improvisação, explorar fraquezas, pensamento oportunista |
 
-Personagens com alta Fé costumam possuir forte identidade espiritual.
+## Ratings de Atributo (1-5)
 
----
+Cada atributo recebe um **rating de 1 a 5**, que determina o **tamanho do pool de dados**:
 
-## Convicção
+| Rating | Significado |
+|---|---|
+| **1** | Cru / Não treinado — mínimo natural |
+| **2** | Em desenvolvimento — alguma capacidade natural |
+| **3** | Capaz — competência confiável |
+| **4** | Excepcional — dom raro ou formação profunda |
+| **5** | Prodigioso — talento geracional |
 
-Convicção representa determinação moral e força de vontade.
+## Disciplinas — As 19 Tradições
 
-Ela mede a capacidade do personagem de manter seus princípios, resistir à pressão e agir de acordo com suas crenças.
+Disciplinas representam competência treinada. O rating da disciplina (0-5) determina o **tipo de dado** que você rola:
 
-Convicção é usada quando o personagem:
+| Rating | Tipo de Dado | Significado |
+|---|---|---|
+| **0** | d4 | Iniciante — exposto à tradição, pode tentar |
+| **1** | d6 | Praticante — usuário regular, confiável |
+| **2** | d8 | Proficiente — notável na comunidade |
+| **3** | d10 | Expert — procurado, é pelo que é conhecido |
+| **4-5** | d12 | Mestre — um dos melhores |
 
-- resiste a intimidação
-- mantém disciplina mental
-- suporta dor ou sofrimento por um ideal
-- enfrenta dilemas morais
-- mantém foco sob pressão emocional
+### Combate (5)
+| Disciplina | Governa |
+|---|---|
+| **Lâmina** | Técnica de armas cortantes, corte de precisão, ritmo de parada |
+| **Impacto** | Armas contundentes, pesadas, percussivas; força de quebra |
+| **Alcance** | Armas à distância, controle de zona, tempo de projétil |
+| **Defesa** | Defesa ativa, economia de reação, trabalho de escudo |
+| **Movimento** | Reposicionamento, manipulação de zona, jogo de pés |
 
-Convicção é frequentemente testada em momentos de crise.
+### Mágicas (5)
+| Disciplina | Governa |
+|---|---|
+| **Voz** | Execução mágica por voz, canto, invocação falada |
+| **Instrumento** | Execução por instrumento, manipulação ressonante |
+| **Escrita** | Execução por notação, escrita rúnica, pergaminhos |
+| **Gesto** | Execução somática, dança, sinais de mão, invocação física |
+| **Coletivo** | Amplificação coletiva, magia de coral, ressonância de ensemble |
 
----
+### Sociais (5)
+| Disciplina | Governa |
+|---|---|
+| **Retórica** | Argumento, persuasão, performance pública, debate formal |
+| **Negociação** | Acordos, alavancagem, interação contratual |
+| **Reputação** | Standing faccional, posicionamento social, acesso a redes |
+| **Intimidação** | Pressão, domínio, combate social por medo |
+| **Leitura** | Leitura de pessoas, situações, salas, verdades ocultas |
 
-## Empatia
+### Conhecimento (4)
+| Disciplina | Governa |
+|---|---|
+| **Grimório** | Leitura de grimórios, reconstrução de tradições, identificação mágica |
+| **Tática** | Análise de campo, planejamento estratégico, avaliação de ameaças |
+| **História Harmônica** | Tradições perdidas, história política da música, memória cultural |
+| **Magi-tech** | Operação e compreensão de dispositivos magi-tech, engenharia reversa |
 
-Empatia representa a capacidade de compreender emoções alheias.
+## Resolução Básica
 
-Ela mede sensibilidade emocional e a habilidade de perceber o estado psicológico de outras pessoas.
+```
+Pool = rating do sub-atributo (1-5 dados)
+Tipo = rating da disciplina → d4/d6/d8/d10/d12
 
-Empatia é usada quando o personagem:
-
-- percebe sentimentos ocultos
-- oferece consolo ou apoio
-- cria confiança emocional
-- compreende motivações pessoais
-- interpreta linguagem corporal
-
-Empatia é especialmente útil em interações sociais profundas.
-
----
-
-# Presença
-
-O pilar da **Presença** representa impacto social e autoridade pessoal.
-
-Ele governa a capacidade do personagem de influenciar outras pessoas e navegar estruturas sociais.
-
-Presença é usada em situações envolvendo:
-
-- diplomacia
-- intriga política
-- liderança
-- manipulação social
-- negociações formais
-
-## Etiqueta
-
-Etiqueta representa conhecimento de normas sociais, protocolo e comportamento adequado.
-
-Ela mede a capacidade do personagem de agir corretamente em ambientes formais ou complexos.
-
-Etiqueta é usada quando o personagem:
-
-- participa de eventos sociais
-- interage com nobres ou autoridades
-- evita ofensas diplomáticas
-- demonstra refinamento cultural
-- segue protocolos cerimoniais
-
-Personagens com alta Etiqueta se movem com facilidade em ambientes aristocráticos.
+Role Pool dados do tipo da disciplina.
+Conte SUCESSOS (cada dado mostrando 7+).
+Compare ao THRESHOLD da ação.
+```
 
 ---
 
-## Comando
-
-Comando representa autoridade e capacidade de liderança.
-
-Ele mede a habilidade do personagem de dirigir pessoas e inspirar obediência.
-
-Comando é usado quando o personagem:
-
-- lidera grupos
-- coordena aliados
-- impõe autoridade
-- organiza esforços coletivos
-- conduz tropas ou equipes
-
-Personagens com alto Comando exercem presença dominante em grupos.
-
----
-
-## Manipulação
-
-Manipulação representa habilidade de influenciar pessoas de forma indireta ou enganosa.
-
-Ela mede talento para persuasão sutil, intriga e manipulação psicológica.
-
-Manipulação é usada quando o personagem:
-
-- engana ou ilude
-- conduz negociações estratégicas
-- planta ideias em outras pessoas
-- provoca conflitos sociais
-- manipula percepções
-
-Manipulação é uma ferramenta comum em jogos de intriga política.
-
----
-
-# Engenho
-
-O pilar do **Engenho** representa capacidade técnica e pensamento estruturado.
-
-Ele governa planejamento, engenharia, organização e resolução prática de problemas.
-
-Engenho é usado em situações envolvendo:
-
-- tecnologia
-- planejamento estratégico
-- engenharia
-- logística
-- operações complexas
-
-## Mecânica
-
-Mecânica representa entendimento de máquinas, ferramentas e dispositivos.
-
-Ela mede conhecimento técnico aplicado a sistemas físicos ou tecnológicos.
-
-Mecânica é usada quando o personagem:
-
-- constrói dispositivos
-- repara máquinas
-- analisa tecnologia
-- manipula mecanismos complexos
-- trabalha com equipamentos especializados
-
-Mecânica é especialmente relevante em ambientes com tecnologia magi-tech.
-
----
-
-## Estratégia
-
-Estratégia representa pensamento tático e planejamento militar.
-
-Ela mede a capacidade de antecipar movimentos e organizar ações em grande escala.
-
-Estratégia é usada quando o personagem:
-
-- planeja batalhas
-- analisa posicionamento tático
-- coordena manobras militares
-- avalia riscos estratégicos
-- desenvolve planos complexos
-
-Personagens com alta Estratégia são frequentemente líderes militares ou planejadores.
-
----
-
-## Logística
-
-Logística representa habilidade de organizar recursos e estruturas operacionais.
-
-Ela mede capacidade administrativa e planejamento prático.
-
-Logística é usada quando o personagem:
-
-- organiza suprimentos
-- administra operações
-- gerencia transporte ou distribuição
-- coordena grandes projetos
-- planeja campanhas prolongadas
-
-Logística é essencial para operações militares, comércio e gestão territorial.
-
----
-
-# Vigor
-
-O pilar do **Vigor** representa capacidade física e resistência corporal.
-
-Ele governa ações físicas, combate e esforço prolongado.
-
-Vigor é usado em situações envolvendo:
-
-- combate físico
-- esforço atlético
-- resistência física
-- sobrevivência
-
-## Força
-
-Força representa poder físico bruto.
-
-Ela mede a capacidade do personagem de aplicar força direta contra objetos ou adversários.
-
-Força é usada quando o personagem:
-
-- realiza ataques poderosos
-- levanta ou move objetos pesados
-- quebra obstáculos físicos
-- domina adversários em combate corpo a corpo
-
----
-
-## Agilidade
-
-Agilidade representa coordenação física e reflexos.
-
-Ela mede velocidade, equilíbrio e precisão corporal.
-
-Agilidade é usada quando o personagem:
-
-- esquiva de ataques
-- realiza movimentos acrobáticos
-- executa ações rápidas
-- mantém equilíbrio em situações perigosas
-- realiza combate ágil
-
----
-
-## Resistência
-
-Resistência representa capacidade de suportar esforço físico prolongado.
-
-Ela mede tolerância a dor, fadiga e condições adversas.
-
-Resistência é usada quando o personagem:
-
-- suporta ferimentos
-- resiste a doenças ou venenos
-- permanece ativo por longos períodos
-- enfrenta condições ambientais extremas
-
----
-
-# Discernimento
-
-O pilar do **Discernimento** representa capacidade de compreender o mundo ao redor.
-
-Ele governa percepção, interpretação e pensamento rápido.
-
-Discernimento é usado em situações envolvendo:
-
-- investigação
-- observação
-- leitura de intenções
-- adaptação rápida
-
-## Percepção
-
-Percepção representa atenção aos detalhes do ambiente.
-
-Ela mede capacidade de notar mudanças, perigos e pistas.
-
-Percepção é usada quando o personagem:
-
-- observa o ambiente
-- detecta emboscadas
-- percebe movimentos suspeitos
-- encontra pistas ocultas
-
----
-
-## Intuição
-
-Intuição representa compreensão imediata de situações complexas.
-
-Ela mede a capacidade de perceber padrões e pressentir perigos.
-
-Intuição é usada quando o personagem:
-
-- percebe que algo está errado
-- interpreta comportamentos ambíguos
-- toma decisões rápidas
-- compreende situações sociais complexas
-
----
-
-## Astúcia
-
-Astúcia representa inteligência prática e improvisação.
-
-Ela mede capacidade de pensar rapidamente e encontrar soluções inesperadas.
-
-Astúcia é usada quando o personagem:
-
-- improvisa soluções
-- engana adversários
-- escapa de situações difíceis
-- explora fraquezas em planos alheios
-
-## Disciplinas
-Disciplinas representam treino específico (0–5), e definem o tipo de dado usado.
-Exemplos:
-- Arte Musical (conjuração)
-- Armas (espada, pistola, etc.)
-- Engenho Arcano (magi-tech)
-- Intriga (corte, submundo)
-
-## Dados por treino (escala)
-- 0: d6
-- 1–2: d8
-- 3–4: d10
-- 5: d12
+[← Anterior: Introdução](/srd/00-introducao) · [Próximo: Resolução de Ações →](/srd/03-resolucao)

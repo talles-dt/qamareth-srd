@@ -1,274 +1,226 @@
 ---
-layout: ../../layouts/SrdLayout.astro
-title: Criação de personagem
+layout: '../../layouts/SrdLayout.astro'
+title: 'Criação de Personagem'
 ---
 
 # Criação de Personagem — As 20 Perguntas
 
-Em Qamareth, personagens não são construídos a partir de listas de habilidades: **nascem de decisões**.
+Qamareth não tem classes. Não tem níveis. Um personagem não é um pacote de opções mecânicas — é a **resposta a uma série de perguntas** que moldaram quem se tornou.
 
-As vinte perguntas não concedem bônus numéricos diretos. Cada resposta:
+> **Você não escolhe o que seu personagem pode fazer. Você descobre quem ele é — e a partir disso, entende o que sabe.**
 
-- desbloqueia certas opções
-- restringe outras
-- cria conexões narrativas
-- estabelece inclinações mecânicas
+## As Cinco Etapas
 
-> A história de um personagem determina quais caminhos estão disponíveis para ele.
-
-Respostas podem ser livres. Algumas perguntas oferecem opções estruturais quando afetam sistemas importantes.
-
----
-
-## Resultado Mecânico das Respostas
-
-| Sistema | Definido por |
-|---------|-------------|
-| Pilares e Disciplinas iniciais | Perguntas 5, 6, 7, 8 |
-| RS inicial (2–4) | Perguntas 9, 10, 11 |
-| Paixão dominante | Perguntas 3, 17, 18 |
-| Honra e Reputação iniciais | Perguntas 1, 2, 15, 16 |
-| Escola de Formação | Pergunta 5 |
-| Motivo de Origem | Pergunta 20 |
-| Partituras iniciais | Perguntas 6, 11, 12 |
-| Conexões e Rivais | Perguntas 13, 14, 16 |
+| Etapa | Perguntas | Saída Mecânica |
+|---|---|---|
+| **Origem** | Q1-Q4 | Array de atributos, atribuição do atributo primário |
+| **Formação** | Q5-Q8 | Disciplina primária (3 dados), secundária (2), terciária (1) |
+| **Harmonia** | Q9-Q12 | Cálculo de RS, atribuição de Ressonância, acesso a Partituras |
+| **Conflitos** | Q13-Q16 | Standing faccional, gancho de grimório, rival/aliado |
+| **Destino** | Q17-Q20 | Elevação de Paixões, Motivo de Origem, síntese narrativa |
 
 ---
 
-# Etapa 1 — Origem
+## Etapa 1: Origem (Q1-Q4)
 
-*O ambiente onde o personagem cresceu e as primeiras influências em sua vida.*
+### Q1 — Onde você nasceu?
+*Define sua cultura inicial, tradições locais e possíveis conexões sociais.*
+→ Determina qual atributo recebe o maior dado do seu array.
 
-## Pergunta 1 — Onde você nasceu?
+**Exemplos:** Meadowlands · Deep Woods · Desert · Marshes · Coastal Regions · Aurelia Prime
 
-Descreva ou escolha a região de origem.
+### Q2 — Qual era a ocupação da sua família?
+*Familiaridade com profissões, acesso a contatos, conhecimentos práticos.*
+→ Determina o segundo maior atributo.
 
-Define cultura inicial, tradições locais e conexões sociais possíveis.
+**Exemplos:** Agricultores · Mercadores · Artesãos · Militares · Clérigos · Acadêmicos · Nômades · Criminosos
 
-| Região | Traço cultural inicial |
-|--------|----------------------|
-| Campinas (Meadowlands) | Trabalho coletivo, desconfiança do poder central |
-| Bosques Profundos | Conexão com a natureza, memória longa, sigilo |
-| Deserto | Resistência, pragmatismo, lealdade tribal |
-| Pântanos | Adaptabilidade, conhecimento de margens e segredos |
-| Aurelia Prime | Acesso à informação, experiência com política e vigilância |
-| Fronteira/Nômade | Trânsito livre, redes amplas, sem raízes fixas |
+### Q3 — Como foi sua infância?
+*Gera uma Paixão inicial (nível 2-3).*
+→ Mapeia para uma Paixão específica.
 
----
+| Infância | Paixão |
+|---|---|
+| Confortável | Gula |
+| Disciplinada | Acídia |
+| Pobre | Avareza |
+| Violenta | Ira |
+| Protegida | Soberba |
+| Itinerante | Luxúria |
 
-## Pergunta 2 — Qual era a ocupação da sua família?
-
-Define familiaridade com certas profissões, acesso a contatos ou recursos, conhecimentos práticos herdados.
-
-*Exemplos:* agricultores, mercadores, artesãos, militares, clérigos do Harmonium, acadêmicos, nômades, criminosos, engenheiros magi-tech.
-
----
-
-## Pergunta 3 — Como foi sua infância?
-
-Gera **uma Paixão inicial** (nível 2–3) e estabelece a relação do personagem com autoridade e segurança.
-
-*Exemplos:* confortável, disciplinada, empobrecida, violenta, protegida, itinerante, marcada pela perseguição.
+### Q4 — Que evento marcou sua juventude?
+*Uma tragédia, descoberta, revelação, perda ou triunfo inesperado.*
+→ Determina sua primeira relação com facções (favorável ou hostil).
 
 ---
 
-## Pergunta 4 — Que evento marcou sua juventude?
+## Etapa 2: Formação (Q5-Q8)
 
-Um acontecimento definidor — tragédia, descoberta, revelação, perda, triunfo inesperado.
+### Q5 — Quem foi seu mentor?
+*Define Escola de Formação, disciplinas disponíveis e rede de contato.*
+→ Determina sua disciplina primária e tipo de dado inicial.
 
-Define motivações futuras e pode gerar a primeira Paixão dominante ou o primeiro vínculo de Honra.
+**Exemplos:** Sacerdote · Soldado · Músico · Mago · Engenheiro Magi-Tech · Caçador · Espião
 
----
+### Q6 — O que você aprendeu primeiro?
+*Define a primeira disciplina que você domina.*
+→ Disciplina primária definida a 3 dados.
 
-# Etapa 2 — Formação
+**Exemplos:** Lâmina · Defesa · Voz · Instrumento · Retórica · Grimório · Tática · Leitura
 
-*Como o personagem foi treinado e quem influenciou sua educação.*
+### Q7 — Você teve acesso à educação formal?
+*Influencia acesso a conhecimentos teóricos e tradições.*
 
-## Pergunta 5 — Quem foi seu mentor?
-
-**Pergunta estrutural.** Escolha ou descreva quem ensinou o personagem.
-
-Define disciplinas iniciais, redes de contato e tradição de aprendizado.
-
-| Mentor | Disciplinas desbloqueadas |
-|--------|--------------------------|
-| Sacerdote do Harmonium | Magia litúrgica, história proibida, RS inicial +1 |
-| Soldado | Combate, táticas, conexões militares |
-| Músico errante | Partitura adicional, conhecimento regional |
-| Mago magi-tech | Engenharia arcana, acesso ao submundo técnico |
-| Espião / Infiltrador | Furtividade, leitura de pessoas, rede de informantes |
-| Caçador / Rastreador | Sobrevivência, conhecimento regional, independência |
-| Mercador | Avaliação de recursos, rotas, contatos comerciais |
-
----
-
-## Pergunta 6 — O que você aprendeu primeiro?
-
-Define **uma Disciplina inicial**.
-
-*Exemplos:* luta, cura, persuasão, música, alquimia, táticas, furtividade, magia.
-
----
-
-## Pergunta 7 — Você teve acesso à educação formal?
-
-Define conhecimentos teóricos e acesso a certas tradições.
-
-| Tipo | Efeito |
-|------|--------|
-| Academia imperial | Conhecimento amplo, mas filtrado pela propaganda |
-| Templo (Harmonium) | Teologia proibida, RS inicial +1, risco de perseguição |
-| Aprendizado informal | Conhecimento fragmentado mas livre de viés institucional |
-| Autodidata | Especialização intensa em uma área; lacunas em outras |
-
----
-
-## Pergunta 8 — Qual habilidade você domina melhor?
-
-Define **uma especialização inicial** — o campo em que o personagem se destaca entre seus pares.
-
----
-
-# Etapa 3 — Harmonia
-
-*A relação do personagem com a música da realidade e a magia harmônica.*
-
-## Pergunta 9 — Quando você percebeu que o mundo canta?
-
-O momento em que o personagem sentiu a Harmonia pela primeira vez.
-
-| Resposta | RS inicial |
-|----------|-----------|
-| Desde criança, sem drama | RS 3 |
-| Durante treinamento formal | RS 2 |
-| Em evento traumático ou transformador | RS 4 (mas com Paixão +1) |
-| Ainda não compreende completamente | RS 2 (mas RS cresce mais rápido na primeira campanha) |
-
----
-
-## Pergunta 10 — Você foi treinado para usar magia?
-
-Define acesso inicial a Partituras ou rituais.
-
-| Resposta | Acesso |
-|----------|--------|
-| Treinamento formal (Academia / Templo) | 3 Partituras iniciais |
-| Aprendizado fragmentado | 2 Partituras iniciais |
-| Tradição familiar | 2 Partituras + Motivo familiar único |
+| Educação | Partituras Iniciais |
+|---|---|
+| Academia/Templo | 3 |
+| Aprendizado fragmentado | 2 |
+| Tradição familiar | 2 + Motivo familiar único |
 | Nenhum treinamento | 1 Partitura intuitiva |
 
----
-
-## Pergunta 11 — Qual tradição musical mais influenciou você?
-
-Define inclinação modal e estilo de prática mágica.
-
-| Tradição | Modo dominante | RS inicial com divindade |
-|----------|----------------|--------------------------|
-| Litúrgica (Harmonium) | Jônico, Mixolídio | +1 RS Virael ou Silvaran |
-| Marcial | Dórico, Frígio | +1 RS Valoth ou Typhora |
-| Erudita | Lídio | +1 RS Zephon |
-| Natural / Druídica | Mixolídio, Eólio | +1 RS Silvaran ou Ephira |
-| Popular / Folk | Livre | +1 RS Maelor ou Aralith |
+### Q8 — Qual habilidade você domina melhor?
+*Define sua especialização — foco intenso dentro de uma disciplina.*
+→ Concede +1 dado à sua disciplina secundária.
 
 ---
 
-## Pergunta 12 — Qual som define sua memória mais forte?
+## Etapa 3: Harmonia (Q9-Q12)
 
-Um som que marcou profundamente o personagem. Define a identidade musical e pode influenciar qual Partitura surge naturalmente em momentos de crise.
+### Q9 — Quando você percebeu que o mundo canta?
+*Contribui para o RS inicial.*
 
-*Exemplos:* canto coral em segredo, ruído de batalha, vento nos bosques, máquinas ressonantes, silêncio absoluto após uma execução.
+| Resposta | RS |
+|---|---|
+| Desde criança | +2 |
+| Durante o treinamento | +1 |
+| Em um evento marcante | +1 |
+| Ainda não compreendo | +0 |
 
----
+### Q10 — Você foi treinado para usar magia?
+*Influencia acesso inicial a Partituras e rituais.*
 
-# Etapa 4 — Conflitos
+| Resposta | RS |
+|---|---|
+| Treinamento formal | +1 |
+| Aprendizado fragmentado | +1 |
+| Tradição familiar | +0 |
+| Nenhum treinamento | +0 |
 
-*Relações sociais e tensões dramáticas.*
+### Q11 — Qual tradição musical mais influenciou você?
+*Define inclinação harmônica e escolas de magia mais acessíveis.*
 
-## Pergunta 13 — Quem você decepcionou?
+| Tradição | RS |
+|---|---|
+| Litúrgica | +1 |
+| Marcial | +0 |
+| Erudita | +1 |
+| Natural | +0 |
+| Popular | +0 |
 
-Crie um PNJ que o personagem desapontou. Pode tornar-se rival, inimigo ou mentor frustrado. Define a primeira marcação de Honra negativa.
-
----
-
-## Pergunta 14 — Quem confia em você?
-
-Crie um aliado importante. Define o primeiro contato de Reputação positiva e possível fonte de ajuda em momentos críticos.
-
----
-
-## Pergunta 15 — Qual lei você já quebrou?
-
-Uma transgressão cometida pelo personagem.
-
-*Exemplos:* contrabando, heresia, espionagem, deserção, abrigo de foragidos, prática do Harmonium.
-
-Define a relação inicial com autoridades e o primeiro elemento de Reputação junto a facções específicas.
-
----
-
-## Pergunta 16 — Qual facção conhece seu nome?
-
-Escolha uma facção com a qual o personagem tem histórico. A relação pode ser: aliado, rival, ex-membro, alvo de interesse.
-
-Define o primeiro ponto de **Influência (IP)** e a relação de entrada com o mundo político.
+### Q12 — Qual som define sua memória mais forte?
+*Define identidade musical e possível Motivo secundário.*
+→ Determina a qualidade do dado de Ressonância.
 
 ---
 
-# Etapa 5 — Destino
+## Etapa 4: Conflitos (Q13-Q16)
 
-*O que move o personagem no presente.*
+### Q13 — Quem você decepcionou?
+*Cria um rival, inimigo ou mentor frustrado.*
+→ Cria NPC Rival.
 
-## Pergunta 17 — Qual foi sua maior vitória?
+### Q14 — Quem confia em você?
+*Cria um aliado que pode ajudar em momentos críticos.*
+→ Cria NPC Aliado.
 
-Gera **uma Paixão positiva** (nível 2) e define um momento de força ao qual o personagem pode retornar narrativamente em crises.
+### Q15 — Qual lei você já quebrou?
+*Define relação inicial com autoridades. Afeta Honra.*
 
----
+| Lei | Modificador de Honra |
+|---|---|
+| Contrabando | -1 |
+| Heresia | -1 |
+| Espionagem | -1 |
+| Deserção | -2 |
+| Rebelião | -2 |
 
-## Pergunta 18 — Qual foi seu maior fracasso?
+### Q16 — Qual facção conhece seu nome?
+→ +1 IP com essa facção. Define valor inicial de Honra (3-5 baseado em Q15 + reputação faccional).
 
-Gera **uma Paixão negativa** (nível 2–3) e estabelece uma vulnerabilidade dramática central.
-
----
-
-## Pergunta 19 — Por que você continua lutando?
-
-A motivação atual do personagem. Define a bússola moral e o que o personagem prioriza quando forçado a escolher.
-
-*Exemplos:* fé, liberdade, conhecimento, família, redenção, proteção, justiça, poder.
-
----
-
-## Pergunta 20 — Qual é a nota que define sua alma?
-
-**A pergunta final.** Define o **Motivo de Origem** — a tonalidade emocional e espiritual que orienta o desenvolvimento do personagem.
-
-Assim como uma composição musical possui um motivo central que guia seu desenvolvimento, cada personagem possui uma nota interior que influencia suas escolhas, emoções e relação com a Harmonia.
-
-O Motivo de Origem **não concede bônus numéricos diretos**, mas influencia:
-- inclinação modal e desenvolvimento de Partituras
-- desenvolvimento narrativo (o Narrador reconhece ações alinhadas com ele)
-- conflito interior (agir contra o Motivo gera tensão)
-- evolução espiritual ao longo da campanha
-
-**Exemplos de Motivos de Origem:**
-esperança · vingança · devoção · curiosidade · liberdade · ambição · redenção · proteção · justiça · conhecimento · luto · gratidão · pertencimento · desafio
-
-O Motivo de Origem pode aprofundar-se, transformar-se ou ser substituído ao longo da campanha. Mudanças representam momentos narrativos de grande peso.
+**Exemplos:** Harmonium · Ember Vanguard · Silent Accord · Verdant Shield · Silver Dawn · Ashen Path · Inquisição · Conselho de Ascendentes · Comércio de Olynn
 
 ---
 
-## Resultado Final da Criação
+## Etapa 5: Destino (Q17-Q20)
 
-Ao concluir as 20 perguntas, o personagem possui:
+### Q17 — Qual foi sua maior vitória?
+*Gera uma Paixão positiva (nível 2-3).*
+→ Mapeia para uma Paishão específica.
 
-- **1 Escola de Formação** (mentor da pergunta 5)
-- **2–3 Partituras** iniciais
-- **1 Modo dominante**
-- **RS inicial 2–4**
-- **2–3 Paixões** identificadas (com níveis 2–3)
-- **1 Motivo de Origem**
-- **1–2 relações** de Honra ou Reputação
-- **1 ponto de IP** com uma facção
-- **1 aliado** e **1 rival/antagonista** definidos
+### Q18 — Qual foi seu maior fracasso?
+*Gera uma Paishão negativa (nível 2-3).*
+→ Mapeia para uma Paishão específica.
 
+### Q19 — Por que você continua lutando?
+*Motivação central do personagem no presente.*
+→ Define seu Impulso narrativo.
+
+**Exemplos:** Fé · Liberdade · Conhecimento · Família · Poder · Redenção · Justiça · Vingança
+
+### Q20 — Qual é a nota que define sua alma?
+*Define o **Motivo de Origem** — a tonalidade emocional e espiritual que orienta todo o desenvolvimento.*
+→ Determina a qualidade do dado de Firmeza (Grit).
+
+**Exemplos:** Esperança · Vingança · Devoção · Curiosidade · Liberdade · Ambição · Redenção · Proteção · Justiça · Conhecimento
+
+---
+
+## Atribuição de Atributos
+
+Escolha um array baseado nas respostas de Q1 e Q5:
+
+| Array | Distribuição | Quando Usar |
+|---|---|---|
+| **Focado** | d10 / d8 / d6 / d6 / d6 / d4 | Quando origem e mentor criaram formação estreita e profunda |
+| **Equilibrado** | d8 / d8 / d6 / d6 / d6 / d4 | Quando formação foi ampla e variada |
+| **Resiliente** | d8 / d6 / d6 / d6 / d6 / d6 | Quando você sobreviveu se adaptando a tudo |
+
+Atribua os dados aos seus atributos:
+- **Q1 (herança)** → maior dado
+- **Q2 (sobrevivência/família)** → segundo maior dado
+- **Q5 (carrega)** → Ressonância
+- **Q6 (domina)** → atributo mais alinhado com disciplina primária
+- **Q12 (som da memória)** → atributo mais alinhado com identidade musical
+- **Q20 (nota da alma)** → Firmeza (Grit)
+
+## Disciplinas Iniciais
+
+| Disciplina | Dados Iniciais | Fonte |
+|---|---|---|
+| Primária (de Q6) | 3 dados | Tradição do seu mentor |
+| Secundária (relacionada) | 2 dados | Tradição tematicamente adjacente |
+| Terciária (qualquer) | 1 dado | Interesse pessoal |
+| 7 adicionais a 1 dado | 1 dado cada | Distribuídas entre categorias restantes (2 combate, 2 social, 2 mágica, 2 conhecimento) |
+
+## RS Inicial
+
+Base: 2
++ Resposta Q9 (0-2)
++ Resposta Q10 (0-1)
++ Resposta Q11 (0-1 se Litúrgica ou Erudita)
+= **2-6 RS inicial**
+
+## Honra Inicial
+
+Base: 3
++ Q15 (lei quebrada): Contrabando (-1), Heresia (-1), Espionagem (-1), Deserção (-2), Rebelião (-2)
++ Q16 (reputação faccional): facção respeitada (+1), facção criminosa (-1), facção neutra (0)
+= **0-5 Honra inicial**
+
+## A Regra da Unicidade
+
+**Nenhum dois personagens no mesmo grupo pode ter a mesma resposta em qualquer uma das 20 Perguntas.** Isso força unicidade no nível narrativo, que naturalmente produz diversidade mecânica.
+
+---
+
+[← Anterior: Introdução](/srd/00-introducao) · [Próximo: Atributos e Pilares →](/srd/02-atributos)
