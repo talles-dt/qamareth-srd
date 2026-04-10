@@ -14,7 +14,10 @@ from jobs import submit_job, get_job, update_job, list_jobs
 load_dotenv()
 
 ALLOWED = os.getenv("ALLOWED_ORIGIN", "http://localhost:3000")
-NVIDIA_KEY = os.getenv("NVIDIA_API_KEY", "")
+NVIDIA_KEY = os.getenv("NVIDIA_API_KEY", "").strip()
+
+if not NVIDIA_KEY:
+    raise RuntimeError("NVIDIA_API_KEY environment variable is not set")
 
 app = FastAPI(title="Qamareth Agent System")
 client = OpenAI(
