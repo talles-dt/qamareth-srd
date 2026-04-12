@@ -78,6 +78,17 @@ class CharacterCreateRequest(BaseModel):
     memory_sound: str = ""
 
 
+@app.get("/health")
+def health_check():
+    """Minimal health check — no heavy imports required."""
+    return {
+        "status": "ok",
+        "model": MODEL,
+        "nvidia_key_set": bool(NVIDIA_KEY),
+        "nvidia_key_len": len(NVIDIA_KEY),
+        "allowed_origin": ALLOWED,
+    }
+
 @app.get("/agents")
 def get_agents():
     return [
