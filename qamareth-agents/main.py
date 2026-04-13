@@ -90,6 +90,22 @@ def health_check():
     }
 
 
+
+@app.post("/test-chat")
+def test_chat():
+    try:
+        system_prompt = build_system_prompt(AGENT_SKILLS["master-architect"])
+        messages = inject_registry([{"role": "user", "content": "Hello"}])
+        openai_msgs = _prep_messages(system_prompt, messages)
+        r = client.chat.completions.create(
+            model=MODEL,
+            messages=openai_msgs,
+            max_tokens=50,
+        )
+        return {"ok": True, "text": r.choices[0].message.content[:200]}
+    except Exception as e:
+        return {"ok": False, "error": str(e), "type": type(e).__name__}
+
 @app.get("/test-llm")
 def test_llm():
     try:
