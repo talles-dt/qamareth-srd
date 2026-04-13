@@ -30,19 +30,26 @@ MODEL = "meta/llama-3.3-70b-instruct"
 @app.middleware("http")
 async def add_cors_headers(request, call_next):
     """Ensure CORS headers on every response, including OPTIONS preflight."""
+    allowed_origins = [ALLOWED, "http://localhost:3000", "https://qamareth-srd.vercel.app"]
+    origin = request.headers.get("origin", "")
+    if origin in allowed_origins:
+        cors_origin = origin
+    else:
+        cors_origin = ALLOWED
+
     if request.method == "OPTIONS":
         from fastapi.responses import Response
         return Response(
             status_code=200,
             headers={
-                "Access-Control-Allow-Origin": ALLOWED,
+                "Access-Control-Allow-Origin": cors_origin,
                 "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, Authorization",
                 "Access-Control-Max-Age": "86400",
             },
         )
     response = await call_next(request)
-    response.headers["Access-Control-Allow-Origin"] = ALLOWED
+    response.headers["Access-Control-Allow-Origin"] = cors_origin
     return response
 
 app.add_middleware(
