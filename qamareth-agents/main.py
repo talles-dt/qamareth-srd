@@ -178,6 +178,12 @@ async def chat_stream(body: ChatRequest):
 
 # ─── Task endpoints ───────────────────────────────────────────────────────────
 
+class TaskSubmitRequest(BaseModel):
+    task_type: str
+    payload: dict = {}
+    file_content: str = ""
+    filename: str = ""
+
 @app.post("/task/submit")
 async def task_submit(
     task_type: str = Form(...),
@@ -189,9 +195,14 @@ async def task_submit(
         content = await file.read()
         payload["file_content"] = content.decode("utf-8", errors="replace")
         payload["filename"] = file.filename
-
     job_id = submit_job(task_type, payload)
     asyncio.create_task(_process_job(job_id, task_type, payload))
+    return {"job_id": job_id, "status": "queued"}
+
+@app.post("/task/submit/json")
+async def task_submit_json(body: TaskSubmitRequest):
+    job_id = submit_job(body.task_type, body.payload)
+    asyncio.create_task(_process_job(job_id, body.task_type, body.payload))
     return {"job_id": job_id, "status": "queued"}
 
 
