@@ -20,7 +20,7 @@ def format_registry_for_context(registry: dict) -> str:
     lines.append("\n### Disciplines")
     by_cat: dict = {}
     for d in registry["disciplines"]:
-        by_cat.setdefault(d["category"], []).append(d["name"])
+        by_cat.setdefault(d.get("category", "?"), []).append(d["name"])
     for cat, names in by_cat.items():
         lines.append(f"- {cat.title()}: {', '.join(names)}")
 
@@ -56,7 +56,7 @@ def format_registry_for_context(registry: dict) -> str:
     if registry["items"]:
         lines.append("\n### Items")
         for i in registry["items"]:
-            lines.append(f"- {i['name']} [{i['category']}]")
+            lines.append(f"- {i['name']} [{i.get('category', '?')}]")
 
     return "\n".join(lines)
 
