@@ -1,0 +1,267 @@
+{
+  "name": "Qamareth Lore Ingestion Pipeline",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "path": "lore-upload",
+        "httpMethod": "POST",
+        "responseMode": "lastNode",
+        "options": {
+          "responseCode": 200,
+          "responseData": "All Entries"
+        }
+      },
+      "id": "trigger-webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 500]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Read file content from binary data or JSON body\nconst item = $input.first();\nlet fileContent = '';\nlet filename = 'unknown.txt';\n\n// Check if binary data exists\nif (item.binary && item.binary.data) {\n  const binaryData = item.binary.data;\n  fileContent = Buffer.from(binaryData.data, 'base64').toString('utf-8');\n  filename = binaryData.fileName || 'upload.txt';\n} else if (item.json.file_content) {\n  fileContent = item.json.file_content;\n  filename = item.json.filename || 'unknown.txt';\n}\n\nreturn [{\n  json: {\n    task_type: 'lore_ingest',\n    payload: {\n      file_content: fileContent,\n      filename: filename\n    }\n  }\n}];",
+        "mode": "runOnceForAllItems"
+      },
+      "id": "code-prepare",
+      "name": "Prepare File Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 500]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://qamareth-srd-production.up.railway.app/task/submit/json",
+        "sendBody": true,
+        "body": {
+          "contentType": "json",
+          "content": {
+            "task_type": "={{ $json.task_type }}",
+            "payload": "={{ $json.payload }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "http-submit",
+      "name": "Submit Task to Railway",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 500]
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "id": "wait-initial",
+      "name": "Wait 10s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [900, 500]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://qamareth-srd-production.up.railway.app/task/{{ $json.job_id }}"
+      },
+      "id": "http-poll",
+      "name": "Poll Job Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 500]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-complete",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "complete",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "if-complete",
+      "name": "Check Status",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1340, 500]
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "id": "wait-retry",
+      "name": "Wait Before Retry",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1340, 720]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the result and extract MDX stubs from Pass 4\nconst item = $input.first();\nconst result = JSON.parse(item.json.result || '{}');\nconst passes = result.passes || {};\n\n// Extract Pass 4 output (MDX stubs)\nconst pass4 = passes['Pass 4: MDX Stub Production'] || '';\n\nif (!pass4.trim()) {\n  return [{ json: { warning: 'No MDX stubs found in Pass 4 output' } }];\n}\n\n// Simple stub splitter - split on \"## \" headings\nconst stubBlocks = pass4.split(/\\n(?=## )/).filter(b => b.trim().startsWith('##'));\n\nconst stubs = stubBlocks.map(block => {\n  const lines = block.trim().split('\\n');\n  const title = lines[0].replace(/^##\\s*/, '').trim();\n  \n  // Extract frontmatter type if present\n  const typeMatch = block.match(/\\*\\*Type:\\*\\*\\s*(\\S+)/);\n  const entityType = typeMatch ? typeMatch[1].toLowerCase() : 'lore';\n  \n  // Map entity type to content collection folder\n  const folderMap = {\n    faction: 'rules',\n    place: 'rules',\n    figure: 'rules',\n    grimoire: 'grimoires',\n    tradition: 'rules',\n    creature: 'bestiary',\n    item: 'arsenal',\n    myth: 'rules',\n  };\n  const folder = folderMap[entityType] || 'rules';\n  \n  // Slugify title\n  const slug = title.toLowerCase()\n    .replace(/[^a-z0-9\\s-]/g, '')\n    .replace(/\\s+/g, '-')\n    .trim();\n  \n  return {\n    json: {\n      title,\n      slug,\n      folder,\n      entityType,\n      content: block\n    }\n  };\n});\n\nreturn stubs;",
+        "mode": "runOnceForAllItems"
+      },
+      "id": "code-parse",
+      "name": "Parse MDX Stubs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1560, 360]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "create",
+        "repository": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": "qamareth-srd"
+        },
+        "filePath": "=src/content/{{ $json.folder }}/{{ $json.slug }}.mdx",
+        "fileContent": "={{ $json.content }}",
+        "commitMessage": "=feat(lore): add archivist stub — {{ $json.title }}",
+        "additionalFields": {
+          "branch": "lore-ingestion"
+        }
+      },
+      "id": "github-commit",
+      "name": "GitHub — Commit Stub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 2,
+      "position": [1780, 360]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare File Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Prepare File Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare File Content": {
+      "main": [
+        [
+          {
+            "node": "Submit Task to Railway",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Submit Task to Railway": {
+      "main": [
+        [
+          {
+            "node": "Wait 10s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 10s": {
+      "main": [
+        [
+          {
+            "node": "Poll Job Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Job Status": {
+      "main": [
+        [
+          {
+            "node": "Check Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Status": {
+      "main": [
+        [
+          {
+            "node": "Parse MDX Stubs",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait Before Retry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait Before Retry": {
+      "main": [
+        [
+          {
+            "node": "Poll Job Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse MDX Stubs": {
+      "main": [
+        [
+          {
+            "node": "GitHub — Commit Stub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -40,26 +40,36 @@ export async function streamChat(
   onDone()
 }
 
+const BACKEND = typeof window !== "undefined" && window.location.hostname !== "localhost"
+  ? "https://qamareth-srd-production.up.railway.app"
+  : "http://localhost:8000"
+
 export async function submitTask(
   taskType: string,
   file?: File,
   payload: Record<string, unknown> = {}
 ): Promise<{ job_id: string }> {
-  const form = new FormData()
-  form.append("task_type", taskType)
-  form.append("payload_json", JSON.stringify(payload))
-  if (file) form.append("file", file)
-  const res = await fetch(`${PROXY}/task/submit`, { method: "POST", body: form })
+  // Use JSON endpoint for reliability (avoids multipart timeout on Railway)
+  const body: Record<string, unknown> = { task_type: taskType, payload }
+  if (file) {
+    body.file_content = await file.text()
+    body.filename = file.name
+  }
+  const res = await fetch(`${BACKEND}/task/submit/json`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  })
   return res.json()
 }
 
 export async function getJob(jobId: string): Promise<Job> {
-  const res = await fetch(`${PROXY}/task/${jobId}`)
+  const res = await fetch(`${BACKEND}/task/${jobId}`)
   return res.json()
 }
 
 export async function listJobs(): Promise<Job[]> {
-  const res = await fetch(`${PROXY}/tasks`)
+  const res = await fetch(`${BACKEND}/tasks`)
   return res.json()
 }
 
