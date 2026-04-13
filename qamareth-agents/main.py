@@ -3,7 +3,6 @@ import json
 import asyncio
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from openai import OpenAI
@@ -52,13 +51,7 @@ async def add_cors_headers(request, call_next):
     response.headers["Access-Control-Allow-Origin"] = cors_origin
     return response
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[ALLOWED],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# CORSMiddleware removed - using custom CORS middleware
 
 
 class ChatRequest(BaseModel):
