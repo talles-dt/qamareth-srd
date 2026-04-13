@@ -2,8 +2,8 @@
 import { useState, useRef, useEffect } from "react"
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
-// Use Vercel proxy (same-origin) to avoid Railway CORS blocking
-const STREAM_URL = "/api/proxy/character/create/stream"
+// Call Railway backend directly (CORS is configured)
+const STREAM_URL = "https://qamareth-srd-production.up.railway.app/character/create/stream"
 
 const STAGES = [
   { n: 1, label: "Origem",     qs: [1, 2, 3, 4] },
