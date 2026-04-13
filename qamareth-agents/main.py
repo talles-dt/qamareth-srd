@@ -89,6 +89,19 @@ def health_check():
         "allowed_origin": ALLOWED,
     }
 
+
+@app.get("/test-llm")
+def test_llm():
+    try:
+        r = client.chat.completions.create(
+            model=MODEL,
+            messages=[{"role": "user", "content": "Say hello."}],
+            max_tokens=10,
+        )
+        return {"ok": True, "text": r.choices[0].message.content}
+    except Exception as e:
+        return {"ok": False, "error": str(e), "type": type(e).__name__}
+
 @app.get("/agents")
 def get_agents():
     return [
