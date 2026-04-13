@@ -14,7 +14,7 @@ from jobs import submit_job, get_job, update_job, list_jobs
 load_dotenv()
 
 ALLOWED = os.getenv("ALLOWED_ORIGIN", "http://localhost:3000")
-NVIDIA_KEY = "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"
+NVIDIA_KEY = os.getenv("NVAPI_KEY", "").strip()
 
 if not NVIDIA_KEY:
     raise RuntimeError("NVAPI_KEY environment variable is not set")

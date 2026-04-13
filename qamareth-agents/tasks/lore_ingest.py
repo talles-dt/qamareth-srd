@@ -9,7 +9,7 @@ load_dotenv()
 
 client = OpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.getenv("NVIDIA_API_KEY", "").strip(),
+    api_key="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",
 )
 MODEL = "meta/llama-3.3-70b-instruct"
 
