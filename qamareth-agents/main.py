@@ -130,39 +130,57 @@ async def chat_stream(body: ChatRequest):
         from graph.builder import qamareth_graph
         from graph.state import QamarethState
 
-    async def graph_stream():
-        try:
-            initial: QamarethState = {
-                "messages": body.messages,
-                "active_agent": "master_architect",
-                "task_type": "chat",
-                "work_product": "",
-                "mechanical_flags": [],
-                "lore_flags": [],
-                "audit_flags": [],
-                "validated": False,
-                "iteration_count": 0,
-                "error": None,
-            }
-            result = await asyncio.get_event_loop().run_in_executor(
-                None, lambda: qamareth_graph.invoke(initial)
-            )
-            if not result.get("messages"):
-                raise RuntimeError("Workflow completed with no messages")
+        async def graph_stream():
+            try:
+                initial: QamarethState = {
+                    "messages": body.messages,
+                    "active_agent": "master_architect",
+                    "task_type": "chat",
+                    "work_product": "",
+                    "mechanical_flags": [],
+                    "lore_flags": [],
+                    "audit_flags": [],
+                    "validated": False,
+                    "iteration_count": 0,
+                    "error": None,
+                }
+                result = await asyncio.get_event_loop().run_in_executor(
+                    None, lambda: qamareth_graph.invoke(initial)
+                )
+                if not result.get("messages"):
+                    raise RuntimeError("Workflow completed with no messages")
 
-            last_msg = result["messages"][-1]
-            final = last_msg.content if hasattr(last_msg, "content") else last_msg["content"]
-            for word in final.split(" "):
-                yield f"data: {json.dumps({'text': word + ' '})}\n\n"
-                await asyncio.sleep(0.01)
-            yield "data: [DONE]\n\n"
-        except Exception as e:
-            yield f"data: {json.dumps({'error': str(e)})}\n\n"
-            yield "data: [DONE]\n\n"
+                last_msg = result["messages"][-1]
+                final = last_msg.content if hasattr(last_msg, "content") else last_msg["content"]
+                for word in final.split(" "):
+                    yield f"data: {json.dumps({'text': word + ' '})}\n\n"
+                    await asyncio.sleep(0.01)
+                yield "data: [DONE]\n\n"
+            except Exception as e:
+                yield f"data: {json.dumps({'error': str(e)})}\n\n"
+                yield "data: [DONE]\n\n"
 
         return StreamingResponse(graph_stream(), media_type="text/event-stream")
 
     else:
+        system_prompt = build_system_prompt(AGENT_SKILLS[body.agent])
+        messages = inject_registry(body.messages)
+        openai_msgs = _prep_messages(system_prompt, messages)
+
+        async def direct_stream():
+            stream = client.chat.completions.create(
+                model=MODEL,
+                messages=openai_msgs,
+                max_tokens=4096,
+                stream=True,
+            )
+            for chunk in stream:
+                content = chunk.choices[0].delta.content
+                if content:
+                    yield f"data: {json.dumps({'text': content})}\n\n"
+            yield "data: [DONE]\n\n"
+
+        return StreamingResponse(direct_stream(), media_type="text/event-stream")
         system_prompt = build_system_prompt(AGENT_SKILLS[body.agent])
         messages = inject_registry(body.messages)
         openai_msgs = _prep_messages(system_prompt, messages)
