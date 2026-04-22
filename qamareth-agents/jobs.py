@@ -15,7 +15,30 @@ def _get_redis():
         url = os.environ.get("REDIS_URL")
         if not url:
             raise RuntimeError("REDIS_URL environment variable is not set")
-        _r = redis.from_url(url, decode_responses=True)
+        try:
+            _r = redis.from_url(url, decode_responses=True)
+            # Test connection
+            _r.ping()
+        except redis.ConnectionError:
+            # Fallback: Mock Redis
+            from redis._compat import dict_keys
+            class MockRedis:
+                def __init__(self):
+                    self._store = {}
+                
+                def hset(self, key, mapping):
+                    self._store[key] = mapping
+                
+                def hgetall(self, key):
+                    return self._store.get(key, {})
+                
+                def keys(self, pattern):
+                    return dict_keys([k for k in self._store if k.startswith(pattern.replace("*", ""))])
+                
+                def ping(self):
+                    return True
+            print("⚠️ WARNING: Redis unavailable — using in-memory fallback")
+            _r = MockRedis()
     return _r
 
 
