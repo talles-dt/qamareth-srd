@@ -199,6 +199,24 @@ async def chat_stream(body: ChatRequest):
             yield "data: [DONE]\n\n"
 
         return StreamingResponse(direct_stream(), media_type="text/event-stream")
+        system_prompt = build_system_prompt(AGENT_SKILLS[body.agent])
+        messages = inject_registry(body.messages)
+        openai_msgs = _prep_messages(system_prompt, messages)
+
+        async def direct_stream():
+            stream = client.chat.completions.create(
+                model=MODEL,
+                messages=openai_msgs,
+                max_tokens=4096,
+                stream=True,
+            )
+            for chunk in stream:
+                content = chunk.choices[0].delta.content
+                if content:
+                    yield f"data: {json.dumps({'text': content})}\n\n"
+            yield "data: [DONE]\n\n"
+
+        return StreamingResponse(direct_stream(), media_type="text/event-stream")
 
 
 # ─── Task endpoints ───────────────────────────────────────────────────────────
