@@ -13,15 +13,14 @@ from jobs import submit_job, get_job, update_job, list_jobs
 load_dotenv()
 
 ALLOWED = os.getenv("ALLOWED_ORIGIN", "http://localhost:3000")
-NVIDIA_KEY = "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"
-
+NVIDIA_KEY = os.getenv("NVIDIA_API_KEY")
 if not NVIDIA_KEY:
-    raise RuntimeError("NVAPI_KEY environment variable is not set")
+ NVIDIA_KEY = "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"  # Fallback for local dev
+ print("⚠️ WARNING: Using fallback NVIDIA_API_KEY — rate limits may apply")
 
-app = FastAPI(title="Qamareth Agent System")
 client = OpenAI(
-    base_url="https://integrate.api.nvidia.com/v1",
-    api_key=NVIDIA_KEY,
+ base_url="https://integrate.api.nvidia.com/v1",
+ api_key=NVIDIA_KEY,
 )
 
 MODEL = "meta/llama-3.3-70b-instruct"
