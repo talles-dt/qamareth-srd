@@ -66,14 +66,14 @@ Uma **Partitura** é qualquer efeito mágico musical. Definida por três camadas
 
 O **Modo** define qual aspecto da Realidade Divina é invocado e a qualidade emocional/espiritual do efeito.
 
-|| Modo | Divindade ressonante | Natureza do efeito | Heresia Imperial |
-||------|---------------------|-------------------|----------------|
-|| **Jônico** | Virael (Luz/Criação) | Cura, proteção, revelação, criação | **Banned**, “causes dawn tremors” |
-|| **Dórico** | Lyria (Canção/Comunhão) | Coragem, transformação, resistência | **Licensed**, only “imperial marches” |
-|| **Frígio** | Elowen (Mudança/Tempestades) | Paixão, movimento, transformação  | **Banned**, lashing squalls |
-|| **Lídio** | Zephon (Palavra) | Transcendência, encantamento, comunicação | **Banned**, heretical cascade |
-|| **Mixolídio** | Silvaran (Vida) | Comunidade, harmonia coletiva, crescimento | **Smuggled**, grove chants |
-|| **Eólio** | Seraphine (Morte) / Morvaith (Noite) | Memória, lamento, força na morte, sono | **Subdued**, funeral rites |
+||| Modo | Divindade Ressonante | Natureza | Imperial Heresy | Underground Codes |
+|||------|-------------------------|------------|------------------|------------------|
+||| **Jônico** | Virael (Luz) | Cura, luz, revéler | *Banned → dawn tremors* | Birdsong trill **+2 Silver Dawn** |
+||| **Lídio** | Zephon (Palavra) | Transcendência | *Banned → heretical cascade* | Hammer rhythm **+2 free speech rolls** |
+||| **Dórico** | Lyria (Canção) | Coragem | *Licensed Imperial marches* | Wind hum **+1 resistancePersuasion** |
+||| **Mixolídio** | Silvaran (Vida) | Comunhão | *Smuggled → grove chants* | Raven caw **+3 Coyote (subterfuge)** |
+||| **Frígio** | Elowen (Tempestade) | Paixão | *Banned → lashing squalls* | Clapping echo **+1 Stormcaller relic rolls** |
+||| **Eólio** | Seraphine (Morte) / Morvaith (Noite) | Luto, força | *Subdued → funeral dirge* | Owl screech **+2 ancestral lore recall** |
 || **Lócrio** | — (Dissonância) | Proibido. Nega, dissolve, desfaz. | **Capital offense** |
 
 ## Camada 2: Intervalo ou Acorde (Forma do Efeito)
