@@ -1,0 +1,22 @@
+<script is:inline>
+window.storyContent = `(start:)
+[[Virael]] [[Zephon]] [[Korrin]] [[Lyria]] [[Elowen]]
+
+(Virael:)  [[Urgent]]  [[Pressing]]  [[Moderate]]
+
+(Urgent:)   <<set $modo to "Virael">> <<set $grade to "Urgent">> <<set $effect to "Healing fountain appears">>
+<<goto "Finish">>
+
+(Finish:)   ";
+</script>
+
+<div id="oracle" client:only>
+ <script>
+ document.addEventListener("DOMContentLoaded", () => {
+ window.story = new window.Twine.Harlowe(window.storyContent);
+ story.start();
+ document.querySelector("#oracle").innerHTML =
+ `<span style="background:black;color:gold;">${story.currentPassage()}</span>`;
+ });
+ </script>
+</div>
