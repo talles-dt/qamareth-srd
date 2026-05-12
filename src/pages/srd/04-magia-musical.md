@@ -100,6 +100,7 @@ O **Ritmo** determina como o efeito se manifesta — instantâneo, sustentado, p
 | **4/4** | Estável, previsível, confiável |
 | **3/4** | Emocional, fluido, ideal para encantamentos e cura |
 | **5/4** | Irregular, imprevisível, difícil de contra-atacar |
+| **6/8** | Ternário, dançante; flui em dois grupos de três — ideal para magias de movimento e ilusão |
 | **7/8** | Frenético, explosivo, alto custo de Tensão |
 | **Polirritmia** | Dois efeitos simultâneos — CH dobrada, risco elevado |
 

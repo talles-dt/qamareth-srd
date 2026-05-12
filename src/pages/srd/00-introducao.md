@@ -39,7 +39,7 @@ A magia não força a realidade — **harmoniza com a Canção da Criação**. E
 | **08 — Armas e Armaduras** | Perfis de ritmo, conversão de condições |
 | **09 — Posicionamento** | Zonas, movimento, estados posicionais |
 | **10 — Paixões** | Os 8 logismoi, bloqueios comportamentais, estados elevados |
-| **11 — Ressonância (RS)** | RS como recurso dinâmico, Catatonia, Intervenção Divina |
+| **11 — Arquétipos de Inimigos** | 8 arquétipos, templates de criatura, ecologia de criaturas |
 | **12 — Magi-Tech** | Disciplina de conhecimento, dispositivos, mecanismos |
 | **13 — Magia Coletiva** | Amplificação em tiers (Individual→Ensemble→Choir→Concerto) |
 | **14 — Encontros Sociais** | Compasso social, Honra, IP, condições sociais |
