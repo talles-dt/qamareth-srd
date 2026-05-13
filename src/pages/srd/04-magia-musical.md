@@ -192,15 +192,16 @@ As três Dissonâncias espelham as três Paixões-raiz:
 
 ---
 
-## Trilha de Corrupção
+## Trilha de Corrupção pela Dissonância
 
-| Corrupção | Paralelo patrístico | Sintomas |
-|-----------|---------------------|---------|
-| 1–3 | Pecado habitual | Pesadelos dos prejudicados, insônia, consciência perturbada |
-| 4–6 | Acedia espiritual | Empatia em declínio; outros sentem desconforto próximo ao personagem |
-| 7–9 | Escravidão à Paixão | Corrupção visível; impossível formar relações verdadeiras |
-| 10–12 | Influência demoníaca | Vozes, impulsos violentos, além da cura mortal comum |
-| 13+ | Estado de Geena | Morte em vida; incapaz de amor; apenas exorcismo ou martírio |
+| Corruption Tier | RS Loss | Symptoms | Recovery Path |
+|--------------|---------|--------------------------------|---------------|
+| **Mild (1-3)** | –1 RS (temporary) | Restless conscience, nightmares, animals avoid | **Confession**: Corruption –2. RS +1 if liturgy attended |
+| **Moderate (4-6)** | –2 RS (temporary) | Empathy declining, spiritual dryness, mild corruption visible | **Penitence + Confession**: Corruption –4. RS +2 if abstain 1 week |
+| **Severe (7-9)** | –3 RS (temporary), –5 max RS | Visible corruption (eyes discolored), social alienation, animals flee | **Exorcism**: Corruption –8. Martyrdom RS +3 |
+| **Gehenna (10+)** | –5 RS (max), permanent –2 RS max | Voices, violent impulses, beyond cure | **Divine Intervention**: only exorcism or martyr death (GM fiat) |
+
+> **Recoverable**: RS loss temporary; recovery through liturgy. **No permanent RS drain** in core rules.
 
 ## Caminho de Redenção
 

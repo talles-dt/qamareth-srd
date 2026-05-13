@@ -54,4 +54,20 @@ Quando o standing cruza um threshold:
 | Vanguarda da Brasa | Rebelde | Aurelia Prime |
 | Acordo Silencioso | Neutro | Multi-Regional |
 
-[← Anterior: Encontros Sociais](/srd/14-encontros-sociais) · [Próximo: Economia →](/srd/16-economia)
+## Faction Benefits & Special Rules
+
+| Faction | Benefit | Requirement | IP Cost |
+|---------|--------------------------------------------------------|------------------|--------|
+| **Silver Dawn** | **+3 RS max** if liturgy held at **Dawnspire (298 IE beacon)** |
+|                | **Intervention gained once per campaign season**        |
+|                | **Liturgical Reconciliation**: Invest 5 IP → **+4 RS permanent** for one acolyte |
+| **Ember Vanguard**| **+1 IP** per military skirmish won | Bastion ≥ Level 3 | None |
+| **Green Shield** | **+1 IP** per sacred grove preserved from logging | Bastion ≥ Level 2 | None |
+| **Ashen Path** | **+2 IP** per unsearched caravan route established | Desert bastion | None |
+| **Silent Scythe**| **+2 IP** per Imperial harvest successfully sabotaged | Campinas bastion | None |
+
+> Dawnspire **liturgies undetectable** by Harmonic Scrying due to **imperial jamming** (sovereign countermeasure against canon restoration).
+
+---
+
+[← Previous: Social Encounters](/srd/14-encontros-sociais) · [Next: Economy →](/srd/16-economia)

@@ -11,11 +11,25 @@ Bastiões são assentamentos que os jogadores podem desenvolver, defender e expa
 
 | Nível | Descrição |
 |---|---|
-| **Posto Avançado** | Acampamento básico. Sem defesas. Recursos mínimos. |
-| **Acampamento** | Estrutura básica. Defensas rudimentares. Produção semanal começa. |
-| **Assentamento** | Muralhas, mercado, guildas. Pode produzir itens e recrutar NPCs. |
-| **Fortaleza** | Defesas fortes. Rede comercial. Pode projetar poder regional. |
-| **Capital** | Centro de poder. Pode desafiar facções imperiais. |
+| **Posto Avançado** | Acampamento básico. Sem defesas. Recursos mínimos. IP cost: 3 |
+| **Acampamento** | Estrutura básica. Defensas rudimentares. Produção semanal começa. IP cost: 5 |
+| **Assentamento** | Muralhas, mercado, guildas. Pode produzir itens, recrutar NPCs. IP cost: 8 |
+| **Fortaleza** | Defesas fortes. Rede comercial. Pode projetar poder regional. IP cost: 12 |
+| **Capital** | Centro de poder. Pode desafiar facções imperiais. IP cost: 20 (+10/season) |
+
+> **Rebel bastion costs**: +1 per **Alert Level** above White.
+> **Imperial bastion costs**: **locked** at 3/5/8/12.
+
+---
+|| **White**   | Routine surveillance | Standard patrols       | None |
+|| **Yellow**  | +1 surveillance rolls | Patrols tripled, informants planted |
+||             |                      | Dawn raids begin       | Sabotage patrols: –2 IP |
+|| **Orange**  | +3 surveillance rolls | Inquisitor sent         | Evacuate leadership: –2 IP |
+||             | Bastion slowed       | COINTEL activated       | Propaganda: +1 IP |
+|| **Red**     | +5 surveillance rolls | Full lockdown            | **Desperate Measures**: +5 IP |
+||             | Bastion sealed       | Holy Office declaration  | **Collapse**: Young bastion destroyed |
+
+> **Note**: Alert Levels triggered by **5+ IP victories in adjacent tiles** or **Silver Dawn Dawnspire liturgies**.
 
 ## Melhorias
 

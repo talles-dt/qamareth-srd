@@ -15,9 +15,27 @@ Este capítulo apresenta o sistema de **Influence Points (IP)**, usado para repr
 
 ---
 
-# Influence Points (IP)
+# Rebel Faction Influence Points
 
-Influence Points representam a capacidade de um personagem ou grupo de afetar decisões dentro de uma facção ou região.
+Underground resistance factions accrue **Influence Points (IP)** through **subversion, preservation, and rebellion**. 
+
+Earnings follow region-specific victory conditions:
+
+|| Task | IP Gain | Faction |
+||------|--------|--------|
+|| **Sabotage Imperial harvest** | +1 IP | **Silent Scythe** |
+|| **Preserve ancestral grove** | +2 IP | **Green Shield** |
+|| **Run black caravan (Desert)** | +2 IP | **Ashen Path** |
+|| **Smuggle Dawnspire beacon component** | +3 IP | **Silver Dawn** |
+|| **Win rebel skirmish (military victory)** | +3 IP | **Ember Vanguard** |
+|| **Host Silver Dawn liturgy at Dawnspire** (298 IE beacon) | **+4 IP** | **Silver Dawn** |
+
+> **Imperial faction IP**: accrues as **Standing** (see Imperial Houses chapter).
+> **Bastion upgrade**: +10 IP in a region → unlock 1 Core Bastion at next IP tier.
+
+---
+
+
 
 Eles refletem:
 
