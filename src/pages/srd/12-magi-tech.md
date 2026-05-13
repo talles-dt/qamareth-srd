@@ -26,4 +26,4 @@ A disciplina **Magi-tech** cobre operação, reparo e compreensão de dispositiv
 | Autômato de Guarda | Proteção autônoma de bastiões | Se hackeado, vira contra os aliados |
 | Rede de Sintonia | Comunicação à distância | Interceptada = informações vazadas à Inquisição |
 
-[← Anterior: Ressonância](/srd/11-ressonancia-rs) · [Próximo: Magia Coletiva →](/srd/13-magia-coletiva)
+[← Anterior: Paixões](/srd/10-paixoes) · [Próximo: Magia Coletiva →](/srd/17-magia-coletiva)

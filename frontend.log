@@ -1,0 +1,132 @@
+
+> qamareth-srd@0.0.1 dev
+> astro dev
+
+14:14:31 [types] Generated 1ms
+14:14:31 [content] Syncing content
+14:14:31 [content] Synced content
+14:14:31 [vite] Re-optimizing dependencies because vite config has changed
+
+ astro  v5.18.0 ready in 287 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+14:14:31 watching for file changes...
+
+ update  ▶ New version of Astro available: 6.3.1
+  Run npx @astrojs/upgrade to update
+
+03:44:38 [200] HEAD /lore/cosmologia 42ms
+03:44:39 [200] HEAD /lore/historia 7ms
+03:44:39 [200] HEAD /lore/sociedade 7ms
+03:44:39 [200] HEAD /srd/04-magia-musical 9ms
+12:48:43 [200] /lore/cosmologia/ 15ms
+12:48:43 [200] /lore/historia/ 6ms
+12:48:43 [200] /lore/sociedade/ 6ms
+12:48:44 [200] /srd/04-magia-musical/ 5ms
+13:29:13 [200] /lore/regioes/ 5ms
+02:28:10 Configuration file updated. Restarting...
+2:28:10 AM [vite] (ssr) Error when evaluating SSR module /home/timon/Documents/qamareth/code/astro.config.mjs: Cannot find module '@astrojs/static' imported from '/home/timon/Documents/qamareth/code/astro.config.mjs'
+      at fetchModule (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:46842:19)
+      at RunnableDevEnvironment.fetchModule (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:47933:12)
+      at fetchModule (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:47887:21)
+      at handleInvoke (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39002:28)
+      at EventEmitter.listenerForInvokeHandler (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39075:25)
+      at EventEmitter.emit (node:events:519:28)
+      at Object.send (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:25190:40)
+      at Object.invoke (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/module-runner.js:621:34)
+      at Object.invoke (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/module-runner.js:682:34)
+      at SSRCompatModuleRunner.getModuleInformation (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/module-runner.js:1205:94)
+[astro] Unable to load your Astro config
+
+02:28:11 [ERROR] [config] Cannot find module '@astrojs/static' imported from '/home/timon/Documents/qamareth/code/astro.config.mjs'
+  Stack trace:
+    at /home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:46842:19
+    [...] See full stack trace in the browser, or rerun with --verbose.
+
+02:28:11 [ERROR] Continuing with previous valid configuration
+
+02:29:19 Configuration file updated. Restarting...
+2:29:20 AM [vite] (ssr) Error when evaluating SSR module /home/timon/Documents/qamareth/code/astro.config.mjs: Cannot find module '@astrojs/static' imported from '/home/timon/Documents/qamareth/code/astro.config.mjs'
+      at fetchModule (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:46842:19)
+      at RunnableDevEnvironment.fetchModule (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:47933:12)
+      at fetchModule (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:47887:21)
+      at handleInvoke (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39002:28)
+      at EventEmitter.listenerForInvokeHandler (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39075:25)
+      at EventEmitter.emit (node:events:519:28)
+      at Object.send (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:25190:40)
+      at Object.invoke (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/module-runner.js:621:34)
+      at Object.invoke (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/module-runner.js:682:34)
+      at SSRCompatModuleRunner.getModuleInformation (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/module-runner.js:1205:94)
+[astro] Unable to load your Astro config
+
+02:29:20 [ERROR] [config] Cannot find module '@astrojs/static' imported from '/home/timon/Documents/qamareth/code/astro.config.mjs'
+  Stack trace:
+    at fetchModule (file:///home/timon/Documents/qamareth/code/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:46842:19)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+
+02:29:20 [ERROR] Continuing with previous valid configuration
+
+02:30:29 Configuration file updated. Restarting...
+02:30:30 [vite] Re-optimizing dependencies because vite config has changed
+02:30:30 [content] Syncing content
+02:30:30 [content] Astro config changed
+02:30:30 [content] Clearing content store
+02:30:30 [content] Synced content
+02:30:30 [types] Generated 550ms
+02:30:30 [vite] Re-optimizing dependencies because vite config has changed
+02:30:31 [ERROR] [vite] Error:   Failed to scan for dependencies from entries:
+  /home/timon/Documents/qamareth/code/src/index.astro
+/home/timon/Documents/qamareth/code/src/components/Sigil.astro
+/home/timon/Documents/qamareth/code/src/components/Welcome.astro
+/home/timon/Documents/qamareth/code/src/layouts/ContentLayout.astro
+/home/timon/Documents/qamareth/code/src/layouts/Layout.astro
+/home/timon/Documents/qamareth/code/src/layouts/SrdLayout.astro
+/home/timon/Documents/qamareth/code/src/pages/404.astro
+/home/timon/Documents/qamareth/code/src/pages/index.astro
+/home/timon/Documents/qamareth/code/src/pages/ferramentas/criar-personagem.astro
+/home/timon/Documents/qamareth/code/src/pages/ferramentas/index.astro
+/home/timon/Documents/qamareth/code/src/pages/grimorios/armas-ressonantes.astro
+/home/timon/Documents/qamareth/code/src/pages/grimorios/armas-sencientes.astro
+/home/timon/Documents/qamareth/code/src/pages/grimorios/index.astro
+/home/timon/Documents/qamareth/code/src/pages/grimorios/liturgias.astro
+/home/timon/Documents/qamareth/code/src/pages/grimorios/motivos-de-origem.astro
+/home/timon/Documents/qamareth/code/src/pages/grimorios/partituras.astro
+/home/timon/Documents/qamareth/code/src/pages/grimorios/rituais.astro
+/home/timon/Documents/qamareth/code/src/pages/grimorios/sistema-de-magia.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/a-igreja.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/cidades.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/cosmologia.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/exercito-e-lei.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/faccoes.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/historia.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/index.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/o-harmonium.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/o-imperio.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/o-mundo.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/regioes.astro
+/home/timon/Documents/qamareth/code/src/pages/lore/sociedade.astro
+/home/timon/Documents/qamareth/code/src/pages/tools/liturgical-oracle.astro
+/home/timon/Documents/qamareth/code/src/pages/tools/paradigm-cards.astro
+/home/timon/Documents/qamareth/code/src/pages/templates/index.astro
+/home/timon/Documents/qamareth/code/src/pages/srd/index.astro
+/home/timon/Documents/qamareth/code/src/pages/srd/char-creation/index.astro
+
+  [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mUnterminated string literal[0m
+
+    script:/home/timon/Documents/qamareth/code/src/pages/tools/liturgical-oracle.astro?id=0:11:0:
+[37m      11 │ [32m[37m
+         ╵ [32m^[0m
+
+
+    at failureErrorWithLog (/home/timon/Documents/qamareth/code/node_modules/vite/node_modules/esbuild/lib/main.js:1467:15)
+    at /home/timon/Documents/qamareth/code/node_modules/vite/node_modules/esbuild/lib/main.js:926:25
+    at runOnEndCallbacks (/home/timon/Documents/qamareth/code/node_modules/vite/node_modules/esbuild/lib/main.js:1307:45)
+    at buildResponseToResult (/home/timon/Documents/qamareth/code/node_modules/vite/node_modules/esbuild/lib/main.js:924:7)
+    at /home/timon/Documents/qamareth/code/node_modules/vite/node_modules/esbuild/lib/main.js:936:9
+    at new Promise (<anonymous>)
+    at requestCallbacks.on-end (/home/timon/Documents/qamareth/code/node_modules/vite/node_modules/esbuild/lib/main.js:935:54)
+    at handleRequest (/home/timon/Documents/qamareth/code/node_modules/vite/node_modules/esbuild/lib/main.js:628:17)
+    at handleIncomingPacket (/home/timon/Documents/qamareth/code/node_modules/vite/node_modules/esbuild/lib/main.js:653:7)
+    at Socket.readFromStdout (/home/timon/Documents/qamareth/code/node_modules/vite/node_modules/esbuild/lib/main.js:581:7)

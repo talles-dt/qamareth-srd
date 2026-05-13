@@ -2,14 +2,16 @@
 import { useState, useRef, useEffect } from "react"
 import { streamChat } from "@/lib/api"
 import { AGENTS, type AgentId, type Message } from "@/lib/types"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 export default function ChatPage() {
-  const [messages, setMessages]       = useState<Message[]>([])
-  const [input, setInput]             = useState("")
-  const [agent, setAgent]             = useState<AgentId>("master-architect")
+  const [messages, setMessages] = useState<Message[]>([])
+  const [input, setInput] = useState("")
+  const [agent, setAgent] = useState<AgentId>("master-architect")
   const [orchestrated, setOrchestrated] = useState(false)
-  const [streaming, setStreaming]     = useState(false)
-  const [streamBuffer, setBuffer]     = useState("")
+  const [streaming, setStreaming] = useState(false)
+  const [streamBuffer, setBuffer] = useState("")
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export default function ChatPage() {
           value={agent}
           onChange={e => setAgent(e.target.value as AgentId)}
           className="bg-surface-alt border border-border text-parchment
-                     font-mono text-xs px-3 py-1.5 focus:outline-none focus:border-steel"
+          font-mono text-xs px-3 py-1.5 focus:outline-none focus:border-steel"
         >
           {AGENTS.map(a => (
             <option key={a.id} value={a.id}>{a.label}</option>
@@ -96,7 +98,11 @@ export default function ChatPage() {
                   {m.agent}
                 </div>
               )}
-              <div className="whitespace-pre-wrap font-body">{m.content}</div>
+              <div className="prose dark:prose-invert prose-sm max-w-none">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {m.content}
+                </ReactMarkdown>
+              </div>
             </div>
           </div>
         ))}
@@ -108,7 +114,11 @@ export default function ChatPage() {
               <div className="font-mono text-xs text-steel mb-2 uppercase tracking-widest">
                 {agent} <span className="animate-pulse">▋</span>
               </div>
-              <div className="whitespace-pre-wrap font-body">{streamBuffer}</div>
+              <div className="prose dark:prose-invert prose-sm max-w-none">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {streamBuffer}
+                </ReactMarkdown>
+              </div>
             </div>
           </div>
         )}
@@ -130,15 +140,15 @@ export default function ChatPage() {
           placeholder="Task an agent… (Shift+Enter for newline)"
           rows={3}
           className="flex-1 bg-surface-alt border border-border text-parchment font-body
-                     text-sm px-4 py-2 resize-none focus:outline-none focus:border-steel
-                     placeholder:text-marginalia"
+          text-sm px-4 py-2 resize-none focus:outline-none focus:border-steel
+          placeholder:text-marginalia"
         />
         <button
           onClick={send}
           disabled={streaming || !input.trim()}
           className="px-6 py-2 bg-steel text-ink font-mono text-xs tracking-widest
-                     uppercase disabled:opacity-40 disabled:cursor-not-allowed
-                     hover:bg-parchment transition-colors self-end"
+          uppercase disabled:opacity-40 disabled:cursor-not-allowed
+          hover:bg-parchment transition-colors self-end"
         >
           SEND
         </button>

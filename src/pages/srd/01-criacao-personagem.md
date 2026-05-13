@@ -147,7 +147,7 @@ Qamareth não tem classes. Não tem níveis. Um personagem não é um pacote de 
 ### Q16 — Qual facção conhece seu nome?
 → +1 IP com essa facção. Define valor inicial de Honra (3-5 baseado em Q15 + reputação faccional).
 
-**Exemplos:** Harmonium · Ember Vanguard · Silent Accord · Verdant Shield · Silver Dawn · Ashen Path · Inquisição · Conselho de Ascendentes · Comércio de Olynn
+**Exemplos:** Harmonium · Vanguarda das Brasas · Acordo Silencioso · Escudo Verdejante · Alvorecer Prateado · Caminho Cinzento · Inquisição · Olhos do Imperador · Casas Nobis
 
 ---
 

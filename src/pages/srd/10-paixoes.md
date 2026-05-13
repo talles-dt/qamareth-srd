@@ -91,4 +91,4 @@ A única saída de Dominado é um **acerto espiritual completo**: todas as Paix�
 
 ---
 
-[← Anterior: Posicionamento](/srd/09-posicionamento) · [Próximo: Ressonância (RS) →](/srd/11-ressonancia-rs)
+[← Anterior: Posicionamento](/srd/09-posicionamento) · [Próximo: Facções →](/srd/13-faccoes)

@@ -1,45 +1,49 @@
 ---
-layout: '../../layouts/SrdLayout.astro'
-title: 'Ressonância (RS)'
+title: "11 — Ressonância (RS) [CONSOLIDADO NO CAP. 04]"
+description: "O Capítulo 11 foi absorvido pelo Capítulo 04 — Magia Musical. RS é um recurso narrativo gained através de roleplay e alinhamento, não um tracker de progressão."
+layout: ../../layouts/ContentLayout.astro
+section: srd
+nav: srd
 ---
+import ContentLayout from '../../layouts/ContentLayout.astro';
 
-# Ressonância (RS)
+<ContentLayout
+  title="11 — Ressonância (RS) [CONSOLIDADO] · Qamareth SRD"
+  section="srd"
+  breadcrumb={[
+    { label: 'SRD', href: '/srd' },
+    { label: '11 — Ressonância (RS)', href: '/srd/11-ressonancia-rs' },
+  ]}
+>
+  <h1 style="color: var(--gold);">⚠️ Capítulo Consolidado</h1>
 
-RS é um **recurso dinâmico** — medida do alinhamento do personagem com a Canção divina. É **gasto** para executar Partituras e **recuperado** através de engajamento espiritual.
+  <div class="callout" style="border-color: rgba(180,80,80,0.5);">
+    Este capítulo foi <strong>consolidado</strong> no <strong>Capítulo 04 — Magia Musical</strong>.
+    RS é um <strong>recurso narrativo</strong> — accumulation happens through roleplay,
+    acts of harmonic alignment, and meaningful choices, not XP thresholds.
+  </div>
 
-**Faixa de RS:** 0-10. A maioria opera entre 2-7.
+  <h2>Conteúdo Canonical</h2>
+  <p>
+    Toda a descrição do sistema de RS — incluindo progression track, efeitos por nível,
+    Dissonância, e o caminho de theosis — foi unificada no capítulo 04.
+  </p>
+  <ul>
+    <li><a href="/srd/04-magia-musical">Capítulo 04 — Magia Musical (fonte canonical)</a></li>
+  </ul>
 
-## RS como Portão de Recurso
+  <h2>O que era o Capítulo 11?</h2>
+  <p>
+    O antigo 11-ressonancia-rs.md tratava RS primariamente como um <em>dynamic resource tracker</em>
+    — algo que se acumulava e se gastava. Essa conceituação foi deprecada. O sistema atual (Cap. 04)
+    treats RS como <strong>theosis progressiva</strong>: quanto mais sua alma ressoa com a Grande
+    Sinfonia, mais poder você ganha — mas também mais vulnerável à Dissonância.
+  </p>
 
-Para tentar uma Partitura, você deve ter **RS ≥ complexidade da Partitura**.
-
-| Complexidade | RS Necessário |
-|---|---|
-| Simples | 2+ |
-| Padrão | 3+ |
-| Avançada | 5+ |
-| Obra-prima | 7+ |
-| Transcendente | 9+ |
-
-## RS 0 — Catatonia
-
-Quando RS chega a 0:
-- Não pode executar nenhuma Partitura
-- Não pode fazer ações Pesadas
-- Ganha Acídia no nível 3 imediatamente
-- Dura 1d6 dias ou até levado a um padre para Confissão + Penitência + Comunhão
-
-## RS 10 — Intervenção Divina
-
-A RS 10, um personagem pode tentar **Intervenção Divina** (d100, critério do Narrador).
-
-**Após Intervenção bem-sucedida:**
-- RS diminui em 2d4
-- O personagem **não pode ganhar RS por 1d8 semanas**
-- Nenhuma outra Intervenção por **1d6 meses**
-
-## RS Não É Nível
-
-RS não define tier de poder do personagem. Não gateia disciplinas, atributos ou habilidades não-mágicas. RS é um **recurso**, não um rank.
-
-[← Anterior: Paixões](/srd/10-paixoes) · [Próximo: Magi-Tech →](/srd/12-magi-tech)
+  <h2>Resumo do Sistema Canonical de RS</h2>
+  <p>
+    RS starts at 0. Ganha-se RS através de acts that bring a character into harmonic alignment with
+    their personal note and the divine frequencies. Perder RS requires failing dissonance saves or
+    acting against one's core spiritual alignment. The full track with effects is in Cap. 04.
+  </p>
+</ContentLayout>
