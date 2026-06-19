@@ -37,7 +37,10 @@ const navLinks = [
   <meta property="og:description" content={description} />
   <meta property="og:type"        content="website" />
 </head>
-<body>
+<body class="qa-grain">
+
+  <!-- Scroll Progress -->
+  <div class="qa-scroll-progress" id="qa-scroll-progress" aria-hidden="true"></div>
 
   <!-- ═══════════════════ NAVEGAÇÃO ═══════════════════ -->
   <header class="site-nav">
@@ -113,6 +116,34 @@ const navLinks = [
       navLinks.classList.toggle('nav-links--open', !open);
     });
   }
+
+  // Scroll progress indicator
+  const progressBar = document.getElementById('qa-scroll-progress');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        progressBar.style.transform = `scaleX(${Math.min(scrollTop / docHeight, 1)})`;
+      }
+    }, { passive: true });
+  }
+
+  // IntersectionObserver for scroll-triggered animations
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.qa-fade-up, .qa-fade-in, .qa-stagger').forEach(el => {
+    observer.observe(el);
+  });
 </script>
 
 <style>

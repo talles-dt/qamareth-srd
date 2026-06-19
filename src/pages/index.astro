@@ -43,28 +43,28 @@ const sections = [
   <section class="hero">
 
     <!-- Sigilo animado -->
-    <div class="hero-sigil">
+    <div class="hero-sigil qa-fade-in">
       <Sigil size={300} animate={true} />
     </div>
 
     <!-- Título -->
-    <h1 class="hero-title font-cinzel-d">Qamareth</h1>
+    <h1 class="hero-title font-cinzel-d qa-fade-up">Qamareth</h1>
 
     <!-- Ornamento -->
-    <div class="hero-ornament" aria-hidden="true">
+    <div class="hero-ornament qa-fade-up" aria-hidden="true" style="transition-delay: 0.2s;">
       <span class="orn-line"></span>
       <span class="orn-gem">✦</span>
       <span class="orn-line"></span>
     </div>
 
     <!-- Tagline -->
-    <p class="hero-tagline font-garamond">
+    <p class="hero-tagline font-garamond qa-fade-up" style="transition-delay: 0.4s;">
       Um mundo onde a música não é arte — é <em>feitiçaria</em>.<br/>
       Onde os acordes governam exércitos e o silêncio pode matar.
     </p>
 
     <!-- Subtítulo / Sistema -->
-    <p class="hero-system font-cinzel">
+    <p class="hero-system font-cinzel qa-fade-up" style="transition-delay: 0.6s;">
       Sistema Proprietário · Licença CC BY 4.0
     </p>
 
@@ -75,19 +75,18 @@ const sections = [
     <div class="cards-wrap">
 
       <!-- Linha ornamental acima -->
-      <div class="section-divider" aria-hidden="true">
+      <div class="section-divider qa-fade-up" aria-hidden="true">
         <span class="div-line"></span>
         <span class="div-center font-cinzel">Codex</span>
         <span class="div-line"></span>
       </div>
 
       <!-- Grid de cards -->
-      <div class="cards-grid">
-        {sections.map((s, i) => (
+      <div class="cards-grid qa-stagger">
+        {sections.map((s) => (
           <a
             href={s.href}
             class:list={['card', s.accent]}
-            style={`animation-delay: ${0.55 + i * 0.1}s`}
           >
             <span class="card-glyph" aria-hidden="true">{s.glyph}</span>
             <div class="card-body">
@@ -103,7 +102,7 @@ const sections = [
   </section>
 
   <!-- ═══════════════════ MANIFESTO (pequeno) ═══════════════════ -->
-  <section class="manifesto">
+  <section class="manifesto qa-fade-up">
     <div class="manifesto-inner">
       <p class="manifesto-text font-garamond">
         Qamareth é um universo de fantasia arcano-musical criado para ser
@@ -128,7 +127,6 @@ const sections = [
   }
 
   .hero-sigil {
-    animation: qa-fade-in 1s var(--ease-out) both;
     filter: drop-shadow(0 0 32px rgba(201, 164, 75, 0.18));
     margin-bottom: 32px;
   }
@@ -143,7 +141,6 @@ const sections = [
     letter-spacing: 0.18em;
     color: var(--gold-bright);
     text-shadow: 0 0 60px rgba(228, 196, 122, 0.22);
-    animation: qa-rise 0.9s var(--ease-out) 0.15s both;
     margin-bottom: 20px;
   }
 
@@ -152,7 +149,6 @@ const sections = [
     align-items: center;
     gap: 14px;
     width: 260px;
-    animation: qa-fade-in 0.8s var(--ease-out) 0.3s both;
     margin-bottom: 20px;
   }
   .orn-line {
@@ -175,7 +171,6 @@ const sections = [
     color: var(--text-muted);
     line-height: 1.85;
     max-width: 540px;
-    animation: qa-rise 0.9s var(--ease-out) 0.4s both;
     margin-bottom: 20px;
   }
   .hero-tagline em {
@@ -189,13 +184,11 @@ const sections = [
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--text-faint);
-    animation: qa-fade-in 0.8s var(--ease-out) 0.6s both;
   }
 
   /* ═══ CARDS ═══ */
   .cards-section {
     padding: 0 24px 0;
-    animation: qa-drift 0.8s var(--ease-out) 0.5s both;
   }
 
   .cards-wrap {
@@ -239,11 +232,10 @@ const sections = [
     border-radius: var(--radius-lg);
     text-decoration: none;
     transition:
-      transform     0.2s var(--ease-out),
+      transform     0.3s var(--ease-out),
       border-color  0.2s,
       background    0.2s,
       box-shadow    0.3s;
-    animation: qa-drift 0.7s var(--ease-out) both;
     overflow: hidden;
   }
 
@@ -261,7 +253,7 @@ const sections = [
   .card:hover::before { opacity: 1; }
 
   .card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     border-color: var(--gold-hover);
     background: var(--surface-2);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--gold-ghost);
