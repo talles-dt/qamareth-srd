@@ -19,7 +19,7 @@
   /* Dourado imperial */
   --gold:        #c9a44b;
   --gold-bright: #e4c47a;
-  --gold-dim:    rgba(201, 164, 75, 0.55);
+  --gold-dim:    rgba(201, 164, 75, 0.72);
   --gold-ghost:  rgba(201, 164, 75, 0.10);
   --gold-border: rgba(201, 164, 75, 0.14);
   --gold-hover:  rgba(201, 164, 75, 0.32);
@@ -39,8 +39,8 @@
 
   /* Texto */
   --text:        #ede4cc;
-  --text-muted:  #9a9078;
-  --text-faint:  #58534a;
+  --text-muted:  #b0a68a;
+  --text-faint:  #7a7260;
 
   /* Bordas */
   --border:      rgba(201, 164, 75, 0.12);
@@ -258,3 +258,46 @@ body {
 .font-cinzel { font-family: var(--font-cinzel), serif; }
 .font-cinzel-d { font-family: var(--font-cinzel-d), serif; }
 .font-garamond { font-family: var(--font-garamond), Georgia, serif; }
+
+/* ═══════════════════════════════════════════════════
+   Accessibility: Reduced Motion
+   ═══════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   Accessibility: Focus Indicators
+   ═══════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 8px 16px;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}

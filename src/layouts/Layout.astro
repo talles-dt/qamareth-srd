@@ -39,12 +39,15 @@ const navLinks = [
 </head>
 <body class="qa-grain">
 
+  <!-- Skip Navigation -->
+  <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
   <!-- Scroll Progress -->
   <div class="qa-scroll-progress" id="qa-scroll-progress" aria-hidden="true"></div>
 
   <!-- ═══════════════════ NAVEGAÇÃO ═══════════════════ -->
   <header class="site-nav">
-    <nav class="nav-inner">
+    <nav class="nav-inner" aria-label="Navegação principal">
 
       <!-- Logo -->
       <a href="/" class="nav-logo" aria-label="Qamareth — início">
@@ -53,7 +56,7 @@ const navLinks = [
       </a>
 
       <!-- Links -->
-      <ul class="nav-links" role="list">
+      <ul class="nav-links" role="list" id="nav-links">
         {navLinks.map(link => (
           <li>
             <a
@@ -67,7 +70,7 @@ const navLinks = [
       </ul>
 
       <!-- Botão mobile hamburger -->
-      <button class="nav-toggle" aria-label="Menu" id="nav-toggle" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Menu" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
     </nav>
